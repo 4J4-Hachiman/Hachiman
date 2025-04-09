@@ -97,6 +97,7 @@ public class JoueursControl1 : MonoBehaviour
     private List<string> attackCombosList = new List<string>();
 
     static public int health = 100;
+    public int numbPotion = 3;
 
     /* -------------------- VARIABLES GAMEOBJECT -------------------- */
     public GameObject activeKatana;
@@ -358,7 +359,7 @@ public class JoueursControl1 : MonoBehaviour
             float angleToTarget = Vector3.Angle(direction, toTargetDir);
             if (angleToTarget <= coneAngle)
             {
-                Debug.Log("Cone hit: " + col.name);
+                //Debug.Log("Cone hit: " + col.name);
                 Debug.DrawLine(origin, col.transform.position, Color.green);
             }
         }
@@ -526,7 +527,7 @@ public class JoueursControl1 : MonoBehaviour
         // Optional: Raycast to check if there's an obstacle ahead
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance))
         {
-            Debug.Log("Obstacle detected: " + hit.collider.name);
+            //Debug.Log("Obstacle detected: " + hit.collider.name);
             targetPos = hit.point; // Stop at the obstacle
         }
 
