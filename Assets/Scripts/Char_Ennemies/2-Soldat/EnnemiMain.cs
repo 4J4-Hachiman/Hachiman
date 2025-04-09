@@ -54,6 +54,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     public Vector3[] patrol;
     public event Action<EnnemiMain> OnEnemyDeath;
     public event Action OnAlertAll;
+    public event Action OnComboStepEnd;
 
     /* ======================= END OF VARIABLES ======================= */
 
@@ -221,6 +222,11 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         {
             StateMachine.SwitchState(StateSurround);
         }
+    }
+
+    public void OnComboStepInvoke()
+    {
+        OnComboStepEnd?.Invoke();
     }
 
     // public string GetRandomAttackType()

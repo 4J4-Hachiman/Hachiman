@@ -77,7 +77,7 @@ public class CombatManager
             readyEnemies.Add(instance);
         }
 
-        Debug.Log($"Added an enemy to the ready list. New count {readyEnemies.Count}");
+        // Debug.Log($"Added an enemy to the ready list. New count {readyEnemies.Count}");
     }
 
     /// <summary>Removes an enemy from the list of enemies ready to attack the player.</summary>
@@ -85,7 +85,7 @@ public class CombatManager
     public void RemoveFromReadyList(EnnemiMain instance)
     {
         readyEnemies.Remove(instance);
-        Debug.Log($"Removed an enemy from the ready list. New count {readyEnemies.Count}");
+        // Debug.Log($"Removed an enemy from the ready list. New count {readyEnemies.Count}");
     }
 
     private void HandleFirstEnemyReady()

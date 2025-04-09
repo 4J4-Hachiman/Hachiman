@@ -37,7 +37,7 @@ public class Gamemanager : MonoBehaviour
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        manageSettings.SetFramerate(80);
+        Application.targetFrameRate = -1;
 
         Combat = new CombatManager(this, surroundDistance, enemySpaceing);
         enemyPool = new Pooling(enemyInstance, poolAmount);

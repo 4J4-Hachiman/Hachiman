@@ -33,11 +33,11 @@ public class Sword : MonoBehaviour
         return CritChance > Random.Range(1, 100) ? BasicDammage * CritDamage : BasicDammage;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Hit the player!!!");
-        }
-    }
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.gameObject.CompareTag("Player"))
+    //     {
+    //         // Debug.Log("Hit the player!!!");
+    //     }
+    // }
 }
