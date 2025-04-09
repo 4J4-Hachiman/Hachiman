@@ -36,7 +36,7 @@ public class EnemyStateAttack : StateBase
     private IEnumerator AttackPlayer()
     {
         ennemiMain.Animator.SetTrigger("Attack");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         OnAttackEnd?.Invoke();
         yield break;
     }
