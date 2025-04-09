@@ -35,7 +35,8 @@ public class JoueursControl1 : MonoBehaviour
     private Animator animator;
     public CinemachineVirtualCamera virtualCamera;
     private CameraTarget cameraTarget;
-    public LayerMask Ground;
+    [SerializeField] private LayerMask Ground;
+    [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
     public GestionQuete quete;
 
@@ -72,15 +73,15 @@ public class JoueursControl1 : MonoBehaviour
 
     // -----------------------------------------------------------************************************************************************ Sebastien//
     /* -------------------- VARIABLES BOOL -------------------- */
-    public bool isArmed;
-    public bool isJumping;
+    private bool isArmed;
+    private bool isJumping;
     private bool canJump;
-    public bool isLockedOn;
-    public bool isCrouched;
-    public bool isRolling;
-    public bool hasJumped;
-    public bool hasLanded;
-    public bool canMove;
+    private bool isLockedOn;
+    private bool isCrouched;
+    private bool isRolling;
+    private bool hasJumped;
+    private bool hasLanded;
+    private bool canMove;
     private bool isDead;
     private bool isGrounded;
 
@@ -104,6 +105,9 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject cube;
     public GameObject camera;
     public Transform head;
+
+    /* -------------------- VARIABLES ARRAY -------------------- */
+    public GameObject[] lockOnOptions; 
 
     /* ------------------------ AUDIO SOURCE ------------------------- */ 
     public AudioSource[] audioSources;
@@ -233,14 +237,28 @@ public class JoueursControl1 : MonoBehaviour
 
         CapsuleCastFromCamera();
 
-        if (isLockedOn == true){
-            // Look at object
-            var target = cube.transform;
-            Vector3 direction = target.position - transform.position;
-            direction.y = 0;  
-            transform.rotation = Quaternion.LookRotation(direction);
 
-            camera.transform.LookAt(cube.transform);
+        if (isLockedOn == true)
+        {
+            // Look at object
+            Transform target = null;
+            Collider[] hits = CapsuleCastFromCamera();
+
+            if (hits.Length > 0 && hits[0].transform != null)
+            {
+                target = hits[0].transform;
+
+                Vector3 direction = target.position - transform.position;
+                direction.y = 0;
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+
+            if (target == null)
+            {
+                inputActions.MapNormale.Saut.performed += Saut;
+                isLockedOn = false;
+                animator.SetBool("lockedOn", false);
+            }
         }
 
         Vector3 bottomCenter = transform.position + cc.center - new Vector3(0, cc.height / 2f, 0);
@@ -307,7 +325,7 @@ public class JoueursControl1 : MonoBehaviour
     // FUNCTIONS ////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////
 
-    void CapsuleCastFromCamera()
+    Collider[] CapsuleCastFromCamera()
     {
         Camera cam = Camera.main;
 
@@ -320,7 +338,10 @@ public class JoueursControl1 : MonoBehaviour
         Vector3 direction = cam.transform.forward;
 
         // OverlapSphere to get all potential targets
-        Collider[] hits = Physics.OverlapSphere(origin, radius);
+        Collider[] hits = Physics.OverlapSphere(origin, radius, enemyLayer);
+        foreach(Collider col in hits){
+            Debug.Log(col.gameObject);
+        }
 
         foreach (Collider col in hits)
         {
@@ -345,6 +366,8 @@ public class JoueursControl1 : MonoBehaviour
         // Optional debug: draw the cone bounds
         Debug.DrawRay(origin, Quaternion.Euler(0, coneAngle, 0) * direction * maxDistance, Color.yellow);
         Debug.DrawRay(origin, Quaternion.Euler(0, -coneAngle, 0) * direction * maxDistance, Color.yellow);
+
+        return hits;
     }
 
     public void ManageSwordCollider(int state)
