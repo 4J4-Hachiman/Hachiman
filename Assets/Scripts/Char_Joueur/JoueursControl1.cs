@@ -84,6 +84,7 @@ public class JoueursControl1 : MonoBehaviour
     private bool canMove;
     private bool isDead;
     private bool isGrounded;
+    private bool isHealing;
 
     // AttackCombos
     private int comboStep = 0;
@@ -155,6 +156,7 @@ public class JoueursControl1 : MonoBehaviour
         isRolling = false;
         isDead = false;
         canJump = true;
+        isHealing = false;
 
         comboStep = Mathf.Clamp(comboStep, 0, 3);
         lightAttackCombo = "lightAttack";
@@ -182,6 +184,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOn.performed += LockOn;
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
+        inputActions.MapNormale.Heal.performed += Heal;
     }
 
     private void OnDisable()
@@ -197,6 +200,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOn.performed -= LockOn;
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
+        inputActions.MapNormale.Heal.performed -= Heal;
     }
 
 
@@ -208,6 +212,7 @@ public class JoueursControl1 : MonoBehaviour
         {
             Invoke("DiedUI", 2f);
         }
+        Debug.Log(health);
         //Debug.DrawRay(head.position, Vector3.up * checkDistance, Color.red);
         //Debug.Log("attackCombosList Count: " + attackCombosList.Count);
         //Debug.Log("comboStep: " + comboStep);
@@ -487,6 +492,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOn.performed -= LockOn;
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
+        inputActions.MapNormale.Heal.performed -= Heal;
     }
     private void ListenToInputs()
     {
@@ -499,6 +505,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOn.performed += LockOn;
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
+        inputActions.MapNormale.Heal.performed += Heal;
     }
 
     /* ================================ COUROUTINES ================================ */
@@ -580,6 +587,34 @@ public class JoueursControl1 : MonoBehaviour
         }
         //Debug.Log("Jumped");
     }
+
+    private void Heal(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed){
+            if(numbPotion >= 1)
+            {
+                //state = HachimanState.Healing;
+                Debug.Log("Heal");
+                if (isHealing == false){
+                    isHealing = true;
+                    animator.SetTrigger("Healing");
+                    DoNotListenToInputs();
+                    health = (health > 51) ? 100 : health + 50;
+                    numbPotion -= 1;
+                    animator.SetLayerWeight(1, 1);
+                    Invoke("StoppedHealing", 1.83f);
+                } 
+            }
+        }
+    }
+
+    public void StoppedHealing()
+    {
+        ListenToInputs();
+        isHealing = false;
+        animator.SetLayerWeight(1, 0);
+    }
+
     private void Crouch(InputAction.CallbackContext ctx)
     {
         if (ctx.performed){
