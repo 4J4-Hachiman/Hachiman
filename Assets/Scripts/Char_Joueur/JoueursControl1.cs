@@ -85,6 +85,7 @@ public class JoueursControl1 : MonoBehaviour
     private bool isDead;
     private bool isGrounded;
     private bool isHealing;
+    private bool isHit;
 
     // AttackCombos
     private int comboStep = 0;
@@ -98,6 +99,7 @@ public class JoueursControl1 : MonoBehaviour
     private List<string> attackCombosList = new List<string>();
 
     static public int health = 100;
+    public float endurance = 100;
     public int numbPotion = 3;
 
     /* -------------------- VARIABLES GAMEOBJECT -------------------- */
@@ -157,6 +159,7 @@ public class JoueursControl1 : MonoBehaviour
         isDead = false;
         canJump = true;
         isHealing = false;
+        isHit = false;
 
         comboStep = Mathf.Clamp(comboStep, 0, 3);
         lightAttackCombo = "lightAttack";
@@ -212,7 +215,8 @@ public class JoueursControl1 : MonoBehaviour
         {
             Invoke("DiedUI", 2f);
         }
-        Debug.Log(health);
+        Debug.Log("<color=red>Health: </color>" + health);
+        Debug.Log("<color=Green>Endurance: </color>" + endurance);
         //Debug.DrawRay(head.position, Vector3.up * checkDistance, Color.red);
         //Debug.Log("attackCombosList Count: " + attackCombosList.Count);
         //Debug.Log("comboStep: " + comboStep);
@@ -390,6 +394,7 @@ public class JoueursControl1 : MonoBehaviour
     
     void NotHit()
     {
+        isHit = false;
         animator.SetBool("Hit", false);
         ListenToInputs();
     }
@@ -937,10 +942,28 @@ public class JoueursControl1 : MonoBehaviour
         }
     }
 
+    IEnumerator EnduranceReset()
+    {
+        Debug.Log("<color=yellow>Blocked</color>");
+        yield return new WaitForSeconds(1.5f);
+
+        while(endurance <= 100)
+        {
+            if (isHit)
+            {
+                StartCoroutine(EnduranceReset());
+                yield break;
+            }
+            endurance += 1f * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield break;
+    }
+
     void OnDrawGizmosSelected()
     {
         if (cc == null)
-            cc = GetComponent<CharacterController>();
+        cc = GetComponent<CharacterController>();
 
         Vector3 bottomCenter = transform.position + cc.center - new Vector3(0, cc.height / 2f, 0);
         Vector3 jumpCheckPosition = bottomCenter + Vector3.up * jumpCheckOffset;
@@ -962,6 +985,9 @@ public class JoueursControl1 : MonoBehaviour
                 // Sound
                 activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
                 // Code
+                isHit = true;
+                endurance -= 20;
+                StartCoroutine(EnduranceReset());
                 animator.SetBool("Hit", true);
                 Invoke("NotHit", 0.33f);
                 DoNotListenToInputs();
