@@ -68,7 +68,7 @@ AnimatorStateMachine:
     m_Position: {x: 710, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2080984646721498427}
-    m_Position: {x: 130, y: -270, z: 0}
+    m_Position: {x: -20, y: -270, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -3411028906542339050}
@@ -83,13 +83,13 @@ AnimatorStateMachine:
   - {fileID: 7399431058165712285}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -1961067857382874838}
-    second: []
   - first: {fileID: -8115722892904082971}
     second:
     - {fileID: -3075367251261394229}
+  - first: {fileID: -1961067857382874838}
+    second: []
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 150, y: -200, z: 0}
+  m_AnyStatePosition: {x: 0, y: -200, z: 0}
   m_EntryPosition: {x: 150, y: 30, z: 0}
   m_ExitPosition: {x: 1070, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -113,12 +113,12 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 4128019485340815183}
-    second:
-    - {fileID: 6119392389590518125}
   - first: {fileID: 642594596672249141}
     second:
     - {fileID: -9119493850890052813}
+  - first: {fileID: 4128019485340815183}
+    second:
+    - {fileID: 6119392389590518125}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 80, z: 0}
@@ -715,7 +715,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.6938776
   m_HasExitTime: 1
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!206 &3420285573565938912
@@ -823,7 +823,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 34042b86c822cd84891b2bdcbf76355d, type: 2}
+  m_Motion: {fileID: 7400000, guid: b3e0e7a8297d67749ad5cbf72243af41, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -937,7 +937,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.7115385
   m_HasExitTime: 1
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &6569495150796051030
@@ -984,7 +984,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.7413793
   m_HasExitTime: 1
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1102 &6726049092066105134

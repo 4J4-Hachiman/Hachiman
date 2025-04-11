@@ -50,7 +50,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     [field: SerializeField] public GameObject SwordGameObject { get; private set; }
     private CapsuleCollider swordCollider;
     [field: SerializeField] public float LockOffsetThreshold { get; private set; }
-
+    
     public Vector3[] patrol;
     public event Action<EnnemiMain> OnEnemyDeath;
     public event Action OnAlertAll;
@@ -83,6 +83,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         HpCurrent = HpMax;
 
         Agent.enabled = true;
+        Animator.applyRootMotion = false;
         enabled = true;
 
         this.patrol = new Vector3[patrol.Length];
@@ -100,6 +101,16 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
         {
             Dommage(other.GetComponent<Sword>().GetDammage());
+        }
+    }
+
+    void OnAnimatorMove()
+    {
+        if (Animator.applyRootMotion)
+        {
+            // transform.SetPositionAndRotation(Animator.rootPosition, Animator.rootRotation);
+            transform.position = Animator.rootPosition;
+            Agent.nextPosition = transform.position;
         }
     }
 
@@ -123,10 +134,6 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
             {
                 return true;
             }
-            if (hit.transform.gameObject.layer == 7)
-            {
-                return false;
-            }
         }
         return false;
     }
@@ -146,6 +153,8 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     {
         Debug.Log($"Enemy took {dmgValue} dammage.");
         HpCurrent -= dmgValue;
+
+        
 
         if (HpCurrent <= 0f)
         {
@@ -170,11 +179,12 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         Agent.SetDestination(position);
     }
 
-    public void LookAtPlayer()
+    public void LookAtPlayer(float speed = 10)
     {
         Vector3 dirToPlayer = Player.transform.position - transform.position;
         dirToPlayer.y = 0;
-        transform.forward = dirToPlayer;
+        transform.forward = Vector3.Slerp(transform.forward, dirToPlayer, speed * Time.deltaTime);
+        // transform.forward = dirToPlayer;
     }
 
     private Vector2 AgentDir()
@@ -229,17 +239,17 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         OnComboStepEnd?.Invoke();
     }
 
-    // public string GetRandomAttackType()
-    // {
-    //     int i = UnityEngine.Random.Range(0, 2);
+    public string GetRandomAttackType()
+    {
+        int i = UnityEngine.Random.Range(0, 2);
 
-    //     return i switch
-    //     {
-    //         0 => "Attack",
-    //         1 => "Attack_Combo",
-    //         _ => "Attack"
-    //     };
-    // }
+        return i switch
+        {
+            0 => "Attack",
+            1 => "Attack_Combo",
+            _ => "Attack"
+        };
+    }
 
     /// <summary>Checks if an enemy is within a certain range to attack the player.</summary>
     /// <returns>Is enemy close enough to perform an attack.</returns>

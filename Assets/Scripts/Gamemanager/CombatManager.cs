@@ -120,7 +120,7 @@ public class CombatManager
         // Chose a random enemy from the list of enemies ready to attack
         int indexAttacker = UnityEngine.Random.Range(0, readyEnemies.Count);
         attacker = readyEnemies[indexAttacker];
-        yield return new WaitForSeconds(readyEnemies.Count == 1 ? 3 : UnityEngine.Random.Range(2, 5));
+        yield return new WaitForSeconds(readyEnemies.Count == 1 ? 2 : UnityEngine.Random.Range(1, 3));
         attacker.StateAttack.OnAttackEnd += HandleAttackPerformed;
         attacker.OnEnemyDeath += HandleEnemyDeath;
         RemoveFromReadyList(attacker);
