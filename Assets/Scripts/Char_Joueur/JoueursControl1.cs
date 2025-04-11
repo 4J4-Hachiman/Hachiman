@@ -79,8 +79,6 @@ public class JoueursControl1 : MonoBehaviour
     private bool isLockedOn;
     private bool isCrouched;
     private bool isRolling;
-    private bool hasJumped;
-    private bool hasLanded;
     private bool canMove;
     private bool isDead;
     private bool isGrounded;
@@ -124,7 +122,6 @@ public class JoueursControl1 : MonoBehaviour
         Idle, 
         Equiping,
         Healing,
-        Jumping,
         Mouving,
         Crouching,
         Rolling,
@@ -178,7 +175,6 @@ public class JoueursControl1 : MonoBehaviour
     {
         inputActions.Enable();
         inputMouvement = inputActions.MapNormale.Mouvement;
-        inputActions.MapNormale.Saut.performed += Saut;
         inputActions.MapNormale.Crouch.performed += Crouch;
         inputActions.MapNormale.Roll.performed += Roll;
         inputActions.MapNormale.LightAttack.performed += LightAttack;
@@ -194,7 +190,6 @@ public class JoueursControl1 : MonoBehaviour
     {
         // Desactiver le ActionMap et se desabonner aux evenements
         inputActions.Disable();
-        inputActions.MapNormale.Saut.performed -= Saut;
         inputActions.MapNormale.Crouch.performed -= Crouch;
         inputActions.MapNormale.Roll.performed -= Roll;
         inputActions.MapNormale.LightAttack.performed -= LightAttack;
@@ -265,7 +260,6 @@ public class JoueursControl1 : MonoBehaviour
 
             if (target == null)
             {
-                inputActions.MapNormale.Saut.performed += Saut;
                 isLockedOn = false;
                 animator.SetBool("lockedOn", false);
             }
@@ -286,21 +280,6 @@ public class JoueursControl1 : MonoBehaviour
         {
             vyJoueur = forceGravite;
         }
-
-        if (!isGrounded){
-            isJumping = true;
-        } 
-        if (auSol)
-        {
-            isJumping = false;
-        }
-
-        if (isGrounded && !canJump){
-            Landed();
-        } 
-        if (!isGrounded && canJump){
-            Jump();
-        } 
 
         // Maj de la velocite du joueur
         vJoueur = GetDeplacement();
@@ -445,23 +424,6 @@ public class JoueursControl1 : MonoBehaviour
         ListenToInputs();
     }
 
-    private void Jump()
-    {
-        hasJumped = true;
-        hasLanded = false;
-        DoNotListenToInputs();
-        animator.SetBool("jumping", true);
-        state = HachimanState.Jumping;
-    }
-    private void Landed()
-    {
-        hasJumped = false;
-        hasLanded = true;
-        ListenToInputs();
-        state = HachimanState.Idle;
-        animator.SetBool("jumping", false);
-    }
-
     private void CanMove()
     {
         switch (state)
@@ -478,17 +440,12 @@ public class JoueursControl1 : MonoBehaviour
             canMove = true;
             break;
 
-            case HachimanState.Jumping: 
-            canMove = true;
-            break;
-
             default: canMove = false;
             break;
         }
     }
     private void DoNotListenToInputs()
     {
-        inputActions.MapNormale.Saut.performed -= Saut;
         inputActions.MapNormale.Crouch.performed -= Crouch;
         inputActions.MapNormale.Roll.performed -= Roll;
         inputActions.MapNormale.LightAttack.performed -= LightAttack;
@@ -501,7 +458,6 @@ public class JoueursControl1 : MonoBehaviour
     }
     private void ListenToInputs()
     {
-        inputActions.MapNormale.Saut.performed += Saut;
         inputActions.MapNormale.Crouch.performed += Crouch;
         inputActions.MapNormale.Roll.performed += Roll;
         inputActions.MapNormale.LightAttack.performed += LightAttack;
@@ -570,28 +526,6 @@ public class JoueursControl1 : MonoBehaviour
     }
 
     /* ================================ INPUTS CALLBACK ================================ */
-
-    // private void Saut(InputAction.CallbackContext ctx)
-    // {
-    //     if (ctx.performed && auSol && !isJumping)
-    //     {
-    //         isJumping = true;
-    //         vyJoueur += forceSaut + Mathf.Abs(forceGravite);
-    //     }
-    //     //Debug.Log("Jumped");
-    // }
-
-    private void Saut(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed && canJump && isGrounded)
-        {
-            canJump = false;
-            isGrounded = false;
-            
-            vyJoueur += forceSaut + Mathf.Abs(forceGravite);
-        }
-        //Debug.Log("Jumped");
-    }
 
     private void Heal(InputAction.CallbackContext ctx)
     {
@@ -739,12 +673,10 @@ public class JoueursControl1 : MonoBehaviour
         if (ctx.performed){
             Debug.Log(ctx);
             if (isLockedOn == false){
-                inputActions.MapNormale.Saut.performed -= Saut;
                 Debug.Log("lockedOn");
                 isLockedOn = true;
                 animator.SetBool("lockedOn", true);
             } else {
-                inputActions.MapNormale.Saut.performed += Saut;
                 isLockedOn = false;
                 animator.SetBool("lockedOn", false);
             }
@@ -757,7 +689,6 @@ public class JoueursControl1 : MonoBehaviour
             //Debug.Log(ctx);
             state = HachimanState.Guarding;
             animator.SetBool("guarding", true);
-            inputActions.MapNormale.Saut.performed -= Saut;
             inputActions.MapNormale.Crouch.performed -= Crouch;
             inputActions.MapNormale.LightAttack.performed -= LightAttack;
             inputActions.MapNormale.HeavyAttack.performed -= HeavyAttack;
@@ -779,11 +710,6 @@ public class JoueursControl1 : MonoBehaviour
 
     /* ===================== METHODES POUR LE DÉPLACEMENT DU JOUEUR ===================== */
 
-    /// <summary>
-    /// Calcule un vector3 sur les axes du monde relatif à la direction de 
-    /// la caméra et la valeur de l'action 'Mouvement' du joueur.
-    /// </summary>
-    /// <returns>Direction vers lequel le joueur se déplacera.</returns>
     private Vector3 GetDirFromCam()
     {
         Vector2 inputMouv = inputMouvement.ReadValue<Vector2>();
@@ -803,12 +729,6 @@ public class JoueursControl1 : MonoBehaviour
         return v;
     }
 
-    /// summary :
-    /// Déplacement réel qui sera appliqué au joueur en prenant en 
-    /// considération toutes les facteur pouvant modifier la vitesse de celui-ci;.
-    /// </summary>
-    /// <returns>Vector de déplacement dans les axes du monde.</returns>
-    /// 
     private Vector3 GetDeplacement()
     {
         Vector3 deplacement = GetDirFromCam();
@@ -945,7 +865,7 @@ public class JoueursControl1 : MonoBehaviour
     IEnumerator EnduranceReset()
     {
         Debug.Log("<color=yellow>Blocked</color>");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         while(endurance <= 100)
         {
@@ -982,20 +902,23 @@ public class JoueursControl1 : MonoBehaviour
             Debug.Log("Hit by an Enemy Weapon!");
             if (state == HachimanState.Guarding)
             {
-                // Sound
-                activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
-                // Code
-                isHit = true;
                 endurance -= 20;
+                isHit = true;
                 StartCoroutine(EnduranceReset());
-                animator.SetBool("Hit", true);
                 Invoke("NotHit", 0.33f);
                 DoNotListenToInputs();
                 inputActions.MapNormale.Guarding.performed += Guarding;
                 inputActions.MapNormale.Guarding.canceled += StopGuarding;
                 inputActions.MapNormale.LockOn.performed += LockOn;
-
-                Debug.Log(health);
+                if(endurance < 0)
+                {
+                    activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
+                    animator.SetBool("Hit", true);
+                }
+                else
+                {
+                    animator.SetTrigger("Broken");
+                }
             }
             else if (state == HachimanState.Rolling)
             {
