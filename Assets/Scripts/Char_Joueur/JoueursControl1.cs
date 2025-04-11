@@ -166,9 +166,6 @@ public class JoueursControl1 : MonoBehaviour
         animator = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
         forceGravite = -Math.Abs(forceGravite);
-
-        cameraTarget.LookAtTarget = cube.transform;  
-        cameraTarget.CustomLookAtTarget = true;
     }
 
     private void OnEnable()
@@ -376,6 +373,16 @@ public class JoueursControl1 : MonoBehaviour
         isHit = false;
         animator.SetBool("Hit", false);
         ListenToInputs();
+    }
+
+    void NotHitBroken()
+    {
+        isHit = false;
+        animator.SetBool("Hit", false);
+        ListenToInputs();
+        state = HachimanState.Idle;
+        animator.SetBool("guarding", false);
+        animator.SetBool("Hit", false);      
     }
     
     void DisableRootMotion()
@@ -687,13 +694,16 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && isArmed){
             //Debug.Log(ctx);
-            state = HachimanState.Guarding;
-            animator.SetBool("guarding", true);
-            inputActions.MapNormale.Crouch.performed -= Crouch;
-            inputActions.MapNormale.LightAttack.performed -= LightAttack;
-            inputActions.MapNormale.HeavyAttack.performed -= HeavyAttack;
-            inputActions.MapNormale.Unsheath.performed -= Unsheath;
-            inputActions.MapNormale.LockOn.performed -= LockOn;
+            if(endurance > 0)
+            {
+                state = HachimanState.Guarding;
+                animator.SetBool("guarding", true);
+                inputActions.MapNormale.Crouch.performed -= Crouch;
+                inputActions.MapNormale.LightAttack.performed -= LightAttack;
+                inputActions.MapNormale.HeavyAttack.performed -= HeavyAttack;
+                inputActions.MapNormale.Unsheath.performed -= Unsheath;
+                inputActions.MapNormale.LockOn.performed -= LockOn;
+            }
         }
     }
     private void StopGuarding(InputAction.CallbackContext ctx)
@@ -865,7 +875,7 @@ public class JoueursControl1 : MonoBehaviour
     IEnumerator EnduranceReset()
     {
         Debug.Log("<color=yellow>Blocked</color>");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         while(endurance <= 100)
         {
@@ -905,19 +915,21 @@ public class JoueursControl1 : MonoBehaviour
                 endurance -= 20;
                 isHit = true;
                 StartCoroutine(EnduranceReset());
-                Invoke("NotHit", 0.33f);
                 DoNotListenToInputs();
                 inputActions.MapNormale.Guarding.performed += Guarding;
                 inputActions.MapNormale.Guarding.canceled += StopGuarding;
                 inputActions.MapNormale.LockOn.performed += LockOn;
-                if(endurance < 0)
+                if(endurance > 0)
                 {
+                    Invoke("NotHit", 0.33f);
                     activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
                     animator.SetBool("Hit", true);
                 }
                 else
                 {
+                    Invoke("NotHitBroken", 0.33f);
                     animator.SetTrigger("Broken");
+                    //Debug.Log(ctx);
                 }
             }
             else if (state == HachimanState.Rolling)
