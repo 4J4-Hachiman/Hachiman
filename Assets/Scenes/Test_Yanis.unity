@@ -3475,6 +3475,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 749418826}
+  - {fileID: 1298434820}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &571526519
@@ -4703,7 +4704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &749418826
 Transform:
   m_ObjectHideFlags: 0
@@ -7261,6 +7262,92 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226287721}
   m_CullTransparentMesh: 1
+--- !u!1 &1298434819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1298434820}
+  - component: {fileID: 1298434821}
+  m_Layer: 0
+  m_Name: Groupe.001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1298434820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298434819}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 148.2, y: 0, z: 45.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 566903208}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1298434821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298434819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85440e7ad1d45b54185340b7caf59dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 8
+  showGizmos: 1
+  groupTriggerGizmosOpacity: 1
+  triggerRadius: 10
+  <patrolRoutes>k__BackingField:
+  - displayRoute: 1
+    backAndForth: 0
+    patrolPoints:
+    - {x: 143.80254, y: 0.00012898445, z: 56.315804}
+    - {x: 144.76286, y: 0.12951589, z: 53.016304}
+  - displayRoute: 1
+    backAndForth: 0
+    patrolPoints:
+    - {x: 147.1228, y: 0.036751986, z: 57.2129}
+    - {x: 147.668, y: 0.053967714, z: 55.86255}
+  - displayRoute: 1
+    backAndForth: 0
+    patrolPoints:
+    - {x: 151.691, y: 0.10896897, z: 57.464996}
+    - {x: 150.33131, y: 0.10347772, z: 55.790337}
+  - displayRoute: 1
+    backAndForth: 0
+    patrolPoints:
+    - {x: 157.30232, y: 0.15027356, z: 55.39991}
+    - {x: 155.09517, y: 0.20155644, z: 52.84445}
+  - displayRoute: 1
+    backAndForth: 0
+    patrolPoints:
+    - {x: 159.90518, y: 0.27867436, z: 48.186386}
+    - {x: 156.12436, y: 0.16493344, z: 48.836815}
+  - displayRoute: 1
+    backAndForth: 0
+    patrolPoints:
+    - {x: 138.77298, y: 0.00012898445, z: 51.50563}
+    - {x: 140.86707, y: 0.00012803078, z: 50.231613}
+  - displayRoute: 1
+    backAndForth: 0
+    patrolPoints:
+    - {x: 139.43602, y: -0.07311988, z: 40.8145}
+    - {x: 141.98267, y: 0.14782262, z: 43.00698}
 --- !u!1 &1306460099
 GameObject:
   m_ObjectHideFlags: 0
@@ -10643,14 +10730,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ===== GAMEMANAGER =====
       objectReference: {fileID: 0}
-    - target: {fileID: 8129021444462476724, guid: 29d72b6526cbdef448bee51be3b0d2dd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858679519538922145, guid: 29d72b6526cbdef448bee51be3b0d2dd, type: 3}
-      propertyPath: poolAmount
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13103,7 +13182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8513182465598379481, guid: c107ab468689aa04ab9bc87852f46a73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 181.2
       objectReference: {fileID: 0}
     - target: {fileID: 8513182465598379481, guid: c107ab468689aa04ab9bc87852f46a73, type: 3}
       propertyPath: m_LocalPosition.y

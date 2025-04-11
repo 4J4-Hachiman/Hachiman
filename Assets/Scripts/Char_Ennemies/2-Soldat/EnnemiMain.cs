@@ -7,7 +7,6 @@
 */
 
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -111,6 +110,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         {
             // transform.SetPositionAndRotation(Animator.rootPosition, Animator.rootRotation);
             transform.position = Animator.rootPosition;
+            Agent.nextPosition = transform.position;
         }
     }
 
@@ -153,6 +153,8 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     {
         Debug.Log($"Enemy took {dmgValue} dammage.");
         HpCurrent -= dmgValue;
+
+        
 
         if (HpCurrent <= 0f)
         {
@@ -256,5 +258,3 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         return (transform.position - Player.transform.position).sqrMagnitude < 3.5f;
     }
 }
-
-

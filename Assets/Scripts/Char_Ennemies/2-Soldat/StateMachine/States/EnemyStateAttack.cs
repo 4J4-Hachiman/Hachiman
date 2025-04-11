@@ -20,9 +20,13 @@ public class EnemyStateAttack : StateBase
     {
         i = 0;
         ennemiMain.Animator.applyRootMotion = true;
+
         ennemiMain.Agent.updatePosition = false;
+
         ennemiMain.OnComboStepEnd += HandleComboStepEnd;
-        ennemiMain.Gamemanager.Combat.AddToReadyList(ennemiMain);
+
+        ennemiMain.Gamemanager.Combat.RemoveFromReadyList(ennemiMain);
+
         ennemiMain.StartCoroutine(AttackPlayer());
     }
 
@@ -40,16 +44,15 @@ public class EnemyStateAttack : StateBase
 
     private void HandleComboStepEnd()
     {
-        ennemiMain.LookAtPlayer(100);
+        ennemiMain.LookAtPlayer(200);
         ennemiMain.Agent.destination = ennemiMain.Animator.rootPosition;
-        ennemiMain.Agent.updatePosition = true;
-        ennemiMain.Agent.updatePosition = false;
     }
-
+    
     private IEnumerator AttackPlayer()
     {
-        ennemiMain.Animator.SetTrigger(ennemiMain.GetRandomAttackType());
-        yield return new WaitForSeconds(4f);
+        string aType = ennemiMain.GetRandomAttackType();
+        ennemiMain.Animator.SetTrigger(aType);
+        yield return new WaitForSeconds(aType == "Attack" ? 1f : 3.75f);
         OnAttackEnd?.Invoke();
         yield break;
     }
