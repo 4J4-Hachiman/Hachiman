@@ -104,7 +104,6 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject activeKatana;
     public GameObject katana;
     public GameObject katanaInSheath;
-    public GameObject cube;
     public GameObject camera;
     public Transform head;
 
@@ -378,11 +377,9 @@ public class JoueursControl1 : MonoBehaviour
     void NotHitBroken()
     {
         isHit = false;
-        animator.SetBool("Hit", false);
         ListenToInputs();
         state = HachimanState.Idle;
-        animator.SetBool("guarding", false);
-        animator.SetBool("Hit", false);      
+        animator.SetBool("guarding", false);    
     }
     
     void DisableRootMotion()
@@ -631,7 +628,7 @@ public class JoueursControl1 : MonoBehaviour
     private void HeavyAttack(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
-            //Debug.Log(ctx);
+
             state = HachimanState.Attacking;
             animator.SetTrigger("heavyAttack");
             
@@ -642,12 +639,10 @@ public class JoueursControl1 : MonoBehaviour
             {
                 attackCombosList.Add("heavyAttack");
             }
-
             if (isCombo == false)
             {
                 isCombo = true;
                 combo2Step += 1;
-                //StartCoroutine(ApplyVelocityOnHeavyAttack());
                 StartCoroutine(AttackCombo2());
             }
         }
@@ -656,22 +651,33 @@ public class JoueursControl1 : MonoBehaviour
     // -----------------------------------------------------------************************************************************************ Sebastien//
     private void Unsheath(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed){
+        if (ctx.performed && state != HachimanState.Equiping){
             state = HachimanState.Equiping;
             //Debug.Log(ctx);
             if (isArmed == false){
                 Debug.Log("armed");
                 isArmed = true;
                 animator.SetBool("armed", true);
-                activeKatana.gameObject.SetActive(true);
-                katanaInSheath.gameObject.SetActive(false);
+                Invoke("UnsheathKatana", 0.17f);
+                
             } else {
                 isArmed = false;
                 animator.SetBool("armed", false);
-                activeKatana.gameObject.SetActive(false);
-                katanaInSheath.gameObject.SetActive(true);
+                Invoke("SheathKatana", 1.22f);
             }
         }
+    }
+
+    void SheathKatana()
+    {
+        activeKatana.gameObject.SetActive(false);
+        katanaInSheath.gameObject.SetActive(true);
+    }
+
+    void UnsheathKatana()
+    {
+        activeKatana.gameObject.SetActive(true);
+        katanaInSheath.gameObject.SetActive(false);
     }
 
     private void LockOn(InputAction.CallbackContext ctx)
@@ -912,24 +918,24 @@ public class JoueursControl1 : MonoBehaviour
             Debug.Log("Hit by an Enemy Weapon!");
             if (state == HachimanState.Guarding)
             {
-                endurance -= 20;
+                endurance = (endurance < 25) ? 0 : endurance - 25;
                 isHit = true;
                 StartCoroutine(EnduranceReset());
                 DoNotListenToInputs();
                 inputActions.MapNormale.Guarding.performed += Guarding;
                 inputActions.MapNormale.Guarding.canceled += StopGuarding;
                 inputActions.MapNormale.LockOn.performed += LockOn;
-                if(endurance > 0)
-                {
-                    Invoke("NotHit", 0.33f);
-                    activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
-                    animator.SetBool("Hit", true);
-                }
-                else
+                if(endurance <= 0)
                 {
                     Invoke("NotHitBroken", 0.33f);
                     animator.SetTrigger("Broken");
                     //Debug.Log(ctx);
+                }
+                else
+                {
+                    Invoke("NotHit", 0.33f);
+                    activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
+                    animator.SetBool("Hit", true);
                 }
             }
             else if (state == HachimanState.Rolling)
