@@ -143,6 +143,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOnIndexR2"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ed4c227-6b43-4313-9651-5247c87bf2a9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -390,22 +399,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e9293f7a-0929-4fc6-aae3-b3b1517be695"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard"",
-                    ""action"": ""Roll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d4df1e8b-786b-4484-af84-b7495f7941a2"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -416,7 +414,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Controller"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -438,7 +436,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -462,6 +460,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""daa7db7a-4cb1-4d91-83da-73592af3474e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""LockOnIndexR2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebac36d2-feae-4aa2-b82e-fbb6f4058427"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""LockOnIndexR2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -508,6 +528,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_MapNormale_Roll = m_MapNormale.FindAction("Roll", throwIfNotFound: true);
         m_MapNormale_Interact = m_MapNormale.FindAction("Interact", throwIfNotFound: true);
         m_MapNormale_Heal = m_MapNormale.FindAction("Heal", throwIfNotFound: true);
+        m_MapNormale_LockOnIndexR2 = m_MapNormale.FindAction("LockOnIndexR2", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -587,6 +608,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_MapNormale_Roll;
     private readonly InputAction m_MapNormale_Interact;
     private readonly InputAction m_MapNormale_Heal;
+    private readonly InputAction m_MapNormale_LockOnIndexR2;
     public struct MapNormaleActions
     {
         private @PlayerControls m_Wrapper;
@@ -604,6 +626,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Roll => m_Wrapper.m_MapNormale_Roll;
         public InputAction @Interact => m_Wrapper.m_MapNormale_Interact;
         public InputAction @Heal => m_Wrapper.m_MapNormale_Heal;
+        public InputAction @LockOnIndexR2 => m_Wrapper.m_MapNormale_LockOnIndexR2;
         public InputActionMap Get() { return m_Wrapper.m_MapNormale; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -652,6 +675,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Heal.started += instance.OnHeal;
             @Heal.performed += instance.OnHeal;
             @Heal.canceled += instance.OnHeal;
+            @LockOnIndexR2.started += instance.OnLockOnIndexR2;
+            @LockOnIndexR2.performed += instance.OnLockOnIndexR2;
+            @LockOnIndexR2.canceled += instance.OnLockOnIndexR2;
         }
 
         private void UnregisterCallbacks(IMapNormaleActions instance)
@@ -695,6 +721,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Heal.started -= instance.OnHeal;
             @Heal.performed -= instance.OnHeal;
             @Heal.canceled -= instance.OnHeal;
+            @LockOnIndexR2.started -= instance.OnLockOnIndexR2;
+            @LockOnIndexR2.performed -= instance.OnLockOnIndexR2;
+            @LockOnIndexR2.canceled -= instance.OnLockOnIndexR2;
         }
 
         public void RemoveCallbacks(IMapNormaleActions instance)
@@ -745,5 +774,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnRoll(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
+        void OnLockOnIndexR2(InputAction.CallbackContext context);
     }
 }
