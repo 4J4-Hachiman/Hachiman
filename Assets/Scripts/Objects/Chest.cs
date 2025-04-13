@@ -33,9 +33,6 @@ public class Chest : MonoBehaviour
     /* -------------------- VARIABLES INT -------------------- */
     public int numbPotionInChest;
 
-    /* ============================================================== */
-    /* ============================================================== */
-
     void Awake()
     {
         animator = chestParent.GetComponent<Animator>();

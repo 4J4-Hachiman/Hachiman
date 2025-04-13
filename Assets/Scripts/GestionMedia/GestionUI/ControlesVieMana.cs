@@ -42,7 +42,7 @@ public class ControlesVieMana : MonoBehaviour
             transitionFait = true;
             while (fillVie.fillAmount > cible)
             {
-                Debug.LogError(fillVie.fillAmount + " vs " + cible);
+                // Debug.LogError(fillVie.fillAmount + " vs " + cible);
                 fillVie.fillAmount = Mathf.Lerp(depart, cible, pourcentage);
                 pourcentage += 0.01f;
                 yield return null;
@@ -57,7 +57,6 @@ public class ControlesVieMana : MonoBehaviour
                 yield return null;
             }
         }
-
         yield return null;
     }
 
