@@ -7,5 +7,4 @@ public interface IDamageable
     float HpMax { get; set;}
     CapsuleCollider CapsuleCollider { get; set; }
     void Dommage(float dmgValeur);
-    void Mort();
 }

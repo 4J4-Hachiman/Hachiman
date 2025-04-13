@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 27/03/2025;
+    Dernière modification: 12/04/2025;
 */
 
 using UnityEngine;
@@ -37,7 +37,7 @@ public class Gamemanager : MonoBehaviour
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Application.targetFrameRate = -1;
+        Application.targetFrameRate = 30;
 
         Combat = new CombatManager(this, surroundDistance, enemySpaceing);
         enemyPool = new Pooling(enemyInstance, poolAmount);
@@ -46,6 +46,11 @@ public class Gamemanager : MonoBehaviour
         deadEnemies = new Queue<GameObject>();
 
         InitLevel();
+    }
+
+    void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
     private void InitLevel()

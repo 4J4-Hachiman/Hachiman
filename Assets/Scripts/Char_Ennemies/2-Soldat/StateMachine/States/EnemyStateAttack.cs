@@ -3,57 +3,83 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 29/03/2025;
+    Dernière modification: 12/04/2025;
 */
 
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class EnemyStateAttack : StateBase
 {
-    int i;
     public event Action OnAttackEnd;
+    EnnemiMain.AttackTypes attackType;
+
     public EnemyStateAttack(EnemyStateMachine enemyStateMachine, EnnemiMain ennemiMain) : base(enemyStateMachine, ennemiMain) { }
 
     public override void StateStart(bool init)
     {
-        i = 0;
+
         ennemiMain.Animator.applyRootMotion = true;
-
         ennemiMain.Agent.updatePosition = false;
-
-        ennemiMain.OnComboStepEnd += HandleComboStepEnd;
-
+        ennemiMain.Agent.speed = 0;
+        ennemiMain.Agent.destination = ennemiMain.transform.position;
         ennemiMain.Gamemanager.Combat.RemoveFromReadyList(ennemiMain);
 
-        ennemiMain.StartCoroutine(AttackPlayer());
+        attackType = ennemiMain.GetRandomAttackType();
+
+        if (attackType == EnnemiMain.AttackTypes.AttackSimple)
+        {
+            int i = UnityEngine.Random.Range(0, 4);
+            ennemiMain.Animator.SetInteger("AttackIndex", i);
+            ennemiMain.Animator.SetTrigger("Attack");
+            ennemiMain.OnAnimationEnd += HandleOnAnimationEnd;
+
+            // Debug.Log("Will perform a <color=green>SIMPLE</color> attack");
+        }
+        else
+        {
+            ennemiMain.OnComboStepStart += HandleOnComboStepStart;
+            ennemiMain.Animator.SetTrigger("AttackCombo");
+            // ennemiMain.Animator.SetBool("ContinueCombo", true);
+            // Debug.Log("Will perform a <color=green>COMBO</color> attack");
+        }
     }
 
     public override void StateExit()
     {
-        ennemiMain.SetNavVitesse(ennemiMain.vitesseDeplacement);
+        ennemiMain.OnComboStepStart -= HandleOnComboStepStart;
+        ennemiMain.OnAnimationEnd -= HandleOnAnimationEnd;
         ennemiMain.Animator.applyRootMotion = false;
         ennemiMain.Agent.updatePosition = true;
-        ennemiMain.OnComboStepEnd -= HandleComboStepEnd;
     }
 
-    public override void StateUpdate() { }
+    public override void StateUpdate() 
+    { 
+        if((ennemiMain.Player.transform.position - ennemiMain.transform.position).sqrMagnitude > 1)
+        {
+            ennemiMain.Agent.nextPosition = ennemiMain.transform.position;
+        }
+    }
 
     public override void StateFixedUpdate() { }
 
-    private void HandleComboStepEnd()
+    private void HandleOnComboStepStart(bool performNext)
     {
-        ennemiMain.LookAtPlayer(200);
-        ennemiMain.Agent.destination = ennemiMain.Animator.rootPosition;
+        // ennemiMain.Animator.applyRootMotion = (ennemiMain.Player.transform.position - ennemiMain.transform.position).sqrMagnitude > 1;
+        ennemiMain.Animator.SetBool("ContinueCombo", performNext);
+        ennemiMain.LookAtPlayer(100);
+        
+        if (!performNext)
+        {
+            // Debug.Log("<color=yellow>End of combo");
+            ennemiMain.OnAnimationEnd += HandleOnAnimationEnd;
+        }
     }
-    
-    private IEnumerator AttackPlayer()
+
+    private void HandleOnAnimationEnd()
     {
-        string aType = ennemiMain.GetRandomAttackType();
-        ennemiMain.Animator.SetTrigger(aType);
-        yield return new WaitForSeconds(aType == "Attack" ? 1f : 3.75f);
+        // Debug.Log("<color=green>Attack is over</color>");
+        ennemiMain.OnAnimationEnd -= HandleOnAnimationEnd;
         OnAttackEnd?.Invoke();
-        yield break;
     }
 }
