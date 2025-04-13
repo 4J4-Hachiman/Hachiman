@@ -38,7 +38,7 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private LayerMask Ground;
     [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
-    public GestionQuete quete;
+    public ControlesVieMana uiVieMana;
 
     /* -------------------- VARIABLES MOUVEMENT -------------------- */
     [Header("Mouvement et saut")]
@@ -98,14 +98,17 @@ public class JoueursControl1 : MonoBehaviour
     private int lockOnIndex = 0;
     private int lockOnTotalTargets = 0;
 
-    static public int health = 100;
+    public float health = 100;
+    public float maxHealth = 100;
     public float endurance = 100;
+    public float maxEndurance = 100;
     public int numbPotion = 3;
 
     /* -------------------- VARIABLES GAMEOBJECT -------------------- */
     public GameObject activeKatana;
     public GameObject katana;
     public GameObject katanaInSheath;
+    public GameObject healthPotion;
     public GameObject camera;
     public Transform head;
     private Transform lockOnTarget;
@@ -168,6 +171,9 @@ public class JoueursControl1 : MonoBehaviour
         animator = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
         forceGravite = -Math.Abs(forceGravite);
+
+        uiVieMana.AffichageNiveauVie(maxHealth, health, 0f);
+        uiVieMana.AffichageNiveauMana(maxEndurance, endurance, 0f);
     }
 
     private void OnEnable()
@@ -225,7 +231,6 @@ public class JoueursControl1 : MonoBehaviour
         {
             isLockedOn = false;
             animator.SetBool("lockedOn", false);
-            Invoke("DiedUI", 2f);
         }
 
         // Modification des parametres de l'animator
@@ -565,6 +570,7 @@ public class JoueursControl1 : MonoBehaviour
                 //state = HachimanState.Healing;
                 Debug.Log("Heal");
                 if (isHealing == false){
+                    healthPotion.SetActive(true);
                     isHealing = true;
                     animator.SetTrigger("Healing");
                     DoNotListenToInputs();
@@ -579,6 +585,7 @@ public class JoueursControl1 : MonoBehaviour
 
     public void StoppedHealing()
     {
+        healthPotion.SetActive(false);
         ListenToInputs();
         isHealing = false;
         animator.SetLayerWeight(1, 0);
@@ -958,6 +965,7 @@ public class JoueursControl1 : MonoBehaviour
             if (state == HachimanState.Guarding)
             {
                 endurance = (endurance < 25) ? 0 : endurance - 25;
+                uiVieMana.AffichageNiveauMana(maxEndurance, endurance, -25f);
                 isHit = true;
                 StartCoroutine(EnduranceReset());
                 DoNotListenToInputs();
@@ -986,7 +994,8 @@ public class JoueursControl1 : MonoBehaviour
                 if(!isDead)
                 {
                     animator.SetBool("Hit", true);
-                    health -= 20;
+                    health -= 20f;
+                    uiVieMana.AffichageNiveauVie(maxHealth, health, -20f);
                     Debug.Log(health);
                     if(health <= 0)
                     {
@@ -1012,11 +1021,5 @@ public class JoueursControl1 : MonoBehaviour
     {
         // ---------- Sound ---------
         activeKatana.GetComponent<AudioSource>().PlayOneShot(banqueAudio.sSwordAirSwing1);
-    }
-
-    public void DiedUI()
-    {
-        health += 100;
-        quete.AffichageMort();
     }
 }
