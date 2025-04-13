@@ -171,9 +171,6 @@ public class JoueursControl1 : MonoBehaviour
         animator = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
         forceGravite = -Math.Abs(forceGravite);
-
-        uiVieMana.AffichageNiveauVie(maxHealth, health, 0f);
-        uiVieMana.AffichageNiveauMana(maxEndurance, endurance, 0f);
     }
 
     private void OnEnable()
@@ -257,6 +254,9 @@ public class JoueursControl1 : MonoBehaviour
         CanMove();
 
         CapsuleCastFromCamera();
+
+        uiVieMana.AffichageNiveauMana(maxEndurance, endurance);
+        uiVieMana.AffichageNiveauVie(maxHealth, health);
 
 
         if (isLockedOn == true)
@@ -965,7 +965,6 @@ public class JoueursControl1 : MonoBehaviour
             if (state == HachimanState.Guarding)
             {
                 endurance = (endurance < 25) ? 0 : endurance - 25;
-                uiVieMana.AffichageNiveauMana(maxEndurance, endurance, -25f);
                 isHit = true;
                 StartCoroutine(EnduranceReset());
                 DoNotListenToInputs();
@@ -995,7 +994,6 @@ public class JoueursControl1 : MonoBehaviour
                 {
                     animator.SetBool("Hit", true);
                     health -= 20f;
-                    uiVieMana.AffichageNiveauVie(maxHealth, health, -20f);
                     Debug.Log(health);
                     if(health <= 0)
                     {
