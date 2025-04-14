@@ -187,6 +187,8 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
         inputActions.MapNormale.Heal.performed += Heal;
         inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
+        inputActions.MapNormale.DebugTool.performed += DebugTool;
+
     }
 
     private void OnDisable()
@@ -203,6 +205,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
         inputActions.MapNormale.Heal.performed -= Heal;
         inputActions.MapNormale.LockOnIndexR2.performed -= LockOnIndexR2;
+        inputActions.MapNormale.DebugTool.performed -= DebugTool;
     }
 
 
@@ -490,6 +493,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
         inputActions.MapNormale.Heal.performed -= Heal;
+        inputActions.MapNormale.DebugTool.performed -= DebugTool;
     }
     private void ListenToInputs()
     {
@@ -502,6 +506,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
         inputActions.MapNormale.Heal.performed += Heal;
+        inputActions.MapNormale.DebugTool.performed += DebugTool;
     }
 
     /* ================================ COUROUTINES ================================ */
@@ -561,6 +566,13 @@ public class JoueursControl1 : MonoBehaviour
     }
 
     /* ================================ INPUTS CALLBACK ================================ */
+
+    private void DebugTool(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed){
+            Debug.Log(ctx);
+        }
+    }
 
     private void Heal(InputAction.CallbackContext ctx)
     {
