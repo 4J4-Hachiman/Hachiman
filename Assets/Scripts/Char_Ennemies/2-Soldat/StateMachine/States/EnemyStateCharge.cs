@@ -16,6 +16,7 @@ public class EnemyStateCharge : StateBase
     
     public override void StateStart(bool init)
     {
+        // Debug.Log("<color=orange>Charging PLAYER");
         ennemiMain.Animator.SetTrigger("Charge");
         ennemiMain.SetNavVitesse(5);
         ennemiMain.StartCoroutine(EngagePlayer());
@@ -32,14 +33,11 @@ public class EnemyStateCharge : StateBase
 
     private IEnumerator EngagePlayer()
     {
-        // Walk towards player until is within distance
         while (!ennemiMain.IsWithinAttackDistance())
         {
             ennemiMain.SetNavDestination(ennemiMain.Player.transform.position);
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
-
-        // Attack the player
         ennemiMain.StateMachine.SwitchState(ennemiMain.StateAttack);
     }
 }

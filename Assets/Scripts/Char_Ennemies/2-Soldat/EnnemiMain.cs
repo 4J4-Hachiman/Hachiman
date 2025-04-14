@@ -3,7 +3,7 @@
 
     ********************************************************************
     Par : Yanis Oulmane;
-    Derniere modification : 23/03/2025;
+    Derniere modification : 12/04/2025;
 */
 
 using System;
@@ -33,28 +33,38 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     public Gamemanager Gamemanager { get; private set; }
 
     public bool IsAttacking { get; private set; } = false;
-    public float vitesseDeplacement = 3f;
+    public float vitesseDeplacement = 3;
 
     /********************* Animator *********************/
     public Animator Animator { get; private set; }
     public int AnimationAttackIndex { get; private set; }
 
-    /******************* State machine *******************/
+    /* ==================== STATE MACHINE ==================== */
     public EnemyStateMachine StateMachine { get; private set; }
     public EnemyStateAttack StateAttack { get; private set; }
     public EnemyStateSurround StateSurround { get; private set; }
     public EnemyStateCharge StateCharge { get; private set; }
     public EnemyStatePatrol StatePatrol { get; private set; }
     public EnemyStateDead StateDead { get; private set; }
+    public EnemyStateHit StateHit { get; private set; }
 
     [field: SerializeField] public GameObject SwordGameObject { get; private set; }
     private CapsuleCollider swordCollider;
     [field: SerializeField] public float LockOffsetThreshold { get; private set; }
-    
+
     public Vector3[] patrol;
-    public event Action<EnnemiMain> OnEnemyDeath;
     public event Action OnAlertAll;
-    public event Action OnComboStepEnd;
+    public event Action<EnnemiMain> OnEnemyDeath;
+    public event Action<bool> OnComboStepStart;
+    public event Action OnAnimationEnd;
+    public event Action<EnnemiMain> OnActionOver;
+    public event Action<float, float> OnDammageTaken;
+
+    public enum AttackTypes
+    {
+        AttackSimple,
+        Combo
+    }
 
     /* ======================= END OF VARIABLES ======================= */
 
@@ -72,12 +82,14 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
     public void Initialize(Vector3[] patrol)
     {
-        StateMachine = new EnemyStateMachine();
-        StateAttack = new EnemyStateAttack(StateMachine, this);
-        StateSurround = new EnemyStateSurround(StateMachine, this);
-        StateCharge = new EnemyStateCharge(StateMachine, this);
-        StatePatrol = new EnemyStatePatrol(StateMachine, this);
-        StateDead = new EnemyStateDead(StateMachine, this);
+        StateMachine = new();
+        StateAttack = new(StateMachine, this);
+        StateSurround = new(StateMachine, this);
+        StateCharge = new(StateMachine, this);
+        StatePatrol = new(StateMachine, this);
+        StateDead = new(StateMachine, this);
+        StateHit = new(StateMachine, this);
+
         swordCollider.enabled = false;
 
         HpCurrent = HpMax;
@@ -96,21 +108,47 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         StateMachine.Initalize(StatePatrol, true);
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
         {
+            // Debug.Log("<color=red>Was hit by the player</color>");
             Dommage(other.GetComponent<Sword>().GetDammage());
         }
     }
 
-    void OnAnimatorMove()
+    public void Dommage(float dmgValue)
     {
-        if (Animator.applyRootMotion)
+        HpCurrent -= dmgValue;
+
+        if (HpCurrent <= 0f)
         {
-            // transform.SetPositionAndRotation(Animator.rootPosition, Animator.rootRotation);
-            transform.position = Animator.rootPosition;
-            Agent.nextPosition = transform.position;
+            OnEnemyDeath?.Invoke(this);
+            StateMachine.SwitchState(StateDead);
+        }
+        else
+        {
+            StateMachine.SwitchState(StateHit);
+            StateHit.OnHitAnimationEnd += HandleStateAnimationEnd;
+            OnDammageTaken?.Invoke(HpCurrent, HpMax);
+        }
+
+        Gamemanager.Combat.RemoveFromReadyList(this);
+        OnActionOver?.Invoke(this);
+    }
+
+    private void HandleStateAnimationEnd()
+    {
+        StateHit.OnHitAnimationEnd -= HandleStateAnimationEnd;
+        StateMachine.SwitchState(StateSurround);
+    }
+
+    private void OnAnimatorMove()
+    {
+        // transform.position = Animator.rootPosition;
+        if ((Player.transform.position - transform.position).sqrMagnitude > 1)
+        {
+            transform.position += Animator.deltaPosition;
         }
     }
 
@@ -121,7 +159,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
     public bool GetSpottedPlayer()
     {
-        if (Vector3.Angle(transform.forward, Player.transform.position - transform.position) > 70f)
+        if (Vector3.Angle(transform.forward, Player.transform.position - transform.position) > 80)
         {
             return false;
         }
@@ -149,26 +187,6 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         OnAlertAll?.Invoke();
     }
 
-    public void Dommage(float dmgValue)
-    {
-        Debug.Log($"Enemy took {dmgValue} dammage.");
-        HpCurrent -= dmgValue;
-
-        
-
-        if (HpCurrent <= 0f)
-        {
-            Gamemanager.Combat.RemoveFromReadyList(this);
-            OnEnemyDeath?.Invoke(this);
-            StateMachine.SwitchState(StateDead);
-        }
-    }
-
-    public void Mort()
-    {
-        Debug.Log($"<color=green>{gameObject.name}</color> is dead!");
-    }
-
     public void SetNavVitesse(float speed)
     {
         Agent.speed = speed;
@@ -184,7 +202,6 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         Vector3 dirToPlayer = Player.transform.position - transform.position;
         dirToPlayer.y = 0;
         transform.forward = Vector3.Slerp(transform.forward, dirToPlayer, speed * Time.deltaTime);
-        // transform.forward = dirToPlayer;
     }
 
     private Vector2 AgentDir()
@@ -207,54 +224,57 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         Animator.SetFloat("Vy", v.normalized.y);
     }
 
-    /// <summary>Triggers an enemy to attack the player.</summary>
     public void TriggerAttack()
     {
-        if(IsWithinAttackDistance())
-        {
-            // Debug.Log($"<color=green>Enemy was already close so triggered attack animation instantly </color>");
-            StateMachine.SwitchState(StateAttack);
-        }
-        else
-        {
-            // Debug.Log("<color=green>Charging the player.</color>");
-            StateMachine.SwitchState(StateCharge);
-        }
-        
         Gamemanager.Combat.RemoveFromReadyList(this);
+        StateMachine.SwitchState(IsWithinAttackDistance() ? StateAttack : StateCharge);
         StateAttack.OnAttackEnd += HandleAttackPerformed;
     }
 
     private void HandleAttackPerformed()
     {
         StateAttack.OnAttackEnd -= HandleAttackPerformed;
-        if (StateMachine.currentState != StateDead)
-        {
-            StateMachine.SwitchState(StateSurround);
-        }
+        StateMachine.SwitchState(StateSurround);
+        OnActionOver?.Invoke(this);
     }
 
-    public void OnComboStepInvoke()
+    public AttackTypes GetRandomAttackType()
     {
-        OnComboStepEnd?.Invoke();
+        return (AttackTypes)Enum.GetValues(typeof(AttackTypes)).GetValue(UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackTypes)).Length));
     }
 
-    public string GetRandomAttackType()
-    {
-        int i = UnityEngine.Random.Range(0, 2);
-
-        return i switch
-        {
-            0 => "Attack",
-            1 => "Attack_Combo",
-            _ => "Attack"
-        };
-    }
-
-    /// <summary>Checks if an enemy is within a certain range to attack the player.</summary>
-    /// <returns>Is enemy close enough to perform an attack.</returns>
     public bool IsWithinAttackDistance()
     {
-        return (transform.position - Player.transform.position).sqrMagnitude < 3.5f;
+        return (transform.position - Player.transform.position).sqrMagnitude < 2f;
+    }
+
+    /* =========================== ANIMATION EVENTS METHODS =========================== */
+    private void TriggerOnAnimationEnd()
+    {
+        OnAnimationEnd?.Invoke();
+    }
+
+    private void TriggerOnComboStart(int lastComboStep = 0)
+    {
+        if ((lastComboStep & ~1) != 0)
+        {
+            lastComboStep = 1;
+        }
+
+
+        if (!IsWithinAttackDistance())
+        {
+            OnComboStepStart?.Invoke(false);
+            return;
+        }
+
+        if (lastComboStep == 1)
+        {
+            OnComboStepStart?.Invoke(false);
+            return;
+        }
+
+        bool performNext = UnityEngine.Random.Range(0, 100) < 100;
+        OnComboStepStart?.Invoke(performNext);
     }
 }

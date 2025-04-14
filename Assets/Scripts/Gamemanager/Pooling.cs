@@ -15,9 +15,9 @@ public class Pooling
 {
     public readonly GameObject instance;
     public Queue<GameObject> pool;
-    private readonly int count;
+    public readonly int count;
 
-    public Pooling(GameObject instance, int count)
+    public Pooling(GameObject instance, int count, GameObject parent = null)
     {
         this.instance = instance;
         this.count = count;
@@ -28,6 +28,10 @@ public class Pooling
         {
             GameObject newObj = Object.Instantiate(this.instance);
             newObj.SetActive(false);
+            if (parent)
+            {
+                newObj.transform.parent = parent.transform;
+            }
             pool.Enqueue(newObj);
         }
     }

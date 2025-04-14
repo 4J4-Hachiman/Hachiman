@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 29/03/2025;
+    Dernière modification: 12/04/2025;
 */
 
 using UnityEngine;
@@ -19,23 +19,23 @@ public class EnemyStateSurround : StateBase
     {
         if (init)
         {
-            lockOffSet = GetNewOffset();
+            lockOffSet = ennemiMain.Gamemanager.Combat.GetNewSurroundPos();
         }
-        
-        Debug.Log("Entered surround state");
+
+        // Debug.Log("<color=cyan>Entered surround state");
         ennemiMain.Gamemanager.Combat.AddToReadyList(ennemiMain);
-        ennemiMain.Agent.updateRotation = false;
+        ennemiMain.Agent.updateRotation = true;
     }
 
     public override void StateExit() { }
 
-    public override void StateUpdate()
+    public override void StateUpdate() { }
+
+    public override void StateFixedUpdate()
     {
         ennemiMain.LookAtPlayer();
         SurroundPlayer();
     }
-
-    public override void StateFixedUpdate() { }
 
     /* ============================== PRIVATE VARIABLES ============================== */
 
@@ -47,31 +47,26 @@ public class EnemyStateSurround : StateBase
         }
     }
 
-    private Vector3 GetNewOffset()
-    {
-        return ennemiMain.Gamemanager.Combat.GetNewSurroundPos();
-    }
-
-    private float GetMagnitude(Vector3 v1, Vector3 v2)
-    {
-        return (v2 - v1).sqrMagnitude;
-    }
-
     private bool IsWithinAcceptableDistance()
     {
-        if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position) < 3)
+        // if enemy is too close
+        if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position) < 1)
         {
             return false;
         }
 
         if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position + lockOffSet) > ennemiMain.LockOffsetThreshold)
         {
-            if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position) > 12)
+            if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position) > 25)
             {
                 return false;
             }
         }
-
         return true;
+    }
+
+    private float GetMagnitude(Vector3 v1, Vector3 v2)
+    {
+        return (v2 - v1).sqrMagnitude;
     }
 }

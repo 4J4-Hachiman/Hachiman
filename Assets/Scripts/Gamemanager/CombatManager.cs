@@ -3,22 +3,22 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 29/03/2025;
+    Dernière modification: 12/04/2025;
 */
 
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class CombatManager
 {
     private readonly Gamemanager gamemanager;
+    private bool enemyIsAttacking;
     private readonly float surroundDistance;
     private readonly float enemySpacing;
     private List<Vector3> claimedOffsets;
     private List<EnnemiMain> readyEnemies;
-    private event Action OnFirstEnemyReady;
+    // private event Action OnFirstEnemyReady;
     private EnnemiMain attacker;
 
     public CombatManager(Gamemanager gamemanager, float surroundDistance, float enemySpacing)
@@ -28,7 +28,7 @@ public class CombatManager
         this.enemySpacing = enemySpacing;
         claimedOffsets = new List<Vector3>();
         readyEnemies = new List<EnnemiMain>();
-        OnFirstEnemyReady += HandleFirstEnemyReady;
+        // OnFirstEnemyReady += HandleFirstEnemyReady;
     }
 
     public Vector3 GetNewSurroundPos()
@@ -64,80 +64,62 @@ public class CombatManager
         return offset;
     }
 
-    /// <summary>Adds an enemy to the list of enemies ready to attack.</summary>
-    /// <param name="instance">instance the enemy's EnnemiMain Class.</param>
     public void AddToReadyList(EnnemiMain instance)
     {
-        if (readyEnemies.Count == 0)
-        {
-            OnFirstEnemyReady?.Invoke();
-        }
         if (!readyEnemies.Contains(instance))
         {
+            if (readyEnemies.Count == 0)
+            {
+                readyEnemies.Add(instance);
+                gamemanager.StartCoroutine(ManageAttack());
+            }
             readyEnemies.Add(instance);
         }
-
-        // Debug.Log($"Added an enemy to the ready list. New count {readyEnemies.Count}");
+        // Debug.Log("Added enemy to ready list");
     }
 
-    /// <summary>Removes an enemy from the list of enemies ready to attack the player.</summary>
-    /// <param name="instance">Instance of EnnemiMain that will be removed.</param>
     public void RemoveFromReadyList(EnnemiMain instance)
     {
         readyEnemies.Remove(instance);
-        // Debug.Log($"Removed an enemy from the ready list. New count {readyEnemies.Count}");
     }
 
-    private void HandleFirstEnemyReady()
+    private void HandleOnActionOver(EnnemiMain instance)
     {
-        OnFirstEnemyReady -= HandleFirstEnemyReady;
+        // Debug.Log("The enemy's action is over restarting Attack Coroutine");
+        instance.OnActionOver -= HandleOnActionOver;
         gamemanager.StartCoroutine(ManageAttack());
     }
 
-    private void HandleAttackPerformed()
-    {
-        attacker.StateAttack.OnAttackEnd -= HandleAttackPerformed;  
-        gamemanager.StartCoroutine(ManageAttack());
-    }
-
-    private void HandleEnemyDeath(EnnemiMain instance)
-    {
-        RemoveFromReadyList(instance);
-        instance.OnEnemyDeath -= HandleEnemyDeath;
-        gamemanager.StartCoroutine(ManageAttack());
-    }
-    
     private IEnumerator ManageAttack()
     {
-        // Debug.Log($"Started Attack Coroutine with {readyEnemies.Count} enemies ready to attack");
-        // If there is no enemy ready, wait for one to be ready
+        if (enemyIsAttacking)
+        {
+            yield break;
+        }
+
+        enemyIsAttacking = true;
+        
         while (readyEnemies.Count == 0)
         {
             yield return new WaitForEndOfFrame();
         }
-        // Debug.Log("Found a enemy ready to attack");
 
-        // Chose a random enemy from the list of enemies ready to attack
+        // Debug.Log(readyEnemies.Count);
         int indexAttacker = UnityEngine.Random.Range(0, readyEnemies.Count);
         attacker = readyEnemies[indexAttacker];
-        yield return new WaitForSeconds(readyEnemies.Count == 1 ? 2 : UnityEngine.Random.Range(1, 3));
-        attacker.StateAttack.OnAttackEnd += HandleAttackPerformed;
-        attacker.OnEnemyDeath += HandleEnemyDeath;
-        RemoveFromReadyList(attacker);
+        yield return new WaitForSeconds(readyEnemies.Count == 3 ? 5 : UnityEngine.Random.Range(1, 3));
+        attacker.OnActionOver += HandleOnActionOver;
 
-        // Wait a few seconds
         if (attacker.StateMachine.currentState != attacker.StateDead)
         {
-            // Debug.Log("Triggered an attack");
+            // Debug.Log("Triggered an enemy attack");
             attacker.TriggerAttack();
-            yield break;
         }
 
+        enemyIsAttacking = false;
         yield break;
     }
 
-    /// <summary>Generate a random normalized Vector2.</summary>
-    /// <returns>Normzalied Vector2.</returns>
     private Vector2 GetRandomVector2()
     {
         float x = UnityEngine.Random.Range(-1f, 1f);
