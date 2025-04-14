@@ -48,7 +48,7 @@ public class ControlesMenuOptions : MonoBehaviour
 
     void Update()
     {
-        if (!UIManager.optionsSauvegarder)
+        if (!OptionsManager.optionsSauvegarder)
         {
             avertissementNonSauvegarde.enabled = true;
         }
@@ -62,7 +62,7 @@ public class ControlesMenuOptions : MonoBehaviour
     {
         audioMixerMusique.SetFloat("volume", volume);
         volumeMusique = volume;
-        UIManager.optionsSauvegarder = false;
+        OptionsManager.optionsSauvegarder = false;
     }
 
     //Fonction pour ajuster le volume des effets sonores � l'aide du slider dans le menu "Options"
@@ -70,7 +70,7 @@ public class ControlesMenuOptions : MonoBehaviour
     {
         audioMixerSFX.SetFloat("volume", volume);
         volumeSFX = volume;
-        UIManager.optionsSauvegarder = false;
+        OptionsManager.optionsSauvegarder = false;
     }
 
     //Fonction pour changer la r�solution du jeu pour l'�cran
@@ -78,20 +78,20 @@ public class ControlesMenuOptions : MonoBehaviour
     {
         Screen.SetResolution(resolution[index].largeur, resolution[index].largeur, true);
         indexResolution = index;
-        UIManager.optionsSauvegarder = false;
+        OptionsManager.optionsSauvegarder = false;
     }
 
     //Fonction pour sauvegarder les options
     public void SauvegarderOptions()
     {
-        UIManager.volumeMusiqueSauve = volumeMusique;
-        UIManager.volumeSFXSauve = volumeSFX;
-        UIManager.indexResolutionSauve = indexResolution;
+        OptionsManager.volumeMusiqueSauve = volumeMusique;
+        OptionsManager.volumeSFXSauve = volumeSFX;
+        OptionsManager.indexResolutionSauve = indexResolution;
         // On indique que les options sont sauvegard�es
-        print("Volume de musique sauvegard� : " + UIManager.volumeMusiqueSauve);
-        print("Volume de SFX sauvegard� : " + UIManager.volumeSFXSauve);
-        print("R�solution sauvegard�e : " + UIManager.indexResolutionSauve);
-        UIManager.optionsSauvegarder = true;
+        print("Volume de musique sauvegard� : " + OptionsManager.volumeMusiqueSauve);
+        print("Volume de SFX sauvegard� : " + OptionsManager.volumeSFXSauve);
+        print("R�solution sauvegard�e : " + OptionsManager.indexResolutionSauve);
+        OptionsManager.optionsSauvegarder = true;
         avertissementNonSauvegarde.enabled = false;
     }
 
@@ -110,19 +110,19 @@ public class ControlesMenuOptions : MonoBehaviour
     // Fonction pour la mise � jour des options selon les options enregistr�es par l'utilisateur
     public void ActualisationOptions()
     {
-        audioMixerMusique.SetFloat("volume", UIManager.volumeMusiqueSauve);
-        controleurVolMusique.value = UIManager.volumeMusiqueSauve;
+        audioMixerMusique.SetFloat("volume", OptionsManager.volumeMusiqueSauve);
+        controleurVolMusique.value = OptionsManager.volumeMusiqueSauve;
 
-        audioMixerSFX.SetFloat("volume", UIManager.volumeSFXSauve);
-        controleurVolSFX.value = UIManager.volumeSFXSauve;
+        audioMixerSFX.SetFloat("volume", OptionsManager.volumeSFXSauve);
+        controleurVolSFX.value = OptionsManager.volumeSFXSauve;
 
         Vector2Int res = new(1920, 1080);
 
         CollectionResolutions resolutions = new CollectionResolutions();
 
-        Screen.SetResolution(resolution[UIManager.indexResolutionSauve].largeur, resolution[UIManager.indexResolutionSauve].largeur, true);
+        Screen.SetResolution(resolution[OptionsManager.indexResolutionSauve].largeur, resolution[OptionsManager.indexResolutionSauve].largeur, true);
         // Screen.SetResolution(resolutions.resDfaut.x, res.y, true);
-        controleurResolution.value = UIManager.indexResolutionSauve;
+        controleurResolution.value = OptionsManager.indexResolutionSauve;
     }
 
     /**********************************************************************************************************************************************************************************************/

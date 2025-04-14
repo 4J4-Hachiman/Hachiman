@@ -22,7 +22,7 @@ public class GestionQuete : MonoBehaviour
 
     public void AfficherQuete(/*int nbChapitre, string titreQuete, string objectif, bool completionObjectif*/)
     {
-        nbChapitreTxt.text = "Chapitre " + banqueInfosNiv.nbChapitre[indexNiveau];
+        // nbChapitreTxt.text = "Chapitre " + banqueInfosNiv.nbChapitre[indexNiveau];
         titreQueteTxt.text = banqueInfosNiv.titreQuete[indexNiveau];
         objectifTxt.text = banqueInfosNiv.objectif[indexNiveau];
     }

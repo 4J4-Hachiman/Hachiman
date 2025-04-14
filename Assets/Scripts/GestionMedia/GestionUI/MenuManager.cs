@@ -16,12 +16,6 @@ public class MenuManager : MonoBehaviour
     public GameObject[] lesMenus;   //Tableau pour enregistrer les canvas pour la sc�nes d'instructions
     public GameObject FollowCam;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Time.timeScale = 1;
-    }
-
     //Fonction pour changer de menu affich�
     public void ChangerMenu(GameObject menuChoisi)
     {
