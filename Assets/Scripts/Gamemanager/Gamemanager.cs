@@ -10,40 +10,54 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
+using Unity.VisualScripting;
 
 public class Gamemanager : MonoBehaviour
-{   
+{       
     private GameObject player;
+
+    [Header("Settings")]
     [field: SerializeField] private Settings manageSettings;
 
-    [Header("Combat Manager")]
+    [Header("Fonctionality Classes")]
     public CombatManager Combat { get; private set; }
+
+    [Header("Enemy Health Bars")]    
+    [field: SerializeField] GameObject hpBarParent;
+    [field: SerializeField] GameObject hpBarInstance;
+    private Pooling hpBarPool;
+    private List<GameObject> hpBarActiveList;
+
+    [Header("Enemy Positionning Data")]
     [field: SerializeField] private float surroundDistance;
     [field: SerializeField] private float enemySpaceing;
 
-    [Header("Pooling")]
+    [Header("Enemy Pooling")]
     [field: SerializeField] private GameObject enemyInstance;
     [field: SerializeField, Min(5)] private int poolAmount;
-    [field: SerializeField] private Pooling enemyPool;
+    [field: SerializeField] private GameObject enemyPoolParent;
+    private Pooling enemyPool;
 
-    [Header("Spawns")]
-    [field: SerializeField] private GameObject spawnMain;
-    [field: SerializeField] private SpawnGroup[] spawnGroups;
+    private GameObject spawnMain;
+    private SpawnGroup[] spawnGroups;
 
-    [Header("Enemy lists")]
-    [field: SerializeField] private List<GameObject> activeEnemies;
-    [field: SerializeField] private Queue<GameObject> deadEnemies;
+    private List<GameObject> activeEnemies;
+    private Queue<GameObject> deadEnemies;
 
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Application.targetFrameRate = 30;
 
+
+        enemyPool = new Pooling(enemyInstance, poolAmount, enemyPoolParent);
+        hpBarPool = new Pooling(hpBarInstance, poolAmount, hpBarParent);
+
         Combat = new CombatManager(this, surroundDistance, enemySpaceing);
-        enemyPool = new Pooling(enemyInstance, poolAmount);
 
         activeEnemies = new List<GameObject>();
         deadEnemies = new Queue<GameObject>();
+        hpBarActiveList = new List<GameObject>();
 
         InitLevel();
     }
@@ -55,6 +69,7 @@ public class Gamemanager : MonoBehaviour
     
     private void InitLevel()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         player = GameObject.FindGameObjectWithTag("Player");
         spawnMain = GameObject.FindWithTag("SpawnData");
         spawnGroups = new SpawnGroup[spawnMain.transform.childCount];
@@ -79,9 +94,22 @@ public class Gamemanager : MonoBehaviour
             newEnemy.GetComponent<EnnemiMain>().OnEnemyDeath += HandleEnemyDeath;
             newEnemy.GetComponent<EnnemiMain>().OnAlertAll += HandleAlertAll;
             activeEnemies.Add(newEnemy);
-        }
 
+            EnemyHpBar newHpBar = hpBarPool.GetFromPool().GetComponent<EnemyHpBar>();
+            newHpBar.Init(newEnemy);
+            newHpBar.OnTargetDeath += HandleOnTargetdeath;
+            newHpBar.gameObject.SetActive(true);
+        }
+        
         spawnGroup.OnGroupTriggered -= HandleGroupTriggered;
+    }
+
+    private void HandleOnTargetdeath(EnemyHpBar instance)
+    {
+        instance.OnTargetDeath -= HandleOnTargetdeath;
+        instance.gameObject.SetActive(false);
+        hpBarActiveList.Remove(instance.gameObject);
+        hpBarPool.ReturnToPool(instance.gameObject);
     }
 
     private void HandleAlertAll()

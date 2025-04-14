@@ -33,8 +33,8 @@ public class Sword : MonoBehaviour
     {
         return CritChance > Random.Range(1, 100) ? BasicDammage * CritDamage : BasicDammage;
     }
-    void OnTriggerEnter(Collider other)
-    {
-        GetComponent<CapsuleCollider>().enabled = false;
-    }
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     GetComponent<CapsuleCollider>().enabled = false;
+    // }
 }

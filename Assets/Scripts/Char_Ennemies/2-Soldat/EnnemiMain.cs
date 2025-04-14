@@ -58,6 +58,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     public event Action<bool> OnComboStepStart;
     public event Action OnAnimationEnd;
     public event Action<EnnemiMain> OnActionOver;
+    public event Action<float, float> OnDammageTaken;
 
     public enum AttackTypes
     {
@@ -129,6 +130,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         {
             StateMachine.SwitchState(StateHit);
             StateHit.OnHitAnimationEnd += HandleStateAnimationEnd;
+            OnDammageTaken?.Invoke(HpCurrent, HpMax);
         }
 
         Gamemanager.Combat.RemoveFromReadyList(this);
@@ -143,7 +145,6 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
     private void OnAnimatorMove()
     {
-        Debug.Log("ANIMATOR MOVE");
         // transform.position = Animator.rootPosition;
         if ((Player.transform.position - transform.position).sqrMagnitude > 1)
         {
