@@ -23,7 +23,7 @@ public class EnemyHpBar : MonoBehaviour
     {
         rect.position = target.position + (Vector3.up * 1.9f);
         transform.rotation = Quaternion.LookRotation(cam.transform.forward);
-        Debug.Log(Quaternion.LookRotation(cam.transform.forward));
+        // Debug.Log(Quaternion.LookRotation(cam.transform.forward));
 
     }
 

@@ -212,10 +212,10 @@ public class JoueursControl1 : MonoBehaviour
     {
         //Debug Log Update
         
-        Debug.Log("<color=red>Health: </color>" + health);
-        Debug.Log("<color=Green>Endurance: </color>" + endurance);
-        Debug.Log("<color=Blue>Lock On Index: </color>" + lockOnIndex);
-        Debug.Log("<color=Purple>Lock On Total Targets: </color>" + lockOnTotalTargets);
+        // Debug.Log("<color=red>Health: </color>" + health);
+        // Debug.Log("<color=Green>Endurance: </color>" + endurance);
+        // Debug.Log("<color=Blue>Lock On Index: </color>" + lockOnIndex);
+        // Debug.Log("<color=Purple>Lock On Total Targets: </color>" + lockOnTotalTargets);
 
         //Debug.DrawRay(head.position, Vector3.up * checkDistance, Color.red);
         //Debug.Log("attackCombosList Count: " + attackCombosList.Count);
@@ -356,7 +356,7 @@ public class JoueursControl1 : MonoBehaviour
         // OverlapSphere to get all potential targets
         Collider[] hits = Physics.OverlapSphere(origin, radius, enemyLayer);
         foreach(Collider col in hits){
-            Debug.Log(col.gameObject);
+            // Debug.Log(col.gameObject);
         }
 
         foreach (Collider col in hits)

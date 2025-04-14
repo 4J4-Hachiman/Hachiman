@@ -22,7 +22,6 @@ public class EnemyStateSurround : StateBase
             lockOffSet = ennemiMain.Gamemanager.Combat.GetNewSurroundPos();
         }
 
-        // Debug.Log("<color=cyan>Entered surround state");
         ennemiMain.Gamemanager.Combat.AddToReadyList(ennemiMain);
         ennemiMain.Agent.updateRotation = true;
     }

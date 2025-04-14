@@ -133,8 +133,8 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
             OnDammageTaken?.Invoke(HpCurrent, HpMax);
         }
 
-        Gamemanager.Combat.RemoveFromReadyList(this);
         OnActionOver?.Invoke(this);
+        Gamemanager.Combat.RemoveFromReadyList(this);
     }
 
     private void HandleStateAnimationEnd()
@@ -236,6 +236,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         StateAttack.OnAttackEnd -= HandleAttackPerformed;
         StateMachine.SwitchState(StateSurround);
         OnActionOver?.Invoke(this);
+        Debug.Log("<color=green>Action performed");
     }
 
     public AttackTypes GetRandomAttackType()
