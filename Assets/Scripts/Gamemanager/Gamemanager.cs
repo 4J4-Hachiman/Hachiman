@@ -13,6 +13,7 @@ using Custom.CSO;
 
 public class Gamemanager : MonoBehaviour
 {       
+    public static Gamemanager gamemanagerInstance; 
     private GameObject player;
 
     [Header("Settings")]
@@ -45,6 +46,15 @@ public class Gamemanager : MonoBehaviour
 
     void Awake()
     {
+        if (!gamemanagerInstance)
+        {
+            gamemanagerInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Application.targetFrameRate = 30;
 
@@ -68,7 +78,6 @@ public class Gamemanager : MonoBehaviour
     
     private void InitLevel()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         player = GameObject.FindGameObjectWithTag("Player");
         spawnMain = GameObject.FindWithTag("SpawnData");
         spawnGroups = new SpawnGroup[spawnMain.transform.childCount];
@@ -78,7 +87,6 @@ public class Gamemanager : MonoBehaviour
             spawnGroups[i].OnGroupTriggered += HandleGroupTriggered;
         }
     }
-
 
     private void HandleGroupTriggered(SpawnGroup spawnGroup)
     {

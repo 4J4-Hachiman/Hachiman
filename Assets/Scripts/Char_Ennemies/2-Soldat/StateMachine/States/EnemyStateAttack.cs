@@ -13,6 +13,7 @@ public class EnemyStateAttack : StateBase
 {
     public event Action OnAttackEnd;
     EnnemiMain.AttackTypes attackType;
+    private bool lastAttack;
 
     public EnemyStateAttack(EnemyStateMachine enemyStateMachine, EnnemiMain ennemiMain) : base(enemyStateMachine, ennemiMain) { }
 
@@ -25,6 +26,8 @@ public class EnemyStateAttack : StateBase
         ennemiMain.Agent.destination = ennemiMain.transform.position;
         ennemiMain.Gamemanager.Combat.RemoveFromReadyList(ennemiMain);
 
+        // cancelOnNext = false;
+
         attackType = ennemiMain.GetRandomAttackType();
 
         if (attackType == EnnemiMain.AttackTypes.AttackSimple)
@@ -33,6 +36,7 @@ public class EnemyStateAttack : StateBase
             ennemiMain.Animator.SetInteger("AttackIndex", i);
             ennemiMain.Animator.SetTrigger("Attack");
             ennemiMain.OnAnimationEnd += HandleOnAnimationEnd;
+            lastAttack = true;
 
             // Debug.Log("Will perform a <color=green>SIMPLE</color> attack");
         }
@@ -40,6 +44,7 @@ public class EnemyStateAttack : StateBase
         {
             ennemiMain.OnComboStepStart += HandleOnComboStepStart;
             ennemiMain.Animator.SetTrigger("AttackCombo");
+            lastAttack = false;
             // ennemiMain.Animator.SetBool("ContinueCombo", true);
             // Debug.Log("Will perform a <color=green>COMBO</color> attack");
         }
@@ -78,7 +83,12 @@ public class EnemyStateAttack : StateBase
 
     private void HandleOnAnimationEnd()
     {
-        // Debug.Log("<color=green>Attack is over</color>");
+        if (!lastAttack)
+        {
+            lastAttack = true;
+            return;
+        }
+
         ennemiMain.OnAnimationEnd -= HandleOnAnimationEnd;
         OnAttackEnd?.Invoke();
     }

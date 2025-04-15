@@ -18,6 +18,7 @@ public class CombatManager
     private readonly List<Vector3> claimedOffsets;
     private readonly List<EnnemiMain> readyEnemies;
     private EnnemiMain attacker;
+    private bool enemyIsAttacking = false;
 
     public CombatManager(Gamemanager gamemanager, float surroundDistance, float enemySpacing)
     {
@@ -27,7 +28,7 @@ public class CombatManager
         claimedOffsets = new List<Vector3>();
         readyEnemies = new List<EnnemiMain>();
     }
-
+    
     public Vector3 GetNewSurroundPos()
     {
         int attempts = 0;
@@ -62,18 +63,14 @@ public class CombatManager
 
     public void AddToReadyList(EnnemiMain instance)
     {
+        instance.OnActionOver -= HandleOnActionOver;
+
         if (!readyEnemies.Contains(instance))
         {
-            if (readyEnemies.Count == 0)
-            {
-                readyEnemies.Add(instance);
-            }
-
-            gamemanager.StartCoroutine(ManageAttack());
             readyEnemies.Add(instance);
         }
 
-        Debug.Log(readyEnemies.Count);
+        gamemanager.StartCoroutine(ManageAttack());
     }
 
     public void RemoveFromReadyList(EnnemiMain instance)
@@ -83,33 +80,43 @@ public class CombatManager
 
     private void HandleOnActionOver(EnnemiMain instance)
     {
-        // Debug.Log("Action Over");
+        enemyIsAttacking = false;
+        Debug.Log("<color=purple> Enemy Action is over");
         instance.OnActionOver -= HandleOnActionOver;
-        if (readyEnemies.Count == 0)
-        {
-            gamemanager.StartCoroutine(ManageAttack());
-        }
+        gamemanager.StartCoroutine(ManageAttack());
     }
 
     private IEnumerator ManageAttack()
     {
-        // Debug.Log("<color=red>Request Attack");
-        // while (readyEnemies.Count == 0)
-        // {
-        //     Debug.Log("<color=cyan>Request waiting for enemy to be ready");
-        //     yield return new WaitForEndOfFrame();
-        // }
+        Debug.Log("Started the attack coroutine");
+        if (enemyIsAttacking)
+        {
+            Debug.Log("An enemy is already attacking");
+            yield break;
+        }
+
+        enemyIsAttacking = true;
+
+        while (readyEnemies.Count == 0)
+        {
+            Debug.Log("No enemy is ready");
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(readyEnemies.Count == 3 ? 5 : Random.Range(1, 3));
 
         int indexAttacker = Random.Range(0, readyEnemies.Count);
         attacker = readyEnemies[indexAttacker];
-        yield return new WaitForSeconds(readyEnemies.Count == 3 ? 5 : Random.Range(1, 3));
         attacker.OnActionOver += HandleOnActionOver;
 
         if (attacker.StateMachine.currentState != attacker.StateDead)
         {
             attacker.TriggerAttack();
         }
-
+        else
+        {
+            Debug.Log("<color=red>The Enemy is already dead");
+        }
         yield break;
     }
 

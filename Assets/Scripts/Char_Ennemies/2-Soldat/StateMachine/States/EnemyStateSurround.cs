@@ -23,6 +23,7 @@ public class EnemyStateSurround : StateBase
         }
 
         ennemiMain.Gamemanager.Combat.AddToReadyList(ennemiMain);
+        ennemiMain.SetNavVitesse(ennemiMain.vitesseDeplacement);
         ennemiMain.Agent.updateRotation = true;
     }
 
