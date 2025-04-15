@@ -112,6 +112,7 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject camera;
     public Transform head;
     private Transform lockOnTarget;
+    public GameObject debugTool;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
@@ -343,6 +344,65 @@ public class JoueursControl1 : MonoBehaviour
     /////////////////////////////////////////////////////////////////////
     // FUNCTIONS ////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////
+    
+    public void ResetHachiman()
+    {
+        Debug.Log("<color=Green> RESET </color>");
+        state = HachimanState.Idle;
+        isLockedOn = false;
+        isArmed = false;
+        isJumping = false;
+        isCrouched = false;
+        isRolling = false;
+        isDead = false;
+        canJump = true;
+        isHealing = false;
+        isHit = false;
+
+        comboStep = 0;
+        combo2Step = 0;
+
+        inputActions.Enable();
+        inputMouvement = inputActions.MapNormale.Mouvement;
+        inputActions.MapNormale.Crouch.performed += Crouch;
+        inputActions.MapNormale.Roll.performed += Roll;
+        inputActions.MapNormale.LightAttack.performed += LightAttack;
+        inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
+        inputActions.MapNormale.Unsheath.performed += Unsheath;
+        inputActions.MapNormale.LockOn.performed += LockOn;
+        inputActions.MapNormale.Guarding.performed += Guarding;
+        inputActions.MapNormale.Guarding.canceled += StopGuarding;
+        inputActions.MapNormale.Heal.performed += Heal;
+        inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
+        inputActions.MapNormale.DebugTool.performed += DebugTool;
+    }
+
+    public void TPlocation1()
+    {
+        Vector3 teleportLocation = new Vector3(150f, 0.1f, 70.8f);
+        cc.enabled = false; // disable the controller first
+        transform.position = teleportLocation; // teleport!
+        cc.enabled = true; // re-enable the controller
+    }
+
+    public void TPlocation2()
+    {
+        Vector3 teleportLocation = new Vector3(167.9f, 0.1f, 136.2f);
+        cc.enabled = false; // disable the controller first
+        transform.position = teleportLocation; // teleport!
+        cc.enabled = true; // re-enable the controller
+    }
+
+    public void TPlocation3()
+    {
+        Vector3 teleportLocation = new Vector3(122.2f, 0.1f, 204f);
+        cc.enabled = false; // disable the controller first
+        transform.position = teleportLocation; // teleport!
+        cc.enabled = true; // re-enable the controller
+    }
+
+
+
 
     Collider[] CapsuleCastFromCamera()
     {
@@ -570,7 +630,14 @@ public class JoueursControl1 : MonoBehaviour
     private void DebugTool(InputAction.CallbackContext ctx)
     {
         if (ctx.performed){
-            Debug.Log(ctx);
+            if (!debugTool.activeSelf)
+            {
+                debugTool.SetActive(true);
+            }
+            else
+            {
+                debugTool.SetActive(false);
+            }
         }
     }
 
