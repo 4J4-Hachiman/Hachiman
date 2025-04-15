@@ -114,6 +114,7 @@ public class JoueursControl1 : MonoBehaviour
     private Transform lockOnTarget;
     public GameObject debugTool;
     public RectTransform lockOnDot;
+    public GameObject dotCanvas;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
@@ -273,6 +274,7 @@ public class JoueursControl1 : MonoBehaviour
             } 
             else 
             {
+                dotCanvas.SetActive(true);
                 Vector3 direction = lockOnTarget.position - transform.position;
                 direction.y = 0;
                 transform.rotation = Quaternion.LookRotation(direction);
@@ -280,6 +282,10 @@ public class JoueursControl1 : MonoBehaviour
                 lockOnDot.position = lockOnTarget.position + (Vector3.up * 1f);
                 lockOnDot.transform.rotation = Quaternion.LookRotation(camera.transform.forward);
             }  
+        }
+        else
+        {
+            dotCanvas.SetActive(false);
         }
 
         Vector3 bottomCenter = transform.position + cc.center - new Vector3(0, cc.height / 2f, 0);
@@ -404,9 +410,6 @@ public class JoueursControl1 : MonoBehaviour
         transform.position = teleportLocation; // teleport!
         cc.enabled = true; // re-enable the controller
     }
-
-
-
 
     Collider[] CapsuleCastFromCamera()
     {
