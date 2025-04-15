@@ -113,6 +113,7 @@ public class JoueursControl1 : MonoBehaviour
     public Transform head;
     private Transform lockOnTarget;
     public GameObject debugTool;
+    public RectTransform lockOnDot;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
@@ -275,6 +276,9 @@ public class JoueursControl1 : MonoBehaviour
                 Vector3 direction = lockOnTarget.position - transform.position;
                 direction.y = 0;
                 transform.rotation = Quaternion.LookRotation(direction);
+                //UI dot
+                lockOnDot.position = lockOnTarget.position + (Vector3.up * 1f);
+                lockOnDot.transform.rotation = Quaternion.LookRotation(camera.transform.forward);
             }  
         }
 
