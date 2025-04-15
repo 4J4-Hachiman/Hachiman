@@ -633,10 +633,14 @@ public class JoueursControl1 : MonoBehaviour
             if (!debugTool.activeSelf)
             {
                 debugTool.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             else
             {
                 debugTool.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
         }
     }
