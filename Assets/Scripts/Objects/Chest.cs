@@ -5,7 +5,8 @@ public class Chest : MonoBehaviour
 {
     /* ============================================================== */
     /* ============================================================== */
-     /* -------------------- GAMEOBJECT  -------------------- */
+    /* -------------------- GAMEOBJECT  -------------------- */
+    public GameObject itemInChest;
     public GameObject newKatana;
     public GameObject katana;
     public GameObject katanaInChest;
@@ -14,9 +15,8 @@ public class Chest : MonoBehaviour
     public GameObject hand;
     public GameObject chestParent;
 
-    /* -------------------- REFERENCES SCRIPT -------------------- */
+    /* -------------------- REFERENCES COMPONENTS -------------------- */
     public JoueursControl1 hachiman;
-    public GestionQuete quete;
     public Animator animator;
 
     /* -------------------- VARIABLES CHEST -------------------- */
@@ -29,6 +29,9 @@ public class Chest : MonoBehaviour
     private PlayerControls inputActions;
     private InputAction inputMouvement;
     private InputAction SprintInput;
+
+    /* -------------------- VARIABLES INT -------------------- */
+    public int numbPotionInChest;
 
     void Awake()
     {
@@ -83,20 +86,29 @@ public class Chest : MonoBehaviour
         }
         else if(!isTaken) 
         {
-            Invoke("CompletedQuest", 2f);
             Debug.Log("take");
             isTaken = true;
+            if(itemInChest.tag == "Potion")
+            {
+                Debug.Log("potion");
+                hachiman.numbPotion += numbPotionInChest;
+            }
+            else if(katana != null || katanaInChest != null)
+            {
+                if(itemInChest.tag == "Katana")
+                {
+                    GameObject instNewKatana = Instantiate(newKatana, katana.transform.position, katana.transform.rotation);
+                    instNewKatana.gameObject.SetActive(true);
+                    instNewKatana.transform.SetParent(hand.transform);
+                    hachiman.activeKatana.gameObject.SetActive(false);
 
-            GameObject instNewKatana = Instantiate(newKatana, katana.transform.position, katana.transform.rotation);
-            instNewKatana.gameObject.SetActive(true);
-            instNewKatana.transform.SetParent(hand.transform);
-            hachiman.activeKatana.gameObject.SetActive(false);
-
-            hachiman.activeKatana = instNewKatana;
-
+                    hachiman.activeKatana = instNewKatana;
+                }
+            }
+            
             areaLightInChest.gameObject.SetActive(false);
             pointLightInChest.gameObject.SetActive(false);
-            katanaInChest.gameObject.SetActive(false);
+            itemInChest.SetActive(false);
         }
     }
 
@@ -106,9 +118,5 @@ public class Chest : MonoBehaviour
         {
             isIdle = true;
         }
-    }
-    void CompletedQuest()
-    {
-        quete.AffichageNiveauComplet();
     }
 }

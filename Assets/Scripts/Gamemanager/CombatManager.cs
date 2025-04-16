@@ -3,23 +3,24 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 29/03/2025;
+    Dernière modification: 15/04/2025;
 */
 
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class CombatManager
 {
     private readonly Gamemanager gamemanager;
     private readonly float surroundDistance;
     private readonly float enemySpacing;
-    private List<Vector3> claimedOffsets;
-    private List<EnnemiMain> readyEnemies;
-    private event Action OnFirstEnemyReady;
+    private readonly List<Vector3> claimedOffsets;
+    private readonly List<EnnemiMain> readyEnemies;
     private EnnemiMain attacker;
+
+    private List<EnnemiMain> fightingEnemies;
+    private bool enemyIsAttacking = false;
 
     public CombatManager(Gamemanager gamemanager, float surroundDistance, float enemySpacing)
     {
@@ -28,7 +29,59 @@ public class CombatManager
         this.enemySpacing = enemySpacing;
         claimedOffsets = new List<Vector3>();
         readyEnemies = new List<EnnemiMain>();
-        OnFirstEnemyReady += HandleFirstEnemyReady;
+        fightingEnemies = new List<EnnemiMain>();
+    }
+
+    public void StartCombat(List<GameObject> enemyList)
+    {
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            fightingEnemies.Add(enemyList[i].GetComponent<EnnemiMain>());
+            fightingEnemies[i].OnActionOver += HandleOnActionOver;
+        }
+        Debug.Log(fightingEnemies.Count);
+        gamemanager.StartCoroutine(AttackCoroutine());
+    }
+
+    public void EnemyDeath(EnnemiMain instance)
+    {
+        fightingEnemies.Remove(instance);
+    }
+
+    private void HandleOnActionOver(EnnemiMain instance)
+    {
+        enemyIsAttacking = false;
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        while (true)
+        {
+
+            // Debug.Log("Starting Attack Coroutine");
+            yield return new WaitForSeconds(readyEnemies.Count == 1 ? 2 : Random.Range(2, 4));
+
+            // Debug.Log("Generated an attacker index");
+            int indexAttacker = Random.Range(0, fightingEnemies.Count);
+
+            if (fightingEnemies.Count == 0)
+            {
+                // Debug.Log("All enemies are dead");
+                yield break;
+            }
+
+            fightingEnemies[indexAttacker].TriggerAttack();
+            enemyIsAttacking = true;
+
+            while (enemyIsAttacking)
+            {
+                // Debug.Log("Waiting for enemy to finish attack");
+                yield return null;
+            }
+
+            // Debug.Log("Enemy finished attacking");
+            yield return null;
+        }
     }
 
     public Vector3 GetNewSurroundPos()
@@ -45,7 +98,6 @@ public class CombatManager
 
             foreach (Vector3 claimedPos in claimedOffsets)
             {
-                // Check if position is too close to already claimed one
                 if (Vector3.Distance(offset, claimedPos) < enemySpacing)
                 {
                     isValid = false;
@@ -64,84 +116,10 @@ public class CombatManager
         return offset;
     }
 
-    /// <summary>Adds an enemy to the list of enemies ready to attack.</summary>
-    /// <param name="instance">instance the enemy's EnnemiMain Class.</param>
-    public void AddToReadyList(EnnemiMain instance)
-    {
-        if (readyEnemies.Count == 0)
-        {
-            OnFirstEnemyReady?.Invoke();
-        }
-        if (!readyEnemies.Contains(instance))
-        {
-            readyEnemies.Add(instance);
-        }
-
-        Debug.Log($"Added an enemy to the ready list. New count {readyEnemies.Count}");
-    }
-
-    /// <summary>Removes an enemy from the list of enemies ready to attack the player.</summary>
-    /// <param name="instance">Instance of EnnemiMain that will be removed.</param>
-    public void RemoveFromReadyList(EnnemiMain instance)
-    {
-        readyEnemies.Remove(instance);
-        Debug.Log($"Removed an enemy from the ready list. New count {readyEnemies.Count}");
-    }
-
-    private void HandleFirstEnemyReady()
-    {
-        OnFirstEnemyReady -= HandleFirstEnemyReady;
-        gamemanager.StartCoroutine(ManageAttack());
-    }
-
-    private void HandleAttackPerformed()
-    {
-        attacker.StateAttack.OnAttackEnd -= HandleAttackPerformed;  
-        gamemanager.StartCoroutine(ManageAttack());
-    }
-
-    private void HandleEnemyDeath(EnnemiMain instance)
-    {
-        RemoveFromReadyList(instance);
-        instance.OnEnemyDeath -= HandleEnemyDeath;
-        gamemanager.StartCoroutine(ManageAttack());
-    }
-    
-    private IEnumerator ManageAttack()
-    {
-        // Debug.Log($"Started Attack Coroutine with {readyEnemies.Count} enemies ready to attack");
-        // If there is no enemy ready, wait for one to be ready
-        while (readyEnemies.Count == 0)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        // Debug.Log("Found a enemy ready to attack");
-
-        // Chose a random enemy from the list of enemies ready to attack
-        int indexAttacker = UnityEngine.Random.Range(0, readyEnemies.Count);
-        attacker = readyEnemies[indexAttacker];
-        yield return new WaitForSeconds(readyEnemies.Count == 1 ? 3 : UnityEngine.Random.Range(2, 5));
-        attacker.StateAttack.OnAttackEnd += HandleAttackPerformed;
-        attacker.OnEnemyDeath += HandleEnemyDeath;
-        RemoveFromReadyList(attacker);
-
-        // Wait a few seconds
-        if (attacker.StateMachine.currentState != attacker.StateDead)
-        {
-            // Debug.Log("Triggered an attack");
-            attacker.TriggerAttack();
-            yield break;
-        }
-
-        yield break;
-    }
-
-    /// <summary>Generate a random normalized Vector2.</summary>
-    /// <returns>Normzalied Vector2.</returns>
     private Vector2 GetRandomVector2()
     {
-        float x = UnityEngine.Random.Range(-1f, 1f);
-        float y = Mathf.Sqrt(1 - Mathf.Pow(x, 2)) * (UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1);
+        float x = Random.Range(-1f, 1f);
+        float y = Mathf.Sqrt(1 - Mathf.Pow(x, 2)) * (Random.Range(0, 2) == 0 ? 1 : -1);
         return new Vector2(x, y).normalized;
     }
 }

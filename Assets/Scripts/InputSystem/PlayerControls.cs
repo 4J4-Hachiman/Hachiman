@@ -134,6 +134,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""c162b2f7-80fd-4556-9765-a252640e10ad"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOnIndexR2"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ed4c227-6b43-4313-9651-5247c87bf2a9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DebugTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad88fe52-fb04-4ec9-b325-ca8e5c5ebf34"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -200,28 +227,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": ""StickDeadzone"",
                     ""groups"": "";Controller"",
                     ""action"": ""Mouvement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fc88f32f-17e7-49ca-9e77-9db5237d4564"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard"",
-                    ""action"": ""Saut"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c848b5d9-cd2d-4d90-b43c-1b6ac13bb483"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Controller"",
-                    ""action"": ""Saut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -326,11 +331,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8aa52971-c22d-4094-ad6c-a011b4475e5b"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""id"": ""2e1d18b6-37af-4339-b13f-be0b920cb25e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Controller"",
+                    ""groups"": """",
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -403,22 +408,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ccd3e506-b9ad-42de-804c-79142135e8b7"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""d4df1e8b-786b-4484-af84-b7495f7941a2"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Controller"",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e9293f7a-0929-4fc6-aae3-b3b1517be695"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""id"": ""088ea887-0e49-4209-aeb4-c9185f6b83a5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard"",
+                    ""groups"": "";Controller"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -440,8 +445,310 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92fe7f6c-a036-416c-841b-7963cd0cc265"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27a6919f-b56d-4ae3-a14d-5c3d7aaa45d2"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""daa7db7a-4cb1-4d91-83da-73592af3474e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""LockOnIndexR2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebac36d2-feae-4aa2-b82e-fbb6f4058427"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""LockOnIndexR2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83ece114-5483-464d-b02e-f62db4f39244"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fb1b16f-5242-4105-9924-404d1722afcb"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UImap"",
+            ""id"": ""3dfb6b9d-8feb-4d93-9ab7-85d0cbc18b51"",
+            ""actions"": [
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""29c1ca5d-4906-4df2-9da1-03769fe508ac"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""6664dbd4-45e7-48f8-b2bd-e7eb7067777f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""98fd5be4-90c4-4147-87e3-705196b1b30e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9f20c12-a54f-4046-8935-2cc164c1838e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""6983ec9d-4624-440b-bd2c-fcd6befc2452"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""0446a5de-3f81-4f76-ad4e-6d8db346c8d1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""eed1c20e-c63a-4418-afc1-55c9428f80e4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c70a9ccc-fa74-40e8-b3ff-f0313fc6bc38"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b1519cda-78a3-43dd-a94b-bf394d91b795"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca1332cc-c6e0-4e27-aa96-424e8eb47305"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d98128d-9279-419f-bf7a-b27b1c489c7b"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3086a15-e958-41ac-88eb-5dd28bbbc09f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98a2abf4-5d54-4251-879c-1061ed6ecf8e"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""812d4acc-c119-4bbc-bb52-a4e85cfdb28d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff1aa684-c7a0-4925-9a93-19d20288d88a"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65cec4d3-84a3-4780-86fc-c300a8fb8290"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ab4487c-825d-48a4-9fa7-64d3af27a87c"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff651406-5b4d-4c75-97f8-5e7da6aa4af0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2804e12c-dbb5-4c9d-b352-90e27036b184"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31dffed4-6e6c-401c-a00d-99146a7abd0b"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b75c1b99-ced1-4057-8e0d-d18e6b4a44e4"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e0ec629-12c8-4fd5-8bf3-e158547dec50"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -487,11 +794,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_MapNormale_Guarding = m_MapNormale.FindAction("Guarding", throwIfNotFound: true);
         m_MapNormale_Roll = m_MapNormale.FindAction("Roll", throwIfNotFound: true);
         m_MapNormale_Interact = m_MapNormale.FindAction("Interact", throwIfNotFound: true);
+        m_MapNormale_Heal = m_MapNormale.FindAction("Heal", throwIfNotFound: true);
+        m_MapNormale_LockOnIndexR2 = m_MapNormale.FindAction("LockOnIndexR2", throwIfNotFound: true);
+        m_MapNormale_DebugTool = m_MapNormale.FindAction("DebugTool", throwIfNotFound: true);
+        // UImap
+        m_UImap = asset.FindActionMap("UImap", throwIfNotFound: true);
+        m_UImap_Up = m_UImap.FindAction("Up", throwIfNotFound: true);
+        m_UImap_Down = m_UImap.FindAction("Down", throwIfNotFound: true);
+        m_UImap_Back = m_UImap.FindAction("Back", throwIfNotFound: true);
+        m_UImap_Enter = m_UImap.FindAction("Enter", throwIfNotFound: true);
+        m_UImap_Exit = m_UImap.FindAction("Exit", throwIfNotFound: true);
+        m_UImap_Left = m_UImap.FindAction("Left", throwIfNotFound: true);
+        m_UImap_Right = m_UImap.FindAction("Right", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_MapNormale.enabled, "This will cause a leak and performance issues, PlayerControls.MapNormale.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_UImap.enabled, "This will cause a leak and performance issues, PlayerControls.UImap.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -565,6 +885,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_MapNormale_Guarding;
     private readonly InputAction m_MapNormale_Roll;
     private readonly InputAction m_MapNormale_Interact;
+    private readonly InputAction m_MapNormale_Heal;
+    private readonly InputAction m_MapNormale_LockOnIndexR2;
+    private readonly InputAction m_MapNormale_DebugTool;
     public struct MapNormaleActions
     {
         private @PlayerControls m_Wrapper;
@@ -581,6 +904,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Guarding => m_Wrapper.m_MapNormale_Guarding;
         public InputAction @Roll => m_Wrapper.m_MapNormale_Roll;
         public InputAction @Interact => m_Wrapper.m_MapNormale_Interact;
+        public InputAction @Heal => m_Wrapper.m_MapNormale_Heal;
+        public InputAction @LockOnIndexR2 => m_Wrapper.m_MapNormale_LockOnIndexR2;
+        public InputAction @DebugTool => m_Wrapper.m_MapNormale_DebugTool;
         public InputActionMap Get() { return m_Wrapper.m_MapNormale; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -626,6 +952,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
+            @LockOnIndexR2.started += instance.OnLockOnIndexR2;
+            @LockOnIndexR2.performed += instance.OnLockOnIndexR2;
+            @LockOnIndexR2.canceled += instance.OnLockOnIndexR2;
+            @DebugTool.started += instance.OnDebugTool;
+            @DebugTool.performed += instance.OnDebugTool;
+            @DebugTool.canceled += instance.OnDebugTool;
         }
 
         private void UnregisterCallbacks(IMapNormaleActions instance)
@@ -666,6 +1001,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
+            @LockOnIndexR2.started -= instance.OnLockOnIndexR2;
+            @LockOnIndexR2.performed -= instance.OnLockOnIndexR2;
+            @LockOnIndexR2.canceled -= instance.OnLockOnIndexR2;
+            @DebugTool.started -= instance.OnDebugTool;
+            @DebugTool.performed -= instance.OnDebugTool;
+            @DebugTool.canceled -= instance.OnDebugTool;
         }
 
         public void RemoveCallbacks(IMapNormaleActions instance)
@@ -683,6 +1027,100 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public MapNormaleActions @MapNormale => new MapNormaleActions(this);
+
+    // UImap
+    private readonly InputActionMap m_UImap;
+    private List<IUImapActions> m_UImapActionsCallbackInterfaces = new List<IUImapActions>();
+    private readonly InputAction m_UImap_Up;
+    private readonly InputAction m_UImap_Down;
+    private readonly InputAction m_UImap_Back;
+    private readonly InputAction m_UImap_Enter;
+    private readonly InputAction m_UImap_Exit;
+    private readonly InputAction m_UImap_Left;
+    private readonly InputAction m_UImap_Right;
+    public struct UImapActions
+    {
+        private @PlayerControls m_Wrapper;
+        public UImapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Up => m_Wrapper.m_UImap_Up;
+        public InputAction @Down => m_Wrapper.m_UImap_Down;
+        public InputAction @Back => m_Wrapper.m_UImap_Back;
+        public InputAction @Enter => m_Wrapper.m_UImap_Enter;
+        public InputAction @Exit => m_Wrapper.m_UImap_Exit;
+        public InputAction @Left => m_Wrapper.m_UImap_Left;
+        public InputAction @Right => m_Wrapper.m_UImap_Right;
+        public InputActionMap Get() { return m_Wrapper.m_UImap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UImapActions set) { return set.Get(); }
+        public void AddCallbacks(IUImapActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UImapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UImapActionsCallbackInterfaces.Add(instance);
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
+            @Enter.started += instance.OnEnter;
+            @Enter.performed += instance.OnEnter;
+            @Enter.canceled += instance.OnEnter;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
+        }
+
+        private void UnregisterCallbacks(IUImapActions instance)
+        {
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
+            @Enter.started -= instance.OnEnter;
+            @Enter.performed -= instance.OnEnter;
+            @Enter.canceled -= instance.OnEnter;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
+        }
+
+        public void RemoveCallbacks(IUImapActions instance)
+        {
+            if (m_Wrapper.m_UImapActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUImapActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UImapActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UImapActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UImapActions @UImap => new UImapActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -715,5 +1153,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnGuarding(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
+        void OnLockOnIndexR2(InputAction.CallbackContext context);
+        void OnDebugTool(InputAction.CallbackContext context);
+    }
+    public interface IUImapActions
+    {
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
+        void OnEnter(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
     }
 }

@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 27/03/2025;
+    Dernière modification: 15/04/2025;
 */
 
 using UnityEngine;
@@ -12,44 +12,76 @@ using System.Collections;
 using Custom.CSO;
 
 public class Gamemanager : MonoBehaviour
-{   
+{       
+    public static Gamemanager gamemanagerInstance; 
     private GameObject player;
+
+    [Header("Settings")]
     [field: SerializeField] private Settings manageSettings;
 
-    [Header("Combat Manager")]
+    [Header("Fonctionality Classes")]
     public CombatManager Combat { get; private set; }
+
+    [Header("Enemy Health Bars")]    
+    [field: SerializeField] GameObject hpBarParent;
+    [field: SerializeField] GameObject hpBarInstance;
+    private Pooling hpBarPool;
+    private List<GameObject> hpBarActiveList;
+
+    [Header("Enemy Positionning Data")]
     [field: SerializeField] private float surroundDistance;
     [field: SerializeField] private float enemySpaceing;
 
-    [Header("Pooling")]
+    [Header("Enemy Pooling")]
     [field: SerializeField] private GameObject enemyInstance;
     [field: SerializeField, Min(5)] private int poolAmount;
-    [field: SerializeField] private Pooling enemyPool;
+    [field: SerializeField] private GameObject enemyPoolParent;
+    private Pooling enemyPool;
 
-    [Header("Spawns")]
-    [field: SerializeField] private GameObject spawnMain;
-    [field: SerializeField] private SpawnGroup[] spawnGroups;
+    private GameObject spawnMain;
+    private SpawnGroup[] spawnGroups;
 
-    [Header("Enemy lists")]
-    [field: SerializeField] private List<GameObject> activeEnemies;
-    [field: SerializeField] private Queue<GameObject> deadEnemies;
+    private List<GameObject> activeEnemies;
+    private Queue<GameObject> deadEnemies;
 
     void Awake()
     {
+        if (!gamemanagerInstance)
+        {
+            gamemanagerInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
-        manageSettings.SetFramerate(80);
+        Application.targetFrameRate = 30;
+
+
+        enemyPool = new Pooling(enemyInstance, poolAmount, enemyPoolParent);
+        hpBarPool = new Pooling(hpBarInstance, poolAmount, hpBarParent);
 
         Combat = new CombatManager(this, surroundDistance, enemySpaceing);
-        enemyPool = new Pooling(enemyInstance, poolAmount);
 
         activeEnemies = new List<GameObject>();
         deadEnemies = new Queue<GameObject>();
+        hpBarActiveList = new List<GameObject>();
 
         InitLevel();
+    }
+
+
+    private void AAAAAAAAAAAAAAAAAAAAAAAA()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
     private void InitLevel()
     {
+        Invoke(nameof(AAAAAAAAAAAAAAAAAAAAAAAA), 1f);
+
+
         player = GameObject.FindGameObjectWithTag("Player");
         spawnMain = GameObject.FindWithTag("SpawnData");
         spawnGroups = new SpawnGroup[spawnMain.transform.childCount];
@@ -59,7 +91,6 @@ public class Gamemanager : MonoBehaviour
             spawnGroups[i].OnGroupTriggered += HandleGroupTriggered;
         }
     }
-
 
     private void HandleGroupTriggered(SpawnGroup spawnGroup)
     {
@@ -74,9 +105,35 @@ public class Gamemanager : MonoBehaviour
             newEnemy.GetComponent<EnnemiMain>().OnEnemyDeath += HandleEnemyDeath;
             newEnemy.GetComponent<EnnemiMain>().OnAlertAll += HandleAlertAll;
             activeEnemies.Add(newEnemy);
-        }
 
+            EnemyHpBar newHpBar = hpBarPool.GetFromPool().GetComponent<EnemyHpBar>();
+            newHpBar.Init(newEnemy);
+            newHpBar.OnTargetDeath += HandleOnTargetdeath;
+            newHpBar.gameObject.SetActive(true);
+        }
+        
         spawnGroup.OnGroupTriggered -= HandleGroupTriggered;
+    }
+
+    private void HandleEnemyDeath(EnnemiMain instance)
+    {
+        instance.OnEnemyDeath -= HandleEnemyDeath;
+        activeEnemies.Remove(instance.gameObject);
+        deadEnemies.Enqueue(instance.gameObject);
+        Combat.EnemyDeath(instance);
+
+        if (activeEnemies.Count == 0)
+        {
+            StartCoroutine(UnloadEnemies());
+        }
+    }
+
+    private void HandleOnTargetdeath(EnemyHpBar instance)
+    {
+        instance.OnTargetDeath -= HandleOnTargetdeath;
+        instance.gameObject.SetActive(false);
+        hpBarActiveList.Remove(instance.gameObject);
+        hpBarPool.ReturnToPool(instance.gameObject);
     }
 
     private void HandleAlertAll()
@@ -86,19 +143,8 @@ public class Gamemanager : MonoBehaviour
             enemy.GetComponent<EnnemiMain>().OnAlertAll -= HandleAlertAll;
             enemy.GetComponent<EnnemiMain>().StartCombat();
         }
-    }
 
-    private void HandleEnemyDeath(EnnemiMain instance)
-    {
-        instance.OnEnemyDeath -= HandleEnemyDeath;
-        activeEnemies.Remove(instance.gameObject);
-        deadEnemies.Enqueue(instance.gameObject);
-
-        if (activeEnemies.Count == 0)
-        {
-            Debug.Log("<color=green>All enemies are down</color>");
-            StartCoroutine(UnloadEnemies());
-        }
+        Combat.StartCombat(activeEnemies);
     }
 
     private IEnumerator UnloadEnemies()

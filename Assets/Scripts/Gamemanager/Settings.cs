@@ -1,5 +1,3 @@
-using UnityEngine;
-
 /* 
     Scripte de gestion des paramètres du jeu
         - Cursor lockState;
@@ -9,6 +7,7 @@ using UnityEngine;
     Dernière modification 01/03/2025;
 */
 
+using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
 {    
@@ -16,9 +15,7 @@ public class SettingsManager : MonoBehaviour
 
     void Awake()
     {
-
         framerate = framerate == 0 ? 30 : framerate;
-
 
         Application.targetFrameRate = framerate;
 

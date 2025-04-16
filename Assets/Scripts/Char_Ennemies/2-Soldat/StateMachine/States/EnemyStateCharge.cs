@@ -8,7 +8,6 @@
 */
 
 using System.Collections;
-using UnityEngine;
 
 public class EnemyStateCharge : StateBase
 {
@@ -20,7 +19,7 @@ public class EnemyStateCharge : StateBase
         ennemiMain.SetNavVitesse(5);
         ennemiMain.StartCoroutine(EngagePlayer());
     }
-
+    
     public override void StateExit() { }
 
     public override void StateUpdate()
@@ -32,14 +31,11 @@ public class EnemyStateCharge : StateBase
 
     private IEnumerator EngagePlayer()
     {
-        // Walk towards player until is within distance
         while (!ennemiMain.IsWithinAttackDistance())
         {
             ennemiMain.SetNavDestination(ennemiMain.Player.transform.position);
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
-
-        // Attack the player
         ennemiMain.StateMachine.SwitchState(ennemiMain.StateAttack);
     }
 }

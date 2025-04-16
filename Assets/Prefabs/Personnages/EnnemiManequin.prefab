@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BasicDammage>k__BackingField: 1
+  <HeavyDammage>k__BackingField: 200
   <CritChance>k__BackingField: 0
   <CritDamage>k__BackingField: 1
   layerDetection:
@@ -143,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.593128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
       propertyPath: m_LocalPosition.y
@@ -151,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.772537
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
       propertyPath: m_LocalRotation.w
@@ -474,6 +475,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2422955910075095478}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8776457318291818495}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
       insertIndex: -1
@@ -484,15 +488,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2080510106145542244}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2422955910075095478}
   m_SourcePrefab: {fileID: 100100000, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
 --- !u!1 &158105741492713206 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}
   m_PrefabInstance: {fileID: 1076603871734942631}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2422955910075095478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158105741492713206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba59b6e029623b74c88ebc0af64db13a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <HpMax>k__BackingField: 30
+  vitesseDeplacement: 2
+  <SwordGameObject>k__BackingField: {fileID: 8172572893196408966}
+  <LockOffsetThreshold>k__BackingField: 5
+  patrol: []
 --- !u!54 &8776457318291818495
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -501,7 +519,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158105741492713206}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -554,10 +572,10 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.27
   m_Speed: 0
-  m_Acceleration: 10
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 0.2
+  m_StoppingDistance: 0.05
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -587,23 +605,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2422955910075095478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158105741492713206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba59b6e029623b74c88ebc0af64db13a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <HpMax>k__BackingField: 100
-  vitesseDeplacement: 2
-  <SwordGameObject>k__BackingField: {fileID: 8172572893196408966}
-  <LockOffsetThreshold>k__BackingField: 5
-  patrol: []
 --- !u!4 &1676871016690332783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 0802567b3c9edec4a964e721f15e2e96, type: 3}

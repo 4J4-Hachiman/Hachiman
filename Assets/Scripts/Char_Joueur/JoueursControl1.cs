@@ -35,9 +35,10 @@ public class JoueursControl1 : MonoBehaviour
     private Animator animator;
     public CinemachineVirtualCamera virtualCamera;
     private CameraTarget cameraTarget;
-    public LayerMask Ground;
+    [SerializeField] private LayerMask Ground;
+    [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
-    public GestionQuete quete;
+    public ControlesVieMana uiVieMana;
 
     /* -------------------- VARIABLES MOUVEMENT -------------------- */
     [Header("Mouvement et saut")]
@@ -72,17 +73,17 @@ public class JoueursControl1 : MonoBehaviour
 
     // -----------------------------------------------------------************************************************************************ Sebastien//
     /* -------------------- VARIABLES BOOL -------------------- */
-    public bool isArmed;
-    public bool isJumping;
+    private bool isArmed;
+    private bool isJumping;
     private bool canJump;
-    public bool isLockedOn;
-    public bool isCrouched;
-    public bool isRolling;
-    public bool hasJumped;
-    public bool hasLanded;
-    public bool canMove;
+    private bool isLockedOn;
+    private bool isCrouched;
+    private bool isRolling;
+    private bool canMove;
     private bool isDead;
     private bool isGrounded;
+    private bool isHealing;
+    private bool isHit;
 
     // AttackCombos
     private int comboStep = 0;
@@ -94,16 +95,29 @@ public class JoueursControl1 : MonoBehaviour
     private string lightAttackCombo;
     private string heavyAttackCombo;
     private List<string> attackCombosList = new List<string>();
+    private int lockOnIndex = 0;
+    private int lockOnTotalTargets = 0;
 
-    static public int health = 100;
+    public float health = 100;
+    public float maxHealth = 100;
+    public float endurance = 100;
+    public float maxEndurance = 100;
+    public int numbPotion = 3;
 
     /* -------------------- VARIABLES GAMEOBJECT -------------------- */
     public GameObject activeKatana;
     public GameObject katana;
     public GameObject katanaInSheath;
-    public GameObject cube;
+    public GameObject healthPotion;
     public GameObject camera;
     public Transform head;
+    private Transform lockOnTarget;
+    public GameObject debugTool;
+    public RectTransform lockOnDot;
+    public GameObject dotCanvas;
+
+    /* --------------------------- ARRAYS ---------------------------- */ 
+    private Collider[] hits;
 
     /* ------------------------ AUDIO SOURCE ------------------------- */ 
     public AudioSource[] audioSources;
@@ -116,7 +130,6 @@ public class JoueursControl1 : MonoBehaviour
         Idle, 
         Equiping,
         Healing,
-        Jumping,
         Mouving,
         Crouching,
         Rolling,
@@ -150,6 +163,8 @@ public class JoueursControl1 : MonoBehaviour
         isRolling = false;
         isDead = false;
         canJump = true;
+        isHealing = false;
+        isHit = false;
 
         comboStep = Mathf.Clamp(comboStep, 0, 3);
         lightAttackCombo = "lightAttack";
@@ -159,16 +174,12 @@ public class JoueursControl1 : MonoBehaviour
         animator = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
         forceGravite = -Math.Abs(forceGravite);
-
-        cameraTarget.LookAtTarget = cube.transform;  
-        cameraTarget.CustomLookAtTarget = true;
     }
 
     private void OnEnable()
     {
         inputActions.Enable();
         inputMouvement = inputActions.MapNormale.Mouvement;
-        inputActions.MapNormale.Saut.performed += Saut;
         inputActions.MapNormale.Crouch.performed += Crouch;
         inputActions.MapNormale.Roll.performed += Roll;
         inputActions.MapNormale.LightAttack.performed += LightAttack;
@@ -177,13 +188,16 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOn.performed += LockOn;
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
+        inputActions.MapNormale.Heal.performed += Heal;
+        inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
+        inputActions.MapNormale.DebugTool.performed += DebugTool;
+
     }
 
     private void OnDisable()
     {
         // Desactiver le ActionMap et se desabonner aux evenements
         inputActions.Disable();
-        inputActions.MapNormale.Saut.performed -= Saut;
         inputActions.MapNormale.Crouch.performed -= Crouch;
         inputActions.MapNormale.Roll.performed -= Roll;
         inputActions.MapNormale.LightAttack.performed -= LightAttack;
@@ -192,6 +206,9 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOn.performed -= LockOn;
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
+        inputActions.MapNormale.Heal.performed -= Heal;
+        inputActions.MapNormale.LockOnIndexR2.performed -= LockOnIndexR2;
+        inputActions.MapNormale.DebugTool.performed -= DebugTool;
     }
 
 
@@ -199,14 +216,25 @@ public class JoueursControl1 : MonoBehaviour
 
     void Update()
     {
-        if (health <= 0)
-        {
-            Invoke("DiedUI", 2f);
-        }
+        //Debug Log Update
+        
+        // Debug.Log("<color=red>Health: </color>" + health);
+        // Debug.Log("<color=Green>Endurance: </color>" + endurance);
+        // Debug.Log("<color=Blue>Lock On Index: </color>" + lockOnIndex);
+        // Debug.Log("<color=Purple>Lock On Total Targets: </color>" + lockOnTotalTargets);
+
         //Debug.DrawRay(head.position, Vector3.up * checkDistance, Color.red);
         //Debug.Log("attackCombosList Count: " + attackCombosList.Count);
         //Debug.Log("comboStep: " + comboStep);
         //Debug.Log("isCombo: " + isCombo);
+
+        //Death
+
+        if (health <= 0)
+        {
+            isLockedOn = false;
+            animator.SetBool("lockedOn", false);
+        }
 
         // Modification des parametres de l'animator
 
@@ -233,14 +261,31 @@ public class JoueursControl1 : MonoBehaviour
 
         CapsuleCastFromCamera();
 
-        if (isLockedOn == true){
-            // Look at object
-            var target = cube.transform;
-            Vector3 direction = target.position - transform.position;
-            direction.y = 0;  
-            transform.rotation = Quaternion.LookRotation(direction);
+        uiVieMana.AffichageNiveauMana(maxEndurance, endurance);
+        uiVieMana.AffichageNiveauVie(maxHealth, health);
 
-            camera.transform.LookAt(cube.transform);
+
+        if (isLockedOn == true)
+        {
+            if (lockOnTarget == null)
+            {
+                isLockedOn = false;
+                animator.SetBool("lockedOn", false);
+            } 
+            else 
+            {
+                dotCanvas.SetActive(true);
+                Vector3 direction = lockOnTarget.position - transform.position;
+                direction.y = 0;
+                transform.rotation = Quaternion.LookRotation(direction);
+                //UI dot
+                lockOnDot.position = lockOnTarget.position + (Vector3.up * 1f);
+                lockOnDot.transform.rotation = Quaternion.LookRotation(camera.transform.forward);
+            }  
+        }
+        else
+        {
+            dotCanvas.SetActive(false);
         }
 
         Vector3 bottomCenter = transform.position + cc.center - new Vector3(0, cc.height / 2f, 0);
@@ -258,21 +303,6 @@ public class JoueursControl1 : MonoBehaviour
         {
             vyJoueur = forceGravite;
         }
-
-        if (!isGrounded){
-            isJumping = true;
-        } 
-        if (auSol)
-        {
-            isJumping = false;
-        }
-
-        if (isGrounded && !canJump){
-            Landed();
-        } 
-        if (!isGrounded && canJump){
-            Jump();
-        } 
 
         // Maj de la velocite du joueur
         vJoueur = GetDeplacement();
@@ -303,11 +333,97 @@ public class JoueursControl1 : MonoBehaviour
         vyJoueur += forceGravite * Time.fixedDeltaTime;
     }
 
+    void LockOnFunc()
+    {
+        lockOnTarget = null;
+        lockOnIndex = 0;
+        hits = CapsuleCastFromCamera();
+        lockOnTotalTargets = hits.Length;
+
+        if (hits.Length > 0 && hits[lockOnIndex].transform != null)
+        {
+            lockOnTarget = hits[lockOnIndex].transform;
+        }
+        if (lockOnTarget == null)
+        {
+            isLockedOn = false;
+            animator.SetBool("lockedOn", false);
+        }
+    }
+
     /////////////////////////////////////////////////////////////////////
     // FUNCTIONS ////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////
+    
+    public void ResetHachiman()
+    {
+        Debug.Log("<color=Green> RESET </color>");
+        state = HachimanState.Idle;
+        isLockedOn = false;
+        isArmed = false;
+        isJumping = false;
+        isCrouched = false;
+        isRolling = false;
+        isDead = false;
+        canJump = true;
+        isHealing = false;
+        isHit = false;
 
-    void CapsuleCastFromCamera()
+        comboStep = 0;
+        combo2Step = 0;
+
+        inputActions.Enable();
+        inputMouvement = inputActions.MapNormale.Mouvement;
+        inputActions.MapNormale.Crouch.performed += Crouch;
+        inputActions.MapNormale.Roll.performed += Roll;
+        inputActions.MapNormale.LightAttack.performed += LightAttack;
+        inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
+        inputActions.MapNormale.Unsheath.performed += Unsheath;
+        inputActions.MapNormale.LockOn.performed += LockOn;
+        inputActions.MapNormale.Guarding.performed += Guarding;
+        inputActions.MapNormale.Guarding.canceled += StopGuarding;
+        inputActions.MapNormale.Heal.performed += Heal;
+        inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
+        inputActions.MapNormale.DebugTool.performed += DebugTool;
+    }
+
+    public void TPlocation1()
+    {
+        Vector3 teleportLocation = new Vector3(150f, 0.1f, 70.8f);
+        cc.enabled = false; // disable the controller first
+        transform.position = teleportLocation; // teleport!
+        cc.enabled = true; // re-enable the controller
+    }
+
+    public void TPlocation2()
+    {
+        Vector3 teleportLocation = new Vector3(167.9f, 0.1f, 136.2f);
+        cc.enabled = false; // disable the controller first
+        transform.position = teleportLocation; // teleport!
+        cc.enabled = true; // re-enable the controller
+    }
+
+    public void TPlocation3()
+    {
+        Vector3 teleportLocation = new Vector3(122.2f, 0.1f, 204f);
+        cc.enabled = false; // disable the controller first
+        transform.position = teleportLocation; // teleport!
+        cc.enabled = true; // re-enable the controller
+    }
+
+    public void PauseGame()
+    {
+        if(Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
+
+    Collider[] CapsuleCastFromCamera()
     {
         Camera cam = Camera.main;
 
@@ -320,7 +436,10 @@ public class JoueursControl1 : MonoBehaviour
         Vector3 direction = cam.transform.forward;
 
         // OverlapSphere to get all potential targets
-        Collider[] hits = Physics.OverlapSphere(origin, radius);
+        Collider[] hits = Physics.OverlapSphere(origin, radius, enemyLayer);
+        foreach(Collider col in hits){
+            // Debug.Log(col.gameObject);
+        }
 
         foreach (Collider col in hits)
         {
@@ -337,7 +456,7 @@ public class JoueursControl1 : MonoBehaviour
             float angleToTarget = Vector3.Angle(direction, toTargetDir);
             if (angleToTarget <= coneAngle)
             {
-                Debug.Log("Cone hit: " + col.name);
+                //Debug.Log("Cone hit: " + col.name);
                 Debug.DrawLine(origin, col.transform.position, Color.green);
             }
         }
@@ -345,6 +464,8 @@ public class JoueursControl1 : MonoBehaviour
         // Optional debug: draw the cone bounds
         Debug.DrawRay(origin, Quaternion.Euler(0, coneAngle, 0) * direction * maxDistance, Color.yellow);
         Debug.DrawRay(origin, Quaternion.Euler(0, -coneAngle, 0) * direction * maxDistance, Color.yellow);
+
+        return hits;
     }
 
     public void ManageSwordCollider(int state)
@@ -361,8 +482,17 @@ public class JoueursControl1 : MonoBehaviour
     
     void NotHit()
     {
+        isHit = false;
         animator.SetBool("Hit", false);
         ListenToInputs();
+    }
+
+    void NotHitBroken()
+    {
+        isHit = false;
+        ListenToInputs();
+        state = HachimanState.Idle;
+        animator.SetBool("guarding", false);    
     }
     
     void DisableRootMotion()
@@ -411,23 +541,6 @@ public class JoueursControl1 : MonoBehaviour
         ListenToInputs();
     }
 
-    private void Jump()
-    {
-        hasJumped = true;
-        hasLanded = false;
-        DoNotListenToInputs();
-        animator.SetBool("jumping", true);
-        state = HachimanState.Jumping;
-    }
-    private void Landed()
-    {
-        hasJumped = false;
-        hasLanded = true;
-        ListenToInputs();
-        state = HachimanState.Idle;
-        animator.SetBool("jumping", false);
-    }
-
     private void CanMove()
     {
         switch (state)
@@ -444,17 +557,12 @@ public class JoueursControl1 : MonoBehaviour
             canMove = true;
             break;
 
-            case HachimanState.Jumping: 
-            canMove = true;
-            break;
-
             default: canMove = false;
             break;
         }
     }
     private void DoNotListenToInputs()
     {
-        inputActions.MapNormale.Saut.performed -= Saut;
         inputActions.MapNormale.Crouch.performed -= Crouch;
         inputActions.MapNormale.Roll.performed -= Roll;
         inputActions.MapNormale.LightAttack.performed -= LightAttack;
@@ -463,10 +571,11 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOn.performed -= LockOn;
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
+        inputActions.MapNormale.Heal.performed -= Heal;
+        inputActions.MapNormale.DebugTool.performed -= DebugTool;
     }
     private void ListenToInputs()
     {
-        inputActions.MapNormale.Saut.performed += Saut;
         inputActions.MapNormale.Crouch.performed += Crouch;
         inputActions.MapNormale.Roll.performed += Roll;
         inputActions.MapNormale.LightAttack.performed += LightAttack;
@@ -475,6 +584,8 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOn.performed += LockOn;
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
+        inputActions.MapNormale.Heal.performed += Heal;
+        inputActions.MapNormale.DebugTool.performed += DebugTool;
     }
 
     /* ================================ COUROUTINES ================================ */
@@ -503,7 +614,7 @@ public class JoueursControl1 : MonoBehaviour
         // Optional: Raycast to check if there's an obstacle ahead
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance))
         {
-            Debug.Log("Obstacle detected: " + hit.collider.name);
+            //Debug.Log("Obstacle detected: " + hit.collider.name);
             targetPos = hit.point; // Stop at the obstacle
         }
 
@@ -535,27 +646,53 @@ public class JoueursControl1 : MonoBehaviour
 
     /* ================================ INPUTS CALLBACK ================================ */
 
-    // private void Saut(InputAction.CallbackContext ctx)
-    // {
-    //     if (ctx.performed && auSol && !isJumping)
-    //     {
-    //         isJumping = true;
-    //         vyJoueur += forceSaut + Mathf.Abs(forceGravite);
-    //     }
-    //     //Debug.Log("Jumped");
-    // }
-
-    private void Saut(InputAction.CallbackContext ctx)
+    private void DebugTool(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && canJump && isGrounded)
-        {
-            canJump = false;
-            isGrounded = false;
-            
-            vyJoueur += forceSaut + Mathf.Abs(forceGravite);
+        if (ctx.performed){
+            if (!debugTool.activeSelf)
+            {
+                debugTool.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                debugTool.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
-        //Debug.Log("Jumped");
     }
+
+    private void Heal(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed){
+            if(numbPotion >= 1)
+            {
+                //state = HachimanState.Healing;
+                Debug.Log("Heal");
+                if (isHealing == false){
+                    healthPotion.SetActive(true);
+                    isHealing = true;
+                    animator.SetTrigger("Healing");
+                    DoNotListenToInputs();
+                    health = (health > 51) ? 100 : health + 50;
+                    numbPotion -= 1;
+                    animator.SetLayerWeight(1, 1);
+                    Invoke("StoppedHealing", 1.83f);
+                } 
+            }
+        }
+    }
+
+    public void StoppedHealing()
+    {
+        healthPotion.SetActive(false);
+        ListenToInputs();
+        isHealing = false;
+        animator.SetLayerWeight(1, 0);
+    }
+
     private void Crouch(InputAction.CallbackContext ctx)
     {
         if (ctx.performed){
@@ -626,7 +763,7 @@ public class JoueursControl1 : MonoBehaviour
     private void HeavyAttack(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
-            //Debug.Log(ctx);
+
             state = HachimanState.Attacking;
             animator.SetTrigger("heavyAttack");
             
@@ -637,12 +774,10 @@ public class JoueursControl1 : MonoBehaviour
             {
                 attackCombosList.Add("heavyAttack");
             }
-
             if (isCombo == false)
             {
                 isCombo = true;
                 combo2Step += 1;
-                //StartCoroutine(ApplyVelocityOnHeavyAttack());
                 StartCoroutine(AttackCombo2());
             }
         }
@@ -651,36 +786,44 @@ public class JoueursControl1 : MonoBehaviour
     // -----------------------------------------------------------************************************************************************ Sebastien//
     private void Unsheath(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed){
+        if (ctx.performed && state != HachimanState.Equiping){
             state = HachimanState.Equiping;
             //Debug.Log(ctx);
             if (isArmed == false){
                 Debug.Log("armed");
                 isArmed = true;
                 animator.SetBool("armed", true);
-                activeKatana.gameObject.SetActive(true);
-                katanaInSheath.gameObject.SetActive(false);
+                Invoke("UnsheathKatana", 0.17f);
+                
             } else {
                 isArmed = false;
                 animator.SetBool("armed", false);
-                activeKatana.gameObject.SetActive(false);
-                katanaInSheath.gameObject.SetActive(true);
+                Invoke("SheathKatana", 1.22f);
             }
         }
+    }
+
+    void SheathKatana()
+    {
+        activeKatana.gameObject.SetActive(false);
+        katanaInSheath.gameObject.SetActive(true);
+    }
+
+    void UnsheathKatana()
+    {
+        activeKatana.gameObject.SetActive(true);
+        katanaInSheath.gameObject.SetActive(false);
     }
 
     private void LockOn(InputAction.CallbackContext ctx)
     {
         //Debug.Log(ctx);
         if (ctx.performed){
-            Debug.Log(ctx);
             if (isLockedOn == false){
-                inputActions.MapNormale.Saut.performed -= Saut;
-                Debug.Log("lockedOn");
+                LockOnFunc();
                 isLockedOn = true;
                 animator.SetBool("lockedOn", true);
             } else {
-                inputActions.MapNormale.Saut.performed += Saut;
                 isLockedOn = false;
                 animator.SetBool("lockedOn", false);
             }
@@ -690,21 +833,21 @@ public class JoueursControl1 : MonoBehaviour
     private void Guarding(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
-            //Debug.Log(ctx);
-            state = HachimanState.Guarding;
-            animator.SetBool("guarding", true);
-            inputActions.MapNormale.Saut.performed -= Saut;
-            inputActions.MapNormale.Crouch.performed -= Crouch;
-            inputActions.MapNormale.LightAttack.performed -= LightAttack;
-            inputActions.MapNormale.HeavyAttack.performed -= HeavyAttack;
-            inputActions.MapNormale.Unsheath.performed -= Unsheath;
-            inputActions.MapNormale.LockOn.performed -= LockOn;
+            if(endurance > 0)
+            {
+                state = HachimanState.Guarding;
+                animator.SetBool("guarding", true);
+                inputActions.MapNormale.Crouch.performed -= Crouch;
+                inputActions.MapNormale.LightAttack.performed -= LightAttack;
+                inputActions.MapNormale.HeavyAttack.performed -= HeavyAttack;
+                inputActions.MapNormale.Unsheath.performed -= Unsheath;
+                inputActions.MapNormale.LockOn.performed -= LockOn;
+            }
         }
     }
     private void StopGuarding(InputAction.CallbackContext ctx)
     {
         if (ctx.canceled && isArmed){
-            //Debug.Log(ctx);
             state = HachimanState.Idle;
             animator.SetBool("guarding", false);
             animator.SetBool("Hit", false);
@@ -712,14 +855,25 @@ public class JoueursControl1 : MonoBehaviour
         }
     }
 
+    private void LockOnIndexR2(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && isLockedOn == true){
+            if(lockOnIndex < (lockOnTotalTargets-1))
+            {
+                lockOnIndex += 1;
+                lockOnTarget = hits[lockOnIndex].transform;
+            }
+            else
+            {
+                lockOnIndex = 0;
+                lockOnTarget = hits[lockOnIndex].transform;
+            }
+        }
+    }
+
 
     /* ===================== METHODES POUR LE DÉPLACEMENT DU JOUEUR ===================== */
 
-    /// <summary>
-    /// Calcule un vector3 sur les axes du monde relatif à la direction de 
-    /// la caméra et la valeur de l'action 'Mouvement' du joueur.
-    /// </summary>
-    /// <returns>Direction vers lequel le joueur se déplacera.</returns>
     private Vector3 GetDirFromCam()
     {
         Vector2 inputMouv = inputMouvement.ReadValue<Vector2>();
@@ -739,12 +893,6 @@ public class JoueursControl1 : MonoBehaviour
         return v;
     }
 
-    /// summary :
-    /// Déplacement réel qui sera appliqué au joueur en prenant en 
-    /// considération toutes les facteur pouvant modifier la vitesse de celui-ci;.
-    /// </summary>
-    /// <returns>Vector de déplacement dans les axes du monde.</returns>
-    /// 
     private Vector3 GetDeplacement()
     {
         Vector3 deplacement = GetDirFromCam();
@@ -878,10 +1026,28 @@ public class JoueursControl1 : MonoBehaviour
         }
     }
 
+    IEnumerator EnduranceReset()
+    {
+        Debug.Log("<color=yellow>Blocked</color>");
+        yield return new WaitForSeconds(3f);
+
+        while(endurance <= 100)
+        {
+            if (isHit)
+            {
+                StartCoroutine(EnduranceReset());
+                yield break;
+            }
+            endurance += 1f * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield break;
+    }
+
     void OnDrawGizmosSelected()
     {
         if (cc == null)
-            cc = GetComponent<CharacterController>();
+        cc = GetComponent<CharacterController>();
 
         Vector3 bottomCenter = transform.position + cc.center - new Vector3(0, cc.height / 2f, 0);
         Vector3 jumpCheckPosition = bottomCenter + Vector3.up * jumpCheckOffset;
@@ -900,17 +1066,25 @@ public class JoueursControl1 : MonoBehaviour
             Debug.Log("Hit by an Enemy Weapon!");
             if (state == HachimanState.Guarding)
             {
-                // Sound
-                activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
-                // Code
-                animator.SetBool("Hit", true);
-                Invoke("NotHit", 0.33f);
+                endurance = (endurance < 25) ? 0 : endurance - 25;
+                isHit = true;
+                StartCoroutine(EnduranceReset());
                 DoNotListenToInputs();
                 inputActions.MapNormale.Guarding.performed += Guarding;
                 inputActions.MapNormale.Guarding.canceled += StopGuarding;
                 inputActions.MapNormale.LockOn.performed += LockOn;
-
-                Debug.Log(health);
+                if(endurance <= 0)
+                {
+                    Invoke("NotHitBroken", 0.33f);
+                    animator.SetTrigger("Broken");
+                    //Debug.Log(ctx);
+                }
+                else
+                {
+                    Invoke("NotHit", 0.33f);
+                    activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
+                    animator.SetBool("Hit", true);
+                }
             }
             else if (state == HachimanState.Rolling)
             {
@@ -921,7 +1095,7 @@ public class JoueursControl1 : MonoBehaviour
                 if(!isDead)
                 {
                     animator.SetBool("Hit", true);
-                    health -= 20;
+                    health -= 20f;
                     Debug.Log(health);
                     if(health <= 0)
                     {
@@ -947,11 +1121,5 @@ public class JoueursControl1 : MonoBehaviour
     {
         // ---------- Sound ---------
         activeKatana.GetComponent<AudioSource>().PlayOneShot(banqueAudio.sSwordAirSwing1);
-    }
-
-    public void DiedUI()
-    {
-        health += 100;
-        quete.AffichageMort();
     }
 }

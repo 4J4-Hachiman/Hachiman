@@ -421,6 +421,11 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  banqueAudio: {fileID: 0}
+  quete: {fileID: 0}
   currentSpeed: 0
   currentSideMovement: 0
   currentFowardMovement: 0
@@ -438,19 +443,16 @@ MonoBehaviour:
   checkRadius: 0.2
   smallDistance: 10
   cameraJoueur: {fileID: 0}
-  isArmed: 0
-  isJumping: 0
-  isLockedOn: 0
-  isCrouched: 0
-  isRolling: 0
-  hasJumped: 0
-  hasLanded: 0
-  canMove: 0
+  endurance: 100
+  numbPotion: 3
+  activeKatana: {fileID: 0}
   katana: {fileID: 8170388654919737510}
   katanaInSheath: {fileID: 5252839552426335510}
   cube: {fileID: 0}
   camera: {fileID: 0}
   head: {fileID: 3359765282386747469}
+  lockOnOptions: []
+  audioSources: []
   state: 0
 --- !u!1 &556482186923468930
 GameObject:
@@ -4092,6 +4094,37 @@ Transform:
   - {fileID: 3174922161098737180}
   m_Father: {fileID: 5842848986662490379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6902578983365547454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9186228350352572554}
+  m_Layer: 3
+  m_Name: Rootmotion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9186228350352572554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902578983365547454}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2294087007326755604}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6935567823144171831
 GameObject:
   m_ObjectHideFlags: 0
@@ -5115,6 +5148,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1277768322435950300}
+  - {fileID: 9186228350352572554}
   m_Father: {fileID: 6110708994008661409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9165399887332114397

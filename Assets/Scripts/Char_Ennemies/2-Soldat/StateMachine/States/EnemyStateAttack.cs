@@ -3,41 +3,73 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 29/03/2025;
+    Dernière modification: 12/04/2025;
 */
 
 using System;
-using System.Collections;
-using UnityEngine;
 
 public class EnemyStateAttack : StateBase
 {
     public event Action OnAttackEnd;
+    EnnemiMain.AttackTypes attackType;
+
+
     public EnemyStateAttack(EnemyStateMachine enemyStateMachine, EnnemiMain ennemiMain) : base(enemyStateMachine, ennemiMain) { }
 
     public override void StateStart(bool init)
     {
-        ennemiMain.SetNavVitesse(0);
         ennemiMain.Animator.applyRootMotion = true;
-        ennemiMain.StartCoroutine(AttackPlayer());
-        ennemiMain.Gamemanager.Combat.AddToReadyList(ennemiMain);
+        ennemiMain.Agent.updatePosition = false;
+        ennemiMain.Agent.speed = 0;
+        ennemiMain.Agent.destination = ennemiMain.transform.position;
+        attackType = ennemiMain.GetRandomAttackType();
+        
+        if (attackType == EnnemiMain.AttackTypes.AttackSimple)
+        {
+            int i = UnityEngine.Random.Range(0, 4);
+            ennemiMain.Animator.SetInteger("AttackIndex", i);
+            ennemiMain.Animator.SetTrigger("Attack");
+            ennemiMain.OnAnimationEnd += HandleOnAnimationEnd;
+        }
+        else
+        {
+            ennemiMain.OnComboStepStart += HandleOnComboStepStart;
+            ennemiMain.Animator.SetTrigger("AttackCombo");
+        }
     }
 
     public override void StateExit()
     {
-        ennemiMain.SetNavVitesse(ennemiMain.vitesseDeplacement);
+        ennemiMain.OnComboStepStart -= HandleOnComboStepStart;
+        ennemiMain.OnAnimationEnd -= HandleOnAnimationEnd;
         ennemiMain.Animator.applyRootMotion = false;
+        ennemiMain.Agent.updatePosition = true;
     }
-    
-    public override void StateUpdate() { }
+
+    public override void StateUpdate() 
+    { 
+        if((ennemiMain.Player.transform.position - ennemiMain.transform.position).sqrMagnitude > 1)
+        {
+            ennemiMain.Agent.nextPosition = ennemiMain.transform.position;
+        }
+    }
 
     public override void StateFixedUpdate() { }
 
-    private IEnumerator AttackPlayer()
+    private void HandleOnComboStepStart(bool performNext)
     {
-        ennemiMain.Animator.SetTrigger("Attack");
-        yield return new WaitForSeconds(2.5f);
+        ennemiMain.Animator.SetBool("ContinueCombo", performNext);
+        ennemiMain.LookAtPlayer(100);
+        
+        if (!performNext)
+        {
+            ennemiMain.OnAnimationEnd += HandleOnAnimationEnd;
+        }
+    }
+    
+    private void HandleOnAnimationEnd()
+    {
+        ennemiMain.OnAnimationEnd -= HandleOnAnimationEnd;
         OnAttackEnd?.Invoke();
-        yield break;
     }
 }

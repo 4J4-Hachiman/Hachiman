@@ -7,7 +7,6 @@
 */
 
 using System;
-using UnityEngine;
 
 public class EnemyStatePatrol : StateBase
 {
