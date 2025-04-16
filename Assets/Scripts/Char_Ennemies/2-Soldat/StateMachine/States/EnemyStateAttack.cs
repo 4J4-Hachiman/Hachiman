@@ -7,46 +7,34 @@
 */
 
 using System;
-using UnityEngine;
 
 public class EnemyStateAttack : StateBase
 {
     public event Action OnAttackEnd;
     EnnemiMain.AttackTypes attackType;
-    private bool lastAttack;
+
 
     public EnemyStateAttack(EnemyStateMachine enemyStateMachine, EnnemiMain ennemiMain) : base(enemyStateMachine, ennemiMain) { }
 
     public override void StateStart(bool init)
     {
-
         ennemiMain.Animator.applyRootMotion = true;
         ennemiMain.Agent.updatePosition = false;
         ennemiMain.Agent.speed = 0;
         ennemiMain.Agent.destination = ennemiMain.transform.position;
-        ennemiMain.Gamemanager.Combat.RemoveFromReadyList(ennemiMain);
-
-        // cancelOnNext = false;
-
         attackType = ennemiMain.GetRandomAttackType();
-
+        
         if (attackType == EnnemiMain.AttackTypes.AttackSimple)
         {
             int i = UnityEngine.Random.Range(0, 4);
             ennemiMain.Animator.SetInteger("AttackIndex", i);
             ennemiMain.Animator.SetTrigger("Attack");
             ennemiMain.OnAnimationEnd += HandleOnAnimationEnd;
-            lastAttack = true;
-
-            // Debug.Log("Will perform a <color=green>SIMPLE</color> attack");
         }
         else
         {
             ennemiMain.OnComboStepStart += HandleOnComboStepStart;
             ennemiMain.Animator.SetTrigger("AttackCombo");
-            lastAttack = false;
-            // ennemiMain.Animator.SetBool("ContinueCombo", true);
-            // Debug.Log("Will perform a <color=green>COMBO</color> attack");
         }
     }
 
@@ -70,25 +58,17 @@ public class EnemyStateAttack : StateBase
 
     private void HandleOnComboStepStart(bool performNext)
     {
-        // ennemiMain.Animator.applyRootMotion = (ennemiMain.Player.transform.position - ennemiMain.transform.position).sqrMagnitude > 1;
         ennemiMain.Animator.SetBool("ContinueCombo", performNext);
         ennemiMain.LookAtPlayer(100);
         
         if (!performNext)
         {
-            // Debug.Log("<color=yellow>End of combo");
             ennemiMain.OnAnimationEnd += HandleOnAnimationEnd;
         }
     }
-
+    
     private void HandleOnAnimationEnd()
     {
-        if (!lastAttack)
-        {
-            lastAttack = true;
-            return;
-        }
-
         ennemiMain.OnAnimationEnd -= HandleOnAnimationEnd;
         OnAttackEnd?.Invoke();
     }

@@ -1,7 +1,3 @@
-using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
 /*
     Scriptable Object pour la gestion des donnes des spawns et
     patrouilles des ennemis.    
@@ -10,6 +6,10 @@ using UnityEngine.SceneManagement;
     Par: Yanis Oulmane;
     Dernière modification: 25/03/2025;
 */
+
+using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "Spawn Data", menuName = "Custom Scriptable Objects/SpawnData"), Serializable]
 public class LvlSpawnData : ScriptableObject

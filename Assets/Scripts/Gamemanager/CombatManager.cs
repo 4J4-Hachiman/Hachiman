@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 12/04/2025;
+    Dernière modification: 15/04/2025;
 */
 
 using UnityEngine;
@@ -18,6 +18,8 @@ public class CombatManager
     private readonly List<Vector3> claimedOffsets;
     private readonly List<EnnemiMain> readyEnemies;
     private EnnemiMain attacker;
+
+    private List<EnnemiMain> fightingEnemies;
     private bool enemyIsAttacking = false;
 
     public CombatManager(Gamemanager gamemanager, float surroundDistance, float enemySpacing)
@@ -27,8 +29,61 @@ public class CombatManager
         this.enemySpacing = enemySpacing;
         claimedOffsets = new List<Vector3>();
         readyEnemies = new List<EnnemiMain>();
+        fightingEnemies = new List<EnnemiMain>();
     }
-    
+
+    public void StartCombat(List<GameObject> enemyList)
+    {
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            fightingEnemies.Add(enemyList[i].GetComponent<EnnemiMain>());
+            fightingEnemies[i].OnActionOver += HandleOnActionOver;
+        }
+        Debug.Log(fightingEnemies.Count);
+        gamemanager.StartCoroutine(AttackCoroutine());
+    }
+
+    public void EnemyDeath(EnnemiMain instance)
+    {
+        fightingEnemies.Remove(instance);
+    }
+
+    private void HandleOnActionOver(EnnemiMain instance)
+    {
+        enemyIsAttacking = false;
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        while (true)
+        {
+
+            // Debug.Log("Starting Attack Coroutine");
+            yield return new WaitForSeconds(readyEnemies.Count == 1 ? 2 : Random.Range(2, 4));
+
+            // Debug.Log("Generated an attacker index");
+            int indexAttacker = Random.Range(0, fightingEnemies.Count);
+
+            if (fightingEnemies.Count == 0)
+            {
+                // Debug.Log("All enemies are dead");
+                yield break;
+            }
+
+            fightingEnemies[indexAttacker].TriggerAttack();
+            enemyIsAttacking = true;
+
+            while (enemyIsAttacking)
+            {
+                // Debug.Log("Waiting for enemy to finish attack");
+                yield return null;
+            }
+
+            // Debug.Log("Enemy finished attacking");
+            yield return null;
+        }
+    }
+
     public Vector3 GetNewSurroundPos()
     {
         int attempts = 0;
@@ -59,65 +114,6 @@ public class CombatManager
 
         claimedOffsets.Add(offset);
         return offset;
-    }
-
-    public void AddToReadyList(EnnemiMain instance)
-    {
-        instance.OnActionOver -= HandleOnActionOver;
-
-        if (!readyEnemies.Contains(instance))
-        {
-            readyEnemies.Add(instance);
-        }
-
-        gamemanager.StartCoroutine(ManageAttack());
-    }
-
-    public void RemoveFromReadyList(EnnemiMain instance)
-    {
-        readyEnemies.Remove(instance);
-    }
-
-    private void HandleOnActionOver(EnnemiMain instance)
-    {
-        enemyIsAttacking = false;
-        Debug.Log("<color=purple> Enemy Action is over");
-        instance.OnActionOver -= HandleOnActionOver;
-        gamemanager.StartCoroutine(ManageAttack());
-    }
-
-    private IEnumerator ManageAttack()
-    {
-        Debug.Log("Started the attack coroutine");
-        if (enemyIsAttacking)
-        {
-            Debug.Log("An enemy is already attacking");
-            yield break;
-        }
-
-        enemyIsAttacking = true;
-
-        while (readyEnemies.Count == 0)
-        {
-            Debug.Log("No enemy is ready");
-            yield return new WaitForEndOfFrame();
-        }
-
-        yield return new WaitForSeconds(readyEnemies.Count == 3 ? 5 : Random.Range(1, 3));
-
-        int indexAttacker = Random.Range(0, readyEnemies.Count);
-        attacker = readyEnemies[indexAttacker];
-        attacker.OnActionOver += HandleOnActionOver;
-
-        if (attacker.StateMachine.currentState != attacker.StateDead)
-        {
-            attacker.TriggerAttack();
-        }
-        else
-        {
-            Debug.Log("<color=red>The Enemy is already dead");
-        }
-        yield break;
     }
 
     private Vector2 GetRandomVector2()

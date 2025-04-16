@@ -12,7 +12,6 @@ public class EnemyStateSurround : StateBase
 {
     private Vector3 lockOffSet;
 
-    /* ========================= */
     public EnemyStateSurround(EnemyStateMachine enemyStateMachine, EnnemiMain ennemiMain) : base(enemyStateMachine, ennemiMain) { }
 
     public override void StateStart(bool init)
@@ -22,22 +21,22 @@ public class EnemyStateSurround : StateBase
             lockOffSet = ennemiMain.Gamemanager.Combat.GetNewSurroundPos();
         }
 
-        ennemiMain.Gamemanager.Combat.AddToReadyList(ennemiMain);
-        ennemiMain.SetNavVitesse(ennemiMain.vitesseDeplacement);
         ennemiMain.Agent.updateRotation = true;
+        ennemiMain.SetNavVitesse(ennemiMain.vitesseDeplacement);
     }
 
     public override void StateExit() { }
 
-    public override void StateUpdate() { }
+    public override void StateUpdate()
+    {
+        ennemiMain.LookAtPlayer();
+    }
 
     public override void StateFixedUpdate()
     {
         ennemiMain.LookAtPlayer();
         SurroundPlayer();
     }
-
-    /* ============================== PRIVATE VARIABLES ============================== */
 
     private void SurroundPlayer()
     {
@@ -49,15 +48,14 @@ public class EnemyStateSurround : StateBase
 
     private bool IsWithinAcceptableDistance()
     {
-        // if enemy is too close
-        if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position) < 1)
+        if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position) <= 1)
         {
             return false;
         }
 
         if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position + lockOffSet) > ennemiMain.LockOffsetThreshold)
         {
-            if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position) > 25)
+            if (GetMagnitude(ennemiMain.transform.position, ennemiMain.Player.transform.position) >= 25)
             {
                 return false;
             }
