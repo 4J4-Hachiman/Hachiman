@@ -6,8 +6,8 @@
     Dernière modification: 12/04/2025;
 */
 
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class EnemyStateHit : StateBase
 {
@@ -17,7 +17,6 @@ public class EnemyStateHit : StateBase
 
     public override void StateStart(bool init = false)
     {
-        // Debug.Log("<color=orange>Currently in hit state</color>");
         ennemiMain.OnAnimationEnd += HandleOnAnimationEnd;
         ennemiMain.Animator.applyRootMotion = true;
         ennemiMain.Agent.updatePosition = false;

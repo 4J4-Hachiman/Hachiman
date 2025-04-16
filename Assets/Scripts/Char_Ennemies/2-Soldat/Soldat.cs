@@ -6,8 +6,6 @@
     Dernière modification: 05/04/2025;
 */
 
-using UnityEngine;
-
 public class Soldat : EnnemiMain
 {
     private void Update()

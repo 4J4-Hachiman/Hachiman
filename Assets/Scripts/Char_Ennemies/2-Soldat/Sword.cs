@@ -28,13 +28,9 @@ public class Sword : MonoBehaviour
         GetComponent<CapsuleCollider>().includeLayers = layerDetection;
         GetComponent<CapsuleCollider>().excludeLayers = ~layerDetection;
     }
-
+    
     public float GetDammage()
     {
         return CritChance > Random.Range(1, 100) ? BasicDammage * CritDamage : BasicDammage;
     }
-    // void OnTriggerEnter(Collider other)
-    // {
-    //     GetComponent<CapsuleCollider>().enabled = false;
-    // }
 }

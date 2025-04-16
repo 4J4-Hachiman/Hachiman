@@ -1,14 +1,13 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 /*
     Class de gestion de pools
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 29/03/2025;
+    Dernière modification: 15/04/2025;
 */
 
+using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class Pooling
@@ -35,7 +34,7 @@ public class Pooling
             pool.Enqueue(newObj);
         }
     }
-
+    
     public GameObject GetFromPool()
     {
         return pool.Dequeue();
