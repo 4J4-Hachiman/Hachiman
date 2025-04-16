@@ -3,17 +3,17 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 12/04/2025;
+    Dernière modification: 15/04/2025;
 */
 
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
-using Unity.VisualScripting;
 
 public class Gamemanager : MonoBehaviour
 {       
+    public static Gamemanager gamemanagerInstance; 
     private GameObject player;
 
     [Header("Settings")]
@@ -46,6 +46,15 @@ public class Gamemanager : MonoBehaviour
 
     void Awake()
     {
+        if (!gamemanagerInstance)
+        {
+            gamemanagerInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Application.targetFrameRate = 30;
 
@@ -62,14 +71,17 @@ public class Gamemanager : MonoBehaviour
         InitLevel();
     }
 
-    void OnEnable()
+
+    private void AAAAAAAAAAAAAAAAAAAAAAAA()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
     
     private void InitLevel()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Invoke(nameof(AAAAAAAAAAAAAAAAAAAAAAAA), 1f);
+
+
         player = GameObject.FindGameObjectWithTag("Player");
         spawnMain = GameObject.FindWithTag("SpawnData");
         spawnGroups = new SpawnGroup[spawnMain.transform.childCount];
@@ -79,7 +91,6 @@ public class Gamemanager : MonoBehaviour
             spawnGroups[i].OnGroupTriggered += HandleGroupTriggered;
         }
     }
-
 
     private void HandleGroupTriggered(SpawnGroup spawnGroup)
     {
@@ -104,6 +115,19 @@ public class Gamemanager : MonoBehaviour
         spawnGroup.OnGroupTriggered -= HandleGroupTriggered;
     }
 
+    private void HandleEnemyDeath(EnnemiMain instance)
+    {
+        instance.OnEnemyDeath -= HandleEnemyDeath;
+        activeEnemies.Remove(instance.gameObject);
+        deadEnemies.Enqueue(instance.gameObject);
+        Combat.EnemyDeath(instance);
+
+        if (activeEnemies.Count == 0)
+        {
+            StartCoroutine(UnloadEnemies());
+        }
+    }
+
     private void HandleOnTargetdeath(EnemyHpBar instance)
     {
         instance.OnTargetDeath -= HandleOnTargetdeath;
@@ -119,19 +143,8 @@ public class Gamemanager : MonoBehaviour
             enemy.GetComponent<EnnemiMain>().OnAlertAll -= HandleAlertAll;
             enemy.GetComponent<EnnemiMain>().StartCombat();
         }
-    }
 
-    private void HandleEnemyDeath(EnnemiMain instance)
-    {
-        instance.OnEnemyDeath -= HandleEnemyDeath;
-        activeEnemies.Remove(instance.gameObject);
-        deadEnemies.Enqueue(instance.gameObject);
-
-        if (activeEnemies.Count == 0)
-        {
-            Debug.Log("<color=green>All enemies are down</color>");
-            StartCoroutine(UnloadEnemies());
-        }
+        Combat.StartCombat(activeEnemies);
     }
 
     private IEnumerator UnloadEnemies()

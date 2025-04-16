@@ -91,6 +91,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         StateHit = new(StateMachine, this);
 
         swordCollider.enabled = false;
+        CapsuleCollider.enabled = true;
 
         HpCurrent = HpMax;
 
@@ -106,7 +107,17 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
         StatePatrol.OnPlayerSpotted += HandlePlayerSpotted;
         StateMachine.Initalize(StatePatrol, true);
+
+        // StartCoroutine(DebugCoroutine());
     }
+
+    // IEnumerator DebugCoroutine()
+    // {
+    //     while (true)
+    //     {
+    //         yield return new WaitForSecondsRealtime(1);
+    //     }
+    // }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -133,7 +144,8 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
             OnDammageTaken?.Invoke(HpCurrent, HpMax);
         }
 
-        Gamemanager.Combat.RemoveFromReadyList(this);
+        // Gamemanager.Combat.RemoveFromReadyList(this);
+        StateAttack.OnAttackEnd -= HandleOnAttackEnd;
         OnActionOver?.Invoke(this);
     }
 
@@ -145,7 +157,11 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
     private void OnAnimatorMove()
     {
-        // transform.position = Animator.rootPosition;
+        if (StateMachine.currentState != StateAttack)
+        {
+            return;
+        }
+
         if ((Player.transform.position - transform.position).sqrMagnitude > 1)
         {
             transform.position += Animator.deltaPosition;
@@ -197,7 +213,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         Agent.SetDestination(position);
     }
 
-    public void LookAtPlayer(float speed = 10)
+    public void LookAtPlayer(float speed = 50)
     {
         Vector3 dirToPlayer = Player.transform.position - transform.position;
         dirToPlayer.y = 0;
@@ -226,16 +242,19 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
     public void TriggerAttack()
     {
-        Gamemanager.Combat.RemoveFromReadyList(this);
+        // Gamemanager.Combat.RemoveFromReadyList(this);
+        Debug.Log("Triggered Attack");
         StateMachine.SwitchState(IsWithinAttackDistance() ? StateAttack : StateCharge);
-        StateAttack.OnAttackEnd += HandleAttackPerformed;
+        StateAttack.OnAttackEnd += HandleOnAttackEnd;
     }
 
-    private void HandleAttackPerformed()
+    private void HandleOnAttackEnd()
     {
-        StateAttack.OnAttackEnd -= HandleAttackPerformed;
-        StateMachine.SwitchState(StateSurround);
         OnActionOver?.Invoke(this);
+        // Debug.Log("<color=green>Action performed");
+        StateAttack.OnAttackEnd -= HandleOnAttackEnd;
+        StateMachine.SwitchState(StateSurround);
+        // Gamemanager.Combat.AddToReadyList(this);
     }
 
     public AttackTypes GetRandomAttackType()
@@ -245,12 +264,13 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
     public bool IsWithinAttackDistance()
     {
-        return (transform.position - Player.transform.position).sqrMagnitude < 2f;
+        return (transform.position - Player.transform.position).sqrMagnitude <= 2f;
     }
 
     /* =========================== ANIMATION EVENTS METHODS =========================== */
     private void TriggerOnAnimationEnd()
     {
+        Debug.Log("Animation is over");
         OnAnimationEnd?.Invoke();
     }
 
@@ -260,7 +280,6 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         {
             lastComboStep = 1;
         }
-
 
         if (!IsWithinAttackDistance())
         {
@@ -274,7 +293,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
             return;
         }
 
-        bool performNext = UnityEngine.Random.Range(0, 100) < 100;
+        bool performNext = UnityEngine.Random.Range(0, 100) < 65;
         OnComboStepStart?.Invoke(performNext);
     }
 }

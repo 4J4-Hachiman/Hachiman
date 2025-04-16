@@ -1,4 +1,10 @@
-using UnityEngine;
+/*
+    Class d'état de mort
+    
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 15/04/2025;
+*/
 
 public class EnemyStateDead : StateBase
 {
@@ -6,7 +12,6 @@ public class EnemyStateDead : StateBase
 
     public override void StateStart(bool init = false)
     {
-        Debug.Log("IS DEAD");
         ennemiMain.SetNavVitesse(0);
         ennemiMain.Animator.SetTrigger("Dead");
         ennemiMain.Agent.updateRotation = false;

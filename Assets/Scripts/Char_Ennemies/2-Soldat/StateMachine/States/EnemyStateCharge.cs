@@ -8,7 +8,6 @@
 */
 
 using System.Collections;
-using UnityEngine;
 
 public class EnemyStateCharge : StateBase
 {
@@ -16,12 +15,11 @@ public class EnemyStateCharge : StateBase
     
     public override void StateStart(bool init)
     {
-        // Debug.Log("<color=orange>Charging PLAYER");
         ennemiMain.Animator.SetTrigger("Charge");
         ennemiMain.SetNavVitesse(5);
         ennemiMain.StartCoroutine(EngagePlayer());
     }
-
+    
     public override void StateExit() { }
 
     public override void StateUpdate()
