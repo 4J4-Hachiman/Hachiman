@@ -26,7 +26,7 @@ public class BanqueAudio : ScriptableObject
 
     [Header("Effets sonores UI")]
     public AudioClip bntUI;
-    public AudioClip retourOptionsVfx;
+    public AudioClip retourOptionsSfx;
 
     [Header("Effets sonores jeu")]
     public AudioClip sOuvertureCoffre;

@@ -28,8 +28,7 @@ public class ControlesMenuOptions : MonoBehaviour
     public AudioMixer audioMixerSFX;    //Audiomixer pour la musique
 
     public TextMeshProUGUI avertissementNonSauvegarde;
-    public TextMeshProUGUI messageSauvegarde;
-    public TextMeshProUGUI messageReinitalisation;
+    public TextMeshProUGUI message;
     public Image cadrePopUp;
 
     //Liste pour enregister les diff�rentes r�solutions pour le jeu
@@ -52,7 +51,8 @@ public class ControlesMenuOptions : MonoBehaviour
         {
             avertissementNonSauvegarde.enabled = true;
         }
-        else{
+        else
+        {
             avertissementNonSauvegarde.enabled = false;
         }
     }
@@ -93,6 +93,9 @@ public class ControlesMenuOptions : MonoBehaviour
         print("R�solution sauvegard�e : " + OptionsManager.indexResolutionSauve);
         OptionsManager.optionsSauvegarder = true;
         avertissementNonSauvegarde.enabled = false;
+
+        message.text = "Vos paramètres ont été sauvegardés";
+        cadrePopUp.GetComponent<Animator>().SetTrigger("popUp");
     }
 
     //Fonction pour r�initialiser les options
@@ -105,6 +108,9 @@ public class ControlesMenuOptions : MonoBehaviour
         controleurVolMusique.value = volumeMusiqueDefaut;
         controleurVolSFX.value = volumeSFXDefaut;
         controleurResolution.value = indexResolutionDefaut;
+
+        message.text = "Vos parametrès ont été réinitialisés";
+        cadrePopUp.GetComponent<Animator>().SetTrigger("popUp");
     }
 
     // Fonction pour la mise � jour des options selon les options enregistr�es par l'utilisateur
