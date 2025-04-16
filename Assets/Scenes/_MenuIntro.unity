@@ -1393,7 +1393,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: b6c0e65188452bf42b060750ca3bb319, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 761c95051cdf5ec449d973787e7b3c8b, type: 2}
 --- !u!1 &230908214
 GameObject:
   m_ObjectHideFlags: 0
@@ -16577,7 +16577,7 @@ GameObject:
   - component: {fileID: 1061419175}
   - component: {fileID: 1061419174}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Directional Light Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17705,7 +17705,7 @@ GameObject:
   - component: {fileID: 1253869663}
   - component: {fileID: 1253869662}
   m_Layer: 0
-  m_Name: Directional Light.1
+  m_Name: Directional Light Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17864,7 +17864,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 0.5660378, g: 0.3070488, b: 0.3070488, a: 1}
-  m_Intensity: 40
+  m_Intensity: 5.69
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -17908,7 +17908,7 @@ Light:
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
   m_ColorTemperature: 4999
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -19704,6 +19704,7 @@ MonoBehaviour:
   - {fileID: 1842248706}
   - {fileID: 1192262972}
   - {fileID: 1719383056}
+  lesTargetsCam: []
   FollowCam: {fileID: 1908672560}
 --- !u!114 &1512181743
 MonoBehaviour:
