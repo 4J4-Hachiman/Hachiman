@@ -411,6 +411,18 @@ public class JoueursControl1 : MonoBehaviour
         cc.enabled = true; // re-enable the controller
     }
 
+    public void PauseGame()
+    {
+        if(Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
+
     Collider[] CapsuleCastFromCamera()
     {
         Camera cam = Camera.main;
