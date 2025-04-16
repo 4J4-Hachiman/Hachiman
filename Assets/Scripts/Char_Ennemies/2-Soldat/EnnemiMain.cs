@@ -243,7 +243,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     public void TriggerAttack()
     {
         // Gamemanager.Combat.RemoveFromReadyList(this);
-        Debug.Log("Triggered Attack");
+        // Debug.Log("Triggered Attack");
         StateMachine.SwitchState(IsWithinAttackDistance() ? StateAttack : StateCharge);
         StateAttack.OnAttackEnd += HandleOnAttackEnd;
     }
@@ -270,7 +270,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     /* =========================== ANIMATION EVENTS METHODS =========================== */
     private void TriggerOnAnimationEnd()
     {
-        Debug.Log("Animation is over");
+        // Debug.Log("Animation is over");
         OnAnimationEnd?.Invoke();
     }
 
