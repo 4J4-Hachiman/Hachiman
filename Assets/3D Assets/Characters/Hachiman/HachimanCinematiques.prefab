@@ -296,9 +296,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5894832761041720910}
   - component: {fileID: 5143508394359161567}
-  - component: {fileID: 4456198826691358891}
-  - component: {fileID: 6706747556379771993}
-  - component: {fileID: 7035474973202302337}
   m_Layer: 3
   m_Name: HachimanCinematiques
   m_TagString: Player
@@ -350,112 +347,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4456198826691358891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371504000571904073}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: dca3d3a7eb1418544b5109c9f798eb04, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: MapNormale
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!143 &6706747556379771993
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371504000571904073}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1.81
-  m_Radius: 0.27
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.0001
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.905, z: 0}
---- !u!114 &7035474973202302337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371504000571904073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b303a2eb7281e4c49a7aeeccfe6ff81f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
-  Ground:
-    serializedVersion: 2
-    m_Bits: 0
-  banqueAudio: {fileID: 0}
-  quete: {fileID: 0}
-  currentSpeed: 0
-  currentSideMovement: 0
-  currentFowardMovement: 0
-  smoothTime: 5
-  transitionSpeed: 5
-  vitesseMarche: 2
-  vitesseSprint: 5
-  vitesseCrouch: 0.5
-  forceSaut: 8
-  forceGravite: -9.8
-  vitesseTombe: 0.2
-  rotationSpeed: 10
-  jumpCheckOffset: 0.05
-  gravityCheckOffset: 0.2
-  checkRadius: 0.2
-  smallDistance: 10
-  cameraJoueur: {fileID: 0}
-  isArmed: 0
-  isJumping: 0
-  isLockedOn: 0
-  isCrouched: 0
-  isRolling: 0
-  hasJumped: 0
-  hasLanded: 0
-  canMove: 0
-  activeKatana: {fileID: 0}
-  katana: {fileID: 8170388654919737510}
-  katanaInSheath: {fileID: 5252839552426335510}
-  cube: {fileID: 0}
-  camera: {fileID: 0}
-  head: {fileID: 3359765282386747469}
-  audioSources: []
-  state: 7
 --- !u!1 &556482186923468930
 GameObject:
   m_ObjectHideFlags: 0
@@ -5225,11 +5116,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eac49b60cbff074fa98fb5cca802a27, type: 3}
---- !u!1 &8170388654919737510 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3158498526438107247, guid: 7eac49b60cbff074fa98fb5cca802a27, type: 3}
-  m_PrefabInstance: {fileID: 6536465362436704457}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8990723750448111180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2770636261987178117, guid: 7eac49b60cbff074fa98fb5cca802a27, type: 3}
