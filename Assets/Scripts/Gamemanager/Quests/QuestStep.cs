@@ -3,11 +3,11 @@ using UnityEngine;
 
 public abstract class QuestStep : MonoBehaviour
 {
-    // private bool isFinished = false;
-    
+    public event Action OnQuestStepOver;
+
     protected void FinishQuestStep()
     {
-        GameEvents.TrigOnQuestStepFinished();
         Destroy(gameObject);
+        GameEvents.TrigOnQuestStepFinished();
     }
 }

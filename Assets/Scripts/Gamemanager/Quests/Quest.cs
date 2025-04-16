@@ -1,35 +1,42 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Quest
 {
     public QuestData Data { get; private set; }
     int currentStepIndex;
-    QuestStep[] questSteps;
+    private GameObject[] questStepGO;
 
     public Quest(QuestData data)
     {
         Data = data;
         currentStepIndex = 0;
+
+        questStepGO = new GameObject[Data.QuestStepGO.Length];
+        for (int i = 0; i < Data.QuestStepGO.Length; i++)
+        {
+            questStepGO[i] = Data.QuestStepGO[i];
+        }
     }
 
     public void QuestStart()
     {
-        IterateQuestGO(null);
         Debug.Log("Starting Quest");
+
+        IterateQuestGO(null);
         GameEvents.OnQuestStepFinished += IncrementStep;
     }
 
     public void IncrementStep()
     {
-        if (currentStepIndex == Data.QuestStepGO.Length - 1)
+
+        currentStepIndex++;
+        if (currentStepIndex == Data.QuestStepGO.Length)
         {
             QuestOver();
             return;
         }
-
+        
         Debug.Log("Going to next step");
-        currentStepIndex++;
         IterateQuestGO(null);
     }
 
