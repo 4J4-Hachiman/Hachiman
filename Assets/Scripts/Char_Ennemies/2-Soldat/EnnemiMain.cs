@@ -97,6 +97,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
         Agent.enabled = true;
         Animator.applyRootMotion = false;
+        Animator.SetBool("Dead", false);
         enabled = true;
 
         this.patrol = new Vector3[patrol.Length];
@@ -135,6 +136,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         if (HpCurrent <= 0f)
         {
             OnEnemyDeath?.Invoke(this);
+            Animator.SetTrigger("Dead");
             StateMachine.SwitchState(StateDead);
         }
         else

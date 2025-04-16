@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Quest
@@ -5,11 +6,11 @@ public class Quest
     public QuestData Data { get; private set; }
     int currentStepIndex;
     private GameObject[] questStepGO;
+    public event Action OnQuestOver;
 
     public Quest(QuestData data)
     {
         Data = data;
-        currentStepIndex = 0;
 
         questStepGO = new GameObject[Data.QuestStepGO.Length];
         for (int i = 0; i < Data.QuestStepGO.Length; i++)
@@ -20,39 +21,40 @@ public class Quest
 
     public void QuestStart()
     {
-        Debug.Log("Starting Quest");
-
-        IterateQuestGO(null);
-        GameEvents.OnQuestStepFinished += IncrementStep;
+        currentStepIndex = 0;
+        StepStart(null);
+        GameEvents.OnQuestStepFinished += GetNextStep;
     }
 
-    public void IncrementStep()
+    private void GetNextStep()
     {
-
-        currentStepIndex++;
-        if (currentStepIndex == Data.QuestStepGO.Length)
+        if (currentStepIndex == Data.QuestStepGO.Length - 1)
         {
             QuestOver();
             return;
         }
         
+        currentStepIndex++;
         Debug.Log("Going to next step");
-        IterateQuestGO(null);
+        StepStart(null);
     }
 
-    public GameObject GetStepGO()
+    /// <summary> Starts the next quest step byt instantating the appropraie GameObject </summary>
+    /// <param name="parent"></param>
+    private void StepStart(Transform parent)
+    {
+        GameObject questGO = GetStepGO();
+        UnityEngine.Object.Instantiate(questGO, parent);
+    }
+
+    private GameObject GetStepGO()
     {
         return Data.QuestStepGO[currentStepIndex];
     }
 
-    public void IterateQuestGO(Transform parent)
+    private void QuestOver()
     {
-        GameObject questGO = GetStepGO();
-        Object.Instantiate(questGO, parent);
-    }
-
-    public void QuestOver()
-    {
-        Debug.Log("The current quest is over");
+        Debug.Log("<color=green>The current quest is over");
+        OnQuestOver?.Invoke();
     }
 }

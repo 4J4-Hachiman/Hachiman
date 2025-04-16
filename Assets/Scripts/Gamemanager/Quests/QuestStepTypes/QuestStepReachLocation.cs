@@ -5,16 +5,17 @@ public class QuestStepReachLocation : QuestStep
     private void OnEnable()
     {
         Debug.Log("Quest step started : " + name);
-        GameEvents.OnAllEnemiesKilled += AllEnemiesKilled;
+        GameEvents.OnLocationReached += OnLocationReached;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnAllEnemiesKilled -= AllEnemiesKilled;
+        GameEvents.OnLocationReached -= OnLocationReached;
     }
-
-    private void AllEnemiesKilled()
+    
+    private void OnLocationReached()
     {
         Debug.Log("ReachedLocation ish - quest step finished");
+        FinishQuestStep();
     }
 }

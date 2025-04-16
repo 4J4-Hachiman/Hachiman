@@ -15,7 +15,7 @@ public class QuestStepKillEnemies : QuestStep
 
     private void AllEnemiesKilled()
     {
-        Debug.Log("All enemies have been killed, quest step finished");
+        // Debug.Log("All enemies have been killed, quest step finished");
         FinishQuestStep();
     }
 }

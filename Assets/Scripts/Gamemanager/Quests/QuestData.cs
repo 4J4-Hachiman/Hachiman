@@ -6,9 +6,9 @@ public class QuestData : ScriptableObject
 {
     [field: SerializeField] public string ID { get; private set; }
     [field: SerializeField] public string DisplayName { get; private set; }
-    [field: SerializeField] public string Description { get; private set; }
     [field: SerializeField] public QuestData NextQuest { get; private set; }
     [field: SerializeField] public GameObject[] QuestStepGO { get; private set; }
+    [field: SerializeField] public string[] QuestStepInfo { get; private set; }
 
     private void OnValidate()
     {
