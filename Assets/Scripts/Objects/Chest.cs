@@ -106,7 +106,6 @@ public class Chest : MonoBehaviour
                 }
             }
             
-            areaLightInChest.gameObject.SetActive(false);
             pointLightInChest.gameObject.SetActive(false);
             itemInChest.SetActive(false);
         }
