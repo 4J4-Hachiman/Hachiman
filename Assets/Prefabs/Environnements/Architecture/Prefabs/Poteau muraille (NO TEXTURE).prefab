@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8578587498323205692}
   - component: {fileID: 8150226399258033621}
   - component: {fileID: 7766003114455599445}
+  - component: {fileID: 4561713561631433902}
   m_Layer: 0
   m_Name: Poteau muraille (NO TEXTURE)
   m_TagString: Untagged
@@ -86,3 +87,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4561713561631433902
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131461279001314753}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8834475584210037603, guid: fc1c2ff9b7ae20f4c9baafccfba3d086, type: 3}
