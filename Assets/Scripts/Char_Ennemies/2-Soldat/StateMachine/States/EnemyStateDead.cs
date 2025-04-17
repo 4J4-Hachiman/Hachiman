@@ -12,8 +12,8 @@ public class EnemyStateDead : StateBase
 
     public override void StateStart(bool init = false)
     {
+        // ennemiMain.Animator.SetTrigger("Dead");
         ennemiMain.SetNavVitesse(0);
-        ennemiMain.Animator.SetTrigger("Dead");
         ennemiMain.Agent.updateRotation = false;
         ennemiMain.CapsuleCollider.enabled = false;
     }
