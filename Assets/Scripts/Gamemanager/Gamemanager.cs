@@ -19,6 +19,7 @@ public class Gamemanager : MonoBehaviour
     [Header("Settings")]
     [field: SerializeField] private Settings manageSettings;
 
+
     [Header("Fonctionality Classes")]
     public CombatManager Combat { get; private set; }
 
@@ -37,10 +38,8 @@ public class Gamemanager : MonoBehaviour
     [field: SerializeField, Min(5)] private int poolAmount;
     [field: SerializeField] private GameObject enemyPoolParent;
     private Pooling enemyPool;
-
     private GameObject spawnMain;
     private SpawnGroup[] spawnGroups;
-
     private List<GameObject> activeEnemies;
     private Queue<GameObject> deadEnemies;
 
@@ -57,7 +56,6 @@ public class Gamemanager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Application.targetFrameRate = 30;
-
 
         enemyPool = new Pooling(enemyInstance, poolAmount, enemyPoolParent);
         hpBarPool = new Pooling(hpBarInstance, poolAmount, hpBarParent);
@@ -124,6 +122,7 @@ public class Gamemanager : MonoBehaviour
 
         if (activeEnemies.Count == 0)
         {
+            GameEvents.TrigAllEnemiesKilled();
             StartCoroutine(UnloadEnemies());
         }
     }

@@ -17,8 +17,6 @@ public class CombatManager
     private readonly float enemySpacing;
     private readonly List<Vector3> claimedOffsets;
     private readonly List<EnnemiMain> readyEnemies;
-    private EnnemiMain attacker;
-
     private List<EnnemiMain> fightingEnemies;
     private bool enemyIsAttacking = false;
 
@@ -39,7 +37,7 @@ public class CombatManager
             fightingEnemies.Add(enemyList[i].GetComponent<EnnemiMain>());
             fightingEnemies[i].OnActionOver += HandleOnActionOver;
         }
-        Debug.Log(fightingEnemies.Count);
+        // Debug.Log(fightingEnemies.Count);
         gamemanager.StartCoroutine(AttackCoroutine());
     }
 
