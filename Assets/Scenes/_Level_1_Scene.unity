@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 35907509}
   - component: {fileID: 35104661}
   - component: {fileID: 34006357}
+  - component: {fileID: 35945366}
   m_Layer: 0
   m_Name: MoutainsRocks02_B_LOD1
   m_TagString: Untagged
@@ -601,6 +602,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!64 &35945366
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35945365}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 3885f89ab6f5af34db4e5cd0c856fa52, type: 3}
 --- !u!1 &35945367
 GameObject:
   m_ObjectHideFlags: 0
@@ -8256,6 +8279,7 @@ GameObject:
   - component: {fileID: 225843951}
   - component: {fileID: 222452431}
   - component: {fileID: 223549455}
+  - component: {fileID: 225843952}
   m_Layer: 0
   m_Name: MoutainsRocks02_A_LOD1
   m_TagString: Untagged
@@ -8326,6 +8350,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 225843947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &225843952
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225543887}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 9b7a6353d6ff1be4687751819034ea6c, type: 3}
 --- !u!1001 &257906738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9081,6 +9127,7 @@ GameObject:
   - component: {fileID: 303456749}
   - component: {fileID: 304226765}
   - component: {fileID: 305357581}
+  - component: {fileID: 305357582}
   m_Layer: 0
   m_Name: MountainRocks01_A_LOD0
   m_TagString: Untagged
@@ -9098,6 +9145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 303456751}
   - component: {fileID: 321434959}
+  - component: {fileID: 321434960}
   m_Layer: 0
   m_Name: MountainRocks01_A
   m_TagString: Untagged
@@ -9327,6 +9375,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &305357582
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303168973}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 0bb18f6e1b1695449ba0b6ab75a16ae3, type: 3}
 --- !u!1 &308459420
 GameObject:
   m_ObjectHideFlags: 0
@@ -9459,6 +9529,28 @@ LODGroup:
     renderers:
     - renderer: {fileID: 305357577}
   m_Enabled: 1
+--- !u!64 &321434960
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303168975}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &324275992
 GameObject:
   m_ObjectHideFlags: 0
@@ -10039,6 +10131,7 @@ GameObject:
   - component: {fileID: 421439786}
   - component: {fileID: 422242570}
   - component: {fileID: 423341002}
+  - component: {fileID: 423341003}
   m_Layer: 0
   m_Name: RockMoutain03_LOD0
   m_TagString: Untagged
@@ -10214,6 +10307,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &423341003
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421082378}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 741f96502db525040bf3b8d7c17b91ad, type: 3}
 --- !u!23 &423341004
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11597,6 +11712,7 @@ GameObject:
   - component: {fileID: 529513058}
   - component: {fileID: 532412994}
   - component: {fileID: 531282050}
+  - component: {fileID: 532412995}
   m_Layer: 0
   m_Name: RockMoutain03_LOD0
   m_TagString: Untagged
@@ -11850,6 +11966,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529016386}
+  m_Mesh: {fileID: 4300002, guid: 741f96502db525040bf3b8d7c17b91ad, type: 3}
+--- !u!64 &532412995
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529016386}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 741f96502db525040bf3b8d7c17b91ad, type: 3}
 --- !u!33 &532412996
 MeshFilter:
@@ -12126,6 +12264,7 @@ GameObject:
   - component: {fileID: 569098790}
   - component: {fileID: 568295942}
   - component: {fileID: 567197894}
+  - component: {fileID: 569138695}
   m_Layer: 0
   m_Name: MountainRocks01_D
   m_TagString: Untagged
@@ -12133,6 +12272,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!64 &569138695
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569138694}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d8cbdd527d2f8014b8b0fda216a33ff7, type: 3}
 --- !u!1001 &572401326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13966,6 +14127,7 @@ GameObject:
   - component: {fileID: 803375671}
   - component: {fileID: 802605591}
   - component: {fileID: 801605847}
+  - component: {fileID: 803542552}
   m_Layer: 0
   m_Name: MoutainsRocks02_B_LOD0
   m_TagString: Untagged
@@ -13973,6 +14135,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!64 &803542552
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803542551}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 3885f89ab6f5af34db4e5cd0c856fa52, type: 3}
 --- !u!4 &807624557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1241552420258330874, guid: 800617ad4879e6341bf860becf435bb0, type: 3}
@@ -14657,6 +14841,7 @@ GameObject:
   - component: {fileID: 845988786}
   - component: {fileID: 844661650}
   - component: {fileID: 843694418}
+  - component: {fileID: 845988787}
   m_Layer: 0
   m_Name: RockMoutain03_LOD0
   m_TagString: Untagged
@@ -14733,6 +14918,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 845988784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &845988787
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845897618}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 741f96502db525040bf3b8d7c17b91ad, type: 3}
 --- !u!4 &845988788
 Transform:
   m_ObjectHideFlags: 0
@@ -18344,6 +18551,7 @@ GameObject:
   - component: {fileID: 1450801729}
   - component: {fileID: 1447901793}
   - component: {fileID: 1448900769}
+  - component: {fileID: 1451157090}
   m_Layer: 0
   m_Name: MoutainsRocks02_B_LOD1
   m_TagString: Untagged
@@ -18351,6 +18559,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!64 &1451157090
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451157089}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 3885f89ab6f5af34db4e5cd0c856fa52, type: 3}
 --- !u!1 &1451157091
 GameObject:
   m_ObjectHideFlags: 0
@@ -22157,6 +22387,7 @@ GameObject:
   - component: {fileID: 2010940280}
   - component: {fileID: 2011743064}
   - component: {fileID: 2012840344}
+  - component: {fileID: 2012840345}
   m_Layer: 0
   m_Name: RockMoutain03_LOD0
   m_TagString: Untagged
@@ -22349,6 +22580,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2012840345
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010849112}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 741f96502db525040bf3b8d7c17b91ad, type: 3}
 --- !u!23 &2012840348
 MeshRenderer:
   m_ObjectHideFlags: 0
