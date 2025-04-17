@@ -230,6 +230,8 @@ public class JoueursControl1 : MonoBehaviour
 
         //Death
 
+        Debug.Log("<color=Blue>State: </color>" + state);
+
         if (health <= 0)
         {
             isLockedOn = false;
@@ -572,7 +574,6 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
         inputActions.MapNormale.Heal.performed -= Heal;
-        inputActions.MapNormale.DebugTool.performed -= DebugTool;
     }
     private void ListenToInputs()
     {
@@ -585,7 +586,6 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
         inputActions.MapNormale.Heal.performed += Heal;
-        inputActions.MapNormale.DebugTool.performed += DebugTool;
     }
 
     /* ================================ COUROUTINES ================================ */
