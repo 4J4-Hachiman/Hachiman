@@ -72,4 +72,8 @@ public class AudioManager : MonoBehaviour
     {
         vfxPisteUI.GetComponent<AudioSource>().PlayOneShot(sonUI);
     }
+
+    public void JouerRetourSonSFX(AudioClip sonSlider){
+        vfxPisteUI.GetComponent<AudioSource>().PlayOneShot(sonSlider);
+    }
 }

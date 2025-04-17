@@ -17,12 +17,6 @@ public class MenuManager : MonoBehaviour
     public Transform[] lesTargetsCam; //Tableau pour enregistrer les positions des targets de la follow camera
     public GameObject FollowCam;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Time.timeScale = 1;
-    }
-
     //Fonction pour changer de menu affich�
     public void ChangerMenu(GameObject menuChoisi) {
         foreach (GameObject menu in lesMenus)

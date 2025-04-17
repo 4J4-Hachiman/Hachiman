@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GestionPause : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class GestionPause : MonoBehaviour
     public GameObject HUD;
     public GameObject menuOptions;
     public GameObject menuCommandes;
+    public Scene scenePartie;
 
     void Start()
     {
@@ -15,8 +17,6 @@ public class GestionPause : MonoBehaviour
 
     void Update()
     {
-
-        //print("C'est la partie");
         if (Input.GetKeyDown(KeyCode.P))
         {
             MettreEnPause();
