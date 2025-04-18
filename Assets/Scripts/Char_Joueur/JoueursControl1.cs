@@ -103,6 +103,7 @@ public class JoueursControl1 : MonoBehaviour
     public float endurance = 100;
     public float maxEndurance = 100;
     public int numbPotion = 3;
+    public float enduranceRegen = 1;
 
     /* -------------------- VARIABLES GAMEOBJECT -------------------- */
     public GameObject activeKatana;
@@ -1039,7 +1040,7 @@ public class JoueursControl1 : MonoBehaviour
                 StartCoroutine(EnduranceReset());
                 yield break;
             }
-            endurance += 1f * Time.deltaTime;
+            endurance += enduranceRegen * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         yield break;
