@@ -511,8 +511,9 @@ public class JoueursControl1 : MonoBehaviour
     {
         return Physics.Raycast(head.position, Vector3.up, checkDistance);
     }
-    private void ResetState()
+    public void ResetState()
     {
+        Debug.Break();
         state = HachimanState.Idle;
     }
 
@@ -739,10 +740,10 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && isArmed){
             // ---------- State ---------
+            DoNotListenToInputs();
             state = HachimanState.Attacking;
             animator.SetTrigger("lightAttack");
             //Time.timeScale = 0.05f;
-            DoNotListenToInputs();
             inputActions.MapNormale.LightAttack.performed += LightAttack;
             inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
             if (attackCombosList.Count < maxCombos)
@@ -763,11 +764,9 @@ public class JoueursControl1 : MonoBehaviour
     private void HeavyAttack(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
-
+            DoNotListenToInputs();
             state = HachimanState.Attacking;
             animator.SetTrigger("heavyAttack");
-            
-            DoNotListenToInputs();
             inputActions.MapNormale.LightAttack.performed += LightAttack;
             inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
             if (attackCombosList.Count < maxCombos2)
