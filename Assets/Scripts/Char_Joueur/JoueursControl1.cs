@@ -230,6 +230,8 @@ public class JoueursControl1 : MonoBehaviour
 
         //Death
 
+        Debug.Log("<color=Blue>State: </color>" + state);
+
         if (health <= 0)
         {
             isLockedOn = false;
@@ -509,7 +511,7 @@ public class JoueursControl1 : MonoBehaviour
     {
         return Physics.Raycast(head.position, Vector3.up, checkDistance);
     }
-    private void ResetState()
+    public void ResetState()
     {
         state = HachimanState.Idle;
     }
@@ -572,7 +574,6 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
         inputActions.MapNormale.Heal.performed -= Heal;
-        inputActions.MapNormale.DebugTool.performed -= DebugTool;
     }
     private void ListenToInputs()
     {
@@ -585,7 +586,6 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
         inputActions.MapNormale.Heal.performed += Heal;
-        inputActions.MapNormale.DebugTool.performed += DebugTool;
     }
 
     /* ================================ COUROUTINES ================================ */
@@ -739,10 +739,9 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && isArmed){
             // ---------- State ---------
-            state = HachimanState.Attacking;
+            DoNotListenToInputs();
             animator.SetTrigger("lightAttack");
             //Time.timeScale = 0.05f;
-            DoNotListenToInputs();
             inputActions.MapNormale.LightAttack.performed += LightAttack;
             inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
             if (attackCombosList.Count < maxCombos)
@@ -752,6 +751,7 @@ public class JoueursControl1 : MonoBehaviour
             
             if (isCombo == false)
             {
+                state = HachimanState.Attacking;
                 isCombo = true;
                 comboStep += 1;
                 StartCoroutine(AttackCombo1());
@@ -763,11 +763,8 @@ public class JoueursControl1 : MonoBehaviour
     private void HeavyAttack(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
-
-            state = HachimanState.Attacking;
-            animator.SetTrigger("heavyAttack");
-            
             DoNotListenToInputs();
+            animator.SetTrigger("heavyAttack");
             inputActions.MapNormale.LightAttack.performed += LightAttack;
             inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
             if (attackCombosList.Count < maxCombos2)
@@ -776,6 +773,7 @@ public class JoueursControl1 : MonoBehaviour
             }
             if (isCombo == false)
             {
+                state = HachimanState.Attacking;
                 isCombo = true;
                 combo2Step += 1;
                 StartCoroutine(AttackCombo2());
@@ -946,8 +944,6 @@ public class JoueursControl1 : MonoBehaviour
 
     IEnumerator GestionGravite()
     {
-        // v = -9.8m/s^2
-        
         while (!auSol)
         {
             vyJoueur += forceGravite * Time.deltaTime * vitesseTombe;
@@ -973,6 +969,11 @@ public class JoueursControl1 : MonoBehaviour
                 combo2Step += 1;
                 animator.SetTrigger("heavyAttack");
                 animator.SetInteger("Combo2Step", combo2Step);
+            }
+            else
+            {
+                ResetCombo2();
+                yield break;
             }
         }
         else
