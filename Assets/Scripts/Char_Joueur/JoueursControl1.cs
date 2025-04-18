@@ -513,7 +513,6 @@ public class JoueursControl1 : MonoBehaviour
     }
     public void ResetState()
     {
-        Debug.Break();
         state = HachimanState.Idle;
     }
 
@@ -741,7 +740,6 @@ public class JoueursControl1 : MonoBehaviour
         if (ctx.performed && isArmed){
             // ---------- State ---------
             DoNotListenToInputs();
-            state = HachimanState.Attacking;
             animator.SetTrigger("lightAttack");
             //Time.timeScale = 0.05f;
             inputActions.MapNormale.LightAttack.performed += LightAttack;
@@ -753,6 +751,7 @@ public class JoueursControl1 : MonoBehaviour
             
             if (isCombo == false)
             {
+                state = HachimanState.Attacking;
                 isCombo = true;
                 comboStep += 1;
                 StartCoroutine(AttackCombo1());
@@ -765,7 +764,6 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && isArmed){
             DoNotListenToInputs();
-            state = HachimanState.Attacking;
             animator.SetTrigger("heavyAttack");
             inputActions.MapNormale.LightAttack.performed += LightAttack;
             inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
@@ -775,6 +773,7 @@ public class JoueursControl1 : MonoBehaviour
             }
             if (isCombo == false)
             {
+                state = HachimanState.Attacking;
                 isCombo = true;
                 combo2Step += 1;
                 StartCoroutine(AttackCombo2());
@@ -945,8 +944,6 @@ public class JoueursControl1 : MonoBehaviour
 
     IEnumerator GestionGravite()
     {
-        // v = -9.8m/s^2
-        
         while (!auSol)
         {
             vyJoueur += forceGravite * Time.deltaTime * vitesseTombe;
@@ -972,6 +969,11 @@ public class JoueursControl1 : MonoBehaviour
                 combo2Step += 1;
                 animator.SetTrigger("heavyAttack");
                 animator.SetInteger("Combo2Step", combo2Step);
+            }
+            else
+            {
+                ResetCombo2();
+                yield break;
             }
         }
         else
