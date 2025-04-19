@@ -1,3 +1,11 @@
+/*
+    Class pour des listener pour les step de type item pickup
+    
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 19/04/2025
+*/
+
 using UnityEngine;
 
 public class QuestStepPickupItem : QuestStep

@@ -1,5 +1,14 @@
+/*
+    Class de gestion des quetes du jeu
+    
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 19/04/2025
+*/
+
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class QuestManager : MonoBehaviour
 {
@@ -7,12 +16,14 @@ public class QuestManager : MonoBehaviour
 
     [Header("Quests Data")]
     [field: SerializeField] private QuestData[] dataList;
-    // [field: SerializeField] private GameObject[] questGameObjects;
+
+    [field: SerializeField] private TextMeshProUGUI uiQuestNameDisplay;
+    [field: SerializeField] private TextMeshProUGUI uiQuestStepDisplay;
 
     private Dictionary<string, Quest> gameQuests;
     private static Quest currentQuest;
     public static string CurrentQuestID { get { return currentQuest.Data.ID; } }
-    public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex(); }}
+    public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex(); } }
 
     private void Awake()
     {
@@ -22,21 +33,17 @@ public class QuestManager : MonoBehaviour
         QuestStart();
     }
 
-    /// <summary>Methode qui charge toutes les quetes du jeu. </summary>
     private void LoadQuests()
     {
         for (int i = 0; i < dataList.Length; i++)
         {
-            gameQuests.Add(dataList[i].ID, new Quest(dataList[i], questGameObjectParent));
+            gameQuests.Add(dataList[i].ID, new Quest(this, dataList[i], questGameObjectParent));
         }
     }
-
-    /// <summary>Appel la method QuestStart() de la quete actuelle. </summary>
-    private void QuestStart()
+        private void QuestStart()
     {
         Debug.Log($"New quest ID  = {CurrentQuestID}");
         currentQuest.QuestStart();
-        
         currentQuest.OnQuestOver += QuestEnd;
     }
 
@@ -51,9 +58,11 @@ public class QuestManager : MonoBehaviour
         if (!currentQuest.Data.NextQuest)
         {
             Debug.Log("NO MORE QUESTS ARE AVAILABLE");
+            uiQuestNameDisplay.text = "ALL_QUESTS_ARE_ACCOMPLISHED";
+            uiQuestStepDisplay.text = "NO_MORE_QUESTS";
             return;
         }
-        
+
         currentQuest = GetQuestByID(currentQuest.Data.NextQuest.ID);
         QuestStart();
     }
@@ -61,5 +70,11 @@ public class QuestManager : MonoBehaviour
     private Quest GetQuestByID(string id)
     {
         return gameQuests[id];
+    }
+
+    public void UpdateQuestUI()
+    {
+        uiQuestNameDisplay.text = currentQuest.Data.ID;
+        uiQuestStepDisplay.text = currentQuest.Data.QuestStepInfo[CurrentQuestStepIndex];
     }
 }

@@ -1,3 +1,11 @@
+/*
+    Class des quest steps de type location reach
+    
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 19/04/2025
+*/
+
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider))]
@@ -21,7 +29,6 @@ public class QItemLocationReach : MonoBehaviour
     {
         if (QuestManager.CurrentQuestID == assignedQuest.ID)
         {
-            Debug.Log("Quest location reached if ID " + QuestManager.CurrentQuestID);
             GameEvents.TrigOnLocationReached();
         }
     }

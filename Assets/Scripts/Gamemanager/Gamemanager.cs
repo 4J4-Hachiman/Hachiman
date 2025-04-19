@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 15/04/2025;
+    Dernière modification: 19/04/2025;
 */
 
 using UnityEngine;
@@ -70,14 +70,14 @@ public class Gamemanager : MonoBehaviour
     }
 
 
-    private void AAAAAAAAAAAAAAAAAAAAAAAA()
+    private void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
     
     private void InitLevel()
     {
-        Invoke(nameof(AAAAAAAAAAAAAAAAAAAAAAAA), 1f);
+        Invoke(nameof(LockCursor), 1f);
 
 
         player = GameObject.FindGameObjectWithTag("Player");

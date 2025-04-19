@@ -1,6 +1,15 @@
+/*
+    Logique des Quest steps de type pickup
+    
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 19/04/2025
+*/
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(SphereCollider), typeof(PlayerInput))]
 public class QItemPickUpObject : MonoBehaviour
 {
     [field: SerializeField] private QuestData assignedQuest;
@@ -26,17 +35,14 @@ public class QItemPickUpObject : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext ctx)
     {
-        if (QuestManager.CurrentQuestID != assignedQuest.ID)
+        if (QuestManager.CurrentQuestID == assignedQuest.ID && QuestManager.CurrentQuestStepIndex == assignedQuestStepIndex)
         {
-            Debug.Log("Wrong quest");
-            return;
+            playerInputs.Disable();
+            playerInputs.MapNormale.Interact.performed -= Interact;
+            GameEvents.TrigOnQuestItemPickedUp();
+            gameObject.SetActive(false);
+            Debug.Log("Item picked up");
         }
-
-        playerInputs.Disable();
-        playerInputs.MapNormale.Interact.performed -= Interact;
-        GameEvents.TrigOnQuestItemPickedUp();
-        Destroy(gameObject.GetComponent<PlayerInput>());
-        Debug.Log("Item picked up");
     }
 
     private void OnTriggerEnter(Collider other)

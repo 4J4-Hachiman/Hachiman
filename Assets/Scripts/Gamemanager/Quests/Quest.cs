@@ -1,16 +1,26 @@
+/*
+    Class generale pour toute les quetes du jeu
+    
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 19/04/2025
+*/
+
 using System;
 using UnityEngine;
 
 public class Quest
 {
+    private readonly QuestManager questManager;
     public QuestData Data { get; }
     private int currentStepIndex;
     private GameObject[] questStepGO;
     public event Action OnQuestOver;
     private readonly Transform parentGO;
 
-    public Quest(QuestData data, Transform parentGO)
+    public Quest(QuestManager questManager, QuestData data, Transform parentGO)
     {
+        this.questManager = questManager;
         Data = data;
         this.parentGO = parentGO;
         questStepGO = new GameObject[Data.QuestStepGO.Length];
@@ -44,6 +54,7 @@ public class Quest
     {
         GameObject questGO = GetStepGO();
         UnityEngine.Object.Instantiate(questGO, parent);
+        questManager.UpdateQuestUI();
         Debug.Log($"NEW QUEST OBJECTIVE : {Data.QuestStepInfo[currentStepIndex]}");
     }
 
@@ -54,7 +65,6 @@ public class Quest
 
     private void QuestOver()
     {
-        // Debug.Log($"<color=green> Quest {QuestManager.CurrentQuestID} over </color>");
         GameEvents.OnQuestStepFinished -= GetNextStep;
         OnQuestOver?.Invoke();
     }
