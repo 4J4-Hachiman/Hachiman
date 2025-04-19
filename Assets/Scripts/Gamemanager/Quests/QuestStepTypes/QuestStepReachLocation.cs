@@ -4,7 +4,6 @@ public class QuestStepReachLocation : QuestStep
 {
     private void OnEnable()
     {
-        Debug.Log("Quest step started : " + name);
         GameEvents.OnLocationReached += OnLocationReached;
     }
 
@@ -15,7 +14,6 @@ public class QuestStepReachLocation : QuestStep
     
     private void OnLocationReached()
     {
-        Debug.Log("ReachedLocation ish - quest step finished");
         FinishQuestStep();
     }
 }

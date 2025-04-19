@@ -11,4 +11,7 @@ public class GameEvents
 
     public static event Action OnQuestStepFinished;
     public static void TrigOnQuestStepFinished() => OnQuestStepFinished?.Invoke();
+    
+    public static event Action OnQuestItemPickedUp;
+    public static void TrigOnQuestItemPickedUp() => OnQuestItemPickedUp?.Invoke();
 }
