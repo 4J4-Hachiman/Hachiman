@@ -103,6 +103,7 @@ public class JoueursControl1 : MonoBehaviour
     public float endurance = 100;
     public float maxEndurance = 100;
     public int numbPotion = 3;
+    public float enduranceRegen = 1;
 
     /* -------------------- VARIABLES GAMEOBJECT -------------------- */
     public GameObject activeKatana;
@@ -741,7 +742,7 @@ public class JoueursControl1 : MonoBehaviour
             // ---------- State ---------
             DoNotListenToInputs();
             animator.SetTrigger("lightAttack");
-            //Time.timeScale = 0.05f;
+            // Code
             inputActions.MapNormale.LightAttack.performed += LightAttack;
             inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
             if (attackCombosList.Count < maxCombos)
@@ -1039,7 +1040,7 @@ public class JoueursControl1 : MonoBehaviour
                 StartCoroutine(EnduranceReset());
                 yield break;
             }
-            endurance += 1f * Time.deltaTime;
+            endurance += enduranceRegen * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         yield break;
@@ -1078,13 +1079,13 @@ public class JoueursControl1 : MonoBehaviour
                 {
                     Invoke("NotHitBroken", 0.33f);
                     animator.SetTrigger("Broken");
-                    //Debug.Log(ctx);
+                    activeKatana.GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sStanceBroken);
                 }
                 else
                 {
                     Invoke("NotHit", 0.33f);
-                    activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
                     animator.SetBool("Hit", true);
+                    activeKatana.GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sSwordClash2);
                 }
             }
             else if (state == HachimanState.Rolling)
@@ -1096,6 +1097,7 @@ public class JoueursControl1 : MonoBehaviour
                 if(!isDead)
                 {
                     animator.SetBool("Hit", true);
+                    GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sEnemyHit2);
                     health -= 20f;
                     Debug.Log(health);
                     if(health <= 0)
@@ -1118,9 +1120,9 @@ public class JoueursControl1 : MonoBehaviour
     
     /* ===================== FUNCTIONS FOR SOUNDS ===================== */
 
-    public void soundSwordAirSwing1()
+    public void soundSwordAirSwing4()
     {
         // ---------- Sound ---------
-        activeKatana.GetComponent<AudioSource>().PlayOneShot(banqueAudio.sSwordAirSwing1);
+        activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing3);
     }
 }
