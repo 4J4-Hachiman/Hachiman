@@ -8400,7 +8400,7 @@ GameObject:
   - component: {fileID: 194752452}
   m_Layer: 0
   m_Name: Rocks
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8422,6 +8422,7 @@ Transform:
   - {fileID: 8975612305866293552}
   - {fileID: 5942538311579976528}
   - {fileID: 187602891129717477}
+  - {fileID: 1331725010}
   m_Father: {fileID: 447017944}
   m_LocalEulerAnglesHint: {x: 0, y: 4.251, z: 0}
 --- !u!1001 &200732856
@@ -23788,6 +23789,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ad1f5855a33f0694886cbd301d99cc40, type: 3}
   m_PrefabInstance: {fileID: 1331162662}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1331725009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331725010}
+  - component: {fileID: 1331725011}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Rock
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1331725010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331725009}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.15528817, z: -0, w: 0.98786926}
+  m_LocalPosition: {x: 4.07, y: -1.95, z: -10.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 194752452}
+  m_LocalEulerAnglesHint: {x: 0, y: 17.867, z: 0}
+--- !u!65 &1331725011
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331725009}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.992263, y: 2.49079, z: 3.6821425}
+  m_Center: {x: 0.996131, y: -0.62165064, z: 0.14832602}
 --- !u!1 &1335720321
 GameObject:
   m_ObjectHideFlags: 0
@@ -26388,7 +26442,7 @@ Transform:
   m_GameObject: {fileID: 1511964001}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11105372, y: -0.00000003052951, z: 0.000000003411518, w: 0.9938144}
-  m_LocalPosition: {x: 127.714005, y: 47.937, z: 28.891}
+  m_LocalPosition: {x: 49.814003, y: 31.161, z: 190.691}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33176,7 +33230,7 @@ Transform:
   m_GameObject: {fileID: 2022166239}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11105373, y: -0.000000030529513, z: 0.0000000034115182, w: 0.9938144}
-  m_LocalPosition: {x: 127.714005, y: 47.937, z: 28.891}
+  m_LocalPosition: {x: 49.814003, y: 31.161, z: 190.691}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34470,7 +34524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 187602891129717477}
   m_Layer: 0
-  m_Name: Roche (4) unity (TEXTURED)
+  m_Name: Roche4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34494,7 +34548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 537151562877017349}
   m_Layer: 0
-  m_Name: Roche (1) unity (TEXTURED)
+  m_Name: Roche1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34672,15 +34726,15 @@ PrefabInstance:
       objectReference: {fileID: 968325794}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 150.7
+      value: 72.8
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.567
+      value: 31.791
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.7
+      value: 190.5
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -34722,6 +34776,22 @@ PrefabInstance:
       propertyPath: quete
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: rock1
+      value: 
+      objectReference: {fileID: 882573776785819583}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: rock2
+      value: 
+      objectReference: {fileID: 8630048602032003978}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: rock3
+      value: 
+      objectReference: {fileID: 6427749033102514666}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: rock4
+      value: 
+      objectReference: {fileID: 707539552816846943}
     - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: camera
       value: 
@@ -34767,9 +34837,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 644935297}
     - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: rocks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: enemyLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: 'rocks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 882573776785819583}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: 'rocks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8630048602032003978}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: 'rocks.Array.data[2]'
+      value: 
+      objectReference: {fileID: 6427749033102514666}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: 'rocks.Array.data[3]'
+      value: 
+      objectReference: {fileID: 707539552816846943}
     - target: {fileID: 7563836064833490603, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_RootBone
       value: 
@@ -35093,13 +35183,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2533338893179998081}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00069484237, y: 0.0000000074505815, z: -0.009349113, w: 0.9999561}
+  m_LocalRotation: {x: -0.000872568, y: -0.000007614723, z: -0.008726462, w: 0.9999616}
   m_LocalPosition: {x: 0.0015, y: -0.04568052, z: 0.0001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8975612305866293552}
-  m_LocalEulerAnglesHint: {x: 0.08, y: -0.001, z: -1.071}
+  m_LocalEulerAnglesHint: {x: -0.1, y: 0, z: -1}
 --- !u!4 &1887547392019567336
 Transform:
   m_ObjectHideFlags: 0
@@ -35108,13 +35198,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5075484025518240216}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.00087266165, y: -0.0000076156216, z: 0.008726555, w: 0.9999616}
   m_LocalPosition: {x: -0.0014361148, y: -0.04594595, z: 0.00015416644}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8975612305866293552}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.1, y: 0, z: 1}
 --- !u!1 &1930746849887048313
 GameObject:
   m_ObjectHideFlags: 0
@@ -36975,7 +37065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5942538311579976528}
   m_Layer: 0
-  m_Name: Roche (3) unity (TEXTURED)
+  m_Name: Roche3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38379,7 +38469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8975612305866293552}
   m_Layer: 0
-  m_Name: Roche (2) unity (TEXTURED)
+  m_Name: Roche2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
