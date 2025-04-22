@@ -84,6 +84,10 @@ public class JoueursControl1 : MonoBehaviour
     private bool isGrounded;
     private bool isHealing;
     private bool isHit;
+    private bool canHitRock = true;
+
+    //Rock Quest
+    private bool inFrontofRock = false;
 
     // AttackCombos
     private int comboStep = 0;
@@ -97,6 +101,9 @@ public class JoueursControl1 : MonoBehaviour
     private List<string> attackCombosList = new List<string>();
     private int lockOnIndex = 0;
     private int lockOnTotalTargets = 0;
+
+    // Rock Quest
+    private int rockIndex = 0;
 
     public float health = 100;
     public float maxHealth = 100;
@@ -116,9 +123,12 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject debugTool;
     public RectTransform lockOnDot;
     public GameObject dotCanvas;
+    private GameObject currentRock;
+    private GameObject nextRock;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
+    [SerializeField] private GameObject[] rocks;
 
     /* ------------------------ AUDIO SOURCE ------------------------- */ 
     public AudioSource[] audioSources;
@@ -192,6 +202,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Heal.performed += Heal;
         inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed += DebugTool;
+        inputActions.MapNormale.Interact.performed += Interact;
 
     }
 
@@ -210,6 +221,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Heal.performed -= Heal;
         inputActions.MapNormale.LockOnIndexR2.performed -= LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed -= DebugTool;
+        inputActions.MapNormale.Interact.performed -= Interact;
     }
 
 
@@ -388,6 +400,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Heal.performed += Heal;
         inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed += DebugTool;
+        inputActions.MapNormale.Interact.performed += Interact;
     }
 
     public void TPlocation1()
@@ -575,6 +588,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
         inputActions.MapNormale.Heal.performed -= Heal;
+        inputActions.MapNormale.Interact.performed -= Interact;
     }
     private void ListenToInputs()
     {
@@ -587,6 +601,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
         inputActions.MapNormale.Heal.performed += Heal;
+        inputActions.MapNormale.Interact.performed += Interact;
     }
 
     /* ================================ COUROUTINES ================================ */
@@ -647,6 +662,27 @@ public class JoueursControl1 : MonoBehaviour
 
     /* ================================ INPUTS CALLBACK ================================ */
 
+    private void Interact(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed){
+            if(inFrontofRock && canHitRock)
+            {
+                for (int i = 0; i < rocks.Length - 1; i++)
+                {
+                    currentRock = rocks[i];
+                    nextRock = rocks[i + 1];
+
+                    if(currentRock.activeSelf)
+                    {
+                        canHitRock = false;
+                        animator.SetTrigger("HitRock");
+                        StartCoroutine(RockBreaking());
+                        break;
+                    }
+                }
+            }
+        }
+    }
     private void DebugTool(InputAction.CallbackContext ctx)
     {
         if (ctx.performed){
@@ -917,31 +953,6 @@ public class JoueursControl1 : MonoBehaviour
 
         return deplacement * currentSpeed;
     }
-    // private bool GetAuSol() 
-    // {
-    //     // Vérifie si le joueur est au sol en effectuant un SphereCast sous lui.
-    //     if (Physics.SphereCast(transform.position + Vector3.up * cc.radius, cc.radius, Vector3.down, out RaycastHit hitInfo, cc.radius)) 
-    //     {
-    //         // Si le joueur touche une surface sous lui
-    //         if (vyJoueur < forceGravite) 
-    //         {
-    //             vyJoueur = forceGravite;
-    //         }
-    //         return true; // Le joueur est au sol.
-    //     } 
-    //     else 
-    //     {
-    //         // Si aucun contact avec le sol
-    //         if (auSol) 
-    //         {
-    //             // Si l'état précédent était "au sol", on retourne false.
-    //             return false;
-    //         }
-    //         // Si le joueur est en l'air, on lance une coroutine pour gérer la gravité.
-    //         StartCoroutine(GestionGravite());
-    //         return false; // Le joueur n'est pas au sol.
-    //     }
-    // }
 
     IEnumerator GestionGravite()
     {
@@ -1046,6 +1057,20 @@ public class JoueursControl1 : MonoBehaviour
         yield break;
     }
 
+    IEnumerator RockBreaking()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        currentRock.SetActive(false);
+        nextRock.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        canHitRock = true;
+
+        yield break;
+    }
+
     void OnDrawGizmosSelected()
     {
         if (cc == null)
@@ -1115,6 +1140,15 @@ public class JoueursControl1 : MonoBehaviour
                     }
                 }
             }
+        }
+        
+    }
+
+    void OnTriggerStay(Collider collision)
+    {
+        if (collision.CompareTag("Rock"))
+        {
+            inFrontofRock = true;
         }
     }
     
