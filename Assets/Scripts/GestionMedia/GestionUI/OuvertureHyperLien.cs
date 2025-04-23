@@ -9,8 +9,5 @@ using UnityEngine;
 
 public class OuvertureHyperLien : MonoBehaviour
 {
-    public void OuvrirLien(string hyperlien)
-    {
-        Application.OpenURL(hyperlien);
-    }
+    public void OuvrirLien(string hyperlien) => Application.OpenURL(hyperlien);
 }
