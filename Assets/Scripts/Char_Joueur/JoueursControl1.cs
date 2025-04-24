@@ -125,6 +125,7 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject dotCanvas;
     private GameObject currentRock;
     private GameObject nextRock;
+    [SerializeField] private GameObject uiInteractionRock;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
@@ -621,29 +622,6 @@ public class JoueursControl1 : MonoBehaviour
 
         yield return null;
     }
-    IEnumerator RollCoroutine(float distance, float duration)
-    {
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = startPos + transform.forward * distance;
-        float elapsedTime = 0f;
-
-        // Optional: Raycast to check if there's an obstacle ahead
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance))
-        {
-            //Debug.Log("Obstacle detected: " + hit.collider.name);
-            targetPos = hit.point; // Stop at the obstacle
-        }
-
-        while (elapsedTime < duration)
-        {
-            transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;  // Wait for the next frame
-        }
-
-        transform.position = targetPos;  // Ensure the final position is accurate
-        ResetRoll();
-    }
 
     IEnumerator MoveToPosition(Vector3 targetPos, float duration)
     {
@@ -669,6 +647,10 @@ public class JoueursControl1 : MonoBehaviour
             {
                 for (int i = 0; i < rocks.Length - 1; i++)
                 {
+                    Vector3 direction = rocks[i].transform.position - transform.position;
+                    direction.y = 0;
+                    transform.rotation = Quaternion.LookRotation(direction);
+
                     currentRock = rocks[i];
                     nextRock = rocks[i + 1];
 
@@ -767,7 +749,6 @@ public class JoueursControl1 : MonoBehaviour
             animator.SetTrigger("roll");
             state = HachimanState.Rolling;
             DoNotListenToInputs();
-            //StartCoroutine(RollCoroutine(2f, 0.54f));
         }
     }
 

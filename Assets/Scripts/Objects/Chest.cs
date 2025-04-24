@@ -14,6 +14,7 @@ public class Chest : MonoBehaviour
     public GameObject areaLightInChest;
     public GameObject hand;
     public GameObject chestParent;
+    public GameObject uiInteraction;
 
     /* -------------------- REFERENCES COMPONENTS -------------------- */
     public JoueursControl1 hachiman;
@@ -83,6 +84,7 @@ public class Chest : MonoBehaviour
             Debug.Log("open");
             isOpen = true;
             animator.SetTrigger("Open"); 
+            uiInteraction.SetActive(false);
         }
         else if(!isTaken) 
         {
