@@ -30,6 +30,7 @@ public class SceneActiveManager : MonoBehaviour
     }
 
     public async void ChargerScene(string nomScene){
+        await Task.Delay(5000);
         var scene = SceneManager.LoadSceneAsync(nomScene);
         scene.allowSceneActivation = false;
 
