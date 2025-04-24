@@ -7,6 +7,7 @@
         Derni�re modification : 05/04/2025
 */
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,91 +19,27 @@ public class ControlesVieMana : MonoBehaviour
     public Image fillManaDelay;
     public Image fillVieBoss;
 
+    public TextMeshProUGUI textNbPotion;
+
+    // Fonction pour gerer l'affichage de la vie
     public void AffichageNiveauVie(float vieTotale, float vieActuelle)
     {
         float liveAmount = vieActuelle / vieTotale;
         fillVie.fillAmount = liveAmount;
         fillVieDelay.fillAmount = Mathf.Lerp(fillVieDelay.fillAmount, liveAmount, 0.05f);
-        //StopCoroutine(TransitionVie(vieTotale, depart, cible));
-        //StartCoroutine(TransitionVie(vieTotale, depart, cible));
     }
 
+    // Fonction pour gerer l'affichage du mana/ de l'endurance
     public void AffichageNiveauMana(float manaTotale, float manaActuelle)
     {
         float liveAmount = manaActuelle / manaTotale;
         fillMana.fillAmount = liveAmount;
         fillManaDelay.fillAmount = Mathf.Lerp(fillManaDelay.fillAmount, liveAmount, 0.05f);
-        //StopCoroutine(TransitionMana(manaTotale, depart, cible));
-        //StartCoroutine(TransitionMana(manaTotale, depart, cible));
     }
 
-
-    // IEnumerator TransitionVie(float vieTotale, float depart, float cible)
-    // {
-    //     float pourcentage = 0.01f;
-    //     bool transitionFait = false;
-    //     if (cible < depart)
-    //     {
-    //         transitionFait = true;
-    //         while (fillVie.fillAmount > cible)
-    //         {
-    //             // Debug.LogError(fillVie.fillAmount + " vs " + cible);
-    //             fillVie.fillAmount = Mathf.Lerp(depart, cible, pourcentage);
-    //             pourcentage += 0.01f;
-    //             yield return null;
-    //         }
-    //     }
-    //     else if (cible > depart && !transitionFait)
-    //     {
-    //         while (fillVie.fillAmount < cible)
-    //         {
-    //             fillVie.fillAmount = Mathf.Lerp(depart, cible, pourcentage);
-    //             pourcentage += 0.01f;
-    //             yield return null;
-    //         }
-    //     }
-    //     yield return null;
-    // }
-
-    // IEnumerator TransitionMana(float manaTotale, float depart, float cible)
-    // {
-    //     float pourcentage = 0.01f;
-    //     bool transitionFait = false;
-    //     if (cible < depart)
-    //     {
-    //         transitionFait = true;
-    //         while (fillMana.fillAmount > depart / manaTotale || fillMana.fillAmount != depart / manaTotale)
-    //         {
-
-    //             fillMana.fillAmount = Mathf.Lerp(depart, cible, pourcentage);
-    //             pourcentage += 0.01f;
-    //             yield return null;
-    //         }
-    //     }
-    //     else if (cible > depart && !transitionFait)
-    //     {
-    //         while (fillMana.fillAmount < depart / manaTotale || fillMana.fillAmount != depart / manaTotale)
-    //         {
-    //             fillMana.fillAmount = Mathf.Lerp(depart, cible, pourcentage);
-    //             pourcentage += 0.01f;
-    //             yield return null;
-    //         }
-    //     }
-    //     yield return null;
-    // }
-
-    // public void AffichageNiveauVieBoss(float vieBossTotale, float vieBossActuelle)
-    // {
-    //     fillVieBoss.fillAmount = vieBossActuelle / vieBossTotale;
-    // }
-
-    // public void AugmenterCapaciteVie()
-    // {
-
-    // }
-
-    // public void AugmenterCapaciteMana()
-    // {
-
-    // }
+    // Fonction pour gérer l'affichage du nombre de potion
+    public void QuantitePotionVie(int nbPotion)
+    {
+        textNbPotion.text = nbPotion.ToString();
+    }
 }
