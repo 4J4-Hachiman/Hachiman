@@ -125,6 +125,7 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject dotCanvas;
     private GameObject currentRock;
     private GameObject nextRock;
+    [SerializeField] private GameObject uiInteractionRock;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
@@ -646,6 +647,10 @@ public class JoueursControl1 : MonoBehaviour
             {
                 for (int i = 0; i < rocks.Length - 1; i++)
                 {
+                    Vector3 direction = rocks[i].transform.position - transform.position;
+                    direction.y = 0;
+                    transform.rotation = Quaternion.LookRotation(direction);
+
                     currentRock = rocks[i];
                     nextRock = rocks[i + 1];
 
