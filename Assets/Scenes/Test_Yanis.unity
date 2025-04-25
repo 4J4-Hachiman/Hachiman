@@ -989,7 +989,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139197408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ee28905abfad1b41a4d496fb8623806, type: 3}
   m_Name: 
@@ -1775,13 +1775,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3034880056935457023, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+      propertyPath: m_Speed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3705555112483259115, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: m_Name
       value: Masarai
       objectReference: {fileID: 0}
+    - target: {fileID: 3705555112483259115, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8224135232122516287, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 154.46614
+      value: 151.21614
       objectReference: {fileID: 0}
     - target: {fileID: 8224135232122516287, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1789,7 +1797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8224135232122516287, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.749653
+      value: 38.249653
       objectReference: {fileID: 0}
     - target: {fileID: 8224135232122516287, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1821,7 +1829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8255782905927507042, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

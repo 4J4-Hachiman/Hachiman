@@ -14,7 +14,7 @@ using Custom.CSO;
 public class Gamemanager : MonoBehaviour
 {       
     public static Gamemanager gamemanagerInstance; 
-    private GameObject player;
+    private Transform player;
 
     [Header("Settings")]
     [field: SerializeField] private Settings manageSettings;
@@ -69,7 +69,6 @@ public class Gamemanager : MonoBehaviour
         InitLevel();
     }
 
-
     private void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -79,8 +78,7 @@ public class Gamemanager : MonoBehaviour
     {
         Invoke(nameof(LockCursor), 1f);
 
-
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         spawnMain = GameObject.FindWithTag("SpawnData");
         spawnGroups = new SpawnGroup[spawnMain.transform.childCount];
         for (int i = 0; i < spawnGroups.Length; i++)
