@@ -47,7 +47,7 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
@@ -1018,317 +1018,317 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_Reference
       parentName: Masarai(Clone)
-      position: {x: -0, y: 0.068534076, z: 0}
+      position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_Hips
       parentName: Masarai_Reference
-      position: {x: 5.9863657e-18, y: 1.1712966, z: -1.07001205e-17}
-      rotation: {x: 0.19614112, y: 0.13361456, z: 0.8028466, w: 0.5469124}
+      position: {x: 5.9863657e-18, y: 1.2398306, z: -1.07001205e-17}
+      rotation: {x: 0.19614111, y: 0.13361456, z: 0.8028466, w: 0.5469124}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftUpLeg
       parentName: Masarai_Hips
-      position: {x: 0.00000007765236, y: 0.20342685, z: -0.0000000046183937}
+      position: {x: -1.4210854e-16, y: 0.20342687, z: -5.5437992e-17}
       rotation: {x: -0.03705771, y: -0.058951497, z: 0.53090537, w: 0.8445656}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftLeg
       parentName: Masarai_LeftUpLeg
-      position: {x: 0.0000000016726811, y: 0.5591463, z: 0.0000000047014264}
-      rotation: {x: -0.06710111, y: 0.8154477, z: -0.047149878, w: 0.5729916}
+      position: {x: -7.105427e-17, y: 0.5591462, z: 3.5527136e-17}
+      rotation: {x: -0.067101024, y: 0.8154477, z: -0.047149956, w: 0.5729916}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftFoot
       parentName: Masarai_LeftLeg
-      position: {x: 0.0000000029730876, y: 0.49487495, z: 4.6029562e-11}
-      rotation: {x: -0.6342064, y: 0.7630435, z: 0.079699434, w: -0.09589011}
+      position: {x: -1.0658141e-16, y: 0.49487495, z: -1.4210854e-16}
+      rotation: {x: -0.6342064, y: 0.76304346, z: 0.079699375, w: -0.09589006}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftToeBase
       parentName: Masarai_LeftFoot
-      position: {x: 0.0000000050063216, y: 0.2615791, z: 0.000000016947434}
+      position: {x: -1.0658141e-16, y: 0.2615791, z: 2.1316282e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightUpLeg
       parentName: Masarai_Hips
-      position: {x: -0.10913118, y: -0.07399765, z: 0.15491034}
-      rotation: {x: -0.30551416, y: 0.3779722, z: 0.54204005, w: 0.6855588}
+      position: {x: -0.109131254, y: -0.07399761, z: 0.15491034}
+      rotation: {x: -0.30551416, y: 0.37797216, z: 0.54204005, w: 0.6855588}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightLeg
       parentName: Masarai_RightUpLeg
-      position: {x: -0.000000001672671, y: 0.5591463, z: 0.0000000047014317}
-      rotation: {x: -0.06710111, y: -0.8154477, z: 0.047149878, w: 0.5729916}
+      position: {x: 1.7763567e-16, y: 0.5591462, z: 1.7763567e-16}
+      rotation: {x: -0.067101024, y: -0.8154477, z: 0.047149956, w: 0.5729916}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightFoot
       parentName: Masarai_RightLeg
-      position: {x: -0.0000000029730964, y: 0.49487495, z: 4.60059e-11}
-      rotation: {x: 0.6342064, y: 0.7630435, z: 0.079699434, w: 0.09589011}
+      position: {x: -3.5527136e-17, y: 0.49487495, z: -2.842171e-16}
+      rotation: {x: 0.6342064, y: 0.76304346, z: 0.079699375, w: 0.09589006}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightToeBase
       parentName: Masarai_RightFoot
-      position: {x: -0.0000000050063136, y: 0.2615791, z: 0.000000016947434}
+      position: {x: 3.7303492e-16, y: 0.2615791, z: 7.105427e-17}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_Spine
       parentName: Masarai_Hips
-      position: {x: 0.12335859, y: -0.07521506, z: -0.047796816}
-      rotation: {x: 0.7623071, y: 0.38656765, z: 0.38795102, w: -0.3448874}
+      position: {x: 0.123358466, y: -0.07521501, z: -0.04779682}
+      rotation: {x: 0.7623071, y: 0.38656765, z: 0.38795105, w: -0.34488738}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_Spine1
       parentName: Masarai_Spine
-      position: {x: -0.000000012393447, y: 0.1592116, z: 2.0959667e-16}
-      rotation: {x: 0, y: -0, z: -0.087211855, w: 0.9961898}
+      position: {x: -0, y: 0.15921167, z: 7.453241e-17}
+      rotation: {x: 0, y: 0, z: -0.087211855, w: 0.9961898}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_Spine2
       parentName: Masarai_Spine1
-      position: {x: -0.0000000067060153, y: 0.21282946, z: 4.2259514e-16}
-      rotation: {x: 0.5900621, y: 0.7783855, z: 0.12948476, w: 0.170811}
+      position: {x: 1.7763568e-17, y: 0.21282952, z: 3.0642155e-16}
+      rotation: {x: 0.590062, y: 0.7783856, z: 0.12948479, w: 0.170811}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightShoulder
       parentName: Masarai_Spine2
-      position: {x: 0.019943396, y: 0.14759403, z: 0.16012317}
-      rotation: {x: -0.5873137, y: 0.23235704, z: 0.6928784, w: -0.34783947}
+      position: {x: 0.019943314, y: 0.147594, z: 0.16012317}
+      rotation: {x: -0.5873137, y: 0.23235689, z: 0.69287854, w: -0.3478395}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightArm
       parentName: Masarai_RightShoulder
-      position: {x: -0.00000001267333, y: 0.3109368, z: -0.000000030538235}
-      rotation: {x: 0.1887126, y: -0.79024357, z: 0.05458057, w: 0.58045125}
+      position: {x: -1.4210854e-16, y: 0.3109368, z: -5.684342e-16}
+      rotation: {x: 0.1576593, y: -0.7513856, z: 0.041151542, w: 0.6394292}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightForeArm
       parentName: Masarai_RightArm
-      position: {x: 0.000000040435776, y: 0.35017684, z: -0.000000032281555}
-      rotation: {x: -0.0023580089, y: 0.5197433, z: 0.023657274, w: 0.8539917}
+      position: {x: 1.4210854e-16, y: 0.3501768, z: 1.4210854e-16}
+      rotation: {x: 0.0167226, y: 0.53446716, z: 0.04361408, w: 0.84389746}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHand
       parentName: Masarai_RightForeArm
-      position: {x: -0.00000014110677, y: 0.32495624, z: -0.000000057972443}
-      rotation: {x: 0.29254282, y: -0.54467, z: -0.37189904, w: 0.69241923}
+      position: {x: 2.842171e-16, y: 0.32495624, z: 2.1316282e-16}
+      rotation: {x: 0.29254282, y: -0.54467, z: -0.3718991, w: 0.69241923}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandThumb1
       parentName: Masarai_RightHand
-      position: {x: -0.00000002565448, y: 0.07950486, z: -0.000000016433715}
-      rotation: {x: 0.115001276, y: 0.22792424, z: 0.22325966, w: 0.9407339}
+      position: {x: 1.0658141e-16, y: 0.079504825, z: -2.842171e-16}
+      rotation: {x: 0.1648684, y: 0.2339081, z: 0.25178513, w: 0.9245051}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandThumb2
       parentName: Masarai_RightHandThumb1
-      position: {x: 0.000000015084774, y: 0.048187975, z: 0.00000002968722}
+      position: {x: 2.842171e-16, y: 0.048188027, z: 1.4210854e-16}
       rotation: {x: -0.0049680066, y: -0.15287812, z: 0.032097176, w: 0.9877112}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandThumb3
       parentName: Masarai_RightHandThumb2
-      position: {x: -0.000000034943806, y: 0.047851205, z: -0.0000000030028116}
-      rotation: {x: -0.030191867, y: 0.7558553, z: -0.026104124, w: 0.6535211}
+      position: {x: -0, y: 0.047851145, z: 0}
+      rotation: {x: -0.030190313, y: 0.7558551, z: -0.026103115, w: 0.65352136}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandThumb4
       parentName: Masarai_RightHandThumb3
-      position: {x: -0.000000017955974, y: 0.05555988, z: -0.00000002628396}
+      position: {x: -0, y: 0.055559877, z: 1.4210854e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandIndex1
       parentName: Masarai_RightHand
-      position: {x: -0.12490863, y: 0.10957832, z: 0.024075551}
-      rotation: {x: -0.29829678, y: 0.6135838, z: 0.32324946, w: 0.65577734}
+      position: {x: -0.124908604, y: 0.10957834, z: 0.024075517}
+      rotation: {x: -0.2982961, y: 0.61358416, z: 0.32324922, w: 0.6557774}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandIndex2
       parentName: Masarai_RightHandIndex1
-      position: {x: 0.000000048563518, y: 0.056582306, z: 0.000000044108738}
-      rotation: {x: 0.0094206175, y: -0.26009125, z: -0.03494608, w: 0.9649055}
+      position: {x: 2.842171e-16, y: 0.05658232, z: 1.4210854e-16}
+      rotation: {x: 0.009420871, y: -0.26009086, z: -0.03494489, w: 0.9649056}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandIndex3
       parentName: Masarai_RightHandIndex2
-      position: {x: 0.000000009336805, y: 0.034274746, z: 0.0000000013849865}
-      rotation: {x: -0.01868193, y: -0.45161334, z: 0.0368699, w: 0.891256}
+      position: {x: -0, y: 0.03427474, z: -9.325873e-17}
+      rotation: {x: -0.018681878, y: -0.4516133, z: 0.036867518, w: 0.891256}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandIndex4
       parentName: Masarai_RightHandIndex3
-      position: {x: 7.808313e-10, y: 0.042487927, z: -0.000000011044803}
+      position: {x: -2.842171e-16, y: 0.04248791, z: 2.842171e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandMiddle1
       parentName: Masarai_RightHand
-      position: {x: -0.14405209, y: 0.0786608, z: 0.005787045}
-      rotation: {x: -0.24403726, y: 0.37308922, z: 0.40148517, w: 0.80003744}
+      position: {x: -0.14405209, y: 0.07866084, z: 0.005787015}
+      rotation: {x: -0.24403793, y: 0.37308884, z: 0.4014836, w: 0.8000382}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandMiddle2
       parentName: Masarai_RightHandMiddle1
-      position: {x: 0.00000010578175, y: 0.06280739, z: 0.0000000063840178}
-      rotation: {x: -0.0054954356, y: 0.13807562, z: -0.039387174, w: 0.98962295}
+      position: {x: -0, y: 0.06280734, z: -7.160938e-17}
+      rotation: {x: -0.005495435, y: 0.13807562, z: -0.039387178, w: 0.98962295}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandMiddle3
       parentName: Masarai_RightHandMiddle2
-      position: {x: -0.000000041153335, y: 0.043604687, z: -0.0000000058683836}
-      rotation: {x: -0.011230772, y: -0.6417308, z: 0.013418356, w: 0.7667303}
+      position: {x: 5.684342e-16, y: 0.043604698, z: 2.1316282e-16}
+      rotation: {x: -0.01123077, y: -0.6417308, z: 0.013418355, w: 0.7667303}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandMiddle4
       parentName: Masarai_RightHandMiddle3
-      position: {x: -0.00000002702375, y: 0.041632026, z: 0.000000055684236}
+      position: {x: -0, y: 0.04163197, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandRing1
       parentName: Masarai_RightHand
-      position: {x: -0.15416087, y: 0.04688996, z: -0.018078135}
-      rotation: {x: -0.2362965, y: 0.30938202, z: 0.43867865, w: 0.8099431}
+      position: {x: -0.15416087, y: 0.0468899, z: -0.018078074}
+      rotation: {x: -0.23629637, y: 0.3093815, z: 0.4386798, w: 0.8099426}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandRing2
       parentName: Masarai_RightHandRing1
-      position: {x: -0.000000072429195, y: 0.066793844, z: -0.000000003606657}
-      rotation: {x: -0.001504868, y: 0.03648713, z: -0.04117338, w: 0.99848443}
+      position: {x: 2.842171e-16, y: 0.06679386, z: -6.217249e-17}
+      rotation: {x: -0.0015044508, y: 0.03648719, z: -0.041177396, w: 0.99848425}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandRing3
       parentName: Masarai_RightHandRing2
-      position: {x: 0.0000000016008539, y: 0.038813345, z: 0.000000011991437}
-      rotation: {x: -0.00038481198, y: -0.31518918, z: 0.001158661, w: 0.9490281}
+      position: {x: -0, y: 0.03881334, z: 0}
+      rotation: {x: -0.000384812, y: -0.31518918, z: 0.001158661, w: 0.9490281}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandRing4
       parentName: Masarai_RightHandRing3
-      position: {x: 0.00000003458975, y: 0.03271154, z: -0.000000015261378}
+      position: {x: -5.684342e-16, y: 0.032711487, z: -2.842171e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandPinky1
       parentName: Masarai_RightHand
-      position: {x: -0.1543053, y: 0.021778993, z: -0.054492667}
-      rotation: {x: -0.109091476, y: 0.07049572, z: 0.513385, w: 0.8482719}
+      position: {x: -0.15430525, y: 0.021778988, z: -0.054492682}
+      rotation: {x: -0.10909162, y: 0.07049556, z: 0.5133853, w: 0.8482718}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandPinky2
       parentName: Masarai_RightHandPinky1
-      position: {x: 0.0000000544865, y: 0.051405467, z: -0.00000003602863}
-      rotation: {x: -0.006229788, y: 0.1554352, z: -0.039554585, w: 0.98703426}
+      position: {x: -1.4210854e-16, y: 0.051405452, z: 0}
+      rotation: {x: -0.006227948, y: 0.15543517, z: -0.039546266, w: 0.98703456}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandPinky3
       parentName: Masarai_RightHandPinky2
-      position: {x: 0.00000005008871, y: 0.0314046, z: -0.00000004318332}
-      rotation: {x: 0.0030966836, y: -0.0782706, z: -0.039396208, w: 0.99614865}
+      position: {x: -0, y: 0.031404637, z: 0}
+      rotation: {x: 0.003097817, y: -0.07827058, z: -0.039392028, w: 0.9961488}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_RightHandPinky4
       parentName: Masarai_RightHandPinky3
-      position: {x: -0.00000011742824, y: 0.026744962, z: 0.000000085951065}
+      position: {x: -0, y: 0.026744964, z: -7.105427e-17}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftShoulder
       parentName: Masarai_Spine2
-      position: {x: 0.00000008081352, y: 0.21868053, z: 0.0000000018625153}
-      rotation: {x: 0.4691085, y: 0.5263764, z: -0.47148275, w: -0.5296878}
+      position: {x: 2.842171e-16, y: 0.21868049, z: 5.3290704e-17}
+      rotation: {x: 0.46910864, y: 0.5263765, z: -0.4714827, w: -0.52968764}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftArm
       parentName: Masarai_LeftShoulder
-      position: {x: 0.000000012673307, y: 0.3109368, z: -0.000000030538267}
-      rotation: {x: 0.18873803, y: 0.79853445, z: -0.050465487, w: 0.5693628}
+      position: {x: -1.4210854e-16, y: 0.3109368, z: 8.5265126e-16}
+      rotation: {x: 0.15765919, y: 0.75138557, z: -0.041151386, w: 0.63942933}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftForeArm
       parentName: Masarai_LeftArm
-      position: {x: 0.000000026739764, y: 0.35017684, z: 0.000000019968867}
-      rotation: {x: -0.014283697, y: -0.4651271, z: -0.045917496, w: 0.8839369}
+      position: {x: -1.4210854e-16, y: 0.3501768, z: 1.4210854e-16}
+      rotation: {x: 0.01672238, y: -0.5344672, z: -0.043614153, w: 0.8438975}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHand
       parentName: Masarai_LeftForeArm
-      position: {x: 0.0000000144894035, y: 0.32495615, z: -0.000000007779626}
-      rotation: {x: 0.29254282, y: 0.54467, z: 0.37189904, w: 0.69241923}
+      position: {x: -2.842171e-16, y: 0.32495624, z: 1.4210854e-16}
+      rotation: {x: 0.29254282, y: 0.54467, z: 0.3718991, w: 0.69241923}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandThumb1
       parentName: Masarai_LeftHand
-      position: {x: 0.000000031363, y: 0.07950481, z: 0.000000056692258}
-      rotation: {x: 0.06851675, y: -0.22027919, z: -0.21083398, w: 0.94991136}
+      position: {x: 3.5527136e-17, y: 0.079504825, z: 2.842171e-16}
+      rotation: {x: 0.16487163, y: -0.2339085, z: -0.25178608, w: 0.92450416}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandThumb2
       parentName: Masarai_LeftHandThumb1
-      position: {x: -0.0000000345669, y: 0.048188046, z: -0.00000004003619}
+      position: {x: 1.4210854e-16, y: 0.048188027, z: 0}
       rotation: {x: -0.0049680066, y: 0.15287812, z: -0.032097176, w: 0.9877112}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandThumb3
       parentName: Masarai_LeftHandThumb2
-      position: {x: -0.000000045547857, y: 0.047851145, z: -0.00000007063278}
-      rotation: {x: -0.030192519, y: -0.75585526, z: 0.026106514, w: 0.65352106}
+      position: {x: -2.842171e-16, y: 0.047851145, z: 0}
+      rotation: {x: -0.030190816, y: -0.755855, z: 0.026105104, w: 0.6535214}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandThumb4
       parentName: Masarai_LeftHandThumb3
-      position: {x: 0.00000008108393, y: 0.05555988, z: -0.00000008115744}
+      position: {x: -0, y: 0.055559877, z: -1.4210854e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandIndex1
       parentName: Masarai_LeftHand
-      position: {x: 0.124908656, y: 0.109578356, z: 0.024075529}
-      rotation: {x: -0.29829592, y: -0.61358434, z: -0.32324913, w: 0.65577734}
+      position: {x: 0.124908604, y: 0.10957834, z: 0.024075517}
+      rotation: {x: -0.2982967, y: -0.6135838, z: -0.32324973, w: 0.65577704}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandIndex2
       parentName: Masarai_LeftHandIndex1
-      position: {x: -0.00000005687665, y: 0.05658233, z: 0.000000026952469}
-      rotation: {x: 0.009419258, y: 0.26009092, z: 0.03494759, w: 0.9649055}
+      position: {x: -0, y: 0.05658232, z: 1.4210854e-16}
+      rotation: {x: 0.009420947, y: 0.260091, z: 0.034948956, w: 0.96490544}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandIndex3
       parentName: Masarai_LeftHandIndex2
-      position: {x: 0.000000044094122, y: 0.034274668, z: 0.000000008041112}
-      rotation: {x: -0.018680433, y: 0.4516135, z: -0.036865365, w: 0.89125603}
+      position: {x: 5.684342e-16, y: 0.03427474, z: 8.8817837e-17}
+      rotation: {x: -0.018684385, y: 0.4516132, z: -0.0368732, w: 0.8912558}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandIndex4
       parentName: Masarai_LeftHandIndex3
-      position: {x: -1.0763585e-10, y: 0.042487964, z: -0.0000000011801293}
+      position: {x: -0, y: 0.04248791, z: -1.4210854e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandMiddle1
       parentName: Masarai_LeftHand
-      position: {x: 0.14405209, y: 0.07866084, z: 0.005787024}
-      rotation: {x: -0.24403918, y: -0.3730879, z: -0.4014827, w: 0.80003875}
+      position: {x: 0.14405209, y: 0.07866084, z: 0.005787015}
+      rotation: {x: -0.24403766, y: -0.37308896, z: -0.40148365, w: 0.8000382}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandMiddle2
       parentName: Masarai_LeftHandMiddle1
-      position: {x: 0.000000041458605, y: 0.06280736, z: 0.0000000055315286}
-      rotation: {x: -0.0054954356, y: -0.13807562, z: 0.039387174, w: 0.98962295}
+      position: {x: -2.842171e-16, y: 0.06280734, z: 2.7755574e-18}
+      rotation: {x: -0.005495435, y: -0.13807562, z: 0.039387178, w: 0.98962295}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandMiddle3
       parentName: Masarai_LeftHandMiddle2
-      position: {x: -0.00000006819014, y: 0.043604754, z: 0.0000000059521663}
-      rotation: {x: -0.011230772, y: 0.6417308, z: -0.013418356, w: 0.7667303}
+      position: {x: -2.842171e-16, y: 0.043604698, z: 0}
+      rotation: {x: -0.01123077, y: 0.6417308, z: -0.013418355, w: 0.7667303}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandMiddle4
       parentName: Masarai_LeftHandMiddle3
-      position: {x: -0.000000007415782, y: 0.04163194, z: -0.000000013145751}
+      position: {x: 1.4210854e-16, y: 0.04163197, z: -2.842171e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandRing1
       parentName: Masarai_LeftHand
-      position: {x: 0.1541609, y: 0.046889905, z: -0.018078059}
-      rotation: {x: -0.2362961, y: -0.309382, z: -0.43867978, w: 0.80994254}
+      position: {x: 0.15416087, y: 0.0468899, z: -0.018078074}
+      rotation: {x: -0.23629649, y: -0.30938154, z: -0.4386798, w: 0.80994266}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandRing2
       parentName: Masarai_LeftHandRing1
-      position: {x: 0.000000011339886, y: 0.06679386, z: 0.000000011113114}
-      rotation: {x: -0.001504913, y: -0.03648725, z: 0.041180834, w: 0.99848413}
+      position: {x: -0, y: 0.06679386, z: 8.8817837e-17}
+      rotation: {x: -0.0015051808, y: -0.036487274, z: 0.041178253, w: 0.99848425}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandRing3
       parentName: Masarai_LeftHandRing2
-      position: {x: 0.00000001901614, y: 0.03881336, z: -9.857189e-11}
-      rotation: {x: -0.00038481198, y: 0.31518918, z: -0.001158661, w: 0.9490281}
+      position: {x: 2.842171e-16, y: 0.03881334, z: -4.4408918e-17}
+      rotation: {x: -0.000384812, y: 0.31518918, z: -0.001158661, w: 0.9490281}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandRing4
       parentName: Masarai_LeftHandRing3
-      position: {x: 0.000000013661567, y: 0.032711405, z: -0.000000009185982}
+      position: {x: 8.5265126e-16, y: 0.032711487, z: -2.842171e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandPinky1
       parentName: Masarai_LeftHand
-      position: {x: 0.15430525, y: 0.02177902, z: -0.05449273}
-      rotation: {x: -0.109091125, y: -0.07049595, z: -0.51338565, w: 0.84827155}
+      position: {x: 0.15430525, y: 0.021778988, z: -0.054492682}
+      rotation: {x: -0.1090911, y: -0.07049586, z: -0.5133857, w: 0.84827155}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandPinky2
       parentName: Masarai_LeftHandPinky1
-      position: {x: -0.000000015508194, y: 0.051405508, z: 0.0000000143805545}
-      rotation: {x: -0.006228914, y: -0.15543519, z: 0.039553143, w: 0.98703426}
+      position: {x: -2.842171e-16, y: 0.051405452, z: 0}
+      rotation: {x: -0.0062297867, y: -0.15543534, z: 0.039551724, w: 0.9870343}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandPinky3
       parentName: Masarai_LeftHandPinky2
-      position: {x: 0.000000007117404, y: 0.031404592, z: -0.00000002661015}
-      rotation: {x: 0.003092794, y: 0.078270696, z: 0.039392613, w: 0.9961488}
+      position: {x: -0, y: 0.031404637, z: 7.105427e-17}
+      rotation: {x: 0.003096432, y: 0.078270696, z: 0.03939952, w: 0.9961485}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_LeftHandPinky4
       parentName: Masarai_LeftHandPinky3
-      position: {x: 0.0000000032768284, y: 0.026744984, z: 0.000000034653294}
+      position: {x: 2.842171e-16, y: 0.026744964, z: 7.105427e-17}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_Neck
       parentName: Masarai_Spine2
-      position: {x: 0.17442639, y: 0.13738312, z: 0.03926628}
-      rotation: {x: 0.46394578, y: 0.85954154, z: 0.15410751, w: -0.14897509}
+      position: {x: 0.1744263, y: 0.13738309, z: 0.03926628}
+      rotation: {x: 0.46394578, y: 0.85954154, z: 0.15410751, w: -0.1489751}
       scale: {x: 1, y: 1, z: 1}
     - name: Masarai_Head
       parentName: Masarai_Neck
-      position: {x: 0.0000000034729701, y: 0.15925606, z: 1.7341335e-17}
+      position: {x: 1.4210854e-16, y: 0.15925607, z: -3.7726937e-17}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
