@@ -279,6 +279,7 @@ public class JoueursControl1 : MonoBehaviour
 
         uiVieMana.AffichageNiveauMana(maxEndurance, endurance);
         uiVieMana.AffichageNiveauVie(maxHealth, health);
+        uiVieMana.QuantitePotionVie(numbPotion);
 
 
         if (isLockedOn == true)
