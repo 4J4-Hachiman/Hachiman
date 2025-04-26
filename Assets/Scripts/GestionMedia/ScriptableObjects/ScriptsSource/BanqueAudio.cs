@@ -42,6 +42,7 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sAtkLegereHachiman;
     public AudioClip sAtkLourdeHachiman;
     public AudioClip sStanceBroken;
+    public AudioClip sHealing;
 
     [Header("Effets sonores Combat")]
     public AudioClip sSwordClash1;

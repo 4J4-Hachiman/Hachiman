@@ -695,6 +695,7 @@ public class JoueursControl1 : MonoBehaviour
                     healthPotion.SetActive(true);
                     isHealing = true;
                     animator.SetTrigger("Healing");
+                    Invoke("soundHealing", 0.5f);
                     DoNotListenToInputs();
                     health = (health > 51) ? 100 : health + 50;
                     numbPotion -= 1;
@@ -1140,5 +1141,11 @@ public class JoueursControl1 : MonoBehaviour
     {
         // ---------- Sound ---------
         activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing3);
+    }
+    
+    public void soundHealing()
+    {
+        // ---------- Sound ---------
+        GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sHealing);
     }
 }
