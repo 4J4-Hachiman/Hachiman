@@ -131,9 +131,6 @@ public class JoueursControl1 : MonoBehaviour
     private Collider[] hits;
     [SerializeField] private GameObject[] rocks;
 
-    /* ------------------------ AUDIO SOURCE ------------------------- */ 
-    public AudioSource[] audioSources;
-
     /* ============================================================== */
     /* ============================================================== */
 
@@ -159,8 +156,6 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Awake()
     {
-        // AudioSources initialization
-        audioSources = GetComponents<AudioSource>();
         // Hachiman mouvableStates initialization
         
         // GameObject initialization
@@ -279,6 +274,7 @@ public class JoueursControl1 : MonoBehaviour
 
         uiVieMana.AffichageNiveauMana(maxEndurance, endurance);
         uiVieMana.AffichageNiveauVie(maxHealth, health);
+        uiVieMana.QuantitePotionVie(numbPotion);
 
 
         if (isLockedOn == true)
@@ -643,7 +639,7 @@ public class JoueursControl1 : MonoBehaviour
     private void Interact(InputAction.CallbackContext ctx)
     {
         if(ctx.performed){
-            if(inFrontofRock && canHitRock)
+            if(inFrontofRock && canHitRock && isArmed)
             {
                 for (int i = 0; i < rocks.Length - 1; i++)
                 {
@@ -694,6 +690,7 @@ public class JoueursControl1 : MonoBehaviour
                     healthPotion.SetActive(true);
                     isHealing = true;
                     animator.SetTrigger("Healing");
+                    Invoke("soundHealing", 0.6f);
                     DoNotListenToInputs();
                     health = (health > 51) ? 100 : health + 50;
                     numbPotion -= 1;
@@ -1044,6 +1041,16 @@ public class JoueursControl1 : MonoBehaviour
 
         currentRock.SetActive(false);
         nextRock.SetActive(true);
+        
+        if(nextRock.name == "Roche4")
+        {
+            GetComponents<AudioSource>()[3].PlayOneShot(banqueAudio.sRockBreak);
+            uiInteractionRock.SetActive(false);
+        }
+        else
+        {
+            GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sRockHit);
+        }
 
         yield return new WaitForSeconds(1f);
 
@@ -1139,5 +1146,11 @@ public class JoueursControl1 : MonoBehaviour
     {
         // ---------- Sound ---------
         activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing3);
+    }
+    
+    public void soundHealing()
+    {
+        // ---------- Sound ---------
+        GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sHealing);
     }
 }
