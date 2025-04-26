@@ -125,13 +125,11 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject dotCanvas;
     private GameObject currentRock;
     private GameObject nextRock;
+    [SerializeField] private GameObject uiInteractionRock;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
     [SerializeField] private GameObject[] rocks;
-
-    /* ------------------------ AUDIO SOURCE ------------------------- */ 
-    public AudioSource[] audioSources;
 
     /* ============================================================== */
     /* ============================================================== */
@@ -158,8 +156,6 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Awake()
     {
-        // AudioSources initialization
-        audioSources = GetComponents<AudioSource>();
         // Hachiman mouvableStates initialization
         
         // GameObject initialization
@@ -278,6 +274,7 @@ public class JoueursControl1 : MonoBehaviour
 
         uiVieMana.AffichageNiveauMana(maxEndurance, endurance);
         uiVieMana.AffichageNiveauVie(maxHealth, health);
+        uiVieMana.QuantitePotionVie(numbPotion);
 
 
         if (isLockedOn == true)
@@ -621,29 +618,6 @@ public class JoueursControl1 : MonoBehaviour
 
         yield return null;
     }
-    IEnumerator RollCoroutine(float distance, float duration)
-    {
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = startPos + transform.forward * distance;
-        float elapsedTime = 0f;
-
-        // Optional: Raycast to check if there's an obstacle ahead
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance))
-        {
-            //Debug.Log("Obstacle detected: " + hit.collider.name);
-            targetPos = hit.point; // Stop at the obstacle
-        }
-
-        while (elapsedTime < duration)
-        {
-            transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;  // Wait for the next frame
-        }
-
-        transform.position = targetPos;  // Ensure the final position is accurate
-        ResetRoll();
-    }
 
     IEnumerator MoveToPosition(Vector3 targetPos, float duration)
     {
@@ -665,10 +639,14 @@ public class JoueursControl1 : MonoBehaviour
     private void Interact(InputAction.CallbackContext ctx)
     {
         if(ctx.performed){
-            if(inFrontofRock && canHitRock)
+            if(inFrontofRock && canHitRock && isArmed)
             {
                 for (int i = 0; i < rocks.Length - 1; i++)
                 {
+                    Vector3 direction = rocks[i].transform.position - transform.position;
+                    direction.y = 0;
+                    transform.rotation = Quaternion.LookRotation(direction);
+
                     currentRock = rocks[i];
                     nextRock = rocks[i + 1];
 
@@ -712,6 +690,7 @@ public class JoueursControl1 : MonoBehaviour
                     healthPotion.SetActive(true);
                     isHealing = true;
                     animator.SetTrigger("Healing");
+                    Invoke("soundHealing", 0.6f);
                     DoNotListenToInputs();
                     health = (health > 51) ? 100 : health + 50;
                     numbPotion -= 1;
@@ -767,7 +746,6 @@ public class JoueursControl1 : MonoBehaviour
             animator.SetTrigger("roll");
             state = HachimanState.Rolling;
             DoNotListenToInputs();
-            //StartCoroutine(RollCoroutine(2f, 0.54f));
         }
     }
 
@@ -1063,6 +1041,16 @@ public class JoueursControl1 : MonoBehaviour
 
         currentRock.SetActive(false);
         nextRock.SetActive(true);
+        
+        if(nextRock.name == "Roche4")
+        {
+            GetComponents<AudioSource>()[3].PlayOneShot(banqueAudio.sRockBreak);
+            uiInteractionRock.SetActive(false);
+        }
+        else
+        {
+            GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sRockHit);
+        }
 
         yield return new WaitForSeconds(1f);
 
@@ -1158,5 +1146,11 @@ public class JoueursControl1 : MonoBehaviour
     {
         // ---------- Sound ---------
         activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing3);
+    }
+    
+    public void soundHealing()
+    {
+        // ---------- Sound ---------
+        GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sHealing);
     }
 }

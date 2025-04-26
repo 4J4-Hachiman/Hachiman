@@ -11,13 +11,15 @@ public class Chest : MonoBehaviour
     public GameObject katana;
     public GameObject katanaInChest;
     public GameObject pointLightInChest;
-    public GameObject areaLightInChest;
     public GameObject hand;
     public GameObject chestParent;
-
+    public GameObject uiInteraction;
+    
     /* -------------------- REFERENCES COMPONENTS -------------------- */
     public JoueursControl1 hachiman;
     public Animator animator;
+    public BanqueAudio banqueAudio;
+    public AudioSource audioSource;
 
     /* -------------------- VARIABLES CHEST -------------------- */
     private bool isOpen = false;
@@ -35,6 +37,7 @@ public class Chest : MonoBehaviour
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = chestParent.GetComponent<Animator>();
         inputActions = new PlayerControls();
         inputActions.Enable();
@@ -83,6 +86,8 @@ public class Chest : MonoBehaviour
             Debug.Log("open");
             isOpen = true;
             animator.SetTrigger("Open"); 
+            uiInteraction.SetActive(false);
+            audioSource.PlayOneShot(banqueAudio.sOuvertureCoffre);
         }
         else if(!isTaken) 
         {
