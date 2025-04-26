@@ -1,11 +1,11 @@
 /*  
- *  Fonctionnement et utilit� g�n�rale du script
+ *  Fonctionnement et utilité générale du script
 
 [Gestionnaire]
 
-    Fonction pour les changements de sc�nes
-        Par : Mala�ka Abevi
-        Derni�re modification : 13/04/2025
+    Fonction pour les changements de scènes
+        Par : Malaïka Abevi
+        Dernière modification : 13/04/2025
 */
 using System.Collections;
 using System.Threading.Tasks;
@@ -30,6 +30,7 @@ public class SceneActiveManager : MonoBehaviour
     }
 
     public async void ChargerScene(string nomScene){
+        await Task.Delay(5000);
         var scene = SceneManager.LoadSceneAsync(nomScene);
         scene.allowSceneActivation = false;
 
@@ -43,7 +44,7 @@ public class SceneActiveManager : MonoBehaviour
 
         Debug.Log("La scène est chargée");
         
-        await Task.Delay(15000);
+        await Task.Delay(3000);
 
         scene.allowSceneActivation = true;
 

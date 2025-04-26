@@ -1,12 +1,11 @@
 /*  
- *  Fonctionnement et utilit� g�n�rale du script
+ *  Fonctionnement et utilité générale du script
 
     Affichage du niveau de vie et du niveau de mana dans le UI
     Transition fluide des niveaux des barres.
-        Par : Mala�ka Abevi
-        Derni�re modification : 05/04/2025
+        Par : Malaïka Abevi
+        Dernière modification : 05/04/2025
 */
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +36,7 @@ public class ControlesVieMana : MonoBehaviour
         fillManaDelay.fillAmount = Mathf.Lerp(fillManaDelay.fillAmount, liveAmount, 0.05f);
     }
 
-    // Fonction pour gérer l'affichage du nombre de potion
+    // Fonction pour gÃ©rer l'affichage du nombre de potion
     public void QuantitePotionVie(int nbPotion)
     {
         textNbPotion.text = nbPotion.ToString();

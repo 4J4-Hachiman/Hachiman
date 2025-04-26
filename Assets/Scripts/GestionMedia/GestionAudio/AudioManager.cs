@@ -1,13 +1,13 @@
 /*  
- *  Fonctionnement et utilit� g�n�rale du script
+ *  Fonctionnement et utilité générale du script
 
 [Gestionnaire]    
 ###[SINGLETON] 
 
     Gestion des pistes audios et transition fluide entre elles
     Contrôle de la piste de musique 1, piste de musique 2 et de la piste pour les vfx du UI
-        Par : Mala�ka Abevi
-        Derni�re modification : 30/03/2025
+        Par : Malaïka Abevi
+        Dernière modification : 30/03/2025
 */
 using System.Collections;
 using UnityEngine;
@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
     public float vitesseTransition;
     void Start()
     {
-        //Instancier le script / AudioManager et �viter les doublons
+        //Instancier le script / AudioManager et éviter les doublons
         if (instance == null)
         {
             instance = this;
@@ -59,7 +59,7 @@ public class AudioManager : MonoBehaviour
         {
             pisteEnCours.volume -= vitesseTransition;
             pisteChoisie.volume += vitesseTransition;
-            // print("Le volume de la piste actuelle est à :" + pisteEnCours.volume + ". La nouvelle piste s'embarque avec un volume de :" + pisteChoisie.volume);
+            // print("Le volume de la piste actuelle est à  :" + pisteEnCours.volume + ". La nouvelle piste s'embarque avec un volume de :" + pisteChoisie.volume);
             yield return null;
         }
 

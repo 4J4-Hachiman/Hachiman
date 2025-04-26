@@ -1,11 +1,10 @@
 /*  
- *  Fonctionnement et utilit� g�n�rale du script
+ *  Fonctionnement et utilité générale du script
 
     Demande de changement de musique
-        Par : Mala�ka Abevi
-        Derni�re modification : 15/04/2025
+        Par : Malaïka Abevi
+        Derniï¿½re modification : 15/04/2025
 */
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MusiqueTransition : MonoBehaviour
