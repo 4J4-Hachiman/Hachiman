@@ -1,25 +1,25 @@
 /*  
- *  Fonctionnement et utilit� g�n�rale du script
+ *  Fonctionnement et utilité générale du script
 
 [Gestionnaire]    
 ###[SINGLETON] 
 
     Stockage des variables statiques et autres
-        Par : Mala�ka Abevi
-        Derni�re modification : 30/03/2025
+        Par : Malaïka Abevi
+        Dernière modification : 30/03/2025
 */
 using UnityEngine;
 
 public class OptionsManager : MonoBehaviour
 {
-    //D�claration de variables
+    //Déclaration de variables
     public static OptionsManager instance;
 
     //Conditions pour les options
     public static bool optionsSauvegarder;
     public static bool initialisationFait;
 
-    //Variables pour les options sauvegard�es
+    //Variables pour les options sauvegardées
     public static float volumeMusiqueSauve;
     public static float volumeSFXSauve;
     public static int indexResolutionSauve;
@@ -29,7 +29,7 @@ public class OptionsManager : MonoBehaviour
 
     void Start()
     {
-        //Instancier le script / UIManager et �viter les doublons
+        //Instancier le script / UIManager et éviter les doublons
         if (instance == null)
         {
             instance = this;
@@ -40,17 +40,17 @@ public class OptionsManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //On affirme que les options ont �t� sauvegard�s
+        //On affirme que les options ont été sauvegardés
         optionsSauvegarder = true;
 
-        // Initialisation des valeurs de d�part aux variables statiques (d�but de jeu)
+        // Initialisation des valeurs de départ aux variables statiques (début de jeu)
         if (initialisationFait == false)
         {
-            Debug.LogWarning("Les options ont �t� initialis�s");
+            Debug.LogWarning("Les options ont été initialisés");
             volumeMusiqueSauve = 0;
             volumeSFXSauve = 0;
             indexResolutionSauve = 1;
-            //Rendre la condition fausse pour que les variables ne soient plus initialis�s du reste du jeu
+            //Rendre la condition fausse pour que les variables ne soient plus initialisés du reste du jeu
             initialisationFait = true;
         }
 
