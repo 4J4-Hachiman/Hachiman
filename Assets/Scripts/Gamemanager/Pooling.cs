@@ -29,7 +29,7 @@ public class Pooling
             newObj.SetActive(false);
             if (parent)
             {
-                newObj.transform.parent = parent.transform;
+                newObj.transform.SetParent(parent.transform);
             }
             pool.Enqueue(newObj);
         }

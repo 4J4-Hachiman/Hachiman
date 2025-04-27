@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 15/04/2025;
+    Dernière modification: 19/04/2025;
 */
 
 using UnityEngine;
@@ -14,7 +14,7 @@ using Custom.CSO;
 public class Gamemanager : MonoBehaviour
 {       
     public static Gamemanager gamemanagerInstance; 
-    private GameObject player;
+    private Transform player;
 
     [Header("Settings")]
     [field: SerializeField] private Settings manageSettings;
@@ -69,18 +69,16 @@ public class Gamemanager : MonoBehaviour
         InitLevel();
     }
 
-
-    private void AAAAAAAAAAAAAAAAAAAAAAAA()
+    private void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
     
     private void InitLevel()
     {
-        Invoke(nameof(AAAAAAAAAAAAAAAAAAAAAAAA), 1f);
+        Invoke(nameof(LockCursor), 1f);
 
-
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         spawnMain = GameObject.FindWithTag("SpawnData");
         spawnGroups = new SpawnGroup[spawnMain.transform.childCount];
         for (int i = 0; i < spawnGroups.Length; i++)
