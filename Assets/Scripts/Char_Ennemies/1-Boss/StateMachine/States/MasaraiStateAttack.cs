@@ -14,11 +14,14 @@ public class MasaraiStateAttack : MasaraiBaseState
 
     public override void StateStart(bool init = false) 
     { 
-        Debug.Log("Entered attack state");
+        // Debug.Log("Entered attack state");
         mainAnimator.applyRootMotion = true;
         mainNavAgent.updatePosition = false;
-        mainAnimator.SetInteger(main.AnimParamAttackSimpleIndex, main.AttackSimpleIndex);
-        mainAnimator.SetTrigger(main.AnimParamAttackSimple);
+        // mainAnimator.SetInteger(main.AnimParamAttackSimpleIndex, main.AttackSimpleIndex);
+        // mainAnimator.SetTrigger(main.AnimParamAttackSimple);\
+
+        mainAnimator.SetInteger(main.AnimParamAttackSpecialIndex, 1);
+        mainAnimator.SetTrigger(main.AnimParamAttackSpecial);
         main.LookAtPlayer();
     }
 

@@ -36,17 +36,20 @@ public class MasaraiMain : MonoBehaviour
     [Header("Animations")]
     [field: SerializeField] private int simpleAttackCount;
     [field: SerializeField] private int specialAttackCount;
-
+    
     public int AttackSimpleIndex { get; private set; }
     public int AttackSecialIndex { get; private set; }
+    [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
+
+    public int AttackType { get; private set; }
 
     /* ================== State Machine ================== */
     private MasaraiStateMachine stateMachine;
     private MasaraiStateWalk stateWalk;
     private MasaraiStateAttack stateAttack;
+    private MasaraiStateAttackStart stateAttackStart;
 
     /* ====================== Events ====================== */
-    public event Action OnAttackAnimEnd;
 
     private void Awake()
     {
@@ -62,12 +65,16 @@ public class MasaraiMain : MonoBehaviour
         AnimParamAttackSimpleIndex = Animator.StringToHash("AttackSimpleIndex");
         AnimParamAttackSpecialIndex = Animator.StringToHash("AttackSpecialIndex");
 
+        AtkTrigDistance *= AtkTrigDistance;
+        SpecialAtkTrigDistance *= SpecialAtkTrigDistance;
+
         stateMachine = new MasaraiStateMachine();
         stateWalk = new MasaraiStateWalk(stateMachine, this, animator, agent);
         stateAttack = new MasaraiStateAttack(stateMachine, this, animator, agent);
+        stateAttackStart = new MasaraiStateAttackStart(stateMachine, this);
 
         stateMachine.Initalize(stateWalk);
-        stateWalk.OnCloseToPLayer += OnCloseToPlayer;
+        stateWalk.OnTriggerAttack += OnCloseToPlayer;
     }
 
     private void Update()
@@ -88,20 +95,31 @@ public class MasaraiMain : MonoBehaviour
         }
         
         transform.position += animator.deltaPosition;
+        agent.nextPosition = transform.position;
     }
 
-    private void OnCloseToPlayer()
+    private void OnCloseToPlayer(int attackType)
     {
-        stateWalk.OnCloseToPLayer -= OnCloseToPlayer;
-        AttackSimpleIndex = UnityEngine.Random.Range(0, simpleAttackCount);
-        stateMachine.SwitchState(stateAttack);
+        stateWalk.OnTriggerAttack -= OnCloseToPlayer;
+        AttackType = attackType;
+
+        if (attackType == 0)
+        {
+            AttackSimpleIndex = UnityEngine.Random.Range(0, simpleAttackCount);
+            stateMachine.SwitchState(stateAttack);
+        }
+        else
+        {
+            AttackSecialIndex = UnityEngine.Random.Range(0, specialAttackCount);
+            stateMachine.SwitchState(state)
+        }
+        
     }
 
     public void OnAttackAnimationEnd()
     {
-        Debug.Log("Attack Animation over");
         stateMachine.SwitchState(stateWalk);
-        stateWalk.OnCloseToPLayer += OnCloseToPlayer;
+        stateWalk.OnTriggerAttack += OnCloseToPlayer;
     }
 
     public void LookAtPlayer()
