@@ -39,6 +39,7 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
     public ControlesVieMana uiVieMana;
+    public ParticleSystem sparksBlockEffect;
 
     /* -------------------- VARIABLES MOUVEMENT -------------------- */
     [Header("Mouvement et saut")]
@@ -1107,6 +1108,8 @@ public class JoueursControl1 : MonoBehaviour
                 {
                     Invoke("NotHit", 0.33f);
                     animator.SetBool("Hit", true);
+                    ParticleSystem sparksInt = Instantiate(sparksBlockEffect, katana.transform.position, katana.transform.rotation);
+                    Destroy(sparksInt.gameObject, 2f);
                     activeKatana.GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sSwordClash2);
                 }
             }
