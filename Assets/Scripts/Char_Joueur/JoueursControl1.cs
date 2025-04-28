@@ -806,11 +806,13 @@ public class JoueursControl1 : MonoBehaviour
                 Debug.Log("armed");
                 isArmed = true;
                 animator.SetBool("armed", true);
+                GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
                 Invoke("UnsheathKatana", 0.17f);
                 
             } else {
                 isArmed = false;
                 animator.SetBool("armed", false);
+                Invoke("SheathKatanaSound", 0.6f);
                 Invoke("SheathKatana", 1.22f);
             }
         }
@@ -820,6 +822,11 @@ public class JoueursControl1 : MonoBehaviour
     {
         activeKatana.gameObject.SetActive(false);
         katanaInSheath.gameObject.SetActive(true);
+    }
+
+    void SheathKatanaSound()
+    {
+        GetComponents<AudioSource>()[4].PlayOneShot(banqueAudio.sSheath);
     }
 
     void UnsheathKatana()
@@ -1142,10 +1149,20 @@ public class JoueursControl1 : MonoBehaviour
     
     /* ===================== FUNCTIONS FOR SOUNDS ===================== */
 
-    public void soundSwordAirSwing4()
+    public void soundSwordAirSwing3()
     {
         // ---------- Sound ---------
         activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing3);
+    }
+    public void soundSwordAirSwing1()
+    {
+        // ---------- Sound ---------
+        activeKatana.GetComponents<AudioSource>()[3].PlayOneShot(banqueAudio.sSwordAirSwing1);
+    }
+    public void soundSwordAirSwing2()
+    {
+        // ---------- Sound ---------
+        activeKatana.GetComponents<AudioSource>()[4].PlayOneShot(banqueAudio.sSwordAirSwing2);
     }
     
     public void soundHealing()
