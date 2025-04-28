@@ -64,7 +64,6 @@ public class SpawnGroup : MonoBehaviour
             patrolRoutes[i] = oldRoutes[i];
         }
         patrolRoutes[^1] = new PatrolRoute(newPoints);
-        // Debug.Log("<color=green>New patrol route as been added</color>");
     }
 }
 

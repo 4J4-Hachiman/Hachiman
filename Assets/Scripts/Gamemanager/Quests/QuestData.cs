@@ -1,3 +1,11 @@
+/*
+    Scriptable Object pour les donnes des quetes
+    
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 19/04/2025
+*/
+
 using UnityEngine;
 
 // [System.Serializable]
