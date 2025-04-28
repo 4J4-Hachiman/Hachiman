@@ -727,10 +727,12 @@ public class JoueursControl1 : MonoBehaviour
                     // remove lock on
                     isLockedOn = false;
                     animator.SetBool("lockedOn", false);
+                    GetComponents<AudioSource>()[6].PlayOneShot(banqueAudio.sCrouch);
                 } else {
                     ListenToInputs();
                     isCrouched = false;
                     animator.SetBool("crouch", false);
+                    GetComponents<AudioSource>()[6].PlayOneShot(banqueAudio.sCrouch);
                     cc.center = new Vector3(0, 0.905f, 0);
                     cc.height = 1.81f;
                 }

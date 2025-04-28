@@ -48,6 +48,7 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sHealing;
     public AudioClip sSheath;
     public AudioClip sUnsheath;
+    public AudioClip sCrouch;
 
 
     [Header("Effets sonores Combat")]
