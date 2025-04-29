@@ -19,18 +19,18 @@ public class MasaraiStateWalk : MasaraiBaseState
 
     public override void StateStart(bool init = false) 
     { 
-        Debug.Log("Entered walk state");
+        // Debug.Log("Entered walk state");
         mainAnimator.applyRootMotion = true;
         mainNavAgent.updatePosition = false;
         attackedTriggered = false;
-        // main.StartCoroutine(SpecialAttackRandomNess());
+        main.StartCoroutine(SpecialRand());
     }
 
     public override void StateExit() { }
 
     public override void StateUpdate() 
     { 
-        if ((main.Player.position - main.transform.position).sqrMagnitude < main.SpecialAtkTrigDistance)
+        if ((main.Player.position - main.transform.position).sqrMagnitude < main.AtkTrigDistance)
         {
             OnTriggerAttack?.Invoke(0);
             attackedTriggered = true;
@@ -46,7 +46,7 @@ public class MasaraiStateWalk : MasaraiBaseState
         main.LookAtPlayer();
     }
 
-    private IEnumerator SpecialAttackRandomNess()
+    private IEnumerator SpecialRand()
     {
         float interval = 1;
 
@@ -56,11 +56,11 @@ public class MasaraiStateWalk : MasaraiBaseState
             
             if ((main.Player.position - main.transform.position).sqrMagnitude < main.SpecialAtkTrigDistance && interval < 0)
             {
-                bool trig = UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance; 
-
-                if (trig)
+                // Debug.Log("<color=orange>Checking for special attack trigger</color>");
+                // bool trig = UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance; 
+                if (UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance)
                 {
-                    Debug.Log("Triggering Special Attack");
+                    // Debug.Log("Triggering Special Attack");
                     attackedTriggered = true;
                     OnTriggerAttack?.Invoke(1);
                     yield break;
@@ -70,6 +70,7 @@ public class MasaraiStateWalk : MasaraiBaseState
             }
             yield return null;
         }
+        // Debug.Log("Stopped special attack coroutine");
         yield break;
     }
 }

@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 24/04/2025; 
+    Dernière modification: 29/04/2025; 
 */
 
 using System;
@@ -30,17 +30,16 @@ public class MasaraiMain : MonoBehaviour
     public int AnimParamVtotal { get; private set; }
     public int AnimParamAttackSimple { get; private set; }
     public int AnimParamAttackSpecial { get; private set; }
-    public int AnimParamAttackSimpleIndex { get; private set; }
-    public int AnimParamAttackSpecialIndex { get; private set; }
+    public int AnimParamAttackSpecialStart {get; private set; }
+    public int AnimParamAtkIndex { get; private set; }
+
 
     [Header("Animations")]
     [field: SerializeField] private int simpleAttackCount;
     [field: SerializeField] private int specialAttackCount;
+    public int AttackIndex { get; private set; }
     
-    public int AttackSimpleIndex { get; private set; }
-    public int AttackSecialIndex { get; private set; }
     [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
-
     public int AttackType { get; private set; }
 
     /* ================== State Machine ================== */
@@ -62,8 +61,8 @@ public class MasaraiMain : MonoBehaviour
         AnimParamVtotal = Animator.StringToHash("Vtotal");
         AnimParamAttackSimple = Animator.StringToHash("AttackSimple");
         AnimParamAttackSpecial = Animator.StringToHash("AttackSpecial");
-        AnimParamAttackSimpleIndex = Animator.StringToHash("AttackSimpleIndex");
-        AnimParamAttackSpecialIndex = Animator.StringToHash("AttackSpecialIndex");
+        AnimParamAtkIndex = Animator.StringToHash("AttackIndex");
+        AnimParamAttackSpecialStart = Animator.StringToHash("AttackSpecialStart");
 
         AtkTrigDistance *= AtkTrigDistance;
         SpecialAtkTrigDistance *= SpecialAtkTrigDistance;
@@ -71,10 +70,10 @@ public class MasaraiMain : MonoBehaviour
         stateMachine = new MasaraiStateMachine();
         stateWalk = new MasaraiStateWalk(stateMachine, this, animator, agent);
         stateAttack = new MasaraiStateAttack(stateMachine, this, animator, agent);
-        stateAttackStart = new MasaraiStateAttackStart(stateMachine, this);
+        stateAttackStart = new MasaraiStateAttackStart(stateMachine, this, animator, agent);
 
         stateMachine.Initalize(stateWalk);
-        stateWalk.OnTriggerAttack += OnCloseToPlayer;
+        stateWalk.OnTriggerAttack += OnTriggerAttack;
     }
 
     private void Update()
@@ -98,34 +97,48 @@ public class MasaraiMain : MonoBehaviour
         agent.nextPosition = transform.position;
     }
 
-    private void OnCloseToPlayer(int attackType)
+    /**************************** STATE EVENTS ****************************/
+    private void OnTriggerAttack(int attackType)
     {
-        stateWalk.OnTriggerAttack -= OnCloseToPlayer;
+        stateWalk.OnTriggerAttack -= OnTriggerAttack;
         AttackType = attackType;
 
         if (attackType == 0)
         {
-            AttackSimpleIndex = UnityEngine.Random.Range(0, simpleAttackCount);
+            AttackIndex = UnityEngine.Random.Range(0, simpleAttackCount);
+            // Debug.Log("Triggered SIMPLE attack");
             stateMachine.SwitchState(stateAttack);
         }
         else
         {
-            AttackSecialIndex = UnityEngine.Random.Range(0, specialAttackCount);
-            stateMachine.SwitchState(state)
+            // Debug.Log("Triggered SPECIAL attack");
+            AttackIndex = 1;
+            stateMachine.SwitchState(stateAttack);
         }
-        
-    }
-
-    public void OnAttackAnimationEnd()
-    {
-        stateMachine.SwitchState(stateWalk);
-        stateWalk.OnTriggerAttack += OnCloseToPlayer;
-    }
+    }   
 
     public void LookAtPlayer()
     {
         Vector3 dir = Player.position - transform.position;
         dir.y = 0;
         transform.rotation = Quaternion.LookRotation(dir);
+    }
+
+    public float DistanceToPlayerSqrtMag()
+    {
+        return (Player.position - transform.position).sqrMagnitude;
+    }
+
+    /*************************** ANIMATION EVENTS ***************************/
+    
+    private void OnAttackAnimationEnd()
+    {
+        stateMachine.SwitchState(stateWalk);
+        stateWalk.OnTriggerAttack += OnTriggerAttack;
+    }
+
+    private void OnSpecialAttackCharge()
+    {
+        Debug.Log("Attack charged");
     }
 }
