@@ -1102,6 +1102,8 @@ public class JoueursControl1 : MonoBehaviour
                 {
                     Invoke("NotHitBroken", 0.33f);
                     animator.SetTrigger("Broken");
+                    ParticleSystem sparksInt = Instantiate(sparksBlockEffect, katana.transform.position, katana.transform.rotation);
+                    Destroy(sparksInt.gameObject, 2f);
                     activeKatana.GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sStanceBroken);
                 }
                 else
