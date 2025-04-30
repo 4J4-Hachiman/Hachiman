@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class MasaraiStateWalk : MasaraiBaseState
 {
     // public event Action OnCloseToPLayer;
-    public event Action<int> OnTriggerAttack;
+    public event Action<MasaraiMain.AttackType> OnTriggerAttack;
     private readonly Animator mainAnimator;
     private readonly NavMeshAgent mainNavAgent;
     private bool attackedTriggered;
@@ -32,12 +32,12 @@ public class MasaraiStateWalk : MasaraiBaseState
     { 
         if ((main.Player.position - main.transform.position).sqrMagnitude < main.AtkTrigDistance)
         {
-            OnTriggerAttack?.Invoke(0);
+            OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Simple);
             attackedTriggered = true;
         }
-        
+
         mainNavAgent.nextPosition = main.transform.position;
-        mainAnimator.SetFloat(main.AnimParamVtotal, mainNavAgent.velocity.magnitude);
+        mainAnimator.SetFloat(main.ParamVtotal, mainNavAgent.velocity.magnitude);
     }
 
     public override void StateFixedUpdate()
@@ -60,9 +60,9 @@ public class MasaraiStateWalk : MasaraiBaseState
                 // bool trig = UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance; 
                 if (UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance)
                 {
-                    // Debug.Log("Triggering Special Attack");
+                    Debug.Log("Triggering Special Attack");
                     attackedTriggered = true;
-                    OnTriggerAttack?.Invoke(1);
+                    OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special);
                     yield break;
                 }
 

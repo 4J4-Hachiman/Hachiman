@@ -7,6 +7,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,11 +28,10 @@ public class MasaraiMain : MonoBehaviour
     [field: SerializeField] public float SpecialAtkTrigDistance { get; private set; }
 
     /* =================== Anim params =================== */
-    public int AnimParamVtotal { get; private set; }
-    public int AnimParamAttackSimple { get; private set; }
-    public int AnimParamAttackSpecial { get; private set; }
-    public int AnimParamAttackSpecialStart {get; private set; }
-    public int AnimParamAtkIndex { get; private set; }
+    public int ParamVtotal { get; private set; }
+    public int ParamAttckSpecialStart {get; private set; }
+    public int ParamAttackIndex { get; private set; }
+    public int ParamAttackSpecialPlay { get; private set; }
 
 
     [Header("Animations")]
@@ -40,15 +40,40 @@ public class MasaraiMain : MonoBehaviour
     public int AttackIndex { get; private set; }
     
     [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
-    public int AttackType { get; private set; }
+    // public int AttackType { get; private set; }
 
     /* ================== State Machine ================== */
     private MasaraiStateMachine stateMachine;
     private MasaraiStateWalk stateWalk;
     private MasaraiStateAttack stateAttack;
-    private MasaraiStateAttackStart stateAttackStart;
+    // private MasaraiStateAttackStart stateAttackStart;
 
     /* ====================== Events ====================== */
+
+    // public AttackTypes CurrentAttackType { get; private set; }
+    public enum AttackType
+    {
+        Simple,
+        Special
+    }
+    
+    public enum AttackSimple
+    {
+        Uppercut,
+        Kick,
+        Stomp
+    }
+
+    public enum AttackSpecial
+    {
+        Smash,
+        Tatsumaki
+    }
+
+    public AttackType CurrentAttackType { get; private set; }
+    public AttackSimple CurrentSimpleAttack { get; private set; }
+    public AttackSpecial CurrentSpecialAttack { get; private set; }
+    // public int AttackIndex { get; private set; }
 
     private void Awake()
     {
@@ -58,11 +83,10 @@ public class MasaraiMain : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
-        AnimParamVtotal = Animator.StringToHash("Vtotal");
-        AnimParamAttackSimple = Animator.StringToHash("AttackSimple");
-        AnimParamAttackSpecial = Animator.StringToHash("AttackSpecial");
-        AnimParamAtkIndex = Animator.StringToHash("AttackIndex");
-        AnimParamAttackSpecialStart = Animator.StringToHash("AttackSpecialStart");
+        ParamVtotal = Animator.StringToHash("Vtotal");
+        ParamAttackIndex = Animator.StringToHash("AttackIndex");
+        ParamAttckSpecialStart = Animator.StringToHash("AttackSpecialStart");
+        ParamAttackSpecialPlay = Animator.StringToHash("AttackSpecialPlay");
 
         AtkTrigDistance *= AtkTrigDistance;
         SpecialAtkTrigDistance *= SpecialAtkTrigDistance;
@@ -70,7 +94,6 @@ public class MasaraiMain : MonoBehaviour
         stateMachine = new MasaraiStateMachine();
         stateWalk = new MasaraiStateWalk(stateMachine, this, animator, agent);
         stateAttack = new MasaraiStateAttack(stateMachine, this, animator, agent);
-        stateAttackStart = new MasaraiStateAttackStart(stateMachine, this, animator, agent);
 
         stateMachine.Initalize(stateWalk);
         stateWalk.OnTriggerAttack += OnTriggerAttack;
@@ -98,23 +121,21 @@ public class MasaraiMain : MonoBehaviour
     }
 
     /**************************** STATE EVENTS ****************************/
-    private void OnTriggerAttack(int attackType)
+    private void OnTriggerAttack(AttackType type)
     {
         stateWalk.OnTriggerAttack -= OnTriggerAttack;
-        AttackType = attackType;
+        CurrentAttackType = type;
 
-        if (attackType == 0)
-        {
-            AttackIndex = UnityEngine.Random.Range(0, simpleAttackCount);
-            // Debug.Log("Triggered SIMPLE attack");
-            stateMachine.SwitchState(stateAttack);
+        if (CurrentAttackType == AttackType.Simple)
+        {   
+            AttackIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackSimple)).Length);
         }
         else
         {
-            // Debug.Log("Triggered SPECIAL attack");
-            AttackIndex = 1;
-            stateMachine.SwitchState(stateAttack);
+            AttackIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackSpecial)).Length);
         }
+        
+        stateMachine.SwitchState(stateAttack);
     }   
 
     public void LookAtPlayer()
@@ -124,9 +145,9 @@ public class MasaraiMain : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(dir);
     }
 
-    public float DistanceToPlayerSqrtMag()
+    public float GetDistanceToPlayer()
     {
-        return (Player.position - transform.position).sqrMagnitude;
+        return Vector3.Distance(Player.position, transform.position);
     }
 
     /*************************** ANIMATION EVENTS ***************************/
@@ -139,6 +160,6 @@ public class MasaraiMain : MonoBehaviour
 
     private void OnSpecialAttackCharge()
     {
-        Debug.Log("Attack charged");
+        // Debug.Log("Attack charged");
     }
 }
