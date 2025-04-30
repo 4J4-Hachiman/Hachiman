@@ -21,6 +21,8 @@ public class MasaraiMain : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
 
+    [field: SerializeField] private Transform[] limbs; 
+    
     [Header("Data")]
     [field: SerializeField] private float hp;
     [field: SerializeField] public float WalkSpeed { get; private set; }
@@ -40,17 +42,14 @@ public class MasaraiMain : MonoBehaviour
     public int AttackIndex { get; private set; }
     
     [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
-    // public int AttackType { get; private set; }
 
     /* ================== State Machine ================== */
     private MasaraiStateMachine stateMachine;
     private MasaraiStateWalk stateWalk;
     private MasaraiStateAttack stateAttack;
-    // private MasaraiStateAttackStart stateAttackStart;
 
     /* ====================== Events ====================== */
 
-    // public AttackTypes CurrentAttackType { get; private set; }
     public enum AttackType
     {
         Simple,
@@ -73,7 +72,6 @@ public class MasaraiMain : MonoBehaviour
     public AttackType CurrentAttackType { get; private set; }
     public AttackSimple CurrentSimpleAttack { get; private set; }
     public AttackSpecial CurrentSpecialAttack { get; private set; }
-    // public int AttackIndex { get; private set; }
 
     private void Awake()
     {
@@ -121,10 +119,17 @@ public class MasaraiMain : MonoBehaviour
     }
 
     /**************************** STATE EVENTS ****************************/
-    private void OnTriggerAttack(AttackType type)
+    private void OnTriggerAttack(AttackType type, int forcedAttack)
     {
         stateWalk.OnTriggerAttack -= OnTriggerAttack;
         CurrentAttackType = type;
+
+        if (forcedAttack != -1)
+        {
+            AttackIndex = forcedAttack;
+            stateMachine.SwitchState(stateAttack);
+            return;
+        }
 
         if (CurrentAttackType == AttackType.Simple)
         {   
@@ -136,7 +141,7 @@ public class MasaraiMain : MonoBehaviour
         }
         
         stateMachine.SwitchState(stateAttack);
-    }   
+    }
 
     public void LookAtPlayer()
     {

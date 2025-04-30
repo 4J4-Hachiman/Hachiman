@@ -9,8 +9,6 @@ public class MasaraiStateAttack : MasaraiBaseState
     private readonly Animator mainAnimator;
     private readonly NavMeshAgent mainNavAgent;
     private float waitTime;
-    private float distanceToPlayer;
-    // private bool followPlayer;
 
     private readonly Dictionary<(int, int), Action> attacks;
 
@@ -31,16 +29,12 @@ public class MasaraiStateAttack : MasaraiBaseState
 
     public override void StateStart(bool init = false)
     {
+        mainAnimator.SetBool(main.ParamAttackSpecialPlay, false);
         waitTime = 2;
         mainNavAgent.updatePosition = false;
-
-        // mainAnimator.SetInteger("AttackType", (int)main.CurrentAttackType);
-        // mainAnimator.SetInteger("AttackIndex", main.AttackIndex);
-        // attacks[((int)main.CurrentAttackType, main.AttackIndex)]?.Invoke();
-
-        mainAnimator.SetInteger("AttackType", 1);
-        mainAnimator.SetInteger("AttackIndex",0);
-        attacks[(1, 0)]?.Invoke();
+        mainAnimator.SetInteger("AttackType", (int)main.CurrentAttackType);
+        mainAnimator.SetInteger("AttackIndex", main.AttackIndex);
+        attacks[((int)main.CurrentAttackType, main.AttackIndex)]?.Invoke();
     }
 
     public override void StateExit() { }
@@ -78,38 +72,46 @@ public class MasaraiStateAttack : MasaraiBaseState
 
     private IEnumerator SpecialSmash()
     {
-
-
-        Debug.Log("Current attack = Special Smash");
+        // Debug.Log("Current attack = Special Smash");
         mainAnimator.SetTrigger("Attack");
-        mainAnimator.SetBool(main.ParamAttackSpecialPlay, false);
         mainAnimator.applyRootMotion = false;
-        yield return new WaitForSeconds(waitTime);
-
-
-        // float h = main.GetDistanceToPlayer()/2;
-        // float posY;
-        Vector3 playerPos = main.Player.position;
-
         mainNavAgent.enabled = false;
-        
+        yield return new WaitForSeconds(3);
+        mainAnimator.SetBool("AttackSpecialPlay", true);
+        Vector3 p1 = main.transform.position;
+        p1.y = 0;
+        Vector3 p2 = main.Player.position;
+        float time = 0.75f;
+        float delta = Vector3.Distance(p2, main.transform.position) / time;
+        float h = Vector3.Distance(p2, p1) / 2;
+        float k = 5;
+        float remain = 2 * h;
         main.LookAtPlayer();
-        mainAnimator.SetTrigger(main.ParamAttckSpecialStart);
 
-        while((playerPos - main.transform.position).sqrMagnitude > 2)
+        while (time > 0)
         {
-            // posY = -10/Mathf.Pow(h, 2) * (main.GetDistanceToPlayer() - h) + 10;
-            main.transform.position += main.transform.forward * Time.deltaTime;
-            // main.transform.position = new Vector3(main.transform.position.x, posY, main.transform.position.z);
+            main.transform.position += main.transform.forward * ( delta * Time.deltaTime);
+            p1 = main.transform.position;
+            p1.y = 0;
+            remain -= delta * Time.deltaTime;
+            float x = Vector3.Distance(p2, p1);
+            if (time < 0.4f)
+            {
+                mainAnimator.SetBool("AttackSpecialPlay", false);
+            }
+            float pY = -k / Mathf.Pow(h, 2) * Mathf.Pow(x - h, 2) + k;
+            main.transform.position = new Vector3(main.transform.position.x, pY, main.transform.position.z);
+            time -= 1 * Time.deltaTime;
             yield return null;
         }
-        mainAnimator.SetBool(main.ParamAttackSpecialPlay, true);
+        
+        mainAnimator.SetBool(main.ParamAttackSpecialPlay, false);
         mainNavAgent.enabled = true;
+        main.transform.position = mainNavAgent.nextPosition;
     }
-
+    
     private IEnumerator SpecialTatsumaki()
     {
-        Debug.Log("Current attack = Special Tatsumaki");
         mainAnimator.SetInteger("AttackIndex", (int)MasaraiMain.AttackSpecial.Tatsumaki);
         mainAnimator.SetTrigger("Attack");
         mainAnimator.applyRootMotion = true;

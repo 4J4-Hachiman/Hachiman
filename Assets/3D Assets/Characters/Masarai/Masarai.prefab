@@ -1693,9 +1693,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.33
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.165, z: 0}
 --- !u!195 &1512422048785981258
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1714,7 +1714,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.33
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1731,11 +1731,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3000
-  <WalkSpeed>k__BackingField: 0
-  <AtkTrigDistance>k__BackingField: 0
-  <SpecialAtkTrigDistance>k__BackingField: 0
+  <WalkSpeed>k__BackingField: 3
+  <AtkTrigDistance>k__BackingField: 2
+  <SpecialAtkTrigDistance>k__BackingField: 10
   simpleAttackCount: 3
   specialAttackCount: 2
+  <AttackSpecialTriggerChance>k__BackingField: 50
 --- !u!1 &3823283205107225199
 GameObject:
   m_ObjectHideFlags: 0

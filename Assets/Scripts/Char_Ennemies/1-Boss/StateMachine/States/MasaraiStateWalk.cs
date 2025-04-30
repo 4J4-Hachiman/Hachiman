@@ -6,19 +6,20 @@ using UnityEngine.AI;
 public class MasaraiStateWalk : MasaraiBaseState
 {
     // public event Action OnCloseToPLayer;
-    public event Action<MasaraiMain.AttackType> OnTriggerAttack;
+    public event Action<MasaraiMain.AttackType, int> OnTriggerAttack;
     private readonly Animator mainAnimator;
     private readonly NavMeshAgent mainNavAgent;
     private bool attackedTriggered;
+    private float timeout;
 
-    public MasaraiStateWalk(MasaraiStateMachine masaraiSM, MasaraiMain main, Animator mainAnimator, NavMeshAgent mainNavAgent) : base(masaraiSM, main) 
-    { 
+    public MasaraiStateWalk(MasaraiStateMachine masaraiSM, MasaraiMain main, Animator mainAnimator, NavMeshAgent mainNavAgent) : base(masaraiSM, main)
+    {
         this.mainAnimator = mainAnimator;
         this.mainNavAgent = mainNavAgent;
     }
 
-    public override void StateStart(bool init = false) 
-    { 
+    public override void StateStart(bool init = false)
+    {
         // Debug.Log("Entered walk state");
         mainAnimator.applyRootMotion = true;
         mainNavAgent.updatePosition = false;
@@ -28,11 +29,11 @@ public class MasaraiStateWalk : MasaraiBaseState
 
     public override void StateExit() { }
 
-    public override void StateUpdate() 
-    { 
+    public override void StateUpdate()
+    {
         if ((main.Player.position - main.transform.position).sqrMagnitude < main.AtkTrigDistance)
         {
-            OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Simple);
+            OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Simple, -1);
             attackedTriggered = true;
         }
 
@@ -53,24 +54,34 @@ public class MasaraiStateWalk : MasaraiBaseState
         while (!attackedTriggered)
         {
             interval -= 1 * Time.deltaTime;
-            
-            if ((main.Player.position - main.transform.position).sqrMagnitude < main.SpecialAtkTrigDistance && interval < 0)
+            if (interval > 0)
             {
-                // Debug.Log("<color=orange>Checking for special attack trigger</color>");
-                // bool trig = UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance; 
-                if (UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance)
+                yield return null;
+            }
+
+            interval = 1;
+
+            if ((main.Player.position - main.transform.position).sqrMagnitude > main.SpecialAtkTrigDistance)
+            {
+                yield return null;
+            }
+
+            if (UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance)
+            {
+                attackedTriggered = true;
+
+                if ((main.Player.position - main.transform.position).sqrMagnitude < 26f)
                 {
-                    Debug.Log("Triggering Special Attack");
-                    attackedTriggered = true;
-                    OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special);
+                    OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special, -1);
                     yield break;
                 }
 
-                interval = 1;
+                OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special, (int)MasaraiMain.AttackSpecial.Smash);
+                yield break;
             }
+
             yield return null;
         }
-        // Debug.Log("Stopped special attack coroutine");
         yield break;
     }
 }

@@ -1780,21 +1780,25 @@ PrefabInstance:
       value: Masarai
       objectReference: {fileID: 0}
     - target: {fileID: 6728979981821947289, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
-      propertyPath: <WalkSpeed>k__BackingField
-      value: 3
+      propertyPath: limbs.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6728979981821947289, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
-      propertyPath: <AtkTrigDistance>k__BackingField
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: 'limbs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 564242940}
     - target: {fileID: 6728979981821947289, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
-      propertyPath: <SpecialAtkTrigDistance>k__BackingField
-      value: 6
-      objectReference: {fileID: 0}
+      propertyPath: 'limbs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1348148432}
     - target: {fileID: 6728979981821947289, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
-      propertyPath: <AttackSpecialTriggerChance>k__BackingField
-      value: 50
-      objectReference: {fileID: 0}
+      propertyPath: 'limbs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1217677286}
+    - target: {fileID: 6728979981821947289, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+      propertyPath: 'limbs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1381350362}
     - target: {fileID: 8224135232122516287, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 160.35
@@ -1837,7 +1841,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8224135232122516287, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1658982077}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
 --- !u!1 &259161279
@@ -2686,6 +2693,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1082675872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &390998884 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8224135232122516287, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+  m_PrefabInstance: {fileID: 253522570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &413145809
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,6 +4137,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546234330}
   m_CullTransparentMesh: 1
+--- !u!4 &564242940 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2533025007557910796, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+  m_PrefabInstance: {fileID: 253522570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &566903207
 GameObject:
   m_ObjectHideFlags: 0
@@ -8747,6 +8764,11 @@ RectTransform:
   m_AnchoredPosition: {x: 390, y: 219.5}
   m_SizeDelta: {x: 780, y: 439}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1217677286 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5172889365699490229, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+  m_PrefabInstance: {fileID: 253522570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1226287721
 GameObject:
   m_ObjectHideFlags: 0
@@ -9506,6 +9528,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324732003}
   m_CullTransparentMesh: 1
+--- !u!4 &1348148432 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4207119688459543724, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+  m_PrefabInstance: {fileID: 253522570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1348779118
 GameObject:
   m_ObjectHideFlags: 0
@@ -9842,6 +9869,11 @@ RectTransform:
   m_AnchoredPosition: {x: -4.999939, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1381350362 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6808464036186291032, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+  m_PrefabInstance: {fileID: 253522570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1384003489
 GameObject:
   m_ObjectHideFlags: 0
@@ -12110,6 +12142,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650210453}
   m_CullTransparentMesh: 1
+--- !u!1 &1658982076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1658982077}
+  - component: {fileID: 1658982078}
+  - component: {fileID: 1658982079}
+  m_Layer: 8
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1658982077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658982076}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.791, y: 1.337, z: -0.023}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 390998884}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1658982078
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658982076}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 5111
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1658982079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658982076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4cdfc724424d994a9e4c8b3d24c2488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BasicDammage>k__BackingField: 100
+  <HeavyDammage>k__BackingField: 200
+  <CritChance>k__BackingField: 0
+  <CritDamage>k__BackingField: 1
 --- !u!1 &1661159972
 GameObject:
   m_ObjectHideFlags: 0
