@@ -5,12 +5,10 @@ using UnityEngine.AI;
 
 public class MasaraiStateWalk : MasaraiBaseState
 {
-    // public event Action OnCloseToPLayer;
     public event Action<MasaraiMain.AttackType, int> OnTriggerAttack;
     private readonly Animator mainAnimator;
     private readonly NavMeshAgent mainNavAgent;
     private bool attackedTriggered;
-    private float timeout;
 
     public MasaraiStateWalk(MasaraiStateMachine masaraiSM, MasaraiMain main, Animator mainAnimator, NavMeshAgent mainNavAgent) : base(masaraiSM, main)
     {
@@ -53,9 +51,9 @@ public class MasaraiStateWalk : MasaraiBaseState
 
         while (!attackedTriggered)
         {
-            interval -= 1 * Time.deltaTime;
-            if (interval > 0)
+            while (interval > 0 )
             {
+                interval -= Time.deltaTime;
                 yield return null;
             }
 
@@ -63,21 +61,19 @@ public class MasaraiStateWalk : MasaraiBaseState
 
             if ((main.Player.position - main.transform.position).sqrMagnitude > main.SpecialAtkTrigDistance)
             {
-                yield return null;
-            }
-
-            if (UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance)
-            {
-                attackedTriggered = true;
-
-                if ((main.Player.position - main.transform.position).sqrMagnitude < 26f)
+                if (UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance)
                 {
+                    attackedTriggered = true;
+
+                    if ((main.Player.position - main.transform.position).sqrMagnitude > main.SpecialAtkTrigDistance * 1.5f)
+                    {
+                        OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special, (int)MasaraiMain.AttackSpecial.Smash);
+                        yield break;
+                    }
+
                     OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special, -1);
                     yield break;
                 }
-
-                OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special, (int)MasaraiMain.AttackSpecial.Smash);
-                yield break;
             }
 
             yield return null;

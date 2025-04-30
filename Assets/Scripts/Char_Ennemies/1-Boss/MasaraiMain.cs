@@ -22,7 +22,9 @@ public class MasaraiMain : MonoBehaviour
     private Animator animator;
 
     [field: SerializeField] private Transform[] limbs; 
-    
+    [field: SerializeField] private Transform hitbox;
+    private SphereCollider hitboxCollider;
+
     [Header("Data")]
     [field: SerializeField] private float hp;
     [field: SerializeField] public float WalkSpeed { get; private set; }
@@ -88,6 +90,9 @@ public class MasaraiMain : MonoBehaviour
 
         AtkTrigDistance *= AtkTrigDistance;
         SpecialAtkTrigDistance *= SpecialAtkTrigDistance;
+
+        hitboxCollider = hitbox.GetComponent<SphereCollider>();
+        hitboxCollider.enabled = false;
 
         stateMachine = new MasaraiStateMachine();
         stateWalk = new MasaraiStateWalk(stateMachine, this, animator, agent);
@@ -166,5 +171,17 @@ public class MasaraiMain : MonoBehaviour
     private void OnSpecialAttackCharge()
     {
         // Debug.Log("Attack charged");
+    }
+
+    private void OnAttackHitStart(int limbIndex)
+    {
+        hitbox.parent = limbs[limbIndex];
+        hitbox.position = limbs[limbIndex].position;
+        hitboxCollider.enabled = true;
+    }
+
+    private void OnAttackHitEnd()
+    {
+        hitboxCollider.enabled = false;
     }
 }

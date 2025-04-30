@@ -8,9 +8,8 @@ public class MasaraiStateAttack : MasaraiBaseState
 {
     private readonly Animator mainAnimator;
     private readonly NavMeshAgent mainNavAgent;
-    private float waitTime;
-
     private readonly Dictionary<(int, int), Action> attacks;
+    private bool trackPlayer = true;
 
     public MasaraiStateAttack(MasaraiStateMachine masaraiSM, MasaraiMain main, Animator mainAnimator, NavMeshAgent mainNavAgent) : base(masaraiSM, main)
     {
@@ -30,7 +29,6 @@ public class MasaraiStateAttack : MasaraiBaseState
     public override void StateStart(bool init = false)
     {
         mainAnimator.SetBool(main.ParamAttackSpecialPlay, false);
-        waitTime = 2;
         mainNavAgent.updatePosition = false;
         mainAnimator.SetInteger("AttackType", (int)main.CurrentAttackType);
         mainAnimator.SetInteger("AttackIndex", main.AttackIndex);
@@ -41,7 +39,13 @@ public class MasaraiStateAttack : MasaraiBaseState
 
     public override void StateUpdate() { }
 
-    public override void StateFixedUpdate() { }
+    public override void StateFixedUpdate() 
+    { 
+        if (trackPlayer)
+        {
+            main.LookAtPlayer();
+        }
+    }
 
     /* ====================== SIMPLE ATTACKS ====================== */
     private void SimpleUppercut()
@@ -49,6 +53,7 @@ public class MasaraiStateAttack : MasaraiBaseState
         Debug.Log("Current attack = simple uppercut");
         mainAnimator.applyRootMotion = true;
         mainAnimator.SetTrigger("Attack");
+        trackPlayer = false; 
         main.LookAtPlayer();
     }
 
@@ -57,6 +62,7 @@ public class MasaraiStateAttack : MasaraiBaseState
         Debug.Log("Current attack = simple kick");
         mainAnimator.applyRootMotion = true;
         mainAnimator.SetTrigger("Attack");
+        trackPlayer = false; 
         main.LookAtPlayer();
     }
 
@@ -65,6 +71,7 @@ public class MasaraiStateAttack : MasaraiBaseState
         Debug.Log("Current attack = simple stomp");
         mainAnimator.applyRootMotion = true;
         mainAnimator.SetTrigger("Attack");
+        trackPlayer = false; 
         main.LookAtPlayer();
     }
 
@@ -76,10 +83,12 @@ public class MasaraiStateAttack : MasaraiBaseState
         mainAnimator.SetTrigger("Attack");
         mainAnimator.applyRootMotion = false;
         mainNavAgent.enabled = false;
+        trackPlayer = false;
         yield return new WaitForSeconds(3);
         mainAnimator.SetBool("AttackSpecialPlay", true);
         Vector3 p1 = main.transform.position;
         p1.y = 0;
+
         Vector3 p2 = main.Player.position;
         float time = 0.75f;
         float delta = Vector3.Distance(p2, main.transform.position) / time;
@@ -115,8 +124,16 @@ public class MasaraiStateAttack : MasaraiBaseState
         mainAnimator.SetInteger("AttackIndex", (int)MasaraiMain.AttackSpecial.Tatsumaki);
         mainAnimator.SetTrigger("Attack");
         mainAnimator.applyRootMotion = true;
-        yield return new WaitForSeconds(waitTime);
+        trackPlayer = true;
+        yield return new WaitForSeconds(1);
         mainAnimator.SetTrigger(main.ParamAttckSpecialStart);
         main.LookAtPlayer();
+        
+        while ((main.Player.position - main.transform.position).sqrMagnitude > 5f)
+        {
+            yield return null;
+        }
+
+        trackPlayer = false;
     }
 }
