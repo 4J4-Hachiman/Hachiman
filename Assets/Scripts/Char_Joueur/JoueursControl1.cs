@@ -1088,6 +1088,17 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy Weapon"))
         {
+            if (state == HachimanState.Rolling)
+            {
+                Debug.Log(health);
+            }
+            else
+            {
+                
+            // Vector3 direction = lockOnTarget.position - transform.position;
+            // direction.y = 0;
+            // transform.rotation = Quaternion.LookRotation(direction);
+
             Debug.Log("Hit by an Enemy Weapon!");
             if (state == HachimanState.Guarding)
             {
@@ -1115,10 +1126,6 @@ public class JoueursControl1 : MonoBehaviour
                     activeKatana.GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sSwordClash2);
                 }
             }
-            else if (state == HachimanState.Rolling)
-            {
-                Debug.Log(health);
-            }
             else 
             {
                 if(!isDead)
@@ -1142,8 +1149,8 @@ public class JoueursControl1 : MonoBehaviour
                     }
                 }
             }
+            }
         }
-        
     }
 
     void OnTriggerStay(Collider collision)
