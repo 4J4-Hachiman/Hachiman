@@ -12518,6 +12518,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnnemiManequin
       objectReference: {fileID: 0}
+    - target: {fileID: 158105741492713206, guid: 9a0f27abffb2a5543a60ac742f815d03, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 682969314448321612, guid: 9a0f27abffb2a5543a60ac742f815d03, type: 3}
       propertyPath: m_LocalPosition.x
       value: 144.49135
@@ -20530,6 +20534,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!1 &776574503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7979333368400802138, guid: d9b5cb56222916046af81ce87a6ece86, type: 3}
+  m_PrefabInstance: {fileID: 829378609}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &783843497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21326,6 +21335,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1237854270452517729, guid: d9b5cb56222916046af81ce87a6ece86, type: 3}
+      propertyPath: layerDetection.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3243613593068827059, guid: d9b5cb56222916046af81ce87a6ece86, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -21373,6 +21386,10 @@ PrefabInstance:
     - target: {fileID: 7979333368400802138, guid: d9b5cb56222916046af81ce87a6ece86, type: 3}
       propertyPath: m_Name
       value: Ennemi1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979333368400802138, guid: d9b5cb56222916046af81ce87a6ece86, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36378,7 +36395,7 @@ PrefabInstance:
     - target: {fileID: 8858679519538922145, guid: 29d72b6526cbdef448bee51be3b0d2dd, type: 3}
       propertyPath: enemyInstance
       value: 
-      objectReference: {fileID: 7979333368400802138, guid: d9b5cb56222916046af81ce87a6ece86, type: 3}
+      objectReference: {fileID: 776574503}
     - target: {fileID: 8858679519538922145, guid: 29d72b6526cbdef448bee51be3b0d2dd, type: 3}
       propertyPath: hpBarInstance
       value: 
