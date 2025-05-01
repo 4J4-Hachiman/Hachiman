@@ -8,13 +8,15 @@ public class MasaraiStateAttack : MasaraiBaseState
 {
     private readonly Animator mainAnimator;
     private readonly NavMeshAgent mainNavAgent;
+    private readonly SphereCollider mainHitBox;
     private readonly Dictionary<(int, int), Action> attacks;
     private bool trackPlayer = true;
 
-    public MasaraiStateAttack(MasaraiStateMachine masaraiSM, MasaraiMain main, Animator mainAnimator, NavMeshAgent mainNavAgent) : base(masaraiSM, main)
+    public MasaraiStateAttack(MasaraiStateMachine masaraiSM, MasaraiMain main, Animator mainAnimator, NavMeshAgent mainNavAgent, SphereCollider mainHitBox) : base(masaraiSM, main)
     {
         this.mainAnimator = mainAnimator;
         this.mainNavAgent = mainNavAgent;
+        this.mainHitBox = mainHitBox;
 
         attacks = new Dictionary<(int, int), Action>
         {
@@ -49,8 +51,8 @@ public class MasaraiStateAttack : MasaraiBaseState
 
     /* ====================== SIMPLE ATTACKS ====================== */
     private void SimpleUppercut()
-    {
-        Debug.Log("Current attack = simple uppercut");
+    {   
+        mainHitBox.radius = 0.35f;
         mainAnimator.applyRootMotion = true;
         mainAnimator.SetTrigger("Attack");
         trackPlayer = false; 
@@ -59,7 +61,7 @@ public class MasaraiStateAttack : MasaraiBaseState
 
     private void SimpleKick()
     {
-        Debug.Log("Current attack = simple kick");
+        mainHitBox.radius = 0.35f;
         mainAnimator.applyRootMotion = true;
         mainAnimator.SetTrigger("Attack");
         trackPlayer = false; 
@@ -68,7 +70,7 @@ public class MasaraiStateAttack : MasaraiBaseState
 
     private void SimpleStomp()
     {
-        Debug.Log("Current attack = simple stomp");
+        mainHitBox.radius = 1.25f;
         mainAnimator.applyRootMotion = true;
         mainAnimator.SetTrigger("Attack");
         trackPlayer = false; 
@@ -79,7 +81,7 @@ public class MasaraiStateAttack : MasaraiBaseState
 
     private IEnumerator SpecialSmash()
     {
-        // Debug.Log("Current attack = Special Smash");
+        mainHitBox.radius = 2.75f;
         mainAnimator.SetTrigger("Attack");
         mainAnimator.applyRootMotion = false;
         mainNavAgent.enabled = false;
@@ -121,6 +123,7 @@ public class MasaraiStateAttack : MasaraiBaseState
     
     private IEnumerator SpecialTatsumaki()
     {
+        mainHitBox.radius = 1.5f;
         mainAnimator.SetInteger("AttackIndex", (int)MasaraiMain.AttackSpecial.Tatsumaki);
         mainAnimator.SetTrigger("Attack");
         mainAnimator.applyRootMotion = true;

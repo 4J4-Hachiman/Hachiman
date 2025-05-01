@@ -20,14 +20,17 @@ public class Sword : MonoBehaviour
     [field: SerializeField] public float HeavyDammage { get; private set; } = 200;
     [field: SerializeField] public float CritChance { get; private set; } = 0;
     [field: SerializeField] public float CritDamage { get; private set; } = 1;
-    // [field: SerializeField] private LayerMask layerDetection;
+    [field: SerializeField] private LayerMask layerDetection;
 
-    // void Awake()
-    // {
-    //     GetComponent<CapsuleCollider>().includeLayers = layerDetection;
-    //     GetComponent<CapsuleCollider>().excludeLayers = ~layerDetection;
-    // }
-    
+    void Awake()
+    {
+        if (TryGetComponent(out Collider collider))
+        {
+            collider.includeLayers = layerDetection;
+            collider.excludeLayers = ~layerDetection;
+        }
+    }
+
     public float GetDammage()
     {
         return CritChance > Random.Range(1, 100) ? BasicDammage * CritDamage : BasicDammage;

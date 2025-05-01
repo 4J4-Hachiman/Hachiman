@@ -21,7 +21,7 @@ public class MasaraiMain : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
 
-    [field: SerializeField] private Transform[] limbs; 
+    [field: SerializeField] private Transform[] limbs;
     [field: SerializeField] private Transform hitbox;
     private SphereCollider hitboxCollider;
 
@@ -33,7 +33,7 @@ public class MasaraiMain : MonoBehaviour
 
     /* =================== Anim params =================== */
     public int ParamVtotal { get; private set; }
-    public int ParamAttckSpecialStart {get; private set; }
+    public int ParamAttckSpecialStart { get; private set; }
     public int ParamAttackIndex { get; private set; }
     public int ParamAttackSpecialPlay { get; private set; }
 
@@ -42,7 +42,7 @@ public class MasaraiMain : MonoBehaviour
     [field: SerializeField] private int simpleAttackCount;
     [field: SerializeField] private int specialAttackCount;
     public int AttackIndex { get; private set; }
-    
+
     [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
 
     /* ================== State Machine ================== */
@@ -57,7 +57,7 @@ public class MasaraiMain : MonoBehaviour
         Simple,
         Special
     }
-    
+
     public enum AttackSimple
     {
         Uppercut,
@@ -96,7 +96,7 @@ public class MasaraiMain : MonoBehaviour
 
         stateMachine = new MasaraiStateMachine();
         stateWalk = new MasaraiStateWalk(stateMachine, this, animator, agent);
-        stateAttack = new MasaraiStateAttack(stateMachine, this, animator, agent);
+        stateAttack = new MasaraiStateAttack(stateMachine, this, animator, agent, hitboxCollider);
 
         stateMachine.Initalize(stateWalk);
         stateWalk.OnTriggerAttack += OnTriggerAttack;
@@ -112,13 +112,31 @@ public class MasaraiMain : MonoBehaviour
         stateMachine.Current.StateFixedUpdate();
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log("<color=orange>Tapped Hachiman</orange>");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
+        {
+
+            if (TryGetComponent(out Sword sword))
+            {
+                hp = sword.GetDammage();
+                Debug.Log("<color=red>Masarai was hit by player</color>");
+            }
+        }
+    }
+
     private void OnAnimatorMove()
     {
         if (!animator.applyRootMotion)
         {
             return;
         }
-        
+
         transform.position += animator.deltaPosition;
         agent.nextPosition = transform.position;
     }
@@ -137,14 +155,14 @@ public class MasaraiMain : MonoBehaviour
         }
 
         if (CurrentAttackType == AttackType.Simple)
-        {   
+        {
             AttackIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackSimple)).Length);
         }
         else
         {
             AttackIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackSpecial)).Length);
         }
-        
+
         stateMachine.SwitchState(stateAttack);
     }
 
@@ -161,7 +179,7 @@ public class MasaraiMain : MonoBehaviour
     }
 
     /*************************** ANIMATION EVENTS ***************************/
-    
+
     private void OnAttackAnimationEnd()
     {
         stateMachine.SwitchState(stateWalk);
