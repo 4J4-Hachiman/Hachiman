@@ -1132,8 +1132,14 @@ public class JoueursControl1 : MonoBehaviour
                 {
                     animator.SetBool("Hit", true);
                     GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sEnemyHit2);
-                    health -= 20f;
-                    Debug.Log(health);
+
+                    //health -= 20f;
+                    if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy Weapon"))
+                    {
+                        Debug.Log("<color=red>Was hit by the player</color>");
+                        health -= collision.GetComponent<Sword>().GetDammage();
+                    }
+
                     if(health <= 0)
                     {
                         Death();
@@ -1177,6 +1183,18 @@ public class JoueursControl1 : MonoBehaviour
     {
         // ---------- Sound ---------
         activeKatana.GetComponents<AudioSource>()[4].PlayOneShot(banqueAudio.sSwordAirSwing2);
+    }
+
+    public void soundSwordAirSwing4()
+    {
+        // ---------- Sound ---------
+        activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing3);
+    }
+
+    public void soundSwordSwingHeavy1()
+    {
+        // ---------- Sound ---------
+        activeKatana.GetComponents<AudioSource>()[6].PlayOneShot(banqueAudio.sSwordSwingHeavy1);
     }
     
     public void soundHealing()

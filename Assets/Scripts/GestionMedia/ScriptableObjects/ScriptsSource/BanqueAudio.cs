@@ -71,6 +71,7 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sSwordAirSwing2;
     public AudioClip sSwordAirSwing3;
     public AudioClip sSwordAirSwing4;
+    public AudioClip sSwordSwingHeavy1;
 
     [Header("Effets sonores ennemis")]
     public AudioClip sGruntEnnemis;
