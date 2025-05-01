@@ -34,6 +34,9 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sOuvertureCoffre;
     public AudioClip sGainVie;
     public AudioClip sGainMana;
+    public AudioClip sRockHit;
+    public AudioClip sRockBreak;
+
 
     [Header("Effets sonores Hachiman")]
     public AudioClip sMarcheHachiman;
@@ -42,6 +45,7 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sAtkLegereHachiman;
     public AudioClip sAtkLourdeHachiman;
     public AudioClip sStanceBroken;
+    public AudioClip sHealing;
 
     [Header("Effets sonores Combat")]
     public AudioClip sSwordClash1;

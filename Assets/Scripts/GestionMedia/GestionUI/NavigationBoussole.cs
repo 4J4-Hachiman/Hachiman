@@ -1,9 +1,9 @@
 /*  
- *  Fonctionnement et utilit� g�n�rale du script
+ *  Fonctionnement et utilité générale du script
     
     Script pour le fonctionnement de la boussole et des indicateurs d'ennemis, objectifs et objets
-        Par : Mala�ka Abevi
-        Derni�re modification : 28/03/2025
+        Par : Malaïka Abevi
+        Dernière modification : 28/03/2025
 */
 using UnityEngine;
 
@@ -23,10 +23,10 @@ public class NavigationBoussole : MonoBehaviour
         refOrientation.localEulerAngles = new Vector3(0, cam.transform.localEulerAngles.y, 0);
         refOrientation.position = joueur.transform.position;
 
-        //On d�termine la direction du joueur par rapport � l'ennemi
+        //On détermine la direction du joueur par rapport à l'ennemi
         positionEnnemi.y = joueur.transform.position.y;
         Vector3 direction = (positionEnnemi - (joueur.transform.position)).normalized;
-        //Puis on r�cup�re l'angle entre la direction (axe z) du joueur et l'ennemi
+        //Puis on récupére l'angle entre la direction (axe z) du joueur et l'ennemi
         //direction.y = 0;
         float angle = (Vector3.SignedAngle(direction, refOrientation.transform.forward, Vector3.up));
         
@@ -35,7 +35,7 @@ public class NavigationBoussole : MonoBehaviour
         
 
         //######################Gestion de la boussole
-        //On applique l'angle en Z du monde 3D � la boussole en 2d, donc Y pour la correspondance visuelle
+        //On applique l'angle en Z du monde 3D à la boussole en 2d, donc Y pour la correspondance visuelle
         directionMonde.z = cam.transform.eulerAngles.y;
         boussole.transform.localEulerAngles = directionMonde;
         //Debug.LogError(cam.transform.localEulerAngles);
@@ -47,10 +47,10 @@ public class NavigationBoussole : MonoBehaviour
         refOrientation.localEulerAngles = new Vector3(0, cam.transform.localEulerAngles.y, 0);
         refOrientation.position = joueur.transform.position;
 
-        //On d�termine la direction du joueur par rapport � l'ennemi
+        //On détermine la direction du joueur par rapport à l'ennemi
         positionEnnemi.y = joueur.transform.position.y;
         Vector3 direction = (positionEnnemi - (joueur.transform.position)).normalized;
-        //Puis on r�cup�re l'angle entre la direction (axe z) du joueur et l'ennemi
+        //Puis on récupére l'angle entre la direction (axe z) du joueur et l'ennemi
         //direction.y = 0;
         float angle = (Vector3.SignedAngle(direction, refOrientation.transform.forward, Vector3.up));
         
@@ -59,7 +59,7 @@ public class NavigationBoussole : MonoBehaviour
         
 
         //######################Gestion de la boussole
-        //On applique l'angle en Z du monde 3D � la boussole en 2d, donc Y pour la correspondance visuelle
+        //On applique l'angle en Z du monde 3D à la boussole en 2d, donc Y pour la correspondance visuelle
         directionMonde.z = cam.transform.eulerAngles.y;
         boussole.transform.localEulerAngles = directionMonde;
         //Debug.LogError(cam.transform.localEulerAngles);
