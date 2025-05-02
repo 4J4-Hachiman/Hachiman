@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
 
-public class Gamemanager : MonoBehaviour
+public class Gamemanager : MonoBehaviour, IDataSaveable
 {       
     public static Gamemanager gamemanagerInstance; 
     private Transform player;
@@ -151,5 +151,17 @@ public class Gamemanager : MonoBehaviour
         {
             enemyPool.ReturnToPool(deadEnemies.Dequeue());
         }
+    }
+
+
+    /* IDataSaveable Interface */
+    public void LoadData(GameData data)
+    {
+        player.position = data.playerPosition;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = player.position;
     }
 }
