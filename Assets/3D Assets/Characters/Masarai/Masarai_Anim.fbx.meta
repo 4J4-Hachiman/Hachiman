@@ -1,0 +1,1378 @@
+fileFormatVersion: 2
+guid: 3ffd420d200ab3e4980e759346fa6c46
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Tatsumaki_Middle' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Masarai_RightLeg' has translation animation
+      that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      internalID: 2667949614841947897
+      firstFrame: 0
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0.06
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      internalID: -3100369314251171874
+      firstFrame: 63
+      lastFrame: 183
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0.06
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 63
+    - serializedVersion: 16
+      name: Tatsumaki_Charge
+      takeName: Tatsumaki_Charge
+      internalID: -5542777134471090678
+      firstFrame: 184
+      lastFrame: 223
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0.06
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 184
+    - serializedVersion: 16
+      name: Tatsumaki_Middle
+      takeName: Tatsumaki_Middle
+      internalID: -7178156818091566829
+      firstFrame: 224
+      lastFrame: 279
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 224
+    - serializedVersion: 16
+      name: Tatsumaki_End
+      takeName: Tatsumaki_End
+      internalID: -4119922624944175837
+      firstFrame: 280
+      lastFrame: 315
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 280
+    - serializedVersion: 16
+      name: Attack_Simple_1
+      takeName: Attack_Simple_1
+      internalID: 6091887800017173097
+      firstFrame: 316
+      lastFrame: 373
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: OnAttackAnimationEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 316
+    - serializedVersion: 16
+      name: Attack_Simple_2
+      takeName: Attack_Simple_2
+      internalID: 4439382201270854958
+      firstFrame: 374
+      lastFrame: 464
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: OnAttackAnimationEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 374
+    - serializedVersion: 16
+      name: Attack_Simple_3
+      takeName: Attack_Simple_3
+      internalID: 1744114555813605885
+      firstFrame: 465
+      lastFrame: 539
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: OnAttackAnimationEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 465
+    - serializedVersion: 16
+      name: Special_Attack_Slam_Start
+      takeName: Special_Attack_Slam_Start
+      internalID: 580402905511773309
+      firstFrame: 540
+      lastFrame: 570
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 540
+    - serializedVersion: 16
+      name: Special_Attack_Slam_Jump
+      takeName: Special_Attack_Slam_Jump
+      internalID: 2978340412893244161
+      firstFrame: 571
+      lastFrame: 587
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 571
+    - serializedVersion: 16
+      name: Special_Attack_Slam_Middle
+      takeName: Special_Attack_Slam_Middle
+      internalID: -5772104202426959834
+      firstFrame: 588
+      lastFrame: 708
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 588
+    - serializedVersion: 16
+      name: Special_Attack_Slam_Impact
+      takeName: Special_Attack_Slam_Impact
+      internalID: -6312452484652820465
+      firstFrame: 709
+      lastFrame: 739
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 709
+    - serializedVersion: 16
+      name: Special_Attack_Slam_After_Wait
+      takeName: Special_Attack_Slam_After_Wait
+      internalID: 1525195718168187639
+      firstFrame: 740
+      lastFrame: 860
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 740
+    - serializedVersion: 16
+      name: Special_Attack_Slam_After_Rise
+      takeName: Special_Attack_Slam_After_Rise
+      internalID: 5311797129552352683
+      firstFrame: 861
+      lastFrame: 1018
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 861
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Masarai_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandMiddle3
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandMiddle3
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Masarai_Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Masarai(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mesh
+      parentName: Masarai(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead01
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead02
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead03
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead04
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead05
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead06
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead07
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead08
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead09
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_bead10
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_protegeBras
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_ceinture
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_chapeau
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_corps
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_getaD
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_getaG
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_masque
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_vest
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_yeux
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _Mesh_pants
+      parentName: Mesh
+      position: {x: -0.00024223728, y: 0.07899661, z: -0.95750064}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_Reference
+      parentName: Masarai(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_Hips
+      parentName: Masarai_Reference
+      position: {x: 5.9863657e-18, y: 1.2398306, z: -1.07001205e-17}
+      rotation: {x: 0.19614111, y: 0.13361456, z: 0.8028466, w: 0.5469124}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftUpLeg
+      parentName: Masarai_Hips
+      position: {x: -1.4210854e-16, y: 0.20342687, z: -5.5437992e-17}
+      rotation: {x: -0.03705771, y: -0.058951497, z: 0.53090537, w: 0.8445656}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftLeg
+      parentName: Masarai_LeftUpLeg
+      position: {x: -7.105427e-17, y: 0.5591462, z: 3.5527136e-17}
+      rotation: {x: -0.067101024, y: 0.8154477, z: -0.047149956, w: 0.5729916}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftFoot
+      parentName: Masarai_LeftLeg
+      position: {x: -1.0658141e-16, y: 0.49487495, z: -1.4210854e-16}
+      rotation: {x: -0.6342064, y: 0.76304346, z: 0.079699375, w: -0.09589006}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftToeBase
+      parentName: Masarai_LeftFoot
+      position: {x: -1.0658141e-16, y: 0.2615791, z: 2.1316282e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightUpLeg
+      parentName: Masarai_Hips
+      position: {x: -0.109131254, y: -0.07399761, z: 0.15491034}
+      rotation: {x: -0.30551416, y: 0.37797216, z: 0.54204005, w: 0.6855588}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightLeg
+      parentName: Masarai_RightUpLeg
+      position: {x: 1.7763567e-16, y: 0.5591462, z: 1.7763567e-16}
+      rotation: {x: -0.067101024, y: -0.8154477, z: 0.047149956, w: 0.5729916}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightFoot
+      parentName: Masarai_RightLeg
+      position: {x: -3.5527136e-17, y: 0.49487495, z: -2.842171e-16}
+      rotation: {x: 0.6342064, y: 0.76304346, z: 0.079699375, w: 0.09589006}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightToeBase
+      parentName: Masarai_RightFoot
+      position: {x: 3.7303492e-16, y: 0.2615791, z: 7.105427e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_Spine
+      parentName: Masarai_Hips
+      position: {x: 0.123358466, y: -0.07521501, z: -0.04779682}
+      rotation: {x: 0.7623071, y: 0.38656765, z: 0.38795105, w: -0.34488738}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_Spine1
+      parentName: Masarai_Spine
+      position: {x: -0, y: 0.15921167, z: 7.453241e-17}
+      rotation: {x: 0, y: 0, z: -0.087211855, w: 0.9961898}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_Spine2
+      parentName: Masarai_Spine1
+      position: {x: 1.7763568e-17, y: 0.21282952, z: 3.0642155e-16}
+      rotation: {x: 0.590062, y: 0.7783856, z: 0.12948479, w: 0.170811}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightShoulder
+      parentName: Masarai_Spine2
+      position: {x: 0.019943314, y: 0.147594, z: 0.16012317}
+      rotation: {x: -0.5873137, y: 0.23235689, z: 0.69287854, w: -0.3478395}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightArm
+      parentName: Masarai_RightShoulder
+      position: {x: -1.4210854e-16, y: 0.3109368, z: -5.684342e-16}
+      rotation: {x: 0.1576593, y: -0.7513856, z: 0.041151542, w: 0.6394292}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightForeArm
+      parentName: Masarai_RightArm
+      position: {x: 1.4210854e-16, y: 0.3501768, z: 1.4210854e-16}
+      rotation: {x: 0.0167226, y: 0.53446716, z: 0.04361408, w: 0.84389746}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHand
+      parentName: Masarai_RightForeArm
+      position: {x: 2.842171e-16, y: 0.32495624, z: 2.1316282e-16}
+      rotation: {x: 0.29254282, y: -0.54467, z: -0.3718991, w: 0.69241923}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandThumb1
+      parentName: Masarai_RightHand
+      position: {x: 1.0658141e-16, y: 0.079504825, z: -2.842171e-16}
+      rotation: {x: 0.1648684, y: 0.2339081, z: 0.25178513, w: 0.9245051}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandThumb2
+      parentName: Masarai_RightHandThumb1
+      position: {x: 2.842171e-16, y: 0.048188027, z: 1.4210854e-16}
+      rotation: {x: -0.0049680066, y: -0.15287812, z: 0.032097176, w: 0.9877112}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandThumb3
+      parentName: Masarai_RightHandThumb2
+      position: {x: -0, y: 0.047851145, z: 0}
+      rotation: {x: -0.030190313, y: 0.7558551, z: -0.026103115, w: 0.65352136}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandThumb4
+      parentName: Masarai_RightHandThumb3
+      position: {x: -0, y: 0.055559877, z: 1.4210854e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandIndex1
+      parentName: Masarai_RightHand
+      position: {x: -0.124908604, y: 0.10957834, z: 0.024075517}
+      rotation: {x: -0.2982961, y: 0.61358416, z: 0.32324922, w: 0.6557774}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandIndex2
+      parentName: Masarai_RightHandIndex1
+      position: {x: 2.842171e-16, y: 0.05658232, z: 1.4210854e-16}
+      rotation: {x: 0.009420871, y: -0.26009086, z: -0.03494489, w: 0.9649056}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandIndex3
+      parentName: Masarai_RightHandIndex2
+      position: {x: -0, y: 0.03427474, z: -9.325873e-17}
+      rotation: {x: -0.018681878, y: -0.4516133, z: 0.036867518, w: 0.891256}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandIndex4
+      parentName: Masarai_RightHandIndex3
+      position: {x: -2.842171e-16, y: 0.04248791, z: 2.842171e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandMiddle1
+      parentName: Masarai_RightHand
+      position: {x: -0.14405209, y: 0.07866084, z: 0.005787015}
+      rotation: {x: -0.24403793, y: 0.37308884, z: 0.4014836, w: 0.8000382}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandMiddle2
+      parentName: Masarai_RightHandMiddle1
+      position: {x: -0, y: 0.06280734, z: -7.160938e-17}
+      rotation: {x: -0.005495435, y: 0.13807562, z: -0.039387178, w: 0.98962295}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandMiddle3
+      parentName: Masarai_RightHandMiddle2
+      position: {x: 5.684342e-16, y: 0.043604698, z: 2.1316282e-16}
+      rotation: {x: -0.01123077, y: -0.6417308, z: 0.013418355, w: 0.7667303}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandMiddle4
+      parentName: Masarai_RightHandMiddle3
+      position: {x: -0, y: 0.04163197, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandRing1
+      parentName: Masarai_RightHand
+      position: {x: -0.15416087, y: 0.0468899, z: -0.018078074}
+      rotation: {x: -0.23629637, y: 0.3093815, z: 0.4386798, w: 0.8099426}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandRing2
+      parentName: Masarai_RightHandRing1
+      position: {x: 2.842171e-16, y: 0.06679386, z: -6.217249e-17}
+      rotation: {x: -0.0015044508, y: 0.03648719, z: -0.041177396, w: 0.99848425}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandRing3
+      parentName: Masarai_RightHandRing2
+      position: {x: -0, y: 0.03881334, z: 0}
+      rotation: {x: -0.000384812, y: -0.31518918, z: 0.001158661, w: 0.9490281}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandRing4
+      parentName: Masarai_RightHandRing3
+      position: {x: -5.684342e-16, y: 0.032711487, z: -2.842171e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandPinky1
+      parentName: Masarai_RightHand
+      position: {x: -0.15430525, y: 0.021778988, z: -0.054492682}
+      rotation: {x: -0.10909162, y: 0.07049556, z: 0.5133853, w: 0.8482718}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandPinky2
+      parentName: Masarai_RightHandPinky1
+      position: {x: -1.4210854e-16, y: 0.051405452, z: 0}
+      rotation: {x: -0.006227948, y: 0.15543517, z: -0.039546266, w: 0.98703456}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandPinky3
+      parentName: Masarai_RightHandPinky2
+      position: {x: -0, y: 0.031404637, z: 0}
+      rotation: {x: 0.003097817, y: -0.07827058, z: -0.039392028, w: 0.9961488}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_RightHandPinky4
+      parentName: Masarai_RightHandPinky3
+      position: {x: -0, y: 0.026744964, z: -7.105427e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftShoulder
+      parentName: Masarai_Spine2
+      position: {x: 2.842171e-16, y: 0.21868049, z: 5.3290704e-17}
+      rotation: {x: 0.46910864, y: 0.5263765, z: -0.4714827, w: -0.52968764}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftArm
+      parentName: Masarai_LeftShoulder
+      position: {x: -1.4210854e-16, y: 0.3109368, z: 8.5265126e-16}
+      rotation: {x: 0.15765919, y: 0.75138557, z: -0.041151386, w: 0.63942933}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftForeArm
+      parentName: Masarai_LeftArm
+      position: {x: -1.4210854e-16, y: 0.3501768, z: 1.4210854e-16}
+      rotation: {x: 0.01672238, y: -0.5344672, z: -0.043614153, w: 0.8438975}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHand
+      parentName: Masarai_LeftForeArm
+      position: {x: -2.842171e-16, y: 0.32495624, z: 1.4210854e-16}
+      rotation: {x: 0.29254282, y: 0.54467, z: 0.3718991, w: 0.69241923}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandThumb1
+      parentName: Masarai_LeftHand
+      position: {x: 3.5527136e-17, y: 0.079504825, z: 2.842171e-16}
+      rotation: {x: 0.16487163, y: -0.2339085, z: -0.25178608, w: 0.92450416}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandThumb2
+      parentName: Masarai_LeftHandThumb1
+      position: {x: 1.4210854e-16, y: 0.048188027, z: 0}
+      rotation: {x: -0.0049680066, y: 0.15287812, z: -0.032097176, w: 0.9877112}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandThumb3
+      parentName: Masarai_LeftHandThumb2
+      position: {x: -2.842171e-16, y: 0.047851145, z: 0}
+      rotation: {x: -0.030190816, y: -0.755855, z: 0.026105104, w: 0.6535214}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandThumb4
+      parentName: Masarai_LeftHandThumb3
+      position: {x: -0, y: 0.055559877, z: -1.4210854e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandIndex1
+      parentName: Masarai_LeftHand
+      position: {x: 0.124908604, y: 0.10957834, z: 0.024075517}
+      rotation: {x: -0.2982967, y: -0.6135838, z: -0.32324973, w: 0.65577704}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandIndex2
+      parentName: Masarai_LeftHandIndex1
+      position: {x: -0, y: 0.05658232, z: 1.4210854e-16}
+      rotation: {x: 0.009420947, y: 0.260091, z: 0.034948956, w: 0.96490544}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandIndex3
+      parentName: Masarai_LeftHandIndex2
+      position: {x: 5.684342e-16, y: 0.03427474, z: 8.8817837e-17}
+      rotation: {x: -0.018684385, y: 0.4516132, z: -0.0368732, w: 0.8912558}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandIndex4
+      parentName: Masarai_LeftHandIndex3
+      position: {x: -0, y: 0.04248791, z: -1.4210854e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandMiddle1
+      parentName: Masarai_LeftHand
+      position: {x: 0.14405209, y: 0.07866084, z: 0.005787015}
+      rotation: {x: -0.24403766, y: -0.37308896, z: -0.40148365, w: 0.8000382}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandMiddle2
+      parentName: Masarai_LeftHandMiddle1
+      position: {x: -2.842171e-16, y: 0.06280734, z: 2.7755574e-18}
+      rotation: {x: -0.005495435, y: -0.13807562, z: 0.039387178, w: 0.98962295}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandMiddle3
+      parentName: Masarai_LeftHandMiddle2
+      position: {x: -2.842171e-16, y: 0.043604698, z: 0}
+      rotation: {x: -0.01123077, y: 0.6417308, z: -0.013418355, w: 0.7667303}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandMiddle4
+      parentName: Masarai_LeftHandMiddle3
+      position: {x: 1.4210854e-16, y: 0.04163197, z: -2.842171e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandRing1
+      parentName: Masarai_LeftHand
+      position: {x: 0.15416087, y: 0.0468899, z: -0.018078074}
+      rotation: {x: -0.23629649, y: -0.30938154, z: -0.4386798, w: 0.80994266}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandRing2
+      parentName: Masarai_LeftHandRing1
+      position: {x: -0, y: 0.06679386, z: 8.8817837e-17}
+      rotation: {x: -0.0015051808, y: -0.036487274, z: 0.041178253, w: 0.99848425}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandRing3
+      parentName: Masarai_LeftHandRing2
+      position: {x: 2.842171e-16, y: 0.03881334, z: -4.4408918e-17}
+      rotation: {x: -0.000384812, y: 0.31518918, z: -0.001158661, w: 0.9490281}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandRing4
+      parentName: Masarai_LeftHandRing3
+      position: {x: 8.5265126e-16, y: 0.032711487, z: -2.842171e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandPinky1
+      parentName: Masarai_LeftHand
+      position: {x: 0.15430525, y: 0.021778988, z: -0.054492682}
+      rotation: {x: -0.1090911, y: -0.07049586, z: -0.5133857, w: 0.84827155}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandPinky2
+      parentName: Masarai_LeftHandPinky1
+      position: {x: -2.842171e-16, y: 0.051405452, z: 0}
+      rotation: {x: -0.0062297867, y: -0.15543534, z: 0.039551724, w: 0.9870343}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandPinky3
+      parentName: Masarai_LeftHandPinky2
+      position: {x: -0, y: 0.031404637, z: 7.105427e-17}
+      rotation: {x: 0.003096432, y: 0.078270696, z: 0.03939952, w: 0.9961485}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_LeftHandPinky4
+      parentName: Masarai_LeftHandPinky3
+      position: {x: 2.842171e-16, y: 0.026744964, z: 7.105427e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_Neck
+      parentName: Masarai_Spine2
+      position: {x: 0.1744263, y: 0.13738309, z: 0.03926628}
+      rotation: {x: 0.46394578, y: 0.85954154, z: 0.15410751, w: -0.1489751}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Masarai_Head
+      parentName: Masarai_Neck
+      position: {x: 1.4210854e-16, y: 0.15925607, z: -3.7726937e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 58dde0f0a0fda2f48be91d35e023d3d6, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

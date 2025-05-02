@@ -46,6 +46,10 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sAtkLourdeHachiman;
     public AudioClip sStanceBroken;
     public AudioClip sHealing;
+    public AudioClip sSheath;
+    public AudioClip sUnsheath;
+    public AudioClip sCrouch;
+
 
     [Header("Effets sonores Combat")]
     public AudioClip sSwordClash1;
@@ -67,6 +71,7 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sSwordAirSwing2;
     public AudioClip sSwordAirSwing3;
     public AudioClip sSwordAirSwing4;
+    public AudioClip sSwordSwingHeavy1;
 
     [Header("Effets sonores ennemis")]
     public AudioClip sGruntEnnemis;
