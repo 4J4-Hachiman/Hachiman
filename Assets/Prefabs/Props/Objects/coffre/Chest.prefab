@@ -94,7 +94,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 129
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 117d16758dabe49478936b2e1887e899, type: 2}
@@ -430,11 +430,13 @@ MonoBehaviour:
   katana: {fileID: 0}
   katanaInChest: {fileID: 0}
   pointLightInChest: {fileID: 3081897123794278095}
-  areaLightInChest: {fileID: 5484957505407420710}
   hand: {fileID: 0}
   chestParent: {fileID: 4734104720055178100}
+  uiInteraction: {fileID: 0}
   hachiman: {fileID: 0}
   animator: {fileID: 0}
+  banqueAudio: {fileID: 0}
+  audioSource: {fileID: 0}
   numbPotionInChest: 2
 --- !u!1 &4734104720055178100
 GameObject:
@@ -820,7 +822,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 129
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 117d16758dabe49478936b2e1887e899, type: 2}
@@ -906,7 +908,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 129
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 117d16758dabe49478936b2e1887e899, type: 2}
@@ -992,7 +994,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 129
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 117d16758dabe49478936b2e1887e899, type: 2}
@@ -1143,7 +1145,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 129
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 117d16758dabe49478936b2e1887e899, type: 2}
