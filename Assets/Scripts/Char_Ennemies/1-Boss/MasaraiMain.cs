@@ -121,11 +121,9 @@ public class MasaraiMain : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
         {
-
-            if (TryGetComponent(out Sword sword))
+            if (other.TryGetComponent(out Sword sword))
             {
-                hp = sword.GetDammage();
-                Debug.Log("<color=red>Masarai was hit by player</color>");
+                hp -= sword.GetDammage();
             }
         }
     }
