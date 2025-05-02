@@ -151,6 +151,9 @@ public class ControlesMenuOptions : MonoBehaviour
         Screen.SetResolution(resolution[OptionsManager.indexResolutionSauve].largeur, resolution[OptionsManager.indexResolutionSauve].largeur, true);
         // Screen.SetResolution(resolutions.resDfaut.x, res.y, true);
         controleurResolution.value = OptionsManager.indexResolutionSauve;
+
+        // Ajustement de l'état des options
+        OptionsManager.optionsSauvegarder = true;
     }
 
     /**********************************************************************************************************************************************************************************************/
