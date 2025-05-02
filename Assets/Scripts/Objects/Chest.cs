@@ -106,7 +106,6 @@ public class Chest : MonoBehaviour
                     instNewKatana.gameObject.SetActive(true);
                     instNewKatana.transform.SetParent(hand.transform);
                     hachiman.activeKatana.gameObject.SetActive(false);
-
                     hachiman.activeKatana = instNewKatana;
                 }
             }
