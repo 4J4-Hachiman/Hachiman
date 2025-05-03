@@ -92,16 +92,17 @@ public class Chest : MonoBehaviour
         else if(!isTaken) 
         {
             Debug.Log("take");
-            isTaken = true;
             if(itemInChest.tag == "Potion")
             {
+                isTaken = true;
                 Debug.Log("potion");
                 hachiman.numbPotion += numbPotionInChest;
             }
             else if(katana != null || katanaInChest != null)
             {
-                if(itemInChest.tag == "Katana")
+                if(itemInChest.tag == "Katana" && hachiman.isArmed)
                 {
+                    isTaken = true;
                     GameObject instNewKatana = Instantiate(newKatana, katana.transform.position, katana.transform.rotation);
                     instNewKatana.gameObject.SetActive(true);
                     instNewKatana.transform.SetParent(hand.transform);
@@ -109,9 +110,12 @@ public class Chest : MonoBehaviour
                     hachiman.activeKatana = instNewKatana;
                 }
             }
+            if(isTaken)
+            {
+                pointLightInChest.gameObject.SetActive(false);
+                itemInChest.SetActive(false);
+            }
             
-            pointLightInChest.gameObject.SetActive(false);
-            itemInChest.SetActive(false);
         }
     }
 
