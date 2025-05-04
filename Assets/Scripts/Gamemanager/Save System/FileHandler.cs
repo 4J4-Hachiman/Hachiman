@@ -1,10 +1,18 @@
+/*
+    Class de gestion des fichiers de sauvegarde 
+    
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 03/05/2025;
+*/
+
 using UnityEngine;
 using System.IO;
 
 public class SaveFileHandler
 {   
-    private string directPath = "";
-    private string fileName = "";
+    private readonly string directPath = "";
+    private readonly string fileName = "";
 
     public SaveFileHandler(string directPath, string fileName)
     {

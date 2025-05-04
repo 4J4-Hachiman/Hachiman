@@ -1317,7 +1317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &186699159
 Transform:
   m_ObjectHideFlags: 0
@@ -1345,6 +1345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85440e7ad1d45b54185340b7caf59dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groupeID: SPWNGRP_b1ec6bf4-8769-4715-880b-4737f2c1f8e7
   mask:
     serializedVersion: 2
     m_Bits: 8
@@ -1782,6 +1783,10 @@ PrefabInstance:
     - target: {fileID: 3705555112483259115, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: m_Name
       value: Masarai
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705555112483259115, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6728979981821947289, guid: 1ccd4e05b5f233244a6326d4e38afa9e, type: 3}
       propertyPath: hitbox
@@ -5773,7 +5778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &749418826
 Transform:
   m_ObjectHideFlags: 0
@@ -5801,6 +5806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85440e7ad1d45b54185340b7caf59dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groupeID: SPWNGRP_1ed5fc1f-71c2-4a97-ae54-f582c5551cd4
   mask:
     serializedVersion: 2
     m_Bits: 8
@@ -13511,6 +13517,18 @@ PrefabInstance:
       propertyPath: uiQuestStepDisplay
       value: 
       objectReference: {fileID: 572642626}
+    - target: {fileID: 5173693038078731242, guid: 29d72b6526cbdef448bee51be3b0d2dd, type: 3}
+      propertyPath: questDataList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173693038078731242, guid: 29d72b6526cbdef448bee51be3b0d2dd, type: 3}
+      propertyPath: 'questDataList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 67f6e73dc6ea36b4883ec0eef117b9f3, type: 2}
+    - target: {fileID: 5173693038078731242, guid: 29d72b6526cbdef448bee51be3b0d2dd, type: 3}
+      propertyPath: 'questDataList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 51980338ff2df894b8a8dca216063e82, type: 2}
     - target: {fileID: 7745745951825811915, guid: 29d72b6526cbdef448bee51be3b0d2dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

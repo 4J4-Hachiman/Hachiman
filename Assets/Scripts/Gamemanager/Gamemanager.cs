@@ -12,8 +12,8 @@ using System.Collections;
 using Custom.CSO;
 
 public class Gamemanager : MonoBehaviour, IDataSaveable
-{       
-    public static Gamemanager gamemanagerInstance; 
+{
+    public static Gamemanager gamemanagerInstance;
     private Transform player;
 
     [Header("Settings")]
@@ -23,7 +23,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
     [Header("Fonctionality Classes")]
     public CombatManager Combat { get; private set; }
 
-    [Header("Enemy Health Bars")]    
+    [Header("Enemy Health Bars")]
     [field: SerializeField] GameObject hpBarParent;
     [field: SerializeField] GameObject hpBarInstance;
     private Pooling hpBarPool;
@@ -73,7 +73,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
+
     private void InitLevel()
     {
         Invoke(nameof(LockCursor), 1f);
@@ -107,7 +107,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
             newHpBar.OnTargetDeath += HandleOnTargetdeath;
             newHpBar.gameObject.SetActive(true);
         }
-        
+
         spawnGroup.OnGroupTriggered -= HandleGroupTriggered;
     }
 
@@ -135,7 +135,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
 
     private void HandleAlertAll()
     {
-        foreach(GameObject enemy in activeEnemies)
+        foreach (GameObject enemy in activeEnemies)
         {
             enemy.GetComponent<EnnemiMain>().OnAlertAll -= HandleAlertAll;
             enemy.GetComponent<EnnemiMain>().StartCombat();
@@ -153,15 +153,15 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
         }
     }
 
-
     /* IDataSaveable Interface */
     public void LoadData(GameData data)
     {
-        player.position = data.playerPosition;
+        player.SetPositionAndRotation(data.playerPosition, data.playerRotation);
     }
 
     public void SaveData(ref GameData data)
     {
         data.playerPosition = player.position;
+        data.playerRotation = player.rotation;
     }
 }

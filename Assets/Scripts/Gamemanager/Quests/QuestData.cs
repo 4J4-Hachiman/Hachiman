@@ -17,6 +17,7 @@ public class QuestData : ScriptableObject
     [field: SerializeField] public QuestData NextQuest { get; private set; }
     [field: SerializeField] public GameObject[] QuestStepGO { get; private set; }
     [field: SerializeField] public string[] QuestStepInfo { get; private set; }
+    public QuestStates state = QuestStates.Inactive;
 
     private void OnValidate()
     {

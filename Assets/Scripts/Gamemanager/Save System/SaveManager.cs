@@ -1,3 +1,14 @@
+/*
+    Classe de gestion du systeme de sauvegarde du jeu.
+        - Creation d'un fichier local de sauvegarde dans la machine de l'utilisateur.
+        - Lire les donnes du fichier et les appliquer aux objets appropries du jeu.
+
+    ************************************************************
+    Par: Yanis Oulmane;
+    Dernière modification: 03/05/2025
+*/  
+
+
 using UnityEngine;
 using System.Linq;
 using System.Collections;
@@ -7,13 +18,12 @@ using System;
 
 public class SaveManager : MonoBehaviour
 {
-
     [Header("Save Data")]
     [field: SerializeField] private string pathFromDir;
     [field: SerializeField] private string fileName;
 
     public static SaveManager Instance { get; private set; }
-    private List<IDataSaveable> saveDatas;
+    [field: SerializeField] private List<IDataSaveable> saveDatas;
     private GameData gameData;
     private SaveFileHandler fileHandler;
 
@@ -23,7 +33,6 @@ public class SaveManager : MonoBehaviour
         {
             Debug.LogError("A SaveManager instance already exists");
         }
-
         Instance = this;
     }
 
@@ -48,14 +57,14 @@ public class SaveManager : MonoBehaviour
         {
             Debug.Log("Couldnt find data making new Data");
             NewGame();
+            SaveGame();
+            return;
         }
 
         foreach (IDataSaveable dataSaveable in saveDatas)
         {
             dataSaveable.LoadData(gameData);
         }
-
-        Debug.Log("<color=orange>LOADING</color> the GameData, the players position = " + gameData.playerPosition);
     }
 
     public void SaveGame()
@@ -66,10 +75,7 @@ public class SaveManager : MonoBehaviour
         }
 
         fileHandler.SaveGameData(gameData);
-        
-        Debug.Log("<color=orange>SAVING</color> the GameData, the players position = " + gameData.playerPosition);
     }
-
 
     private void OnApplicationQuit()
     {
