@@ -15,13 +15,15 @@ public class BanqueAudio : ScriptableObject
     [Header("Musique")]
     public AudioClip mscMenuPrincipal;
     public AudioClip mscMenuPause;
-    public AudioClip mscJoueurRepere;
+    // public AudioClip mscJoueurRepere;
     public AudioClip mscCombat;
-    public AudioClip mscCombatUhgomi;
-    public AudioClip mscCombatKarna;
+    // public AudioClip mscCombatUhgomi;
+    // public AudioClip mscCombatKarna;
     public AudioClip mscCombatMasarai;
     public AudioClip mscMort;
     public AudioClip mscGameplay;
+
+    public AudioClip mscFinJeu;
 
 
     [Header("Effets sonores UI")]
@@ -32,6 +34,9 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sOuvertureCoffre;
     public AudioClip sGainVie;
     public AudioClip sGainMana;
+    public AudioClip sRockHit;
+    public AudioClip sRockBreak;
+
 
     [Header("Effets sonores Hachiman")]
     public AudioClip sMarcheHachiman;
@@ -40,6 +45,11 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sAtkLegereHachiman;
     public AudioClip sAtkLourdeHachiman;
     public AudioClip sStanceBroken;
+    public AudioClip sHealing;
+    public AudioClip sSheath;
+    public AudioClip sUnsheath;
+    public AudioClip sCrouch;
+
 
     [Header("Effets sonores Combat")]
     public AudioClip sSwordClash1;
@@ -61,6 +71,7 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sSwordAirSwing2;
     public AudioClip sSwordAirSwing3;
     public AudioClip sSwordAirSwing4;
+    public AudioClip sSwordSwingHeavy1;
 
     [Header("Effets sonores ennemis")]
     public AudioClip sGruntEnnemis;
@@ -68,10 +79,10 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sAtkLourdeEnnemis;
     public AudioClip sEnemyDeath;
 
-    [Header("Effets sonores Uhgomi")]
-    public AudioClip sGruntUhgomi;
-    public AudioClip sAtkLegereUhgomi;
-    public AudioClip sAtkLourdeUhgomi;
+    // [Header("Effets sonores Uhgomi")]
+    // public AudioClip sGruntUhgomi;
+    // public AudioClip sAtkLegereUhgomi;
+    // public AudioClip sAtkLourdeUhgomi;
 
     [Header("Effets sonores Karna")]
     public AudioClip sGruntKarna;

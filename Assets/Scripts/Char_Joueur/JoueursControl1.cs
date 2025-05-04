@@ -39,6 +39,7 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
     public ControlesVieMana uiVieMana;
+    public ParticleSystem sparksBlockEffect;
 
     /* -------------------- VARIABLES MOUVEMENT -------------------- */
     [Header("Mouvement et saut")]
@@ -73,7 +74,7 @@ public class JoueursControl1 : MonoBehaviour
 
     // -----------------------------------------------------------************************************************************************ Sebastien//
     /* -------------------- VARIABLES BOOL -------------------- */
-    private bool isArmed;
+    public bool isArmed;
     private bool isJumping;
     private bool canJump;
     private bool isLockedOn;
@@ -84,6 +85,10 @@ public class JoueursControl1 : MonoBehaviour
     private bool isGrounded;
     private bool isHealing;
     private bool isHit;
+    private bool canHitRock = true;
+
+    //Rock Quest
+    private bool inFrontofRock = false;
 
     // AttackCombos
     private int comboStep = 0;
@@ -98,11 +103,15 @@ public class JoueursControl1 : MonoBehaviour
     private int lockOnIndex = 0;
     private int lockOnTotalTargets = 0;
 
+    // Rock Quest
+    private int rockIndex = 0;
+
     public float health = 100;
     public float maxHealth = 100;
     public float endurance = 100;
     public float maxEndurance = 100;
     public int numbPotion = 3;
+    public float enduranceRegen = 1;
 
     /* -------------------- VARIABLES GAMEOBJECT -------------------- */
     public GameObject activeKatana;
@@ -115,12 +124,13 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject debugTool;
     public RectTransform lockOnDot;
     public GameObject dotCanvas;
+    private GameObject currentRock;
+    private GameObject nextRock;
+    [SerializeField] private GameObject uiInteractionRock;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
-
-    /* ------------------------ AUDIO SOURCE ------------------------- */ 
-    public AudioSource[] audioSources;
+    [SerializeField] private GameObject[] rocks;
 
     /* ============================================================== */
     /* ============================================================== */
@@ -147,8 +157,6 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Awake()
     {
-        // AudioSources initialization
-        audioSources = GetComponents<AudioSource>();
         // Hachiman mouvableStates initialization
         
         // GameObject initialization
@@ -191,6 +199,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Heal.performed += Heal;
         inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed += DebugTool;
+        inputActions.MapNormale.Interact.performed += Interact;
 
     }
 
@@ -209,6 +218,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Heal.performed -= Heal;
         inputActions.MapNormale.LockOnIndexR2.performed -= LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed -= DebugTool;
+        inputActions.MapNormale.Interact.performed -= Interact;
     }
 
 
@@ -229,6 +239,8 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("isCombo: " + isCombo);
 
         //Death
+
+        Debug.Log("<color=Blue>State: </color>" + state);
 
         if (health <= 0)
         {
@@ -263,6 +275,7 @@ public class JoueursControl1 : MonoBehaviour
 
         uiVieMana.AffichageNiveauMana(maxEndurance, endurance);
         uiVieMana.AffichageNiveauVie(maxHealth, health);
+        uiVieMana.QuantitePotionVie(numbPotion);
 
 
         if (isLockedOn == true)
@@ -385,6 +398,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Heal.performed += Heal;
         inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed += DebugTool;
+        inputActions.MapNormale.Interact.performed += Interact;
     }
 
     public void TPlocation1()
@@ -509,7 +523,7 @@ public class JoueursControl1 : MonoBehaviour
     {
         return Physics.Raycast(head.position, Vector3.up, checkDistance);
     }
-    private void ResetState()
+    public void ResetState()
     {
         state = HachimanState.Idle;
     }
@@ -572,7 +586,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed -= Guarding;
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
         inputActions.MapNormale.Heal.performed -= Heal;
-        inputActions.MapNormale.DebugTool.performed -= DebugTool;
+        inputActions.MapNormale.Interact.performed -= Interact;
     }
     private void ListenToInputs()
     {
@@ -585,7 +599,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.performed += Guarding;
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
         inputActions.MapNormale.Heal.performed += Heal;
-        inputActions.MapNormale.DebugTool.performed += DebugTool;
+        inputActions.MapNormale.Interact.performed += Interact;
     }
 
     /* ================================ COUROUTINES ================================ */
@@ -605,29 +619,6 @@ public class JoueursControl1 : MonoBehaviour
 
         yield return null;
     }
-    IEnumerator RollCoroutine(float distance, float duration)
-    {
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = startPos + transform.forward * distance;
-        float elapsedTime = 0f;
-
-        // Optional: Raycast to check if there's an obstacle ahead
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance))
-        {
-            //Debug.Log("Obstacle detected: " + hit.collider.name);
-            targetPos = hit.point; // Stop at the obstacle
-        }
-
-        while (elapsedTime < duration)
-        {
-            transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;  // Wait for the next frame
-        }
-
-        transform.position = targetPos;  // Ensure the final position is accurate
-        ResetRoll();
-    }
 
     IEnumerator MoveToPosition(Vector3 targetPos, float duration)
     {
@@ -646,6 +637,31 @@ public class JoueursControl1 : MonoBehaviour
 
     /* ================================ INPUTS CALLBACK ================================ */
 
+    private void Interact(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed){
+            if(inFrontofRock && canHitRock && isArmed)
+            {
+                for (int i = 0; i < rocks.Length - 1; i++)
+                {
+                    Vector3 direction = rocks[i].transform.position - transform.position;
+                    direction.y = 0;
+                    transform.rotation = Quaternion.LookRotation(direction);
+
+                    currentRock = rocks[i];
+                    nextRock = rocks[i + 1];
+
+                    if(currentRock.activeSelf)
+                    {
+                        canHitRock = false;
+                        animator.SetTrigger("HitRock");
+                        StartCoroutine(RockBreaking());
+                        break;
+                    }
+                }
+            }
+        }
+    }
     private void DebugTool(InputAction.CallbackContext ctx)
     {
         if (ctx.performed){
@@ -675,6 +691,7 @@ public class JoueursControl1 : MonoBehaviour
                     healthPotion.SetActive(true);
                     isHealing = true;
                     animator.SetTrigger("Healing");
+                    Invoke("soundHealing", 0.6f);
                     DoNotListenToInputs();
                     health = (health > 51) ? 100 : health + 50;
                     numbPotion -= 1;
@@ -711,10 +728,12 @@ public class JoueursControl1 : MonoBehaviour
                     // remove lock on
                     isLockedOn = false;
                     animator.SetBool("lockedOn", false);
+                    GetComponents<AudioSource>()[6].PlayOneShot(banqueAudio.sCrouch);
                 } else {
                     ListenToInputs();
                     isCrouched = false;
                     animator.SetBool("crouch", false);
+                    GetComponents<AudioSource>()[6].PlayOneShot(banqueAudio.sCrouch);
                     cc.center = new Vector3(0, 0.905f, 0);
                     cc.height = 1.81f;
                 }
@@ -730,7 +749,6 @@ public class JoueursControl1 : MonoBehaviour
             animator.SetTrigger("roll");
             state = HachimanState.Rolling;
             DoNotListenToInputs();
-            //StartCoroutine(RollCoroutine(2f, 0.54f));
         }
     }
 
@@ -739,10 +757,9 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && isArmed){
             // ---------- State ---------
-            state = HachimanState.Attacking;
-            animator.SetTrigger("lightAttack");
-            //Time.timeScale = 0.05f;
             DoNotListenToInputs();
+            animator.SetTrigger("lightAttack");
+            // Code
             inputActions.MapNormale.LightAttack.performed += LightAttack;
             inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
             if (attackCombosList.Count < maxCombos)
@@ -752,6 +769,7 @@ public class JoueursControl1 : MonoBehaviour
             
             if (isCombo == false)
             {
+                state = HachimanState.Attacking;
                 isCombo = true;
                 comboStep += 1;
                 StartCoroutine(AttackCombo1());
@@ -763,11 +781,8 @@ public class JoueursControl1 : MonoBehaviour
     private void HeavyAttack(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
-
-            state = HachimanState.Attacking;
-            animator.SetTrigger("heavyAttack");
-            
             DoNotListenToInputs();
+            animator.SetTrigger("heavyAttack");
             inputActions.MapNormale.LightAttack.performed += LightAttack;
             inputActions.MapNormale.HeavyAttack.performed += HeavyAttack;
             if (attackCombosList.Count < maxCombos2)
@@ -776,6 +791,7 @@ public class JoueursControl1 : MonoBehaviour
             }
             if (isCombo == false)
             {
+                state = HachimanState.Attacking;
                 isCombo = true;
                 combo2Step += 1;
                 StartCoroutine(AttackCombo2());
@@ -793,11 +809,13 @@ public class JoueursControl1 : MonoBehaviour
                 Debug.Log("armed");
                 isArmed = true;
                 animator.SetBool("armed", true);
+                GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
                 Invoke("UnsheathKatana", 0.17f);
                 
             } else {
                 isArmed = false;
                 animator.SetBool("armed", false);
+                Invoke("SheathKatanaSound", 0.6f);
                 Invoke("SheathKatana", 1.22f);
             }
         }
@@ -807,6 +825,11 @@ public class JoueursControl1 : MonoBehaviour
     {
         activeKatana.gameObject.SetActive(false);
         katanaInSheath.gameObject.SetActive(true);
+    }
+
+    void SheathKatanaSound()
+    {
+        GetComponents<AudioSource>()[4].PlayOneShot(banqueAudio.sSheath);
     }
 
     void UnsheathKatana()
@@ -918,36 +941,9 @@ public class JoueursControl1 : MonoBehaviour
 
         return deplacement * currentSpeed;
     }
-    // private bool GetAuSol() 
-    // {
-    //     // Vérifie si le joueur est au sol en effectuant un SphereCast sous lui.
-    //     if (Physics.SphereCast(transform.position + Vector3.up * cc.radius, cc.radius, Vector3.down, out RaycastHit hitInfo, cc.radius)) 
-    //     {
-    //         // Si le joueur touche une surface sous lui
-    //         if (vyJoueur < forceGravite) 
-    //         {
-    //             vyJoueur = forceGravite;
-    //         }
-    //         return true; // Le joueur est au sol.
-    //     } 
-    //     else 
-    //     {
-    //         // Si aucun contact avec le sol
-    //         if (auSol) 
-    //         {
-    //             // Si l'état précédent était "au sol", on retourne false.
-    //             return false;
-    //         }
-    //         // Si le joueur est en l'air, on lance une coroutine pour gérer la gravité.
-    //         StartCoroutine(GestionGravite());
-    //         return false; // Le joueur n'est pas au sol.
-    //     }
-    // }
 
     IEnumerator GestionGravite()
     {
-        // v = -9.8m/s^2
-        
         while (!auSol)
         {
             vyJoueur += forceGravite * Time.deltaTime * vitesseTombe;
@@ -973,6 +969,11 @@ public class JoueursControl1 : MonoBehaviour
                 combo2Step += 1;
                 animator.SetTrigger("heavyAttack");
                 animator.SetInteger("Combo2Step", combo2Step);
+            }
+            else
+            {
+                ResetCombo2();
+                yield break;
             }
         }
         else
@@ -1038,9 +1039,33 @@ public class JoueursControl1 : MonoBehaviour
                 StartCoroutine(EnduranceReset());
                 yield break;
             }
-            endurance += 1f * Time.deltaTime;
+            endurance += enduranceRegen * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        yield break;
+    }
+
+    IEnumerator RockBreaking()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        currentRock.SetActive(false);
+        nextRock.SetActive(true);
+        
+        if(nextRock.name == "Roche4")
+        {
+            GetComponents<AudioSource>()[3].PlayOneShot(banqueAudio.sRockBreak);
+            uiInteractionRock.SetActive(false);
+        }
+        else
+        {
+            GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sRockHit);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        canHitRock = true;
+
         yield break;
     }
 
@@ -1063,6 +1088,17 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy Weapon"))
         {
+            if (state == HachimanState.Rolling)
+            {
+                Debug.Log(health);
+            }
+            else
+            {
+                
+            // Vector3 direction = lockOnTarget.position - transform.position;
+            // direction.y = 0;
+            // transform.rotation = Quaternion.LookRotation(direction);
+
             Debug.Log("Hit by an Enemy Weapon!");
             if (state == HachimanState.Guarding)
             {
@@ -1077,26 +1113,33 @@ public class JoueursControl1 : MonoBehaviour
                 {
                     Invoke("NotHitBroken", 0.33f);
                     animator.SetTrigger("Broken");
-                    //Debug.Log(ctx);
+                    ParticleSystem sparksInt = Instantiate(sparksBlockEffect, katana.transform.position, katana.transform.rotation);
+                    Destroy(sparksInt.gameObject, 2f);
+                    activeKatana.GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sStanceBroken);
                 }
                 else
                 {
                     Invoke("NotHit", 0.33f);
-                    activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing1);
                     animator.SetBool("Hit", true);
+                    ParticleSystem sparksInt = Instantiate(sparksBlockEffect, katana.transform.position, katana.transform.rotation);
+                    Destroy(sparksInt.gameObject, 2f);
+                    activeKatana.GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sSwordClash2);
                 }
-            }
-            else if (state == HachimanState.Rolling)
-            {
-                Debug.Log(health);
             }
             else 
             {
                 if(!isDead)
                 {
                     animator.SetBool("Hit", true);
-                    health -= 20f;
-                    Debug.Log(health);
+                    GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sEnemyHit2);
+
+                    //health -= 20f;
+                    if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy Weapon"))
+                    {
+                        Debug.Log("<color=red>Was hit by the player</color>");
+                        health -= collision.GetComponent<Sword>().GetDammage();
+                    }
+
                     if(health <= 0)
                     {
                         Death();
@@ -1112,14 +1155,51 @@ public class JoueursControl1 : MonoBehaviour
                     }
                 }
             }
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider collision)
+    {
+        if (collision.CompareTag("Rock"))
+        {
+            inFrontofRock = true;
         }
     }
     
     /* ===================== FUNCTIONS FOR SOUNDS ===================== */
 
+    public void soundSwordAirSwing3()
+    {
+        // ---------- Sound ---------
+        activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing3);
+    }
     public void soundSwordAirSwing1()
     {
         // ---------- Sound ---------
-        activeKatana.GetComponent<AudioSource>().PlayOneShot(banqueAudio.sSwordAirSwing1);
+        activeKatana.GetComponents<AudioSource>()[3].PlayOneShot(banqueAudio.sSwordAirSwing1);
+    }
+    public void soundSwordAirSwing2()
+    {
+        // ---------- Sound ---------
+        activeKatana.GetComponents<AudioSource>()[4].PlayOneShot(banqueAudio.sSwordAirSwing2);
+    }
+
+    public void soundSwordAirSwing4()
+    {
+        // ---------- Sound ---------
+        activeKatana.GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sSwordAirSwing3);
+    }
+
+    public void soundSwordSwingHeavy1()
+    {
+        // ---------- Sound ---------
+        activeKatana.GetComponents<AudioSource>()[6].PlayOneShot(banqueAudio.sSwordSwingHeavy1);
+    }
+    
+    public void soundHealing()
+    {
+        // ---------- Sound ---------
+        GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sHealing);
     }
 }

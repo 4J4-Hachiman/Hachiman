@@ -11,13 +11,15 @@ public class Chest : MonoBehaviour
     public GameObject katana;
     public GameObject katanaInChest;
     public GameObject pointLightInChest;
-    public GameObject areaLightInChest;
     public GameObject hand;
     public GameObject chestParent;
-
+    public GameObject uiInteraction;
+    
     /* -------------------- REFERENCES COMPONENTS -------------------- */
     public JoueursControl1 hachiman;
     public Animator animator;
+    public BanqueAudio banqueAudio;
+    public AudioSource audioSource;
 
     /* -------------------- VARIABLES CHEST -------------------- */
     private bool isOpen = false;
@@ -35,6 +37,7 @@ public class Chest : MonoBehaviour
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = chestParent.GetComponent<Animator>();
         inputActions = new PlayerControls();
         inputActions.Enable();
@@ -83,31 +86,36 @@ public class Chest : MonoBehaviour
             Debug.Log("open");
             isOpen = true;
             animator.SetTrigger("Open"); 
+            uiInteraction.SetActive(false);
+            audioSource.PlayOneShot(banqueAudio.sOuvertureCoffre);
         }
         else if(!isTaken) 
         {
             Debug.Log("take");
-            isTaken = true;
             if(itemInChest.tag == "Potion")
             {
+                isTaken = true;
                 Debug.Log("potion");
                 hachiman.numbPotion += numbPotionInChest;
             }
             else if(katana != null || katanaInChest != null)
             {
-                if(itemInChest.tag == "Katana")
+                if(itemInChest.tag == "Katana" && hachiman.isArmed)
                 {
+                    isTaken = true;
                     GameObject instNewKatana = Instantiate(newKatana, katana.transform.position, katana.transform.rotation);
                     instNewKatana.gameObject.SetActive(true);
                     instNewKatana.transform.SetParent(hand.transform);
                     hachiman.activeKatana.gameObject.SetActive(false);
-
                     hachiman.activeKatana = instNewKatana;
                 }
             }
+            if(isTaken)
+            {
+                pointLightInChest.gameObject.SetActive(false);
+                itemInChest.SetActive(false);
+            }
             
-            pointLightInChest.gameObject.SetActive(false);
-            itemInChest.SetActive(false);
         }
     }
 
