@@ -74,7 +74,7 @@ public class JoueursControl1 : MonoBehaviour
 
     // -----------------------------------------------------------************************************************************************ Sebastien//
     /* -------------------- VARIABLES BOOL -------------------- */
-    private bool isArmed;
+    public bool isArmed;
     private bool isJumping;
     private bool canJump;
     private bool isLockedOn;
