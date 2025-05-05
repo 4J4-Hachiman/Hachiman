@@ -58,6 +58,7 @@ public class SaveManager : MonoBehaviour
             Debug.Log("Couldnt find data making new Data");
             NewGame();
             SaveGame();
+            LoadGame();
             return;
         }
 
@@ -66,7 +67,7 @@ public class SaveManager : MonoBehaviour
             dataSaveable.LoadData(gameData);
         }
     }
-
+    
     public void SaveGame()
     {
         foreach (IDataSaveable dataSaveable in saveDatas)

@@ -24,6 +24,7 @@ public class Quest
         Data = data;
         this.parentGO = parentGO;
         questStepGO = new GameObject[Data.QuestStepGO.Length];
+        Data.state = QuestStates.Inactive;
         
         for (int i = 0; i < Data.QuestStepGO.Length; i++)
         {

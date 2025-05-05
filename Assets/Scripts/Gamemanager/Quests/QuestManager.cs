@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System;
 
 public class QuestManager : MonoBehaviour, IDataSaveable
 {
@@ -86,10 +87,13 @@ public class QuestManager : MonoBehaviour, IDataSaveable
             gameQuests.ElementAt(i).Value.Data.state = (QuestStates)data.questStates.GetKey(gameQuests.ElementAt(i).Key);
         }
 
+
         currentQuest = GetQuestByID(data.activeQuest);
+
+        Debug.Log("CURRENT QUEST AFTER FIRST LOAD : " + currentQuest);
         QuestStart();
     }
-
+    
     public void SaveData(ref GameData data)
     {
         data.activeQuest = CurrentQuestID;
