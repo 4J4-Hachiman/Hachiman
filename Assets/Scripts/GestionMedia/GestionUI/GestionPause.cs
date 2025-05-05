@@ -1,3 +1,10 @@
+/*  
+ *  Fonctionnement et utilité générale du script
+    
+    Script pour mettre en pause le jeu
+        Par : Malaïka Abevi
+        Dernière modification : 04/05/2025
+*/
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +12,9 @@ public class GestionPause : MonoBehaviour
 {
     public bool enPause;
     public GameObject menuPause;
-    public GameObject HUD;
+
+    public CanvasGroup HUD;
+    // public GameObject HUD;
     public GameObject menuOptions;
     public GameObject menuCommandes;
     public Scene scenePartie;
@@ -31,7 +40,7 @@ public class GestionPause : MonoBehaviour
             print("le jeu est en pause");
             enPause = true;
             menuPause.SetActive(true);
-            HUD.SetActive(false);
+            HUD.alpha = 0;
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.Confined;
         }
@@ -42,7 +51,8 @@ public class GestionPause : MonoBehaviour
             menuPause.SetActive(false);
             menuCommandes.SetActive(false);
             menuOptions.SetActive(false);
-            HUD.SetActive(true);
+            HUD.alpha = 1;
+            // HUD.SetActive(true);
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
         }
