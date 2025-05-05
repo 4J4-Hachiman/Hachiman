@@ -765,6 +765,8 @@ PlayableDirector:
     value: {fileID: 346490770508952889}
   - key: {fileID: 9581953990703276, guid: 36011f9adc5fe3f4db7f9d751069c01f, type: 2}
     value: {fileID: 333431826674552035}
+  - key: {fileID: 2839001204918822833, guid: 36011f9adc5fe3f4db7f9d751069c01f, type: 2}
+    value: {fileID: 7652080114682395745}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1613635962807962329
@@ -3130,6 +3132,82 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5174484723149993730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1067568365221184435}
+  - component: {fileID: 7652080114682395745}
+  - component: {fileID: 460376503647520650}
+  m_Layer: 0
+  m_Name: signalReceiver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1067568365221184435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5174484723149993730}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -234.77841, y: -16.156218, z: 364.2217}
+  m_LocalScale: {x: 4.4036694, y: 4.4036694, z: 4.4036694}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9120079415086976202}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7652080114682395745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5174484723149993730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 4eaf25b1e29c27041bd3fbc10108adc0, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 460376503647520650}
+          m_TargetAssemblyTypeName: SignalTutoriel, Assembly-CSharp
+          m_MethodName: PauseTutotiel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &460376503647520650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5174484723149993730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984c0d1304063eb46b523ff41bc93f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  director: {fileID: 2978917328372688000}
 --- !u!1 &5279248205716004012
 GameObject:
   m_ObjectHideFlags: 0
@@ -3734,6 +3812,7 @@ RectTransform:
   - {fileID: 4598490767707468502}
   - {fileID: 3915732758869620873}
   - {fileID: 166616977285755354}
+  - {fileID: 1067568365221184435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

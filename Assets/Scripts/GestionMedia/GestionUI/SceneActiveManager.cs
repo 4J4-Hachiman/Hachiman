@@ -5,16 +5,17 @@
 
     Fonction pour les changements de scènes
         Par : Malaïka Abevi
-        Dernière modification : 13/04/2025
+        Dernière modification : 04/05/2025
 */
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneActiveManager : MonoBehaviour
 {
     public static SceneActiveManager instance;
+    public Image fillChargement;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class SceneActiveManager : MonoBehaviour
             
         }
         do{
+            fillChargement.fillAmount = scene.progress;
             Debug.Log("Chargement...");
         }while(scene.progress < 0.9f);
 
@@ -47,6 +49,5 @@ public class SceneActiveManager : MonoBehaviour
         await Task.Delay(3000);
 
         scene.allowSceneActivation = true;
-
     }
 }
