@@ -161,6 +161,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchKatana"",
+                    ""type"": ""Button"",
+                    ""id"": ""3bdffc2f-1855-4bc9-a2a0-61d2a7b8e28c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -515,6 +524,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""DebugTool"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dd8fd9d-c901-4cf0-8dba-f9bb8d11726c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""SwitchKatana"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd566198-a9a7-4e99-b120-6441bb8c7973"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""SwitchKatana"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -797,6 +828,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_MapNormale_Heal = m_MapNormale.FindAction("Heal", throwIfNotFound: true);
         m_MapNormale_LockOnIndexR2 = m_MapNormale.FindAction("LockOnIndexR2", throwIfNotFound: true);
         m_MapNormale_DebugTool = m_MapNormale.FindAction("DebugTool", throwIfNotFound: true);
+        m_MapNormale_SwitchKatana = m_MapNormale.FindAction("SwitchKatana", throwIfNotFound: true);
         // UImap
         m_UImap = asset.FindActionMap("UImap", throwIfNotFound: true);
         m_UImap_Up = m_UImap.FindAction("Up", throwIfNotFound: true);
@@ -888,6 +920,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_MapNormale_Heal;
     private readonly InputAction m_MapNormale_LockOnIndexR2;
     private readonly InputAction m_MapNormale_DebugTool;
+    private readonly InputAction m_MapNormale_SwitchKatana;
     public struct MapNormaleActions
     {
         private @PlayerControls m_Wrapper;
@@ -907,6 +940,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Heal => m_Wrapper.m_MapNormale_Heal;
         public InputAction @LockOnIndexR2 => m_Wrapper.m_MapNormale_LockOnIndexR2;
         public InputAction @DebugTool => m_Wrapper.m_MapNormale_DebugTool;
+        public InputAction @SwitchKatana => m_Wrapper.m_MapNormale_SwitchKatana;
         public InputActionMap Get() { return m_Wrapper.m_MapNormale; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -961,6 +995,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DebugTool.started += instance.OnDebugTool;
             @DebugTool.performed += instance.OnDebugTool;
             @DebugTool.canceled += instance.OnDebugTool;
+            @SwitchKatana.started += instance.OnSwitchKatana;
+            @SwitchKatana.performed += instance.OnSwitchKatana;
+            @SwitchKatana.canceled += instance.OnSwitchKatana;
         }
 
         private void UnregisterCallbacks(IMapNormaleActions instance)
@@ -1010,6 +1047,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DebugTool.started -= instance.OnDebugTool;
             @DebugTool.performed -= instance.OnDebugTool;
             @DebugTool.canceled -= instance.OnDebugTool;
+            @SwitchKatana.started -= instance.OnSwitchKatana;
+            @SwitchKatana.performed -= instance.OnSwitchKatana;
+            @SwitchKatana.canceled -= instance.OnSwitchKatana;
         }
 
         public void RemoveCallbacks(IMapNormaleActions instance)
@@ -1156,6 +1196,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnHeal(InputAction.CallbackContext context);
         void OnLockOnIndexR2(InputAction.CallbackContext context);
         void OnDebugTool(InputAction.CallbackContext context);
+        void OnSwitchKatana(InputAction.CallbackContext context);
     }
     public interface IUImapActions
     {
