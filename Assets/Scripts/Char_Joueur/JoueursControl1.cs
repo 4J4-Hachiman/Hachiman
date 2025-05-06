@@ -126,11 +126,14 @@ public class JoueursControl1 : MonoBehaviour
     public GameObject dotCanvas;
     private GameObject currentRock;
     private GameObject nextRock;
+    private GameObject currentKatana;
+    private GameObject nextKatana;
     [SerializeField] private GameObject uiInteractionRock;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
     [SerializeField] private GameObject[] rocks;
+    public List<GameObject> katanaList = new List<GameObject>();
 
     /* ============================================================== */
     /* ============================================================== */
@@ -174,6 +177,8 @@ public class JoueursControl1 : MonoBehaviour
         isHealing = false;
         isHit = false;
 
+        katanaList.Add(katana);
+
         comboStep = Mathf.Clamp(comboStep, 0, 3);
         lightAttackCombo = "lightAttack";
         heavyAttackCombo = "heavyAttack";
@@ -200,7 +205,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed += DebugTool;
         inputActions.MapNormale.Interact.performed += Interact;
-
+        inputActions.MapNormale.SwitchKatana.performed += SwitchKatana;
     }
 
     private void OnDisable()
@@ -219,6 +224,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOnIndexR2.performed -= LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed -= DebugTool;
         inputActions.MapNormale.Interact.performed -= Interact;
+        inputActions.MapNormale.SwitchKatana.performed -= SwitchKatana;
     }
 
 
@@ -399,6 +405,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.LockOnIndexR2.performed += LockOnIndexR2;
         inputActions.MapNormale.DebugTool.performed += DebugTool;
         inputActions.MapNormale.Interact.performed += Interact;
+        inputActions.MapNormale.SwitchKatana.performed += SwitchKatana;
     }
 
     public void TPlocation1()
@@ -587,6 +594,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.canceled -= StopGuarding;
         inputActions.MapNormale.Heal.performed -= Heal;
         inputActions.MapNormale.Interact.performed -= Interact;
+        inputActions.MapNormale.SwitchKatana.performed -= SwitchKatana;
     }
     private void ListenToInputs()
     {
@@ -600,6 +608,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.Guarding.canceled += StopGuarding;
         inputActions.MapNormale.Heal.performed += Heal;
         inputActions.MapNormale.Interact.performed += Interact;
+        inputActions.MapNormale.SwitchKatana.performed += SwitchKatana;
     }
 
     /* ================================ COUROUTINES ================================ */
@@ -698,6 +707,38 @@ public class JoueursControl1 : MonoBehaviour
                     animator.SetLayerWeight(1, 1);
                     Invoke("StoppedHealing", 1.83f);
                 } 
+            }
+        }
+    }
+
+    public void SwitchKatana(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && isArmed){
+            if (katanaList.Count > 1)
+            {
+                for (int i = 0; i < katanaList.Count; i++)
+                {
+                    currentKatana = katanaList[i];
+
+                    if (currentKatana.activeSelf)
+                    {
+                        //state = HachimanState.Equiping;
+                        currentKatana.SetActive(false);
+
+                        int nextIndex = (i + 1 < katanaList.Count && katanaList[i + 1] != null) ? i + 1 : 1;
+                        nextKatana = katanaList[nextIndex];
+
+                        if (nextKatana != null)
+                        {
+                            //GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
+                            //Invoke("UnsheathKatana", 0.17f);
+                            activeKatana = nextKatana;
+                            nextKatana.SetActive(true);
+                        }
+
+                        break;
+                    }
+                }
             }
         }
     }
