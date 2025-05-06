@@ -5,6 +5,6 @@ public class ReinitialiserTimeScaleCursor : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
-        Time.timeScale = 1;
+        // Time.timeScale = 1;
     }
 }
