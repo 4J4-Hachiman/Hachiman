@@ -38,6 +38,7 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private LayerMask Ground;
     [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
+    public GestionMort gestionMort;
     public ControlesVieMana uiVieMana;
     public ParticleSystem sparksBlockEffect;
 
@@ -244,6 +245,8 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("comboStep: " + comboStep);
         //Debug.Log("isCombo: " + isCombo);
 
+        Debug.Log("<color=Green>Number of katana: </color>" + katanaList.Count);
+
         //Death
 
         Debug.Log("<color=Blue>State: </color>" + state);
@@ -252,6 +255,8 @@ public class JoueursControl1 : MonoBehaviour
         {
             isLockedOn = false;
             animator.SetBool("lockedOn", false);
+            gestionMort.ArreterJeu();
+
         }
 
         // Modification des parametres de l'animator
@@ -714,30 +719,32 @@ public class JoueursControl1 : MonoBehaviour
     public void SwitchKatana(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
+            Debug.Log("<color=Yellow>Pressed Q </color>");
             if (katanaList.Count > 1)
             {
+                Debug.Log("<color=Yellow>katanalist bigger than 1 </color>");
                 for (int i = 0; i < katanaList.Count; i++)
                 {
                     currentKatana = katanaList[i];
+                    currentKatana.SetActive(false);
+                    // if (currentKatana.activeSelf)
+                    // {
+                    //     //state = HachimanState.Equiping;
+                    //     currentKatana.SetActive(false);
 
-                    if (currentKatana.activeSelf)
-                    {
-                        //state = HachimanState.Equiping;
-                        currentKatana.SetActive(false);
+                    //     int nextIndex = (i + 1 < katanaList.Count && katanaList[i + 1] != null) ? i + 1 : 1;
+                    //     nextKatana = katanaList[nextIndex];
 
-                        int nextIndex = (i + 1 < katanaList.Count && katanaList[i + 1] != null) ? i + 1 : 1;
-                        nextKatana = katanaList[nextIndex];
+                    //     if (nextKatana != null)
+                    //     {
+                    //         //GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
+                    //         //Invoke("UnsheathKatana", 0.17f);
+                    //         activeKatana = nextKatana;
+                    //         nextKatana.SetActive(true);
+                    //     }
 
-                        if (nextKatana != null)
-                        {
-                            //GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
-                            //Invoke("UnsheathKatana", 0.17f);
-                            activeKatana = nextKatana;
-                            nextKatana.SetActive(true);
-                        }
-
-                        break;
-                    }
+                    //     break;
+                    // }
                 }
             }
         }
