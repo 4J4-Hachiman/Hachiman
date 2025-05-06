@@ -4,17 +4,20 @@ public class DetectionEnnemiUI : MonoBehaviour
 {
 
     public GameObject hud;
-    void OnTriggerEnter(Collider infoTrigger)
-    {
-        if (infoTrigger.tag == "Ennemy")
-        {
-            hud.GetComponent<NavigationBoussole>().IndiquerPositionEnnemi(infoTrigger.transform);
-        }
-    }
-
+    public NavigationBoussole navigationBoussole;
     public BanqueAudio banqueAudio;
+    GameObject indicateurEnnemi;
+
+    void Start()
+    {
+        indicateurEnnemi = Instantiate(navigationBoussole.indicateurEnnemi, navigationBoussole.indicateurEnnemi.transform.position, navigationBoussole.indicateurEnnemi.transform.rotation, navigationBoussole.indicateurEnnemi.transform.parent);
+        indicateurEnnemi.SetActive(true);
+    }
     void Update()
     {
-        hud.GetComponent<MusiqueTransition>().ChangerMusique(banqueAudio.mscCombat);
+        navigationBoussole.IndiquerPosition(gameObject.transform, indicateurEnnemi);
     }
+
+    //     hud.GetComponent<MusiqueTransition>().ChangerMusique(banqueAudio.mscCombat);
+
 }

@@ -8,6 +8,7 @@
         Par : Malaïka Abevi
         Dernière modification : 30/03/2025
 */
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OptionsManager : MonoBehaviour
@@ -57,4 +58,9 @@ public class OptionsManager : MonoBehaviour
         //Actualisation des options (pour valeurs et affichages)
         menuOptions.GetComponent<ControlesMenuOptions>().ActualisationOptions();
     }
+
+  void Update()
+  {
+     Debug.LogError("État des options : " + optionsSauvegarder);
+  }
 }
