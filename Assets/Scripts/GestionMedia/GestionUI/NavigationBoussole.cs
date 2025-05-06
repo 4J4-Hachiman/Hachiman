@@ -5,7 +5,9 @@
         Par : Malaïka Abevi
         Dernière modification : 05/05/2025
 */
+// using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NavigationBoussole : MonoBehaviour
 {
@@ -37,6 +39,9 @@ public class NavigationBoussole : MonoBehaviour
     {
         if (gameObjectSuivi.gameObject.activeSelf)
         {
+            AffichageIndicateur affichageIndicateur = indicateur.GetComponent<AffichageIndicateur>();
+            affichageIndicateur.ObjetSuivi = gameObjectSuivi.gameObject;
+
             //######################Gestion des indicateurs d'ennemis
             Vector3 positionGameObject = new Vector3(gameObjectSuivi.position.x, gameObjectSuivi.position.y, gameObjectSuivi.position.z);
             //On détermine la direction du joueur par rapport à l'ennemi

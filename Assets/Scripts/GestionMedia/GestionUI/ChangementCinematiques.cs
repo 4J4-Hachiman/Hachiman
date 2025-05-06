@@ -1,3 +1,10 @@
+/*  
+ *  Fonctionnement et utilité générale du script
+    
+    Script pour la gestion des cinématiques
+        Par : Malaïka Abevi
+        Dernière modification : 06/05/2025
+*/
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -7,24 +14,17 @@ public class ChangementCinematiques : MonoBehaviour
     public VideoClip cinematique2;
     public VideoPlayer videoPlayer;
     public Animator animCinematique;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    public void DemarrerCinematique(VideoClip cinematique){
+    public void DemarrerCinematique(VideoClip cinematique)
+    {
         videoPlayer.clip = cinematique;
         videoPlayer.Play();
         animCinematique.SetTrigger("demarrerCine");
     }
 
-    public void ArreterCinematique(){
-        animCinematique.SetTrigger("arreterCine");
-    }
-    // Update is called once per frame
-    void Update()
+    public void ArreterCinematique()
     {
-        
+        videoPlayer.Stop();
+        animCinematique.SetTrigger("finirCine");
     }
 }

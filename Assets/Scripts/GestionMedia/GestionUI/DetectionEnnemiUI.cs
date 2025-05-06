@@ -8,7 +8,7 @@ public class DetectionEnnemiUI : MonoBehaviour
     // public BanqueAudio banqueAudio;
     GameObject indicateurEnnemi;
 
-    void Start()
+    void OnEnable()
     {
         indicateurEnnemi = Instantiate(navigationBoussole.indicateurEnnemi, navigationBoussole.indicateurEnnemi.transform.position, navigationBoussole.indicateurEnnemi.transform.rotation, navigationBoussole.indicateurEnnemi.transform.parent);
         indicateurEnnemi.SetActive(true);
