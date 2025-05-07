@@ -541,7 +541,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137169323}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -3939,6 +3939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillChargement: {fileID: 425850021}
+  animChargement: {fileID: 1616655577}
 --- !u!4 &395866112
 Transform:
   m_ObjectHideFlags: 0
@@ -4443,6 +4444,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 395866109}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -19850,9 +19863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Chargement..
-
-'
+  m_text: Chargement
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 331542907d4ac53439718c9df6404a93, type: 2}
   m_sharedMaterial: {fileID: -5691817699338833102, guid: 331542907d4ac53439718c9df6404a93, type: 2}
@@ -19885,7 +19896,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -22761,7 +22772,7 @@ Animator:
   m_GameObject: {fileID: 1616655574}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7c51196c90fab14889a2d4a1f76e95c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -22789,7 +22800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1620589222
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -22815,8 +22826,6 @@ PlayableDirector:
     value: {fileID: 143991598}
   - key: {fileID: 2973722778485760628, guid: 7b7c9552ac9154a4f9f835f86e3224e5, type: 2}
     value: {fileID: 1616655577}
-  - key: {fileID: -4173577164402247754, guid: 7b7c9552ac9154a4f9f835f86e3224e5, type: 2}
-    value: {fileID: 1201191066}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1620589223

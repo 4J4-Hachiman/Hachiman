@@ -2,19 +2,18 @@ using UnityEngine;
 
 public class DetectionEnnemiUI : MonoBehaviour
 {
-
-    // public GameObject hud;
     public NavigationBoussole navigationBoussole;
     // public BanqueAudio banqueAudio;
-    GameObject indicateurEnnemi;
+    public GameObject indicateur;
+    GameObject indicateurClone;
 
     void OnEnable()
     {
-        indicateurEnnemi = Instantiate(navigationBoussole.indicateurEnnemi, navigationBoussole.indicateurEnnemi.transform.position, navigationBoussole.indicateurEnnemi.transform.rotation, navigationBoussole.indicateurEnnemi.transform.parent);
-        indicateurEnnemi.SetActive(true);
+        indicateurClone = Instantiate(indicateur, indicateur.transform.position, indicateur.transform.rotation, indicateur.transform.parent);
+        indicateurClone.SetActive(true);
     }
     void Update()
     {
-        navigationBoussole.IndiquerPosition(gameObject.transform, indicateurEnnemi);
+        navigationBoussole.IndiquerPosition(gameObject.transform, indicateurClone);
     }
 }
