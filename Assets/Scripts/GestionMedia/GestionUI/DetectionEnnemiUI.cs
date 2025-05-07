@@ -3,12 +3,12 @@ using UnityEngine;
 public class DetectionEnnemiUI : MonoBehaviour
 {
 
-    public GameObject hud;
+    // public GameObject hud;
     public NavigationBoussole navigationBoussole;
-    public BanqueAudio banqueAudio;
+    // public BanqueAudio banqueAudio;
     GameObject indicateurEnnemi;
 
-    void Start()
+    void OnEnable()
     {
         indicateurEnnemi = Instantiate(navigationBoussole.indicateurEnnemi, navigationBoussole.indicateurEnnemi.transform.position, navigationBoussole.indicateurEnnemi.transform.rotation, navigationBoussole.indicateurEnnemi.transform.parent);
         indicateurEnnemi.SetActive(true);
@@ -17,7 +17,4 @@ public class DetectionEnnemiUI : MonoBehaviour
     {
         navigationBoussole.IndiquerPosition(gameObject.transform, indicateurEnnemi);
     }
-
-    //     hud.GetComponent<MusiqueTransition>().ChangerMusique(banqueAudio.mscCombat);
-
 }

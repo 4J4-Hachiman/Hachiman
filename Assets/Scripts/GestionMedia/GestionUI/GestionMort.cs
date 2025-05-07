@@ -38,7 +38,7 @@ public class GestionMort : MonoBehaviour
     }
 
     void AffichageMort(){
-        gameObject.GetComponent<Animator>().enabled = true;
+        gameObject.GetComponent<Animator>().SetTrigger("mort");
         Cursor.lockState = CursorLockMode.Confined;
     }
 }

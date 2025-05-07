@@ -49,5 +49,6 @@ public class SceneActiveManager : MonoBehaviour
         await Task.Delay(3000);
 
         scene.allowSceneActivation = true;
+        Time.timeScale = 1;
     }
 }
