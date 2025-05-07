@@ -719,32 +719,22 @@ public class JoueursControl1 : MonoBehaviour
     public void SwitchKatana(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
-            Debug.Log("<color=Yellow>Pressed Q </color>");
+            DoNotListenToInputs();
             if (katanaList.Count > 1)
             {
-                Debug.Log("<color=Yellow>katanalist bigger than 1 </color>");
                 for (int i = 0; i < katanaList.Count; i++)
                 {
-                    currentKatana = katanaList[i];
+                    currentKatana = activeKatana;
                     currentKatana.SetActive(false);
-                    // if (currentKatana.activeSelf)
-                    // {
-                    //     //state = HachimanState.Equiping;
-                    //     currentKatana.SetActive(false);
-
-                    //     int nextIndex = (i + 1 < katanaList.Count && katanaList[i + 1] != null) ? i + 1 : 1;
-                    //     nextKatana = katanaList[nextIndex];
-
-                    //     if (nextKatana != null)
-                    //     {
-                    //         //GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
-                    //         //Invoke("UnsheathKatana", 0.17f);
-                    //         activeKatana = nextKatana;
-                    //         nextKatana.SetActive(true);
-                    //     }
-
-                    //     break;
-                    // }
+                    int nextKatanaActive = katanaList.IndexOf(activeKatana);
+                    int nextIndex = (nextKatanaActive + 1 >= katanaList.Count) ? 0 : nextKatanaActive + 1;
+                    nextKatana = katanaList[nextIndex];
+                    nextKatana.SetActive(true);
+                    activeKatana = nextKatana;
+                    state = HachimanState.Equiping;
+                    GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
+                    animator.SetTrigger("SwitchKatana");
+                    break;
                 }
             }
         }
@@ -852,6 +842,7 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && state != HachimanState.Equiping){
             state = HachimanState.Equiping;
+            DoNotListenToInputs();
             //Debug.Log(ctx);
             if (isArmed == false){
                 Debug.Log("armed");
