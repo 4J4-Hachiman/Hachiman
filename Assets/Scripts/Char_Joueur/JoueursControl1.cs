@@ -38,6 +38,7 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private LayerMask Ground;
     [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
+    public GestionMort gestionMort;
     public ControlesVieMana uiVieMana;
     public ParticleSystem sparksBlockEffect;
 
@@ -244,6 +245,8 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("comboStep: " + comboStep);
         //Debug.Log("isCombo: " + isCombo);
 
+        Debug.Log("<color=Green>Number of katana: </color>" + katanaList.Count);
+
         //Death
 
         Debug.Log("<color=Blue>State: </color>" + state);
@@ -252,6 +255,8 @@ public class JoueursControl1 : MonoBehaviour
         {
             isLockedOn = false;
             animator.SetBool("lockedOn", false);
+            gestionMort.ArreterJeu();
+
         }
 
         // Modification des parametres de l'animator
@@ -714,30 +719,22 @@ public class JoueursControl1 : MonoBehaviour
     public void SwitchKatana(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
+            DoNotListenToInputs();
             if (katanaList.Count > 1)
             {
                 for (int i = 0; i < katanaList.Count; i++)
                 {
-                    currentKatana = katanaList[i];
-
-                    if (currentKatana.activeSelf)
-                    {
-                        //state = HachimanState.Equiping;
-                        currentKatana.SetActive(false);
-
-                        int nextIndex = (i + 1 < katanaList.Count && katanaList[i + 1] != null) ? i + 1 : 1;
-                        nextKatana = katanaList[nextIndex];
-
-                        if (nextKatana != null)
-                        {
-                            //GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
-                            //Invoke("UnsheathKatana", 0.17f);
-                            activeKatana = nextKatana;
-                            nextKatana.SetActive(true);
-                        }
-
-                        break;
-                    }
+                    currentKatana = activeKatana;
+                    currentKatana.SetActive(false);
+                    int nextKatanaActive = katanaList.IndexOf(activeKatana);
+                    int nextIndex = (nextKatanaActive + 1 >= katanaList.Count) ? 0 : nextKatanaActive + 1;
+                    nextKatana = katanaList[nextIndex];
+                    nextKatana.SetActive(true);
+                    activeKatana = nextKatana;
+                    state = HachimanState.Equiping;
+                    GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
+                    animator.SetTrigger("SwitchKatana");
+                    break;
                 }
             }
         }
@@ -845,6 +842,7 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && state != HachimanState.Equiping){
             state = HachimanState.Equiping;
+            DoNotListenToInputs();
             //Debug.Log(ctx);
             if (isArmed == false){
                 Debug.Log("armed");
