@@ -33,6 +33,7 @@ public class JoueursControl1 : MonoBehaviour
     /* ------------------- REFERENCES COMPONENTS ------------------- */
     private CharacterController cc;
     private Animator animator;
+    private Animator animatorRing;
     public CinemachineVirtualCamera virtualCamera;
     private CameraTarget cameraTarget;
     [SerializeField] private LayerMask Ground;
@@ -88,8 +89,13 @@ public class JoueursControl1 : MonoBehaviour
     private bool isHit;
     private bool canHitRock = true;
 
+    public bool hasArtefact1 = false;
+    public bool hasArtefact2 = false;
+
     //Rock Quest
     private bool inFrontofRock = false;
+    private bool inFrontofRing = false;
+
 
     // AttackCombos
     private int comboStep = 0;
@@ -129,6 +135,8 @@ public class JoueursControl1 : MonoBehaviour
     private GameObject nextRock;
     private GameObject currentKatana;
     private GameObject nextKatana;
+    [SerializeField] private GameObject Ring;
+    [SerializeField] private GameObject RingCollider;
     [SerializeField] private GameObject uiInteractionRock;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
@@ -177,6 +185,8 @@ public class JoueursControl1 : MonoBehaviour
         canJump = true;
         isHealing = false;
         isHit = false;
+
+        animatorRing = Ring.GetComponent<Animator>();
 
         katanaList.Add(katana);
 
@@ -674,6 +684,11 @@ public class JoueursControl1 : MonoBehaviour
                     }
                 }
             }
+            else if(inFrontofRing && !hasArtefact1)
+            {
+                hasArtefact1 = true;
+                Ring.SetActive(true);
+            }
         }
     }
     private void DebugTool(InputAction.CallbackContext ctx)
@@ -1090,11 +1105,18 @@ public class JoueursControl1 : MonoBehaviour
 
         currentRock.SetActive(false);
         nextRock.SetActive(true);
+        if(!Ring.activeSelf)
+        {
+            Ring.SetActive(true);
+        }
         
         if(nextRock.name == "Roche4")
         {
             GetComponents<AudioSource>()[3].PlayOneShot(banqueAudio.sRockBreak);
             uiInteractionRock.SetActive(false);
+            animatorRing.SetTrigger("drop");
+            yield return new WaitForSeconds(1.16f);
+            RingCollider.SetActive(true);
         }
         else
         {
@@ -1203,6 +1225,10 @@ public class JoueursControl1 : MonoBehaviour
         if (collision.CompareTag("Rock"))
         {
             inFrontofRock = true;
+        }
+        if (collision.CompareTag("Ring"))
+        {
+            inFrontofRing = true;
         }
     }
     
