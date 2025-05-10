@@ -138,6 +138,7 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private GameObject Ring;
     [SerializeField] private GameObject RingCollider;
     [SerializeField] private GameObject uiInteractionRock;
+    [SerializeField] private GameObject uiInteractionRing;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
@@ -664,6 +665,12 @@ public class JoueursControl1 : MonoBehaviour
     private void Interact(InputAction.CallbackContext ctx)
     {
         if(ctx.performed){
+            if(inFrontofRing && !hasArtefact1)
+            {
+                hasArtefact1 = true;
+                Ring.SetActive(false);
+                uiInteractionRing.SetActive(false);
+            }
             if(inFrontofRock && canHitRock && isArmed)
             {
                 for (int i = 0; i < rocks.Length - 1; i++)
@@ -683,11 +690,6 @@ public class JoueursControl1 : MonoBehaviour
                         break;
                     }
                 }
-            }
-            else if(inFrontofRing && !hasArtefact1)
-            {
-                hasArtefact1 = true;
-                Ring.SetActive(true);
             }
         }
     }
