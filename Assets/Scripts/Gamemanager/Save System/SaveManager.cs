@@ -80,7 +80,7 @@ public class SaveManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Debug.Log("QUIT THE APPLICATION");
-        SaveGame();
+        // Debug.Log("QUIT THE APPLICATION");
+        // SaveGame();
     } 
 }
