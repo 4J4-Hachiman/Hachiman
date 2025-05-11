@@ -13,7 +13,6 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(CapsuleCollider))]
 public class Sword : MonoBehaviour
 {
     [Header("Stats")]
@@ -25,12 +24,20 @@ public class Sword : MonoBehaviour
 
     void Awake()
     {
-        GetComponent<CapsuleCollider>().includeLayers = layerDetection;
-        GetComponent<CapsuleCollider>().excludeLayers = ~layerDetection;
+        if (TryGetComponent(out Collider collider))
+        {
+            collider.includeLayers = layerDetection;
+            collider.excludeLayers = ~layerDetection;
+        }
     }
-    
+
     public float GetDammage()
     {
         return CritChance > Random.Range(1, 100) ? BasicDammage * CritDamage : BasicDammage;
     }
+
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     Debug.Log($"{other.gameObject.name}");
+    // }   
 }

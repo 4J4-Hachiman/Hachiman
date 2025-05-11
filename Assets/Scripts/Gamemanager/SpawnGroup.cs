@@ -1,5 +1,3 @@
-using System;
-using UnityEngine;
 /*
     Class de gestion des groupes pour organisation des spawns et
     des patrouilles des ennemis. Plus custom struct pour la structure 
@@ -7,15 +5,22 @@ using UnityEngine;
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 28/03/2025;
+    Dernière modification: /03/2025;
 */
-public class SpawnGroup : MonoBehaviour
+
+using System;
+using UnityEngine;
+
+public class SpawnGroup : MonoBehaviour, IDataSaveable
 {
+    [Header("ID")]
+    [field: SerializeField] private string groupeID;
     [field: SerializeField] private LayerMask mask = 8;
     [field: SerializeField] private bool showGizmos = true;
     [field: SerializeField, Range(0f, 1f)] private float groupTriggerGizmosOpacity = 1;
     [field: SerializeField, Range(0f, 50f)] private float triggerRadius = 10f;
     [field: SerializeField] public PatrolRoute[] patrolRoutes { get; private set; } = new PatrolRoute[0];
+
     public event Action<SpawnGroup> OnGroupTriggered;
 
     private void Awake()
@@ -64,6 +69,27 @@ public class SpawnGroup : MonoBehaviour
             patrolRoutes[i] = oldRoutes[i];
         }
         patrolRoutes[^1] = new PatrolRoute(newPoints);
+    }
+
+    public void LoadData(GameData data)
+    {
+        gameObject.GetComponent<SphereCollider>().enabled = data.spawnGroupsStates.GetKey(groupeID);
+
+        if (!data.spawnGroupsStates.GetKey(groupeID))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.spawnGroupsStates.SetPair(groupeID, gameObject.GetComponent<SphereCollider>().enabled);
+    }
+
+    [ContextMenu("Generate unique ID")]
+    private void NewID()
+    {
+        groupeID = "SPWNGRP_" + Guid.NewGuid().ToString();
     }
 }
 

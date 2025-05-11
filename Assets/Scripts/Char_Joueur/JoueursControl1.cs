@@ -33,11 +33,14 @@ public class JoueursControl1 : MonoBehaviour
     /* ------------------- REFERENCES COMPONENTS ------------------- */
     private CharacterController cc;
     private Animator animator;
+    private Animator animatorRing;
+    private Animator animatorDoor;
     public CinemachineVirtualCamera virtualCamera;
     private CameraTarget cameraTarget;
     [SerializeField] private LayerMask Ground;
     [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
+    public GestionMort gestionMort;
     public ControlesVieMana uiVieMana;
     public ParticleSystem sparksBlockEffect;
 
@@ -87,8 +90,15 @@ public class JoueursControl1 : MonoBehaviour
     private bool isHit;
     private bool canHitRock = true;
 
+    public bool hasArtefact1 = false;
+    public bool hasArtefact2 = false;
+    private bool isDoorOpened = false;
+
     //Rock Quest
     private bool inFrontofRock = false;
+    private bool inFrontofRing = false;
+    private bool inFrontofDoor = false;
+
 
     // AttackCombos
     private int comboStep = 0;
@@ -128,7 +138,12 @@ public class JoueursControl1 : MonoBehaviour
     private GameObject nextRock;
     private GameObject currentKatana;
     private GameObject nextKatana;
+    [SerializeField] private GameObject Door;
+    [SerializeField] private GameObject Ring;
+    [SerializeField] private GameObject RingCollider;
     [SerializeField] private GameObject uiInteractionRock;
+    [SerializeField] private GameObject uiInteractionRing;
+    [SerializeField] private GameObject uiInteractionDoor;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
@@ -176,6 +191,9 @@ public class JoueursControl1 : MonoBehaviour
         canJump = true;
         isHealing = false;
         isHit = false;
+
+        animatorRing = Ring.GetComponent<Animator>();
+        animatorDoor = Door.GetComponent<Animator>();
 
         katanaList.Add(katana);
 
@@ -244,6 +262,8 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("comboStep: " + comboStep);
         //Debug.Log("isCombo: " + isCombo);
 
+        Debug.Log("<color=Green>Number of katana: </color>" + katanaList.Count);
+
         //Death
 
         Debug.Log("<color=Blue>State: </color>" + state);
@@ -252,6 +272,8 @@ public class JoueursControl1 : MonoBehaviour
         {
             isLockedOn = false;
             animator.SetBool("lockedOn", false);
+            gestionMort.ArreterJeu();
+
         }
 
         // Modification des parametres de l'animator
@@ -649,6 +671,18 @@ public class JoueursControl1 : MonoBehaviour
     private void Interact(InputAction.CallbackContext ctx)
     {
         if(ctx.performed){
+            if(inFrontofRing && !hasArtefact1)
+            {
+                hasArtefact1 = true;
+                Ring.SetActive(false);
+                uiInteractionRing.SetActive(false);
+            }
+            if(inFrontofDoor && !isDoorOpened)
+            {
+                isDoorOpened = true;
+                uiInteractionDoor.SetActive(false);
+                animatorDoor.SetTrigger("open");
+            }
             if(inFrontofRock && canHitRock && isArmed)
             {
                 for (int i = 0; i < rocks.Length - 1; i++)
@@ -714,30 +748,22 @@ public class JoueursControl1 : MonoBehaviour
     public void SwitchKatana(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && isArmed){
+            DoNotListenToInputs();
             if (katanaList.Count > 1)
             {
                 for (int i = 0; i < katanaList.Count; i++)
                 {
-                    currentKatana = katanaList[i];
-
-                    if (currentKatana.activeSelf)
-                    {
-                        //state = HachimanState.Equiping;
-                        currentKatana.SetActive(false);
-
-                        int nextIndex = (i + 1 < katanaList.Count && katanaList[i + 1] != null) ? i + 1 : 1;
-                        nextKatana = katanaList[nextIndex];
-
-                        if (nextKatana != null)
-                        {
-                            //GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
-                            //Invoke("UnsheathKatana", 0.17f);
-                            activeKatana = nextKatana;
-                            nextKatana.SetActive(true);
-                        }
-
-                        break;
-                    }
+                    currentKatana = activeKatana;
+                    currentKatana.SetActive(false);
+                    int nextKatanaActive = katanaList.IndexOf(activeKatana);
+                    int nextIndex = (nextKatanaActive + 1 >= katanaList.Count) ? 0 : nextKatanaActive + 1;
+                    nextKatana = katanaList[nextIndex];
+                    nextKatana.SetActive(true);
+                    activeKatana = nextKatana;
+                    state = HachimanState.Equiping;
+                    GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
+                    animator.SetTrigger("SwitchKatana");
+                    break;
                 }
             }
         }
@@ -845,6 +871,7 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && state != HachimanState.Equiping){
             state = HachimanState.Equiping;
+            DoNotListenToInputs();
             //Debug.Log(ctx);
             if (isArmed == false){
                 Debug.Log("armed");
@@ -1092,11 +1119,18 @@ public class JoueursControl1 : MonoBehaviour
 
         currentRock.SetActive(false);
         nextRock.SetActive(true);
+        if(!Ring.activeSelf)
+        {
+            Ring.SetActive(true);
+        }
         
         if(nextRock.name == "Roche4")
         {
             GetComponents<AudioSource>()[3].PlayOneShot(banqueAudio.sRockBreak);
             uiInteractionRock.SetActive(false);
+            animatorRing.SetTrigger("drop");
+            yield return new WaitForSeconds(1.16f);
+            RingCollider.SetActive(true);
         }
         else
         {
@@ -1205,6 +1239,14 @@ public class JoueursControl1 : MonoBehaviour
         if (collision.CompareTag("Rock"))
         {
             inFrontofRock = true;
+        }
+        if (collision.CompareTag("Ring"))
+        {
+            inFrontofRing = true;
+        }
+        if (collision.CompareTag("Door"))
+        {
+            inFrontofDoor = true;
         }
     }
     
