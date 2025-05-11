@@ -11,9 +11,9 @@ using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
 
-public class Gamemanager : MonoBehaviour
-{       
-    public static Gamemanager gamemanagerInstance; 
+public class Gamemanager : MonoBehaviour, IDataSaveable
+{
+    public static Gamemanager gamemanagerInstance;
     private Transform player;
 
     [Header("Settings")]
@@ -23,7 +23,7 @@ public class Gamemanager : MonoBehaviour
     [Header("Fonctionality Classes")]
     public CombatManager Combat { get; private set; }
 
-    [Header("Enemy Health Bars")]    
+    [Header("Enemy Health Bars")]
     [field: SerializeField] GameObject hpBarParent;
     [field: SerializeField] GameObject hpBarInstance;
     private Pooling hpBarPool;
@@ -55,7 +55,7 @@ public class Gamemanager : MonoBehaviour
         }
 
         Cursor.lockState = CursorLockMode.Locked;
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
 
         enemyPool = new Pooling(enemyInstance, poolAmount, enemyPoolParent);
         hpBarPool = new Pooling(hpBarInstance, poolAmount, hpBarParent);
@@ -73,7 +73,7 @@ public class Gamemanager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
+
     private void InitLevel()
     {
         Invoke(nameof(LockCursor), 1f);
@@ -107,7 +107,7 @@ public class Gamemanager : MonoBehaviour
             newHpBar.OnTargetDeath += HandleOnTargetdeath;
             newHpBar.gameObject.SetActive(true);
         }
-        
+
         spawnGroup.OnGroupTriggered -= HandleGroupTriggered;
     }
 
@@ -135,7 +135,7 @@ public class Gamemanager : MonoBehaviour
 
     private void HandleAlertAll()
     {
-        foreach(GameObject enemy in activeEnemies)
+        foreach (GameObject enemy in activeEnemies)
         {
             enemy.GetComponent<EnnemiMain>().OnAlertAll -= HandleAlertAll;
             enemy.GetComponent<EnnemiMain>().StartCombat();
@@ -151,5 +151,17 @@ public class Gamemanager : MonoBehaviour
         {
             enemyPool.ReturnToPool(deadEnemies.Dequeue());
         }
+    }
+
+    /* IDataSaveable Interface */
+    public void LoadData(GameData data)
+    {
+        player.SetPositionAndRotation(data.playerPosition, data.playerRotation);
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = player.position;
+        data.playerRotation = player.rotation;
     }
 }

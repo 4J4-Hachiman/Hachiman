@@ -1,42 +1,83 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MasaraiStateWalk : MasaraiBaseState
 {
-    public event Action OnCloseToPLayer;
+    public event Action<MasaraiMain.AttackType, int> OnTriggerAttack;
     private readonly Animator mainAnimator;
     private readonly NavMeshAgent mainNavAgent;
+    private bool attackedTriggered;
 
-    public MasaraiStateWalk(MasaraiStateMachine masaraiSM, MasaraiMain main, Animator mainAnimator, NavMeshAgent mainNavAgent) : base(masaraiSM, main) 
-    { 
+    public MasaraiStateWalk(MasaraiStateMachine masaraiSM, MasaraiMain main, Animator mainAnimator, NavMeshAgent mainNavAgent) : base(masaraiSM, main)
+    {
         this.mainAnimator = mainAnimator;
         this.mainNavAgent = mainNavAgent;
     }
 
-    public override void StateStart(bool init = false) 
-    { 
-        Debug.Log("Entered walk state");
+    public override void StateStart(bool init = false)
+    {
+        // Debug.Log("Entered walk state");
         mainAnimator.applyRootMotion = true;
         mainNavAgent.updatePosition = false;
+        attackedTriggered = false;
+        main.StartCoroutine(SpecialRand());
     }
 
     public override void StateExit() { }
 
-    public override void StateUpdate() 
-    { 
+    public override void StateUpdate()
+    {
         if ((main.Player.position - main.transform.position).sqrMagnitude < main.AtkTrigDistance)
         {
-            OnCloseToPLayer?.Invoke();
+            OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Simple, -1);
+            attackedTriggered = true;
         }
-        
+
         mainNavAgent.nextPosition = main.transform.position;
-        mainAnimator.SetFloat(main.AnimParamVtotal, mainNavAgent.velocity.magnitude);
+        mainAnimator.SetFloat(main.ParamVtotal, mainNavAgent.velocity.magnitude);
     }
 
     public override void StateFixedUpdate()
     {
         mainNavAgent.SetDestination(main.Player.position);
         main.LookAtPlayer();
+    }
+
+    private IEnumerator SpecialRand()
+    {
+        float interval = 1;
+
+        while (!attackedTriggered)
+        {
+            while (interval > 0 )
+            {
+                interval -= Time.deltaTime;
+                yield return null;
+            }
+
+            interval = 1;
+
+            if ((main.Player.position - main.transform.position).sqrMagnitude > main.SpecialAtkTrigDistance)
+            {
+                if (UnityEngine.Random.Range(0, 100) < main.AttackSpecialTriggerChance)
+                {
+                    attackedTriggered = true;
+
+                    if ((main.Player.position - main.transform.position).sqrMagnitude > main.SpecialAtkTrigDistance * 1.5f)
+                    {
+                        OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special, (int)MasaraiMain.AttackSpecial.Smash);
+                        yield break;
+                    }
+
+                    OnTriggerAttack?.Invoke(MasaraiMain.AttackType.Special, -1);
+                    yield break;
+                }
+            }
+
+            yield return null;
+        }
+        yield break;
     }
 }
