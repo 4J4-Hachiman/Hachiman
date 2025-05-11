@@ -14,8 +14,8 @@ public class NavigationBoussole : MonoBehaviour
     public GameObject joueur;
     public GameObject cam;
     public Transform refOrientation;
-    public GameObject indicateurEnnemi;
-    public GameObject indicateurQuete;
+    // public GameObject indicateurEnnemi;
+    // public GameObject indicateurQuete;
     public GameObject boussole;
     public Vector3 directionMonde;
 

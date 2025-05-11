@@ -1,0 +1,484 @@
+fileFormatVersion: 2
+guid: fb3badf514e672f49b1e8b559702b3cc
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: <Root Transform>
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idleOfficiel
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 0
+      lastFrame: 74
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference
+        weight: 0
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_ChestEndEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_ChestOriginEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_HeadEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_LeftUpLeg
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_LeftUpLeg/Ughomi1_Ctrl_LeftLeg
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_LeftUpLeg/Ughomi1_Ctrl_LeftLeg/Ughomi1_Ctrl_LeftFoot
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_LeftUpLeg/Ughomi1_Ctrl_LeftLeg/Ughomi1_Ctrl_LeftFoot/Ughomi1_Ctrl_LeftToeBase
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_RightUpLeg
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_RightUpLeg/Ughomi1_Ctrl_RightLeg
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_RightUpLeg/Ughomi1_Ctrl_RightLeg/Ughomi1_Ctrl_RightFoot
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_RightUpLeg/Ughomi1_Ctrl_RightLeg/Ughomi1_Ctrl_RightFoot/Ughomi1_Ctrl_RightToeBase
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandIndex1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandIndex1/Ughomi1_Ctrl_LeftHandIndex2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandIndex1/Ughomi1_Ctrl_LeftHandIndex2/Ughomi1_Ctrl_LeftHandIndex3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandIndex1/Ughomi1_Ctrl_LeftHandIndex2/Ughomi1_Ctrl_LeftHandIndex3/Ughomi1_Ctrl_LeftHandIndex4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandMiddle1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandMiddle1/Ughomi1_Ctrl_LeftHandMiddle2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandMiddle1/Ughomi1_Ctrl_LeftHandMiddle2/Ughomi1_Ctrl_LeftHandMiddle3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandMiddle1/Ughomi1_Ctrl_LeftHandMiddle2/Ughomi1_Ctrl_LeftHandMiddle3/Ughomi1_Ctrl_LeftHandMiddle4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandPinky1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandPinky1/Ughomi1_Ctrl_LeftHandPinky2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandPinky1/Ughomi1_Ctrl_LeftHandPinky2/Ughomi1_Ctrl_LeftHandPinky3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandPinky1/Ughomi1_Ctrl_LeftHandPinky2/Ughomi1_Ctrl_LeftHandPinky3/Ughomi1_Ctrl_LeftHandPinky4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandRing1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandRing1/Ughomi1_Ctrl_LeftHandRing2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandRing1/Ughomi1_Ctrl_LeftHandRing2/Ughomi1_Ctrl_LeftHandRing3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandRing1/Ughomi1_Ctrl_LeftHandRing2/Ughomi1_Ctrl_LeftHandRing3/Ughomi1_Ctrl_LeftHandRing4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandThumb1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandThumb1/Ughomi1_Ctrl_LeftHandThumb2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandThumb1/Ughomi1_Ctrl_LeftHandThumb2/Ughomi1_Ctrl_LeftHandThumb3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_LeftShoulder/Ughomi1_Ctrl_LeftArm/Ughomi1_Ctrl_LeftForeArm/Ughomi1_Ctrl_LeftHand/Ughomi1_Ctrl_LeftHandThumb1/Ughomi1_Ctrl_LeftHandThumb2/Ughomi1_Ctrl_LeftHandThumb3/Ughomi1_Ctrl_LeftHandThumb4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_Neck
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_Neck/Ughomi1_Ctrl_Head
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandIndex1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandIndex1/Ughomi1_Ctrl_RightHandIndex2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandIndex1/Ughomi1_Ctrl_RightHandIndex2/Ughomi1_Ctrl_RightHandIndex3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandIndex1/Ughomi1_Ctrl_RightHandIndex2/Ughomi1_Ctrl_RightHandIndex3/Ughomi1_Ctrl_RightHandIndex4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandMiddle1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandMiddle1/Ughomi1_Ctrl_RightHandMiddle2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandMiddle1/Ughomi1_Ctrl_RightHandMiddle2/Ughomi1_Ctrl_RightHandMiddle3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandMiddle1/Ughomi1_Ctrl_RightHandMiddle2/Ughomi1_Ctrl_RightHandMiddle3/Ughomi1_Ctrl_RightHandMiddle4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandPinky1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandPinky1/Ughomi1_Ctrl_RightHandPinky2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandPinky1/Ughomi1_Ctrl_RightHandPinky2/Ughomi1_Ctrl_RightHandPinky3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandPinky1/Ughomi1_Ctrl_RightHandPinky2/Ughomi1_Ctrl_RightHandPinky3/Ughomi1_Ctrl_RightHandPinky4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandRing1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandRing1/Ughomi1_Ctrl_RightHandRing2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandRing1/Ughomi1_Ctrl_RightHandRing2/Ughomi1_Ctrl_RightHandRing3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandRing1/Ughomi1_Ctrl_RightHandRing2/Ughomi1_Ctrl_RightHandRing3/Ughomi1_Ctrl_RightHandRing4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandThumb1
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandThumb1/Ughomi1_Ctrl_RightHandThumb2
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandThumb1/Ughomi1_Ctrl_RightHandThumb2/Ughomi1_Ctrl_RightHandThumb3
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_Hips/Ughomi1_Ctrl_Spine/Ughomi1_Ctrl_Spine1/Ughomi1_Ctrl_Spine2/Ughomi1_Ctrl_RightShoulder/Ughomi1_Ctrl_RightArm/Ughomi1_Ctrl_RightForeArm/Ughomi1_Ctrl_RightHand/Ughomi1_Ctrl_RightHandThumb1/Ughomi1_Ctrl_RightHandThumb2/Ughomi1_Ctrl_RightHandThumb3/Ughomi1_Ctrl_RightHandThumb4
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_HipsEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftAnkleEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftElbowEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftFootEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftHandIndexEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftHandMiddleEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftHandPinkyEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftHandRingEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftHandThumbEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftHipEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftKneeEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftShoulderEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_LeftWristEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightAnkleEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightElbowEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightFootEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightHandIndexEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightHandMiddleEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightHandPinkyEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightHandRingEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightHandThumbEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightHipEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightKneeEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightShoulderEffector
+        weight: 1
+      - path: Ughomi1_Ctrl_Reference/Ughomi1_Ctrl_RightWristEffector
+        weight: 1
+      - path: Ughomi1_Reference
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_LeftUpLeg
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_LeftUpLeg/Ughomi1_LeftLeg
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_LeftUpLeg/Ughomi1_LeftLeg/Ughomi1_LeftFoot
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_LeftUpLeg/Ughomi1_LeftLeg/Ughomi1_LeftFoot/Ughomi1_LeftToeBase
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_RightUpLeg
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_RightUpLeg/Ughomi1_RightLeg
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_RightUpLeg/Ughomi1_RightLeg/Ughomi1_RightFoot
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_RightUpLeg/Ughomi1_RightLeg/Ughomi1_RightFoot/Ughomi1_RightToeBase
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandIndex1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandIndex1/Ughomi1_LeftHandIndex2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandIndex1/Ughomi1_LeftHandIndex2/Ughomi1_LeftHandIndex3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandIndex1/Ughomi1_LeftHandIndex2/Ughomi1_LeftHandIndex3/Ughomi1_LeftHandIndex4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandMiddle1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandMiddle1/Ughomi1_LeftHandMiddle2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandMiddle1/Ughomi1_LeftHandMiddle2/Ughomi1_LeftHandMiddle3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandMiddle1/Ughomi1_LeftHandMiddle2/Ughomi1_LeftHandMiddle3/Ughomi1_LeftHandMiddle4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandPinky1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandPinky1/Ughomi1_LeftHandPinky2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandPinky1/Ughomi1_LeftHandPinky2/Ughomi1_LeftHandPinky3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandPinky1/Ughomi1_LeftHandPinky2/Ughomi1_LeftHandPinky3/Ughomi1_LeftHandPinky4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandRing1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandRing1/Ughomi1_LeftHandRing2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandRing1/Ughomi1_LeftHandRing2/Ughomi1_LeftHandRing3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandRing1/Ughomi1_LeftHandRing2/Ughomi1_LeftHandRing3/Ughomi1_LeftHandRing4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandThumb1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandThumb1/Ughomi1_LeftHandThumb2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandThumb1/Ughomi1_LeftHandThumb2/Ughomi1_LeftHandThumb3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_LeftShoulder/Ughomi1_LeftArm/Ughomi1_LeftForeArm/Ughomi1_LeftHand/Ughomi1_LeftHandThumb1/Ughomi1_LeftHandThumb2/Ughomi1_LeftHandThumb3/Ughomi1_LeftHandThumb4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/boucleDroite1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/boucleDroite1/boucleDroite2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/boucleDroite1/boucleDroite2/joint4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/boucleGauche1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/boucleGauche1/boucleGauche2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/boucleGauche1/boucleGauche2/joint3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/Cheveux1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/Cheveux1/Cheveux2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/Cheveux1/Cheveux2/Cheveux3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/Cheveux1/Cheveux2/Cheveux3/Cheveux4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/Cheveux1/Cheveux2/Cheveux3/Cheveux4/Cheveux5
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/Cheveux1/Cheveux2/Cheveux3/Cheveux4/Cheveux5/Cheveux6
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_Neck/Ughomi1_Head/curve1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandIndex1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandIndex1/Ughomi1_RightHandIndex2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandIndex1/Ughomi1_RightHandIndex2/Ughomi1_RightHandIndex3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandIndex1/Ughomi1_RightHandIndex2/Ughomi1_RightHandIndex3/Ughomi1_RightHandIndex4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandMiddle1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandMiddle1/Ughomi1_RightHandMiddle2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandMiddle1/Ughomi1_RightHandMiddle2/Ughomi1_RightHandMiddle3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandMiddle1/Ughomi1_RightHandMiddle2/Ughomi1_RightHandMiddle3/Ughomi1_RightHandMiddle4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandPinky1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandPinky1/Ughomi1_RightHandPinky2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandPinky1/Ughomi1_RightHandPinky2/Ughomi1_RightHandPinky3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandPinky1/Ughomi1_RightHandPinky2/Ughomi1_RightHandPinky3/Ughomi1_RightHandPinky4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandRing1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandRing1/Ughomi1_RightHandRing2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandRing1/Ughomi1_RightHandRing2/Ughomi1_RightHandRing3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandRing1/Ughomi1_RightHandRing2/Ughomi1_RightHandRing3/Ughomi1_RightHandRing4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandThumb1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandThumb1/Ughomi1_RightHandThumb2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandThumb1/Ughomi1_RightHandThumb2/Ughomi1_RightHandThumb3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Ughomi1_Spine/Ughomi1_Spine1/Ughomi1_Spine2/Ughomi1_RightShoulder/Ughomi1_RightArm/Ughomi1_RightForeArm/Ughomi1_RightHand/Ughomi1_RightHandThumb1/Ughomi1_RightHandThumb2/Ughomi1_RightHandThumb3/Ughomi1_RightHandThumb4
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Uhgomi1_JupeArriere1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Uhgomi1_JupeArriere1/Uhgomi1_JupeArriere2
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Uhgomi1_JupeArriere1/Uhgomi1_JupeArriere2/Uhgomi1_JupeArriere3
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Uhgomi1_JupeAvant1
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Uhgomi1_JupeAvant1/Uhgomi1_JupeAvant12
+        weight: 1
+      - path: Ughomi1_Reference/Ughomi1_Hips/Uhgomi1_JupeAvant1/Uhgomi1_JupeAvant12/Uhgomi1_JupeAvant3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

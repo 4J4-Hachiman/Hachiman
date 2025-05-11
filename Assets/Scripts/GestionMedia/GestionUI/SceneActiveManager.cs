@@ -5,9 +5,9 @@
 
     Fonction pour les changements de scènes
         Par : Malaïka Abevi
-        Dernière modification : 04/05/2025
+        Dernière modification : 06/05/2025
 */
-using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +16,7 @@ public class SceneActiveManager : MonoBehaviour
 {
     public static SceneActiveManager instance;
     public Image fillChargement;
+    public Animator animChargement;
 
     void Start()
     {
@@ -30,25 +31,39 @@ public class SceneActiveManager : MonoBehaviour
         }
     }
 
-    public async void ChargerScene(string nomScene){
-        await Task.Delay(5000);
-        var scene = SceneManager.LoadSceneAsync(nomScene);
+    //Fonction pour démarrer la coroutine du chargement de scène
+    public void ChargerScene(string nomScene)
+    {
+        StartCoroutine(ChargementAsyncScene(nomScene));
+    }
+
+    IEnumerator ChargementAsyncScene(string nomScene)
+    {
+        yield return new WaitForSeconds(7);
+
+        AsyncOperation scene = SceneManager.LoadSceneAsync(nomScene);
+
         scene.allowSceneActivation = false;
 
-        //Instructions nécéssaires blablabla
-        if(!scene.isDone){
-            
-        }
-        do{
+        do
+        {
             fillChargement.fillAmount = scene.progress;
-            Debug.Log("Chargement...");
-        }while(scene.progress < 0.9f);
+            Debug.Log("Chargement... : " + scene.progress);
+            if (scene.progress >= 0.9f)
+            {
+                yield return new WaitForSeconds(1);
+                fillChargement.fillAmount = 1f;
+                yield return new WaitForSeconds(1);
+                animChargement.SetTrigger("fadeOut");
+                yield return new WaitForSeconds(3);
+                scene.allowSceneActivation = true;
+                Time.timeScale = 1;
+            }
+            yield return null;
+        } while (!scene.isDone);
 
         Debug.Log("La scène est chargée");
-        
-        await Task.Delay(3000);
 
-        scene.allowSceneActivation = true;
-        Time.timeScale = 1;
+        yield return null;
     }
 }
