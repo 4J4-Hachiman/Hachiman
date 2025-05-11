@@ -34,6 +34,7 @@ public class JoueursControl1 : MonoBehaviour
     private CharacterController cc;
     private Animator animator;
     private Animator animatorRing;
+    private Animator animatorDoor;
     public CinemachineVirtualCamera virtualCamera;
     private CameraTarget cameraTarget;
     [SerializeField] private LayerMask Ground;
@@ -91,10 +92,12 @@ public class JoueursControl1 : MonoBehaviour
 
     public bool hasArtefact1 = false;
     public bool hasArtefact2 = false;
+    private bool isDoorOpened = false;
 
     //Rock Quest
     private bool inFrontofRock = false;
     private bool inFrontofRing = false;
+    private bool inFrontofDoor = false;
 
 
     // AttackCombos
@@ -135,10 +138,12 @@ public class JoueursControl1 : MonoBehaviour
     private GameObject nextRock;
     private GameObject currentKatana;
     private GameObject nextKatana;
+    [SerializeField] private GameObject Door;
     [SerializeField] private GameObject Ring;
     [SerializeField] private GameObject RingCollider;
     [SerializeField] private GameObject uiInteractionRock;
     [SerializeField] private GameObject uiInteractionRing;
+    [SerializeField] private GameObject uiInteractionDoor;
 
     /* --------------------------- ARRAYS ---------------------------- */ 
     private Collider[] hits;
@@ -188,6 +193,7 @@ public class JoueursControl1 : MonoBehaviour
         isHit = false;
 
         animatorRing = Ring.GetComponent<Animator>();
+        animatorDoor = Door.GetComponent<Animator>();
 
         katanaList.Add(katana);
 
@@ -670,6 +676,12 @@ public class JoueursControl1 : MonoBehaviour
                 hasArtefact1 = true;
                 Ring.SetActive(false);
                 uiInteractionRing.SetActive(false);
+            }
+            if(inFrontofDoor && !isDoorOpened)
+            {
+                isDoorOpened = true;
+                uiInteractionDoor.SetActive(false);
+                animatorDoor.SetTrigger("open");
             }
             if(inFrontofRock && canHitRock && isArmed)
             {
@@ -1231,6 +1243,10 @@ public class JoueursControl1 : MonoBehaviour
         if (collision.CompareTag("Ring"))
         {
             inFrontofRing = true;
+        }
+        if (collision.CompareTag("Door"))
+        {
+            inFrontofDoor = true;
         }
     }
     
