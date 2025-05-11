@@ -3,10 +3,11 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 24/04/2025; 
+    Dernière modification: 29/04/2025; 
 */
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,6 +21,10 @@ public class MasaraiMain : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
 
+    [field: SerializeField] private Transform[] limbs;
+    [field: SerializeField] private Transform hitbox;
+    private SphereCollider hitboxCollider;
+
     [Header("Data")]
     [field: SerializeField] private float hp;
     [field: SerializeField] public float WalkSpeed { get; private set; }
@@ -27,18 +32,18 @@ public class MasaraiMain : MonoBehaviour
     [field: SerializeField] public float SpecialAtkTrigDistance { get; private set; }
 
     /* =================== Anim params =================== */
-    public int AnimParamVtotal { get; private set; }
-    public int AnimParamAttackSimple { get; private set; }
-    public int AnimParamAttackSpecial { get; private set; }
-    public int AnimParamAttackSimpleIndex { get; private set; }
-    public int AnimParamAttackSpecialIndex { get; private set; }
+    public int ParamVtotal { get; private set; }
+    public int ParamAttckSpecialStart { get; private set; }
+    public int ParamAttackIndex { get; private set; }
+    public int ParamAttackSpecialPlay { get; private set; }
+
 
     [Header("Animations")]
     [field: SerializeField] private int simpleAttackCount;
     [field: SerializeField] private int specialAttackCount;
+    public int AttackIndex { get; private set; }
 
-    public int AttackSimpleIndex { get; private set; }
-    public int AttackSecialIndex { get; private set; }
+    [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
 
     /* ================== State Machine ================== */
     private MasaraiStateMachine stateMachine;
@@ -46,7 +51,29 @@ public class MasaraiMain : MonoBehaviour
     private MasaraiStateAttack stateAttack;
 
     /* ====================== Events ====================== */
-    public event Action OnAttackAnimEnd;
+
+    public enum AttackType
+    {
+        Simple,
+        Special
+    }
+
+    public enum AttackSimple
+    {
+        Uppercut,
+        Kick,
+        Stomp
+    }
+
+    public enum AttackSpecial
+    {
+        Smash,
+        Tatsumaki
+    }
+
+    public AttackType CurrentAttackType { get; private set; }
+    public AttackSimple CurrentSimpleAttack { get; private set; }
+    public AttackSpecial CurrentSpecialAttack { get; private set; }
 
     private void Awake()
     {
@@ -56,18 +83,23 @@ public class MasaraiMain : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
-        AnimParamVtotal = Animator.StringToHash("Vtotal");
-        AnimParamAttackSimple = Animator.StringToHash("AttackSimple");
-        AnimParamAttackSpecial = Animator.StringToHash("AttackSpecial");
-        AnimParamAttackSimpleIndex = Animator.StringToHash("AttackSimpleIndex");
-        AnimParamAttackSpecialIndex = Animator.StringToHash("AttackSpecialIndex");
+        ParamVtotal = Animator.StringToHash("Vtotal");
+        ParamAttackIndex = Animator.StringToHash("AttackIndex");
+        ParamAttckSpecialStart = Animator.StringToHash("AttackSpecialStart");
+        ParamAttackSpecialPlay = Animator.StringToHash("AttackSpecialPlay");
+
+        AtkTrigDistance *= AtkTrigDistance;
+        SpecialAtkTrigDistance *= SpecialAtkTrigDistance;
+
+        hitboxCollider = hitbox.GetComponent<SphereCollider>();
+        hitboxCollider.enabled = false;
 
         stateMachine = new MasaraiStateMachine();
         stateWalk = new MasaraiStateWalk(stateMachine, this, animator, agent);
-        stateAttack = new MasaraiStateAttack(stateMachine, this, animator, agent);
+        stateAttack = new MasaraiStateAttack(stateMachine, this, animator, agent, hitboxCollider);
 
         stateMachine.Initalize(stateWalk);
-        stateWalk.OnCloseToPLayer += OnCloseToPlayer;
+        stateWalk.OnTriggerAttack += OnTriggerAttack;
     }
 
     private void Update()
@@ -80,28 +112,56 @@ public class MasaraiMain : MonoBehaviour
         stateMachine.Current.StateFixedUpdate();
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log("<color=orange>Tapped Hachiman</orange>");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
+        {
+            if (other.TryGetComponent(out Sword sword))
+            {
+                hp -= sword.GetDammage();
+            }
+        }
+    }
+
     private void OnAnimatorMove()
     {
         if (!animator.applyRootMotion)
         {
             return;
         }
-        
+
         transform.position += animator.deltaPosition;
+        agent.nextPosition = transform.position;
     }
 
-    private void OnCloseToPlayer()
+    /**************************** STATE EVENTS ****************************/
+    private void OnTriggerAttack(AttackType type, int forcedAttack)
     {
-        stateWalk.OnCloseToPLayer -= OnCloseToPlayer;
-        AttackSimpleIndex = UnityEngine.Random.Range(0, simpleAttackCount);
+        stateWalk.OnTriggerAttack -= OnTriggerAttack;
+        CurrentAttackType = type;
+
+        if (forcedAttack != -1)
+        {
+            AttackIndex = forcedAttack;
+            stateMachine.SwitchState(stateAttack);
+            return;
+        }
+
+        if (CurrentAttackType == AttackType.Simple)
+        {
+            AttackIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackSimple)).Length);
+        }
+        else
+        {
+            AttackIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackSpecial)).Length);
+        }
+
         stateMachine.SwitchState(stateAttack);
-    }
-
-    public void OnAttackAnimationEnd()
-    {
-        Debug.Log("Attack Animation over");
-        stateMachine.SwitchState(stateWalk);
-        stateWalk.OnCloseToPLayer += OnCloseToPlayer;
     }
 
     public void LookAtPlayer()
@@ -109,5 +169,35 @@ public class MasaraiMain : MonoBehaviour
         Vector3 dir = Player.position - transform.position;
         dir.y = 0;
         transform.rotation = Quaternion.LookRotation(dir);
+    }
+
+    public float GetDistanceToPlayer()
+    {
+        return Vector3.Distance(Player.position, transform.position);
+    }
+
+    /*************************** ANIMATION EVENTS ***************************/
+
+    private void OnAttackAnimationEnd()
+    {
+        stateMachine.SwitchState(stateWalk);
+        stateWalk.OnTriggerAttack += OnTriggerAttack;
+    }
+
+    private void OnSpecialAttackCharge()
+    {
+        // Debug.Log("Attack charged");
+    }
+
+    private void OnAttackHitStart(int limbIndex)
+    {
+        hitbox.parent = limbs[limbIndex];
+        hitbox.position = limbs[limbIndex].position;
+        hitboxCollider.enabled = true;
+    }
+
+    private void OnAttackHitEnd()
+    {
+        hitboxCollider.enabled = false;
     }
 }

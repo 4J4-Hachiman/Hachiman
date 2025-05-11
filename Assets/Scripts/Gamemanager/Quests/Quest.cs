@@ -24,6 +24,7 @@ public class Quest
         Data = data;
         this.parentGO = parentGO;
         questStepGO = new GameObject[Data.QuestStepGO.Length];
+        Data.state = QuestStates.Inactive;
         
         for (int i = 0; i < Data.QuestStepGO.Length; i++)
         {
@@ -35,6 +36,7 @@ public class Quest
     {
         currentStepIndex = 0;
         StepStart(parentGO);
+        Data.state = QuestStates.Active;
         GameEvents.OnQuestStepFinished += GetNextStep;
     }
 
@@ -66,6 +68,7 @@ public class Quest
     private void QuestOver()
     {
         GameEvents.OnQuestStepFinished -= GetNextStep;
+        Data.state = QuestStates.Completed;
         OnQuestOver?.Invoke();
     }
 
