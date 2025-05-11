@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8578587498323205692}
   - component: {fileID: 8150226399258033621}
   - component: {fileID: 7766003114455599445}
-  - component: {fileID: 4561713561631433902}
+  - component: {fileID: 4547235789632155876}
   m_Layer: 0
   m_Name: Poteau muraille (NO TEXTURE)
   m_TagString: Untagged
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4561713561631433902
-MeshCollider:
+--- !u!65 &4547235789632155876
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,7 +105,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8834475584210037603, guid: fc1c2ff9b7ae20f4c9baafccfba3d086, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.00607436, y: 0.038917586, z: 0.0062580286}
+  m_Center: {x: 0, y: 0.014458794, z: 0}
