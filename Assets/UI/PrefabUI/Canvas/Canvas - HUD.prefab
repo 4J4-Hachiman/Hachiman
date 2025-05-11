@@ -1194,6 +1194,7 @@ GameObject:
   - component: {fileID: 9108128364933969002}
   - component: {fileID: 432382073392696736}
   - component: {fileID: 2864934641252481882}
+  - component: {fileID: 2597555302405294580}
   m_Layer: 5
   m_Name: Canvas - HUD
   m_TagString: Untagged
@@ -1304,8 +1305,6 @@ MonoBehaviour:
   joueur: {fileID: 0}
   cam: {fileID: 0}
   refOrientation: {fileID: 0}
-  indicateurEnnemi: {fileID: 8083853586441541851}
-  indicateurQuete: {fileID: 0}
   boussole: {fileID: 7403902727308992113}
   directionMonde: {x: 0, y: 0, z: 53.7888}
 --- !u!114 &4656386227903223046
@@ -1370,6 +1369,28 @@ MonoBehaviour:
   imgItem: {fileID: 3650546427569321376}
   nomItem: {fileID: 6697147312954382478}
   popUp: {fileID: 373474110812618232}
+--- !u!95 &2597555302405294580
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519379398193581502}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4359d9632c569f0418314efaf2dbc296, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4162112318025084655
 GameObject:
   m_ObjectHideFlags: 0

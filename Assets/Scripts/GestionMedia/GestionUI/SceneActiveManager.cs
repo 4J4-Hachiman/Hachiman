@@ -67,25 +67,3 @@ public class SceneActiveManager : MonoBehaviour
         yield return null;
     }
 }
-
-// await Task.Delay(10000);
-// var scene = SceneManager.LoadSceneAsync(nomScene);
-// scene.allowSceneActivation = false;
-
-// //Instructions nécéssaires blablabla
-// if (!scene.isDone)
-// {
-//     // fillChargement.fillAmount = scene.progress;
-// }
-// do
-// {
-//     // fillChargement.fillAmount = scene.progress;
-//     // Debug.Log("Chargement...");
-// } while (scene.progress < 0.9f);
-
-// Debug.Log("La scène est chargée");
-
-// await Task.Delay(3000);
-
-// scene.allowSceneActivation = true;
-// Time.timeScale = 1;
