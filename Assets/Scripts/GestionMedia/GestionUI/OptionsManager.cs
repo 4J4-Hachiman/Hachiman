@@ -58,9 +58,4 @@ public class OptionsManager : MonoBehaviour
         //Actualisation des options (pour valeurs et affichages)
         menuOptions.GetComponent<ControlesMenuOptions>().ActualisationOptions();
     }
-
-  void Update()
-  {
-     Debug.LogError("État des options : " + optionsSauvegarder);
-  }
 }

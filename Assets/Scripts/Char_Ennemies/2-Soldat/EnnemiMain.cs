@@ -266,7 +266,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
     public bool IsWithinAttackDistance()
     {
-        return (transform.position - Player.transform.position).sqrMagnitude <= 2f;
+        return (transform.position - Player.transform.position).sqrMagnitude <= 0.25f;
     }
 
     /* =========================== ANIMATION EVENTS METHODS =========================== */

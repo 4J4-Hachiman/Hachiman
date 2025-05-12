@@ -3,10 +3,11 @@
     
     Script pour mettre en pause le jeu
         Par : Malaïka Abevi
-        Dernière modification : 04/05/2025
+        Dernière modification : 10/05/2025
 */
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class GestionPause : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GestionPause : MonoBehaviour
 
     public CanvasGroup HUD;
     // public GameObject HUD;
+    public VideoPlayer videoCinematiques;
     public GameObject menuOptions;
     public GameObject menuCommandes;
     public Scene scenePartie;
@@ -43,6 +45,7 @@ public class GestionPause : MonoBehaviour
             HUD.alpha = 0;
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.Confined;
+            videoCinematiques.Pause();
         }
         else
         {
@@ -52,8 +55,18 @@ public class GestionPause : MonoBehaviour
             menuCommandes.SetActive(false);
             menuOptions.SetActive(false);
             HUD.alpha = 1;
-            // HUD.SetActive(true);
-            Time.timeScale = 1;
+
+            if (!ChangementCinematiques.cinematiqueEnCours)
+            {
+                Time.timeScale = 1;
+            }
+            else
+            {
+                if(!ChangementCinematiques.cinematiqueTermine){
+                    videoCinematiques.Play();
+                }
+            }
+
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
