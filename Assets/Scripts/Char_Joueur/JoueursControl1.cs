@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEditor;
 using System.Collections;
 using Unity.Cinemachine;
+using UnityEngine.VFX;
 
 /* 
     Class de gestion des controles du joueur grace aux Input system de Unity;
@@ -149,6 +150,11 @@ public class JoueursControl1 : MonoBehaviour
     private Collider[] hits;
     [SerializeField] private GameObject[] rocks;
     public List<GameObject> katanaList = new List<GameObject>();
+
+    /* --------------------------- VFX ---------------------------- */ 
+
+    public VisualEffect vfx;
+    public VisualEffect[] vfxArraySlash;
 
     /* ============================================================== */
     /* ============================================================== */
@@ -1284,5 +1290,16 @@ public class JoueursControl1 : MonoBehaviour
     {
         // ---------- Sound ---------
         GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sHealing);
+    }
+    public void PlayVfx1()
+    {
+        if (vfxArraySlash.Length > 0 && vfxArraySlash[0] != null)
+        {
+            vfxArraySlash[0].Play();
+        }
+        else
+        {
+            Debug.Log("NULL OR NOTHING");
+        }
     }
 }
