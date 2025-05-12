@@ -5,13 +5,12 @@
 
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 03/05/2025
+    Dernière modification: 11/05/2025
 */  
 
 
 using UnityEngine;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -41,7 +40,7 @@ public class SaveManager : MonoBehaviour
         string fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), pathFromDir);
         fileHandler = new (fullPath, fileName);
         saveDatas = new List<IDataSaveable>(FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataSaveable>());
-        LoadGame();
+        // LoadGame();
     }
 
     public void NewGame()
@@ -58,7 +57,6 @@ public class SaveManager : MonoBehaviour
             Debug.Log("Couldnt find data making new Data");
             NewGame();
             SaveGame();
-            LoadGame();
             return;
         }
 
