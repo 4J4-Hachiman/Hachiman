@@ -10,6 +10,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnGroup : MonoBehaviour, IDataSaveable
 {
@@ -25,6 +26,7 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
 
     private void Awake()
     {
+        groupeID = $"SPWNGRP_{SceneManager.GetActiveScene().name}_{gameObject.name.ToLower()}";
         SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
         sphereCollider.isTrigger = true;
         sphereCollider.radius = triggerRadius;
@@ -37,7 +39,7 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
         if (other.gameObject.CompareTag("Player"))
         {
             OnGroupTriggered?.Invoke(this);
-            gameObject.GetComponent<SphereCollider>().enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
         }
     }
 
@@ -84,12 +86,6 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
     public void SaveData(ref GameData data)
     {
         data.spawnGroupsStates.SetPair(groupeID, gameObject.GetComponent<SphereCollider>().enabled);
-    }
-
-    [ContextMenu("Generate unique ID")]
-    private void NewID()
-    {
-        groupeID = "SPWNGRP_" + Guid.NewGuid().ToString();
     }
 }
 
