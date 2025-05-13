@@ -113,6 +113,7 @@ public class Chest : MonoBehaviour
                     hachiman.activeKatana.gameObject.SetActive(false);
                     hachiman.activeKatana = instNewKatana;
                     hachiman.katanaList.Add(instNewKatana);
+                    affichageRecolteItems.AfficherItemsRecolte(spriteItem, stringItemName);
                 }
             }
             if(isTaken)
