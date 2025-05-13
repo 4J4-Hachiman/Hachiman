@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8bcdf71d7fafa419fca1ed162f5fc9, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.51
+    m_Value: 0
   contrast:
     m_OverrideState: 0
     m_Value: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1.34
+    m_Value: 1
   tintColor:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d08ce26990eb1a4a9177b860541e702, type: 3}
   m_Name: Exposure
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 0
@@ -252,9 +252,9 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 0.21428579
+    m_Value: 0
   compensation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   limitMin:
     m_OverrideState: 0
@@ -395,9 +395,9 @@ MonoBehaviour:
   - {fileID: -1429504318355601481}
   - {fileID: 2220288679799646734}
   - {fileID: 7330420161801247739}
+  - {fileID: -3368312568525326222}
   - {fileID: -1004557000156030455}
   - {fileID: 4840361699476197609}
-  - {fileID: -3368312568525326222}
   - {fileID: -5509020112203573770}
 --- !u!114 &2220288679799646734
 MonoBehaviour:
@@ -423,13 +423,13 @@ MonoBehaviour:
     m_Value: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.17133684, g: 0.09229262, b: 0.3207547, a: 1}
+    m_Value: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
   tint:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 500
+    m_Value: 100
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -441,16 +441,16 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: 50
+    m_Value: 0
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 55.4
+    m_Value: 500
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 250
+    m_Value: 114.2
   enableVolumetricFog:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0
   albedo:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddcec8a8eb2d684d833ac8f5d26aebd, type: 3}
   m_Name: HDShadowSettings
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   interCascadeBorders: 1
   maxShadowDistance:
     m_OverrideState: 1
@@ -552,15 +552,15 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.104
+    m_Value: 0.249
   scatter:
     m_OverrideState: 1
-    m_Value: 0.809
+    m_Value: 0.62
   tint:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   dirtTexture:
     m_OverrideState: 0
