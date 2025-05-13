@@ -20,6 +20,9 @@ public class Chest : MonoBehaviour
     public Animator animator;
     public BanqueAudio banqueAudio;
     public AudioSource audioSource;
+    public AffichageRecolteItems affichageRecolteItems;
+    public Sprite spriteItem;
+    public string stringItemName;
 
     /* -------------------- VARIABLES CHEST -------------------- */
     private bool isOpen = false;
@@ -97,6 +100,7 @@ public class Chest : MonoBehaviour
                 isTaken = true;
                 Debug.Log("potion");
                 hachiman.numbPotion += numbPotionInChest;
+                affichageRecolteItems.AfficherItemsRecolte(spriteItem, stringItemName);
             }
             else if(katana != null || katanaInChest != null)
             {
