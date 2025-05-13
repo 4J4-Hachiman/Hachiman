@@ -55,7 +55,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
         }
 
         Cursor.lockState = CursorLockMode.Locked;
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 30;
 
         enemyPool = new Pooling(enemyInstance, poolAmount, enemyPoolParent);
         hpBarPool = new Pooling(hpBarInstance, poolAmount, hpBarParent);
