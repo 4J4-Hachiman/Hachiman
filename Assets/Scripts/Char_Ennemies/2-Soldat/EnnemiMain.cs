@@ -60,6 +60,11 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     public event Action<EnnemiMain> OnActionOver;
     public event Action<float, float> OnDammageTaken;
 
+    [Header("Audio")]
+    [field: SerializeField] protected AudioClip[] soundHit;
+    [field: SerializeField] protected AudioClip sonMort;
+    private AudioSource audioSource;
+
     public enum AttackTypes
     {
         AttackSimple,
@@ -73,6 +78,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         LockOffsetThreshold *= LockOffsetThreshold;
         Player = GameObject.FindWithTag("Player");
         swordCollider = SwordGameObject.GetComponent<CapsuleCollider>();
+        audioSource = GetComponent<AudioSource>(); 
         Agent = GetComponent<NavMeshAgent>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
         Animator = GetComponent<Animator>();
@@ -108,23 +114,12 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
         StatePatrol.OnPlayerSpotted += HandlePlayerSpotted;
         StateMachine.Initalize(StatePatrol, true);
-
-        // StartCoroutine(DebugCoroutine());
     }
-
-    // IEnumerator DebugCoroutine()
-    // {
-    //     while (true)
-    //     {
-    //         yield return new WaitForSecondsRealtime(1);
-    //     }
-    // }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
         {
-            // Debug.Log("<color=red>Was hit by the player</color>");
             Dommage(other.GetComponent<Sword>().GetDammage());
         }
     }
@@ -135,12 +130,14 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
         if (HpCurrent <= 0f)
         {
+            audioSource.PlayOneShot(sonMort);
             OnEnemyDeath?.Invoke(this);
             Animator.SetTrigger("Dead");
             StateMachine.SwitchState(StateDead);
         }
         else
         {
+            audioSource.PlayOneShot(soundHit[UnityEngine.Random.Range(0, soundHit.Length)]);
             StateMachine.SwitchState(StateHit);
             StateHit.OnHitAnimationEnd += HandleStateAnimationEnd;
             OnDammageTaken?.Invoke(HpCurrent, HpMax);
