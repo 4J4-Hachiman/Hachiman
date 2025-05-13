@@ -6,15 +6,22 @@
         Dernière modification : 01/04/2025
 */
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GestionMort : MonoBehaviour
 {
 
+    public static bool estMort;
+
+    void Start(){
+        estMort = false;
+    }
     public void ArreterJeu()
     {
         Invoke("AffichageMort", 1f);
         StartCoroutine(RalentirJeu());
+        estMort = true;
     }
 
     IEnumerator RalentirJeu()

@@ -8,7 +8,9 @@
         Dernière modification : 06/05/2025
 */
 using System.Collections;
+using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,9 +19,13 @@ public class SceneActiveManager : MonoBehaviour
     public static SceneActiveManager instance;
     public Image fillChargement;
     public Animator animChargement;
+    public PlayableDirector timeline;
+
+    public static bool changementSceneEnCours;
 
     void Start()
     {
+        changementSceneEnCours = false;
         if (instance == null)
         {
             instance = this;
@@ -39,6 +45,9 @@ public class SceneActiveManager : MonoBehaviour
 
     IEnumerator ChargementAsyncScene(string nomScene)
     {
+        changementSceneEnCours = true;
+        Time.timeScale = 1;
+        timeline.gameObject.SetActive(true);
         yield return new WaitForSeconds(7);
 
         AsyncOperation scene = SceneManager.LoadSceneAsync(nomScene);
