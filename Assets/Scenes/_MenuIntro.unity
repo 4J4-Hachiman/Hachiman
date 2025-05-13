@@ -3035,6 +3035,7 @@ GameObject:
   - component: {fileID: 276042165}
   - component: {fileID: 276042168}
   - component: {fileID: 276042169}
+  - component: {fileID: 276042170}
   m_Layer: 5
   m_Name: Boutons - Quitter
   m_TagString: Untagged
@@ -3106,9 +3107,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1512181742}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: QuitterJeu
+      - m_Target: {fileID: 276042170}
+        m_TargetAssemblyTypeName: QuitterJeu, Assembly-CSharp
+        m_MethodName: QuitterApplication
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3198,6 +3199,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   banqueAudio: {fileID: 11400000, guid: da2df200bc633ce41a625e505ea9f2e3, type: 2}
+--- !u!114 &276042170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276042163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e36db18d09de84dbc7e8f90980908c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &282731088
 GameObject:
   m_ObjectHideFlags: 0
