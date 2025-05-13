@@ -3,13 +3,13 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 29/04/2025; 
+    Dernière modification: 12/05/2025; 
 */
 
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CapsuleCollider), typeof(NavMeshAgent))]
 public class MasaraiMain : MonoBehaviour
@@ -26,8 +26,9 @@ public class MasaraiMain : MonoBehaviour
     private SphereCollider hitboxCollider;
 
     [Header("Data")]
-    [field: SerializeField] private float hp;
-    [field: SerializeField] public float WalkSpeed { get; private set; }
+    [field: SerializeField] private float maxHp;
+    private float currentHp;
+    // [field: SerializeField] public float WalkSpeed { get; private set; }
     [field: SerializeField] public float AtkTrigDistance { get; private set; }
     [field: SerializeField] public float SpecialAtkTrigDistance { get; private set; }
 
@@ -37,10 +38,13 @@ public class MasaraiMain : MonoBehaviour
     public int ParamAttackIndex { get; private set; }
     public int ParamAttackSpecialPlay { get; private set; }
 
+    [Header("Healthbar")]
+    [field: SerializeField] private GameObject healthbar;
+    [field: SerializeField] private Image healthbarFill;
 
-    [Header("Animations")]
-    [field: SerializeField] private int simpleAttackCount;
-    [field: SerializeField] private int specialAttackCount;
+    // [Header("Animations")]
+    // [field: SerializeField] private int simpleAttackCount;
+    // [field: SerializeField] private int specialAttackCount;
     public int AttackIndex { get; private set; }
 
     [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
@@ -79,6 +83,8 @@ public class MasaraiMain : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
 
+        currentHp = maxHp;
+
         capsuleCollider = GetComponent<CapsuleCollider>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -100,8 +106,10 @@ public class MasaraiMain : MonoBehaviour
 
         stateMachine.Initalize(stateWalk);
         stateWalk.OnTriggerAttack += OnTriggerAttack;
-    }
 
+        healthbar.SetActive(true);
+    }
+    
     private void Update()
     {
         stateMachine.Current.StateUpdate();
@@ -123,7 +131,8 @@ public class MasaraiMain : MonoBehaviour
         {
             if (other.TryGetComponent(out Sword sword))
             {
-                hp -= sword.GetDammage();
+                currentHp -= sword.GetDammage();
+                healthbarFill.fillAmount = currentHp / maxHp;
             }
         }
     }

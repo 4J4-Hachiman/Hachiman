@@ -26,6 +26,9 @@ public class SaveManager : MonoBehaviour
     private GameData gameData;
     private SaveFileHandler fileHandler;
 
+    [field: SerializeField] private Transform savePointsParent;
+    private SavePoint[] savePoints;
+
     private void Awake()
     {
         if (Instance != null)
@@ -33,6 +36,20 @@ public class SaveManager : MonoBehaviour
             Debug.LogError("A SaveManager instance already exists");
         }
         Instance = this;
+
+        Debug.Log($"There are currently {savePointsParent.childCount} save points in the level");
+
+        savePoints = new SavePoint[savePointsParent.childCount];
+
+        for (int i = 0; i < savePoints.Length; i++)
+        {
+            savePoints[i] = savePointsParent.GetChild(i).GetComponent<SavePoint>();
+        }
+
+        foreach (SavePoint point in savePoints)
+        {
+            point.OnSavePoint += OnSavePoint;
+        }
     }
 
     private void Start()
@@ -40,7 +57,7 @@ public class SaveManager : MonoBehaviour
         string fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), pathFromDir);
         fileHandler = new (fullPath, fileName);
         saveDatas = new List<IDataSaveable>(FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataSaveable>());
-        // LoadGame();
+        LoadGame();
     }
 
     public void NewGame()
@@ -68,17 +85,28 @@ public class SaveManager : MonoBehaviour
     
     public void SaveGame()
     {
+        Debug.Log("Saving Game");
         foreach (IDataSaveable dataSaveable in saveDatas)
         {
             dataSaveable.SaveData(ref gameData);
         }
 
         fileHandler.SaveGameData(gameData);
+        Debug.Log("Game has been saved !");
     }
 
-    private void OnApplicationQuit()
+    private void OnSavePoint(SavePoint pt)
     {
-        // Debug.Log("QUIT THE APPLICATION");
-        // SaveGame();
-    } 
+        foreach (SavePoint point in savePoints)
+        {
+            point.gameObject.SetActive(true);
+        }
+        pt.gameObject.SetActive(false);
+        SaveGame();
+    }
+
+    // private void OnApplicationQuit()
+    // {
+    //     SaveGame();
+    // } 
 }
