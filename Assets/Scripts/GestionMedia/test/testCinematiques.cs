@@ -12,12 +12,12 @@ public class testCinematiques : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            changeCine.DemarrerCinematique(changeCine.cinematique1);
+            changeCine.DemarrerCinematique(changeCine.cinematiqueIntroduction);
         }
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            changeCine.DemarrerCinematique(changeCine.cinematique2);
+            changeCine.DemarrerCinematique(changeCine.cinematiquePortail);
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
