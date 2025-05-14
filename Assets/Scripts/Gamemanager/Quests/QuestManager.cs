@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
-using System;
 
 public class QuestManager : MonoBehaviour, IDataSaveable
 {
@@ -44,7 +43,6 @@ public class QuestManager : MonoBehaviour, IDataSaveable
 
     private void QuestStart()
     {
-        Debug.Log($"New quest ID  = {CurrentQuestID}");
         currentQuest.QuestStart();
         currentQuest.OnQuestOver += QuestEnd;
     }
@@ -59,7 +57,6 @@ public class QuestManager : MonoBehaviour, IDataSaveable
     {
         if (!currentQuest.Data.NextQuest)
         {
-            Debug.Log("NO MORE QUESTS ARE AVAILABLE");
             uiQuestNameDisplay.text = "ALL_QUESTS_ARE_ACCOMPLISHED";
             uiQuestStepDisplay.text = "NO_MORE_QUESTS";
             return;
@@ -86,11 +83,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
         {
             gameQuests.ElementAt(i).Value.Data.state = (QuestStates)data.questStates.GetKey(gameQuests.ElementAt(i).Key);
         }
-
-
         currentQuest = GetQuestByID(data.activeQuest);
-
-        Debug.Log("CURRENT QUEST AFTER FIRST LOAD : " + currentQuest);
         QuestStart();
     }
     

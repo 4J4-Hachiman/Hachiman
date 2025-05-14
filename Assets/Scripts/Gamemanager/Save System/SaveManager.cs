@@ -37,8 +37,6 @@ public class SaveManager : MonoBehaviour
         }
         Instance = this;
 
-        Debug.Log($"There are currently {savePointsParent.childCount} save points in the level");
-
         savePoints = new SavePoint[savePointsParent.childCount];
 
         for (int i = 0; i < savePoints.Length; i++)

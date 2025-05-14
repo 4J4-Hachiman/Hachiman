@@ -57,7 +57,6 @@ public class Quest
         GameObject questGO = GetStepGO();
         UnityEngine.Object.Instantiate(questGO, parent);
         questManager.UpdateQuestUI();
-        Debug.Log($"NEW QUEST OBJECTIVE : {Data.QuestStepInfo[currentStepIndex]}");
     }
 
     private GameObject GetStepGO()

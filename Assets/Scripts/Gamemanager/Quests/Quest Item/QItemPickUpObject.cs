@@ -19,7 +19,6 @@ public class QItemPickUpObject : MonoBehaviour
     private void Awake()
     {
         playerInputs = new PlayerControls();
-        Debug.Log("Quest Item pickup ready");
     }
 
     private void OnEnable()
