@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315034125644055694}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 280, y: 49}
+  m_AnchoredPosition: {x: 280.00006, y: 48.999992}
   m_SizeDelta: {x: 290.8, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2457413206155254579
@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 3228008655036299109}
   - component: {fileID: 7168613700108914282}
   - component: {fileID: 7821430431823366812}
+  - component: {fileID: 3873670881731167896}
   m_Layer: 5
   m_Name: Bouton - Quitter
   m_TagString: Untagged
@@ -348,9 +349,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 6999319173745534475}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -366,7 +367,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: 8ffef34212ef80b4fbdd9e9e91d1c97b, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -403,6 +404,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e36db18d09de84dbc7e8f90980908c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3873670881731167896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529416041288786933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e0ab80ba8d0c439474deecff2dac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 5288180249489240289}
+  prochainElementDefaut: {fileID: 0}
+  prochainElmNew: {fileID: 0}
+  prochainElmFinal: {fileID: 0}
+  eventSystem: {fileID: 0}
+  navigation:
+    m_Mode: 4
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  direction: Left
 --- !u!1 &733421367793984794
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,7 +447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2646030262619626882
 RectTransform:
   m_ObjectHideFlags: 0
@@ -442,11 +468,11 @@ RectTransform:
   - {fileID: 9217052098216879539}
   - {fileID: 395021263490952925}
   - {fileID: 4247659077457705320}
-  - {fileID: 701331857835704227}
   - {fileID: 7429772514821421412}
   - {fileID: 6433987438985785210}
   - {fileID: 7527603903590546890}
   - {fileID: 8550724266375171782}
+  - {fileID: 701331857835704227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -740,6 +766,7 @@ GameObject:
   - component: {fileID: 8646910845823514915}
   - component: {fileID: 5791697960185246354}
   - component: {fileID: 7185804757987129199}
+  - component: {fileID: 5418081025212281542}
   m_Layer: 5
   m_Name: Bouton - Options
   m_TagString: Untagged
@@ -818,10 +845,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 5052722769750267778}
+    m_SelectOnDown: {fileID: 6999319173745534475}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -836,7 +863,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: 8ffef34212ef80b4fbdd9e9e91d1c97b, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -861,6 +888,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5418081025212281542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368394898076315988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e0ab80ba8d0c439474deecff2dac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 5288180249489240289}
+  prochainElementDefaut: {fileID: 0}
+  prochainElmNew: {fileID: 0}
+  prochainElmFinal: {fileID: 0}
+  eventSystem: {fileID: 0}
+  navigation:
+    m_Mode: 4
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  direction: Left
 --- !u!1 &4072678668670299987
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +925,7 @@ GameObject:
   - component: {fileID: 4867420211021114929}
   - component: {fileID: 1373474710474636260}
   - component: {fileID: 5052722769750267778}
+  - component: {fileID: 1632596095122946627}
   m_Layer: 5
   m_Name: Bouton - Commandes
   m_TagString: Untagged
@@ -951,10 +1004,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 5288180249489240289}
+    m_SelectOnDown: {fileID: 7185804757987129199}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -969,7 +1022,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: 8ffef34212ef80b4fbdd9e9e91d1c97b, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -994,6 +1047,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1632596095122946627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072678668670299987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e0ab80ba8d0c439474deecff2dac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 5288180249489240289}
+  prochainElementDefaut: {fileID: 0}
+  prochainElmNew: {fileID: 0}
+  prochainElmFinal: {fileID: 0}
+  eventSystem: {fileID: 0}
+  navigation:
+    m_Mode: 4
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  direction: Left
 --- !u!1 &4450199474525518897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1431,7 @@ GameObject:
   - component: {fileID: 2949141714670145619}
   - component: {fileID: 8415528892100157518}
   - component: {fileID: 6999319173745534475}
+  - component: {fileID: 3448529595901487359}
   m_Layer: 5
   m_Name: Bouton - Menu principal
   m_TagString: Untagged
@@ -1431,10 +1510,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 7185804757987129199}
+    m_SelectOnDown: {fileID: 7168613700108914282}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -1449,7 +1528,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: 8ffef34212ef80b4fbdd9e9e91d1c97b, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1464,14 +1543,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneActiveManager, Assembly-CSharp
-        m_MethodName: ChangementScene
+        m_MethodName: ChargerScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: _TestingMenuIntro
+          m_StringArgument: _MenuIntro
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
@@ -1486,6 +1565,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3448529595901487359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077448319291787373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e0ab80ba8d0c439474deecff2dac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 5288180249489240289}
+  prochainElementDefaut: {fileID: 0}
+  prochainElmNew: {fileID: 0}
+  prochainElmFinal: {fileID: 0}
+  eventSystem: {fileID: 0}
+  navigation:
+    m_Mode: 4
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  direction: Left
 --- !u!1 &7313300346062451696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,6 +2010,7 @@ GameObject:
   - component: {fileID: 6503033385662979491}
   - component: {fileID: 5554089872428251324}
   - component: {fileID: 5288180249489240289}
+  - component: {fileID: 3466530636132406344}
   m_Layer: 5
   m_Name: Bouton - Continuer
   m_TagString: Untagged
@@ -1984,10 +2089,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 5052722769750267778}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -2002,7 +2107,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: 8ffef34212ef80b4fbdd9e9e91d1c97b, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 860e80c215ba07e45932dc8c4a14923b, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2027,6 +2132,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ControlesMenuOptions, Assembly-CSharp
+        m_MethodName: ActualisationOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3466530636132406344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9084979249890042117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e0ab80ba8d0c439474deecff2dac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 5288180249489240289}
+  prochainElementDefaut: {fileID: 0}
+  prochainElmNew: {fileID: 0}
+  prochainElmFinal: {fileID: 0}
+  eventSystem: {fileID: 0}
+  navigation:
+    m_Mode: 4
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  direction: Left
 --- !u!1001 &2301029640632074967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2105,7 +2247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6919616213538137956, guid: 7a56aeb4d14bd5243bc1199788425f6b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 15
+      value: 15.000061
       objectReference: {fileID: 0}
     - target: {fileID: 6919616213538137956, guid: 7a56aeb4d14bd5243bc1199788425f6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2207,7 +2349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190472371742047200, guid: 0885fe82b75e795419a7f98e50731bd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7
+      value: 7.000061
       objectReference: {fileID: 0}
     - target: {fileID: 5190472371742047200, guid: 0885fe82b75e795419a7f98e50731bd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2411,7 +2553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2336026573166544814, guid: d02e5ea49c2f072499725617651fac27, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 12
+      value: 12.000061
       objectReference: {fileID: 0}
     - target: {fileID: 2336026573166544814, guid: d02e5ea49c2f072499725617651fac27, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
