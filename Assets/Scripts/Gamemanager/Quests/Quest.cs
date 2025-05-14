@@ -17,7 +17,7 @@ public class Quest
     private GameObject[] questStepGO;
     public event Action OnQuestOver;
     private readonly Transform parentGO;
-
+    
     public Quest(QuestManager questManager, QuestData data, Transform parentGO)
     {
         this.questManager = questManager;
@@ -32,9 +32,9 @@ public class Quest
         }
     }
 
-    public void QuestStart()
+    public void QuestStart(int stepIndex)
     {
-        currentStepIndex = 0;
+        currentStepIndex = stepIndex;
         StepStart(parentGO);
         Data.state = QuestStates.Active;
         GameEvents.OnQuestStepFinished += GetNextStep;

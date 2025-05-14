@@ -72,6 +72,7 @@ public class SaveManager : MonoBehaviour
             Debug.Log("Couldnt find data making new Data");
             NewGame();
             SaveGame();
+            LoadGame();
             return;
         }
 
@@ -99,12 +100,8 @@ public class SaveManager : MonoBehaviour
         {
             point.gameObject.SetActive(true);
         }
+
         pt.gameObject.SetActive(false);
         SaveGame();
     }
-
-    // private void OnApplicationQuit()
-    // {
-    //     SaveGame();
-    // } 
 }

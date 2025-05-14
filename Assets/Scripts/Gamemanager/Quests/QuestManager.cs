@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 19/04/2025
+    Dernière modification: 14/05/2025;
 */
 
 using System.Collections.Generic;
@@ -19,12 +19,11 @@ public class QuestManager : MonoBehaviour, IDataSaveable
     [field: SerializeField] private QuestData[] questDataList;
     [field: SerializeField] private TextMeshProUGUI uiQuestNameDisplay;
     [field: SerializeField] private TextMeshProUGUI uiQuestStepDisplay;
-
     private Dictionary<string, Quest> gameQuests;
-
     private static Quest currentQuest;
     public static string CurrentQuestID { get { return currentQuest.Data.ID; } }
-    public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex(); } }
+    public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex();} }
+    private int _currentQuestStepIndex;
 
     private void Awake()
     {
@@ -43,7 +42,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
 
     private void QuestStart()
     {
-        currentQuest.QuestStart();
+        currentQuest.QuestStart(_currentQuestStepIndex);
         currentQuest.OnQuestOver += QuestEnd;
     }
 
@@ -79,18 +78,19 @@ public class QuestManager : MonoBehaviour, IDataSaveable
 
     public void LoadData(GameData data)
     {
+        _currentQuestStepIndex = data.currentQuestStep;
         for (int i = 0; i < gameQuests.Count; i++)
         {
-            gameQuests.ElementAt(i).Value.Data.state = (QuestStates)data.questStates.GetKey(gameQuests.ElementAt(i).Key);
+            gameQuests.ElementAt(i).Value.Data.state = (QuestStates)data.questStates.GetKey(gameQuests.ElementAt(i).Key, (int)gameQuests.ElementAt(i).Value.Data.state);
         }
         currentQuest = GetQuestByID(data.activeQuest);
         QuestStart();
     }
-    
+
     public void SaveData(ref GameData data)
     {
         data.activeQuest = CurrentQuestID;
-
+        data.currentQuestStep = CurrentQuestStepIndex;
         for (int i = 0; i < gameQuests.Count; i++)
         {
             data.questStates.SetPair(gameQuests.ElementAt(i).Key, (int)gameQuests.ElementAt(i).Value.Data.state);
