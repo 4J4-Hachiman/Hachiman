@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SonBntSurvolUI : MonoBehaviour, IPointerEnterHandler
+public class SonBntSurvolUI : MonoBehaviour, IPointerEnterHandler, ISelectHandler
 {
 	public BanqueAudio banqueAudio;
 	AudioManager audioManager;
@@ -19,6 +19,7 @@ public class SonBntSurvolUI : MonoBehaviour, IPointerEnterHandler
 		// On veut trouver le gameObject qui contient le script unique de AudioManager
 		audioManager = FindObjectOfType<AudioManager>();
 	}
+
 	// Fonction appelée à chaque fois que le bouton est survolé
 	public void OnPointerEnter(PointerEventData eventData)
 	{
@@ -29,5 +30,16 @@ public class SonBntSurvolUI : MonoBehaviour, IPointerEnterHandler
 			// On joue le son des boutons survolés
 			audioManager.gameObject.GetComponent<AudioManager>().JouerSonBoutonUI(banqueAudio.bntUI);
 		}
+	}
+
+	//Détecter quand un élément du UI est séléctionné
+	public void OnSelect(BaseEventData eventData)
+	{
+		// On joue le son des boutons survolés
+		if (!Input.GetMouseButtonDown(0))
+		{
+			audioManager.gameObject.GetComponent<AudioManager>().JouerSonBoutonUI(banqueAudio.bntUI);
+		}
+
 	}
 }

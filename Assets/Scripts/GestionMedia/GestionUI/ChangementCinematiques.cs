@@ -3,23 +3,32 @@
     
     Script pour la gestion des cinématiques
         Par : Malaïka Abevi
-        Dernière modification : 11/05/2025
+        Dernière modification : 14/05/2025
 */
 using UnityEngine;
 using UnityEngine.Video;
 
 public class ChangementCinematiques : MonoBehaviour
 {
-  public VideoClip cinematique1;
-  public VideoClip cinematique2;
+  //Variables pour le fonctionnement des cinématiques
   public VideoPlayer videoPlayer;
   public Animator animCinematique;
   public Animator animHUD;
-
   public static bool cinematiqueEnCours;
   public static bool cinematiqueTermine;
   public float tempsVideo;
   public float tempsJoue;
+
+  //Videoclips des cinématiques
+  public VideoClip cinematiqueIntroduction;
+  public VideoClip cinematiqueIndiceBague;
+  public VideoClip cinematiqueDecouvertBague;
+  public VideoClip cinematiqueIndiceAmulette;
+  public VideoClip cinematiqueDecouvertAmulette;
+  public VideoClip cinematiquePortail;
+  public VideoClip cinematiqueConfrontation;
+  public VideoClip cinematiqueFin;
+
 
   void Start()
   {
@@ -38,6 +47,7 @@ public class ChangementCinematiques : MonoBehaviour
     }
   }
 
+  //Fonction pour démarrer une cinématiques et en faire la gestion
   public void DemarrerCinematique(VideoClip cinematique)
   {
     videoPlayer.clip = cinematique;
@@ -54,6 +64,7 @@ public class ChangementCinematiques : MonoBehaviour
     animHUD.SetTrigger("disparaitre");
   }
 
+  //Fonction pour arreter une cinématiques et en faire la gestion
   public void ArreterCinematique()
   {
     videoPlayer.Stop();
