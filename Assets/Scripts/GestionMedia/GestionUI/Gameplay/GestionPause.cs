@@ -29,7 +29,7 @@ public class GestionPause : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetButtonDown("Options") && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Options") && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
         {
             MettreEnPause();
         }
@@ -57,8 +57,10 @@ public class GestionPause : MonoBehaviour
             menuOptions.SetActive(false);
             HUD.alpha = 1;
 
+// print("Cinematique en cours" + ChangementCinematiques.cinematiqueEnCours);
             if (!ChangementCinematiques.cinematiqueEnCours)
             {
+                
                 Time.timeScale = 1;
             }
             else

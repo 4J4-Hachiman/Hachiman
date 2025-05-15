@@ -40,10 +40,14 @@ public class ChangementCinematiques : MonoBehaviour
   void Update()
   {
     tempsJoue = (float)videoPlayer.time;
-    if (tempsJoue >= tempsVideo)
+
+    if (cinematiqueEnCours)
     {
-      Debug.Log("//do Stuff");
-      ArreterCinematique();
+      if (tempsJoue >= tempsVideo)
+      {
+        Debug.Log("//do Stuff");
+        ArreterCinematique();
+      }
     }
   }
 
@@ -53,6 +57,8 @@ public class ChangementCinematiques : MonoBehaviour
     videoPlayer.clip = cinematique;
     tempsVideo = Mathf.Floor((float)videoPlayer.clip.length);
     videoPlayer.Play();
+    // print(cinematiqueEnCours);
+    // videoPlayer.playbackSpeed = 1;;
 
     Time.timeScale = 0;
 
@@ -62,6 +68,7 @@ public class ChangementCinematiques : MonoBehaviour
 
     animCinematique.SetTrigger("demarrerCine");
     animHUD.SetTrigger("disparaitre");
+    print("La cinematique est partie!");
   }
 
   //Fonction pour arreter une cinématiques et en faire la gestion

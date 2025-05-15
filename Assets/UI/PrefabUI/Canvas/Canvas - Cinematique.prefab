@@ -271,7 +271,7 @@ VideoPlayer:
   m_RenderMode: 2
   m_AspectRatio: 2
   m_DataSource: 0
-  m_TimeUpdateMode: 1
+  m_TimeUpdateMode: 2
   m_PlaybackSpeed: 0
   m_AudioOutputMode: 2
   m_TargetAudioSources:
@@ -403,7 +403,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8444245120853189844}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -441,10 +441,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efea46ee922aea469cd99be935b8bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cinematique1: {fileID: 32900000, guid: 868769ae991646c40be2b4c37abc5e7d, type: 3}
-  cinematique2: {fileID: 32900000, guid: c013128c4059d694a843897f3584ce18, type: 3}
   videoPlayer: {fileID: 4488377418131729746}
   animCinematique: {fileID: 8928283226989133825}
   animHUD: {fileID: 0}
   tempsVideo: 0
   tempsJoue: 0
+  cinematiqueIntroduction: {fileID: 0}
+  cinematiqueIndiceBague: {fileID: 0}
+  cinematiqueDecouvertBague: {fileID: 0}
+  cinematiqueIndiceAmulette: {fileID: 0}
+  cinematiqueDecouvertAmulette: {fileID: 0}
+  cinematiquePortail: {fileID: 0}
+  cinematiqueConfrontation: {fileID: 0}
+  cinematiqueFin: {fileID: 0}
