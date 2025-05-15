@@ -7,6 +7,7 @@
 */
 
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -78,7 +79,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         LockOffsetThreshold *= LockOffsetThreshold;
         Player = GameObject.FindWithTag("Player");
         swordCollider = SwordGameObject.GetComponent<CapsuleCollider>();
-        audioSource = GetComponent<AudioSource>(); 
+        audioSource = GetComponent<AudioSource>();
         Agent = GetComponent<NavMeshAgent>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
         Animator = GetComponent<Animator>();
@@ -120,26 +121,58 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
         {
-            Dommage(other.GetComponent<Sword>().GetDammage());
+            Dommage(other.GetComponent<Sword>().GetDammage(), false);
+        }
+
+        if (other.gameObject.TryGetComponent(out Sword sword))
+        {
+            Sword.AttackStats stat = sword.StatType;
+
+            if (stat == Sword.AttackStats.Bleedout)
+            {
+                StartCoroutine(Bleedout());
+            }
         }
     }
 
-    public void Dommage(float dmgValue)
+    private IEnumerator Bleedout()
+    {
+        int iterations = 3;
+        yield return new WaitForSeconds(1);
+        while (HpCurrent > 0 && iterations > 0)
+        {
+            Dommage(2, true);
+            iterations --;
+            yield return new WaitForSeconds(1);
+        }
+        yield break;
+    }
+
+    public void Dommage(float dmgValue, bool dmgFromStat)
     {
         HpCurrent -= dmgValue;
 
         if (HpCurrent <= 0f)
         {
-            audioSource.PlayOneShot(sonMort);
+            if (!dmgFromStat)
+            {
+                audioSource.PlayOneShot(sonMort);
+            }
+
             OnEnemyDeath?.Invoke(this);
-            Animator.SetTrigger("Dead");
+            Animator.SetBool("Dead", true);
             StateMachine.SwitchState(StateDead);
         }
         else
         {
-            audioSource.PlayOneShot(soundHit[UnityEngine.Random.Range(0, soundHit.Length)]);
-            StateMachine.SwitchState(StateHit);
-            StateHit.OnHitAnimationEnd += HandleStateAnimationEnd;
+            if (!dmgFromStat)
+            {
+                audioSource.PlayOneShot(soundHit[UnityEngine.Random.Range(0, soundHit.Length)]);
+                StateMachine.SwitchState(StateHit);
+                StateHit.OnHitAnimationEnd += HandleStateAnimationEnd;
+                swordCollider.enabled = false;
+            }
+            
             OnDammageTaken?.Invoke(HpCurrent, HpMax);
         }
 
@@ -161,15 +194,25 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
             return;
         }
 
-        if ((Player.transform.position - transform.position).sqrMagnitude > 1)
+        if (Animator.applyRootMotion && (Player.transform.position - transform.position).sqrMagnitude > 1)
         {
             transform.position += Animator.deltaPosition;
         }
-    }
 
+        // if ((Player.transform.position - transform.position).sqrMagnitude > 1)
+        // {
+        //     transform.position += Animator.deltaPosition;
+        // }
+    }
+    
     public void ManageSwordCollider(int state)
     {
         swordCollider.enabled = state == 1;
+
+        if (HpCurrent <= 0)
+        {
+            swordCollider.enabled = false;
+        }
     }
 
     public bool GetSpottedPlayer()
@@ -188,6 +231,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
                 return true;
             }
         }
+
         return false;
     }
 

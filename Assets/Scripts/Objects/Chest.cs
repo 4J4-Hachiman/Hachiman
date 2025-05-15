@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
-public class Chest : MonoBehaviour
+public class Chest : MonoBehaviour, IDataSaveable
 {
+
+    [field: SerializeField] private string id;
     /* ============================================================== */
     /* ============================================================== */
     /* -------------------- GAMEOBJECT  -------------------- */
@@ -14,12 +17,15 @@ public class Chest : MonoBehaviour
     public GameObject hand;
     public GameObject chestParent;
     public GameObject uiInteraction;
-    
+
     /* -------------------- REFERENCES COMPONENTS -------------------- */
     public JoueursControl1 hachiman;
     public Animator animator;
     public BanqueAudio banqueAudio;
     public AudioSource audioSource;
+    public AffichageRecolteItems affichageRecolteItems;
+    public Sprite spriteItem;
+    public string stringItemName;
 
     /* -------------------- VARIABLES CHEST -------------------- */
     private bool isOpen = false;
@@ -37,6 +43,8 @@ public class Chest : MonoBehaviour
 
     void Awake()
     {
+        id = $"chest_{SceneManager.GetActiveScene().name}_{transform.parent.parent.name.ToLower()}";
+
         audioSource = GetComponent<AudioSource>();
         animator = chestParent.GetComponent<Animator>();
         inputActions = new PlayerControls();
@@ -81,26 +89,27 @@ public class Chest : MonoBehaviour
 
     void InteractChest()
     {
-        if(!isOpen)
+        if (!isOpen)
         {
             Debug.Log("open");
             isOpen = true;
-            animator.SetTrigger("Open"); 
+            animator.SetTrigger("Open");
             uiInteraction.SetActive(false);
             audioSource.PlayOneShot(banqueAudio.sOuvertureCoffre);
         }
-        else if(!isTaken) 
+        else if (!isTaken)
         {
             Debug.Log("take");
-            if(itemInChest.tag == "Potion")
+            if (itemInChest.tag == "Potion")
             {
                 isTaken = true;
                 Debug.Log("potion");
                 hachiman.numbPotion += numbPotionInChest;
+                affichageRecolteItems.AfficherItemsRecolte(spriteItem, stringItemName);
             }
-            else if(katana != null || katanaInChest != null)
+            else if (katana != null || katanaInChest != null)
             {
-                if(itemInChest.tag == "Katana" && hachiman.isArmed)
+                if (itemInChest.tag == "Katana" && hachiman.isArmed)
                 {
                     isTaken = true;
                     GameObject instNewKatana = Instantiate(newKatana, katana.transform.position, katana.transform.rotation);
@@ -109,22 +118,50 @@ public class Chest : MonoBehaviour
                     hachiman.activeKatana.gameObject.SetActive(false);
                     hachiman.activeKatana = instNewKatana;
                     hachiman.katanaList.Add(instNewKatana);
+                    affichageRecolteItems.AfficherItemsRecolte(spriteItem, stringItemName);
                 }
             }
-            if(isTaken)
+            if (isTaken)
             {
                 pointLightInChest.gameObject.SetActive(false);
                 itemInChest.SetActive(false);
             }
-            
         }
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if ((collision.gameObject.name == "Hachiman")&&(hachiman.state == JoueursControl1.HachimanState.Idle))
+        if ((collision.gameObject.name == "Hachiman") && (hachiman.state == JoueursControl1.HachimanState.Idle))
         {
             isIdle = true;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        isOpen = data.chestsStatesOpen.GetKey(id, isOpen);
+        isTaken = data.chestsStatesItemPicked.GetKey(id, isTaken);
+        if (isOpen)
+        {
+            animator.SetTrigger("Open");
+            uiInteraction.SetActive(false);
+        }
+        if (isTaken && itemInChest.CompareTag("Katana"))
+        {
+            GameObject katana = Instantiate(newKatana);
+            if (!hachiman.katanaList.Contains(katana))
+            {
+                hachiman.katanaList.Add(katana);
+                katana.transform.parent = hand.transform;
+            }
+            pointLightInChest.SetActive(false);
+            itemInChest.SetActive(false);
+        }
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.chestsStatesOpen.SetPair(id, isOpen);
+        data.chestsStatesItemPicked.SetPair(id, isTaken);
     }
 }
