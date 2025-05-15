@@ -14,11 +14,15 @@ public class QItemPickUpObject : MonoBehaviour
 {
     [field: SerializeField] private QuestData assignedQuest;
     [field: SerializeField] private int assignedQuestStepIndex;
-    PlayerControls playerInputs;
+    [field: SerializeField] private RectTransform interactionIcon;
+    private PlayerControls playerInputs;
+    private Transform cam;
 
     private void Awake()
     {
         playerInputs = new PlayerControls();
+        cam = Camera.main.transform;
+        interactionIcon.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -40,17 +44,27 @@ public class QItemPickUpObject : MonoBehaviour
             playerInputs.MapNormale.Interact.performed -= Interact;
             GameEvents.TrigOnQuestItemPickedUp();
             gameObject.SetActive(false);
-            Debug.Log("Item picked up");
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         playerInputs.MapNormale.Interact.performed += Interact;
+        if (QuestManager.CurrentQuestID == assignedQuest.ID && QuestManager.CurrentQuestStepIndex == assignedQuestStepIndex)
+        {
+            interactionIcon.position = gameObject.transform.position + Vector3.up;
+            interactionIcon.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        interactionIcon.rotation = Quaternion.LookRotation(cam.transform.forward);
     }
 
     private void OnTriggerExit(Collider other)
     {
         playerInputs.MapNormale.Interact.performed -= Interact;
+        interactionIcon.gameObject.SetActive(false);
     }
 }

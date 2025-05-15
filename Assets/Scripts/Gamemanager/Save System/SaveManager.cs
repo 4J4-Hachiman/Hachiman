@@ -14,6 +14,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
@@ -66,7 +67,7 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
         gameData = fileHandler.LoadGameData();
-
+        
         if (gameData == null)
         {
             Debug.Log("Couldnt find data making new Data");
@@ -84,6 +85,7 @@ public class SaveManager : MonoBehaviour
     
     public void SaveGame()
     {
+        gameData.lScene = SceneManager.GetActiveScene().name;
         Debug.Log("Saving Game");
         foreach (IDataSaveable dataSaveable in saveDatas)
         {
@@ -100,7 +102,7 @@ public class SaveManager : MonoBehaviour
         {
             point.gameObject.SetActive(true);
         }
-
+        
         pt.gameObject.SetActive(false);
         SaveGame();
     }

@@ -24,6 +24,8 @@ public class Sword : MonoBehaviour
         Bleedout
     }
 
+    [field: SerializeField] public string ID { get; private set; }
+    
     [Header("Stats")]
     [field: SerializeField] public float BasicDammage { get; private set; } = 100;
     [field: SerializeField] public float HeavyDammage { get; private set; } = 200;

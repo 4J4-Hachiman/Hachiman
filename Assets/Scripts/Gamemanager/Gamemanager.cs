@@ -10,11 +10,16 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
+using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour, IDataSaveable
 {
     public static Gamemanager gamemanagerInstance;
     private Transform player;
+    public Transform cam;
+
+    [field: SerializeField] private SwordData swordData;
 
     [Header("Settings")]
     [field: SerializeField] private Settings manageSettings;
@@ -156,12 +161,31 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
     /* IDataSaveable Interface */
     public void LoadData(GameData data)
     {
-        player.SetPositionAndRotation(data.playerPosition, data.playerRotation);
+        if (data.lScene == SceneManager.GetActiveScene().name)
+        {
+            player.SetPositionAndRotation(data.playerPosition, data.playerRotation);
+        }
+
+        player.GetComponent<JoueursControl1>().numbPotion = data.playerPotionCount;
+        
+        for (int i = 0; i < swordData.KatanaList.Count; i++)
+        {
+            if (data.swordState.GetKey(swordData.KatanaList[i].ID, true))
+            {
+                player.GetComponent<JoueursControl1>().katanaList.Add(swordData.KatanaList[i].gameObject);
+            }
+        }
     }
 
     public void SaveData(ref GameData data)
     {
         data.playerPosition = player.position;
         data.playerRotation = player.rotation;
+        data.playerPotionCount = player.GetComponent<JoueursControl1>().numbPotion;
+
+        for (int i = 0; i < player.GetComponent<JoueursControl1>().katanaList.Count; i++)
+        {
+            data.swordState.SetPair(player.GetComponent<JoueursControl1>().katanaList[i].GetComponent<Sword>().ID, true);
+        }
     }
 }
