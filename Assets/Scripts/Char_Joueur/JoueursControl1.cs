@@ -268,11 +268,11 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("comboStep: " + comboStep);
         //Debug.Log("isCombo: " + isCombo);
 
-        Debug.Log("<color=Green>Number of katana: </color>" + katanaList.Count);
+        //Debug.Log("<color=Green>Number of katana: </color>" + katanaList.Count);
 
         //Death
 
-        Debug.Log("<color=Blue>State: </color>" + state);
+        //Debug.Log("<color=Blue>State: </color>" + state);
 
         if (health <= 0)
         {
@@ -404,7 +404,7 @@ public class JoueursControl1 : MonoBehaviour
     
     public void ResetHachiman()
     {
-        Debug.Log("<color=Green> RESET </color>");
+        //Debug.Log("<color=Green> RESET </color>");
         state = HachimanState.Idle;
         isLockedOn = false;
         isArmed = false;
@@ -735,7 +735,7 @@ public class JoueursControl1 : MonoBehaviour
             if(numbPotion >= 1)
             {
                 //state = HachimanState.Healing;
-                Debug.Log("Heal");
+                //Debug.Log("Heal");
                 if (isHealing == false){
                     healthPotion.SetActive(true);
                     isHealing = true;
@@ -791,7 +791,7 @@ public class JoueursControl1 : MonoBehaviour
                 state = HachimanState.Crouching;
                 //Debug.Log(ctx);
                 if (isCrouched == false){
-                    Debug.Log("crouch");
+                    //Debug.Log("crouch");
                     isCrouched = true;
                     animator.SetBool("crouch", true);
                     cc.center = new Vector3(0, 0.603f, 0);
@@ -880,7 +880,7 @@ public class JoueursControl1 : MonoBehaviour
             DoNotListenToInputs();
             //Debug.Log(ctx);
             if (isArmed == false){
-                Debug.Log("armed");
+                //Debug.Log("armed");
                 isArmed = true;
                 animator.SetBool("armed", true);
                 GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
@@ -1103,7 +1103,7 @@ public class JoueursControl1 : MonoBehaviour
 
     IEnumerator EnduranceReset()
     {
-        Debug.Log("<color=yellow>Blocked</color>");
+        //Debug.Log("<color=yellow>Blocked</color>");
         yield return new WaitForSeconds(3f);
 
         while(endurance <= 100)

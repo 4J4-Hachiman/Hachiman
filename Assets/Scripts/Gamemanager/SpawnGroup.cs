@@ -75,9 +75,11 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
 
     public void LoadData(GameData data)
     {
-        gameObject.GetComponent<SphereCollider>().enabled = data.spawnGroupsStates.GetKey(groupeID);
+        SphereCollider sphereCollider = gameObject.GetComponent<SphereCollider>();
 
-        if (!data.spawnGroupsStates.GetKey(groupeID))
+        sphereCollider.enabled = data.spawnGroupsStates.GetKey(groupeID, sphereCollider.enabled);
+
+        if (!data.spawnGroupsStates.GetKey(groupeID, sphereCollider.enabled))
         {
             gameObject.SetActive(false);
         }
