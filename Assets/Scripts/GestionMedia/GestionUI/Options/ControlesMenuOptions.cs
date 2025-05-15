@@ -144,10 +144,6 @@ public class ControlesMenuOptions : MonoBehaviour
         audioMixerSFX.SetFloat("volume", OptionsManager.volumeSFXSauve);
         controleurVolSFX.value = OptionsManager.volumeSFXSauve;
 
-        Vector2Int res = new(1920, 1080);
-
-        CollectionResolutions resolutions = new CollectionResolutions();
-
         Screen.SetResolution(resolution[OptionsManager.indexResolutionSauve].largeur, resolution[OptionsManager.indexResolutionSauve].largeur, true);
         // Screen.SetResolution(resolutions.resDfaut.x, res.y, true);
         controleurResolution.value = OptionsManager.indexResolutionSauve;

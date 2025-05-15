@@ -26,9 +26,10 @@ public class GestionPause : MonoBehaviour
         enPause = false;
     }
 
+   
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetButtonDown("Options") && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
         {
             MettreEnPause();
         }

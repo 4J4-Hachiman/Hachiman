@@ -206,26 +206,14 @@ MonoBehaviour:
     - model: {fileID: 114063133802684794}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614600}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614587}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614713}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614975}
-      id: 0
-      isStickyNote: 0
   stickyNoteInfos: []
   categories: []
   uiBounds:
     serializedVersion: 2
     x: -825
-    y: -492
-    width: 1979
-    height: 1921
+    y: -433
+    width: 1955
+    height: 1853
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,7 +224,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: Test_Effects
+  m_Name: Tornado_VFX
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -734,7 +722,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test_Effects
+  m_Name: Tornado_VFX
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:

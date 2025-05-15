@@ -13,23 +13,35 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
+    public string lScene;
     public Vector3 playerPosition;
     public Quaternion playerRotation;
+    public int playerPotionCount;
+
     public string activeQuest;
+    public int currentQuestStep;
     public SerializableKeyValues<string, int> questStates;
     public SerializableKeyValues<string, bool> spawnGroupsStates;
     public SerializableKeyValues<string, bool> chestsStatesOpen;
     public SerializableKeyValues<string, bool> chestsStatesItemPicked;
-    
+
+    public SerializableKeyValues<string, bool> swordState;
+
     public GameData()
     {
+        lScene = "";
+
         playerPosition = new Vector3(150, 0, 35);
         playerRotation = Quaternion.identity;
+        playerPotionCount = 0;
+
         activeQuest = "NO_ACTIVE_QUESTS";
+        currentQuestStep = 0;
         questStates = new ();
         spawnGroupsStates = new ();
         chestsStatesOpen = new ();
         chestsStatesItemPicked = new ();
+        swordState = new ();
     }
 }
 
@@ -84,10 +96,16 @@ public class SerializableKeyValues<TKey, TValue> : ISerializationCallbackReceive
         {
             pairs.Remove(key);
         }
+
         pairs.Add(key, value);
     }
-    public TValue GetKey(TKey key)
+    public TValue GetKey(TKey key, TValue value)
     {
+        if(!pairs.ContainsKey(key))
+        {
+            SetPair(key, value);
+        }
+
         return pairs[key];
     }
     

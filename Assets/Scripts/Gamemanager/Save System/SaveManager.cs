@@ -14,6 +14,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
@@ -36,8 +37,6 @@ public class SaveManager : MonoBehaviour
             Debug.LogError("A SaveManager instance already exists");
         }
         Instance = this;
-
-        Debug.Log($"There are currently {savePointsParent.childCount} save points in the level");
 
         savePoints = new SavePoint[savePointsParent.childCount];
 
@@ -68,12 +67,13 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
         gameData = fileHandler.LoadGameData();
-
+        
         if (gameData == null)
         {
             Debug.Log("Couldnt find data making new Data");
             NewGame();
             SaveGame();
+            LoadGame();
             return;
         }
 
@@ -85,6 +85,7 @@ public class SaveManager : MonoBehaviour
     
     public void SaveGame()
     {
+        gameData.lScene = SceneManager.GetActiveScene().name;
         Debug.Log("Saving Game");
         foreach (IDataSaveable dataSaveable in saveDatas)
         {
@@ -101,12 +102,8 @@ public class SaveManager : MonoBehaviour
         {
             point.gameObject.SetActive(true);
         }
+        
         pt.gameObject.SetActive(false);
         SaveGame();
     }
-
-    // private void OnApplicationQuit()
-    // {
-    //     SaveGame();
-    // } 
 }
