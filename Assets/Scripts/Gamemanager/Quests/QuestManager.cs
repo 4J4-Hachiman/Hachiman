@@ -3,14 +3,13 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 19/04/2025
+    Dernière modification: 14/05/2025;
 */
 
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
-using System;
 
 public class QuestManager : MonoBehaviour, IDataSaveable
 {
@@ -20,12 +19,11 @@ public class QuestManager : MonoBehaviour, IDataSaveable
     [field: SerializeField] private QuestData[] questDataList;
     [field: SerializeField] private TextMeshProUGUI uiQuestNameDisplay;
     [field: SerializeField] private TextMeshProUGUI uiQuestStepDisplay;
-
     private Dictionary<string, Quest> gameQuests;
-
     private static Quest currentQuest;
     public static string CurrentQuestID { get { return currentQuest.Data.ID; } }
-    public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex(); } }
+    public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex();} }
+    private int _currentQuestStepIndex;
 
     private void Awake()
     {
@@ -44,8 +42,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
 
     private void QuestStart()
     {
-        Debug.Log($"New quest ID  = {CurrentQuestID}");
-        currentQuest.QuestStart();
+        currentQuest.QuestStart(_currentQuestStepIndex);
         currentQuest.OnQuestOver += QuestEnd;
     }
 
@@ -59,7 +56,6 @@ public class QuestManager : MonoBehaviour, IDataSaveable
     {
         if (!currentQuest.Data.NextQuest)
         {
-            Debug.Log("NO MORE QUESTS ARE AVAILABLE");
             uiQuestNameDisplay.text = "ALL_QUESTS_ARE_ACCOMPLISHED";
             uiQuestStepDisplay.text = "NO_MORE_QUESTS";
             return;
@@ -82,22 +78,19 @@ public class QuestManager : MonoBehaviour, IDataSaveable
 
     public void LoadData(GameData data)
     {
+        _currentQuestStepIndex = data.currentQuestStep;
         for (int i = 0; i < gameQuests.Count; i++)
         {
-            gameQuests.ElementAt(i).Value.Data.state = (QuestStates)data.questStates.GetKey(gameQuests.ElementAt(i).Key);
+            gameQuests.ElementAt(i).Value.Data.state = (QuestStates)data.questStates.GetKey(gameQuests.ElementAt(i).Key, (int)gameQuests.ElementAt(i).Value.Data.state);
         }
-
-
         currentQuest = GetQuestByID(data.activeQuest);
-
-        Debug.Log("CURRENT QUEST AFTER FIRST LOAD : " + currentQuest);
         QuestStart();
     }
-    
+
     public void SaveData(ref GameData data)
     {
         data.activeQuest = CurrentQuestID;
-
+        data.currentQuestStep = CurrentQuestStepIndex;
         for (int i = 0; i < gameQuests.Count; i++)
         {
             data.questStates.SetPair(gameQuests.ElementAt(i).Key, (int)gameQuests.ElementAt(i).Value.Data.state);
