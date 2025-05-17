@@ -3,7 +3,7 @@
     
     Script pour mettre en pause le jeu
         Par : Malaïka Abevi
-        Dernière modification : 10/05/2025
+        Dernière modification : 17/05/2025
 */
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,14 +26,13 @@ public class GestionPause : MonoBehaviour
         enPause = false;
     }
 
-   
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Options") && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
-        {
-            MettreEnPause();
-        }
-    }
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Options") && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
+    //     {
+    //         MettreEnPause();
+    //     }
+    // }
 
     //Fonction pour mettre en pause le jeu 
     public void MettreEnPause()
@@ -44,7 +43,7 @@ public class GestionPause : MonoBehaviour
             enPause = true;
             menuPause.SetActive(true);
             HUD.alpha = 0;
-            Time.timeScale = 0;
+            Time.timeScale = 0; 
             Cursor.lockState = CursorLockMode.Confined;
             videoCinematiques.Pause();
         }
@@ -57,7 +56,6 @@ public class GestionPause : MonoBehaviour
             menuOptions.SetActive(false);
             HUD.alpha = 1;
 
-// print("Cinematique en cours" + ChangementCinematiques.cinematiqueEnCours);
             if (!ChangementCinematiques.cinematiqueEnCours)
             {
                 

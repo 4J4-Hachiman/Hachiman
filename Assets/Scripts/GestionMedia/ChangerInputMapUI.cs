@@ -1,34 +1,51 @@
-   using UnityEngine;
-   using UnityEngine.InputSystem;
+/*  
+ *  Fonctionnement et utilité générale du script
+    
+    Gestion de la mort du joueur au niveau du UI
+        Par : Malaïka Abevi
+        Dernière modification : 17/05/2025
+*/
+using System.Collections;
+using UnityEngine;
 
-   public class ChangerInputMapUI : MonoBehaviour
-   {
-       public PlayerInput playerInput;
-       public InputActionAsset inputActionAsset;
+public class ChangerInputMapUI : MonoBehaviour
+{
+    public static bool partieTermine;
 
-       private void Start()
-       {
-           // Make sure the PlayerInput component is attached to the same object
-           if (playerInput == null)
-           {
-               playerInput = GetComponent<PlayerInput>();
-           }
-       }
+    void Start()
+    {
+        partieTermine = false;
+    }
+    public void ArreterJeu()
+    {
+        Invoke("AffichageMort", 1f);
+        StartCoroutine(RalentirJeu());
+        partieTermine = true;
+    }
 
-       public void ChangerInputMouvement()
-       {
-           if (playerInput != null)
-           {
-               // Use the name of your Action Map
-               playerInput.SwitchCurrentActionMap("MapNormale");
-           }
-       }
+    IEnumerator RalentirJeu()
+    {
+        float scale = 1;
+        while (scale > 0f)
+        {
+            scale -= 1 / 4f * Time.unscaledDeltaTime;
+            if (scale < 0)
+            {
+                scale = 0;
+                Time.timeScale = scale;
+                break;
+            }
 
-       public void ChangerInputUI()
-       {
-           if (playerInput != null)
-           {
-               playerInput.SwitchCurrentActionMap("UImap");
-           }
-       }
-   }
+            Time.timeScale = scale;
+
+            print(Time.timeScale);
+            yield return null;
+        }
+    }
+
+    void AffichageMort()
+    {
+        gameObject.GetComponent<Animator>().SetTrigger("partieTermine");
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+}

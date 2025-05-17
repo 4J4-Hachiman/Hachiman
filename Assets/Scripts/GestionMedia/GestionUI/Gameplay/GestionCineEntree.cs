@@ -5,15 +5,36 @@ public class GestionCineEntree : MonoBehaviour
 {
     public ChangementCinematiques changementCinematiques;
     public GameObject tutoriel;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        StartCoroutine("GererCineIntro");
-    }
+    public bool introFait;
 
-    IEnumerator GererCineIntro(){
+    public static GestionCineEntree Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destroy duplicates
+            // return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // Make persistent across scenes
+
+        if (!introFait)
+        {
+            StartCoroutine("GererCineIntro");
+        }
+    }
+    // void Start()
+    // {
+    //     StartCoroutine("GererCineIntro");
+    // }
+
+    IEnumerator GererCineIntro()
+    {
         changementCinematiques.DemarrerCinematique(changementCinematiques.cinematiqueIntroduction);
-        while(!ChangementCinematiques.cinematiqueTermine){
+        while (!ChangementCinematiques.cinematiqueTermine)
+        {
             yield return null;
         }
 
