@@ -42,6 +42,7 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
     public GestionMort gestionMort;
+    public GestionPause gestionPause;
     public ControlesVieMana uiVieMana;
     public ParticleSystem sparksBlockEffect;
 
@@ -183,7 +184,6 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Awake()
     {
-        // Hachiman mouvableStates initialization
 
         // GameObject initialization
         activeKatana = katana;
@@ -218,6 +218,7 @@ public class JoueursControl1 : MonoBehaviour
     private void OnEnable()
     {
         inputActions.Enable();
+        EnableGameplay();
         inputMouvement = inputActions.MapNormale.Mouvement;
         inputActions.MapNormale.Crouch.performed += Crouch;
         inputActions.MapNormale.Roll.performed += Roll;
@@ -232,6 +233,8 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.DebugTool.performed += DebugTool;
         inputActions.MapNormale.Interact.performed += Interact;
         inputActions.MapNormale.SwitchKatana.performed += SwitchKatana;
+        inputActions.MapNormale.Options.performed += Options;
+        inputActions.UImap.Pause.performed += Pause;
     }
 
     private void OnDisable()
@@ -251,6 +254,8 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.DebugTool.performed -= DebugTool;
         inputActions.MapNormale.Interact.performed -= Interact;
         inputActions.MapNormale.SwitchKatana.performed -= SwitchKatana;
+        inputActions.MapNormale.Options.performed -= Options;
+        inputActions.UImap.Pause.performed -= Pause;
     }
 
 
@@ -275,7 +280,16 @@ public class JoueursControl1 : MonoBehaviour
 
         //Death
 
-        //Debug.Log("<color=Blue>State: </color>" + state);
+        //Debug.Log("En Pause: " + gestionPause.enPause);
+
+        if (gestionPause.enPause)
+        {
+            EnableUI();
+        }
+        else
+        {
+            EnableGameplay();
+        }
 
         if (health <= 0)
         {
@@ -383,6 +397,31 @@ public class JoueursControl1 : MonoBehaviour
             cc.Move(Time.deltaTime * vJoueur);
         }
         vyJoueur += forceGravite * Time.fixedDeltaTime;
+    }
+
+    public void EnableGameplay() {
+        inputActions.UImap.Disable();
+        inputActions.MapNormale.Enable();
+    }
+    public void EnableUI() {
+        inputActions.MapNormale.Disable();
+        inputActions.UImap.Enable();
+    }
+
+    void DebugCurrentActionMap()
+    {
+        if (inputActions.MapNormale.enabled)
+        {
+            Debug.Log("Current Action Map: Mapnormale (Gameplay)");
+        }
+        else if (inputActions.UImap.enabled)
+        {
+            Debug.Log("Current Action Map: UImap (UI)");
+        }
+        else
+        {
+            Debug.Log("No Action Map is currently enabled.");
+        }
     }
 
     void LockOnFunc()
@@ -735,6 +774,23 @@ public class JoueursControl1 : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+        }
+    }
+    private void Options(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
+        {
+            gestionPause.MettreEnPause();
+            DebugCurrentActionMap();
+        }
+    }
+
+    private void Pause(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
+        {
+            gestionPause.MettreEnPause();
+            DebugCurrentActionMap();
         }
     }
 

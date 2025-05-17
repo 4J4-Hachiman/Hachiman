@@ -30,10 +30,6 @@ public class GestionPause : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Options") && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
-        {
-            MettreEnPause();
-        }
     }
 
     //Fonction pour mettre en pause le jeu 
@@ -48,7 +44,7 @@ public class GestionPause : MonoBehaviour
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.Confined;
             videoCinematiques.Pause();
-            changerInputMapUI.changerInputUI = true;
+            //changerInputMapUI.changerInputUI = true;
         }
         else
         {

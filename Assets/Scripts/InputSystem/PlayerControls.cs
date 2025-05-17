@@ -170,6 +170,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Options"",
+                    ""type"": ""Button"",
+                    ""id"": ""053ba7ba-de53-4553-9db5-2715d526a94e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -544,6 +553,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Controller"",
                     ""action"": ""SwitchKatana"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66d92c19-8271-4021-b87a-3d532bda44f7"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Options"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54436eb5-f992-42ee-9de3-e6bcd75bada6"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Options"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1151,6 +1182,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_MapNormale_LockOnIndexR2 = m_MapNormale.FindAction("LockOnIndexR2", throwIfNotFound: true);
         m_MapNormale_DebugTool = m_MapNormale.FindAction("DebugTool", throwIfNotFound: true);
         m_MapNormale_SwitchKatana = m_MapNormale.FindAction("SwitchKatana", throwIfNotFound: true);
+        m_MapNormale_Options = m_MapNormale.FindAction("Options", throwIfNotFound: true);
         // UImap
         m_UImap = asset.FindActionMap("UImap", throwIfNotFound: true);
         m_UImap_TrackedDeviceOrientation = m_UImap.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
@@ -1247,6 +1279,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_MapNormale_LockOnIndexR2;
     private readonly InputAction m_MapNormale_DebugTool;
     private readonly InputAction m_MapNormale_SwitchKatana;
+    private readonly InputAction m_MapNormale_Options;
     public struct MapNormaleActions
     {
         private @PlayerControls m_Wrapper;
@@ -1267,6 +1300,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @LockOnIndexR2 => m_Wrapper.m_MapNormale_LockOnIndexR2;
         public InputAction @DebugTool => m_Wrapper.m_MapNormale_DebugTool;
         public InputAction @SwitchKatana => m_Wrapper.m_MapNormale_SwitchKatana;
+        public InputAction @Options => m_Wrapper.m_MapNormale_Options;
         public InputActionMap Get() { return m_Wrapper.m_MapNormale; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1324,6 +1358,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchKatana.started += instance.OnSwitchKatana;
             @SwitchKatana.performed += instance.OnSwitchKatana;
             @SwitchKatana.canceled += instance.OnSwitchKatana;
+            @Options.started += instance.OnOptions;
+            @Options.performed += instance.OnOptions;
+            @Options.canceled += instance.OnOptions;
         }
 
         private void UnregisterCallbacks(IMapNormaleActions instance)
@@ -1376,6 +1413,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchKatana.started -= instance.OnSwitchKatana;
             @SwitchKatana.performed -= instance.OnSwitchKatana;
             @SwitchKatana.canceled -= instance.OnSwitchKatana;
+            @Options.started -= instance.OnOptions;
+            @Options.performed -= instance.OnOptions;
+            @Options.canceled -= instance.OnOptions;
         }
 
         public void RemoveCallbacks(IMapNormaleActions instance)
@@ -1564,6 +1604,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLockOnIndexR2(InputAction.CallbackContext context);
         void OnDebugTool(InputAction.CallbackContext context);
         void OnSwitchKatana(InputAction.CallbackContext context);
+        void OnOptions(InputAction.CallbackContext context);
     }
     public interface IUImapActions
     {
