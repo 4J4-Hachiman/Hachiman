@@ -11,7 +11,12 @@ public class SignalTutoriel : MonoBehaviour
         tutorielComplete = false;
     }
 
-    public void PauseTutotiel()
+    public void PauseTutoriel()
+    {
+        director.playableGraph.GetRootPlayable(0).SetSpeed(0);
+    }
+
+    public void JouerTutoriel()
     {
         director.playableGraph.GetRootPlayable(0).SetSpeed(0);
     }
