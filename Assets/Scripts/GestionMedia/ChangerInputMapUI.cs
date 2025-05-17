@@ -1,48 +1,51 @@
+/*  
+ *  Fonctionnement et utilité générale du script
+    
+    Gestion de la mort du joueur au niveau du UI
+        Par : Malaïka Abevi
+        Dernière modification : 17/05/2025
+*/
+using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class ChangerInputMapUI : MonoBehaviour
 {
-    public PlayerInput playerInput;
-    public InputActionAsset inputActionAsset;
-    public bool changerInputUI;
-    public bool switchFait;
+    public static bool partieTermine;
 
-    private void Start()
+    void Start()
     {
-        changerInputUI = false;
-        switchFait = false;
-        // Make sure the PlayerInput component is attached to the same object
-        // if (playerInput == null)
-        // {
-        //     playerInput = GetComponent<PlayerInput>();
-        // }
-
-        // if (changerInputUI && !switchFait)
-        // {
-        //     ChangerInputUI();
-        // }
-        // else if (!changerInputUI && !switchFait)
-        // {
-        //     ChangerInputMouvement();
-        // }
+        partieTermine = false;
+    }
+    public void ArreterJeu()
+    {
+        Invoke("AffichageMort", 1f);
+        StartCoroutine(RalentirJeu());
+        partieTermine = true;
     }
 
-    public void ChangerInputMouvement()
+    IEnumerator RalentirJeu()
     {
-        if (playerInput != null)
+        float scale = 1;
+        while (scale > 0f)
         {
-            changerInputUI = false;
-            playerInput.SwitchCurrentActionMap("MapNormale");
+            scale -= 1 / 4f * Time.unscaledDeltaTime;
+            if (scale < 0)
+            {
+                scale = 0;
+                Time.timeScale = scale;
+                break;
+            }
+
+            Time.timeScale = scale;
+
+            print(Time.timeScale);
+            yield return null;
         }
     }
 
-    public void ChangerInputUI()
+    void AffichageMort()
     {
-        if (playerInput != null)
-        {
-            changerInputUI = true;
-            playerInput.SwitchCurrentActionMap("UImap");
-        }
+        gameObject.GetComponent<Animator>().SetTrigger("partieTermine");
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }
