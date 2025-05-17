@@ -47,7 +47,7 @@ public class JoueursControl1 : MonoBehaviour
 
     /* -------------------- VARIABLES MOUVEMENT -------------------- */
     [Header("Mouvement et saut")]
-    [SerializeField] private float currentSpeed = 0f; 
+    [SerializeField] private float currentSpeed = 0f;
     [SerializeField] private float currentSideMovement;
     [SerializeField] private float currentFowardMovement;
     [SerializeField] private float smoothTime = 5f;
@@ -59,8 +59,8 @@ public class JoueursControl1 : MonoBehaviour
     /* Sauts */
     [SerializeField] private float forceSaut = 5f;
     [SerializeField] private float forceGravite = -9.8f;
-    [SerializeField] private float vitesseTombe = 0.2f; 
-    [SerializeField] private float rotationSpeed = 10f; 
+    [SerializeField] private float vitesseTombe = 0.2f;
+    [SerializeField] private float rotationSpeed = 10f;
 
     public float jumpCheckOffset = 0.05f;
     public float gravityCheckOffset = 0.2f;
@@ -146,12 +146,13 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private GameObject uiInteractionRing;
     [SerializeField] private GameObject uiInteractionDoor;
 
-    /* --------------------------- ARRAYS ---------------------------- */ 
+    /* --------------------------- ARRAYS ---------------------------- */
     private Collider[] hits;
     [SerializeField] private GameObject[] rocks;
     public List<GameObject> katanaList = new List<GameObject>();
+    public GameObject[] katanaHUDicons;
 
-    /* --------------------------- VFX ---------------------------- */ 
+    /* --------------------------- VFX ---------------------------- */
 
     public VisualEffect vfx;
     public VisualEffect[] vfxArraySlash;
@@ -160,8 +161,9 @@ public class JoueursControl1 : MonoBehaviour
     /* ============================================================== */
 
     // -----------------------------------------------------------************************************************************************ Sebastien//
-    public enum HachimanState{
-        Idle, 
+    public enum HachimanState
+    {
+        Idle,
         Equiping,
         Healing,
         Mouving,
@@ -182,7 +184,7 @@ public class JoueursControl1 : MonoBehaviour
     private void Awake()
     {
         // Hachiman mouvableStates initialization
-        
+
         // GameObject initialization
         activeKatana = katana;
         katana.gameObject.SetActive(false);
@@ -206,7 +208,7 @@ public class JoueursControl1 : MonoBehaviour
         comboStep = Mathf.Clamp(comboStep, 0, 3);
         lightAttackCombo = "lightAttack";
         heavyAttackCombo = "heavyAttack";
-        
+
         inputActions = new PlayerControls();
         animator = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
@@ -257,7 +259,7 @@ public class JoueursControl1 : MonoBehaviour
     void Update()
     {
         //Debug Log Update
-        
+
         // Debug.Log("<color=red>Health: </color>" + health);
         // Debug.Log("<color=Green>Endurance: </color>" + endurance);
         // Debug.Log("<color=Blue>Lock On Index: </color>" + lockOnIndex);
@@ -268,7 +270,8 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("comboStep: " + comboStep);
         //Debug.Log("isCombo: " + isCombo);
 
-        //Debug.Log("<color=Green>Number of katana: </color>" + katanaList.Count);
+        //Debug.Log("<color=Blue>Active Katana: </color>" + activeKatana.name);
+        //Debug.Log("<color=Red>Active Katana: </color>" + activeKatana.GetComponent<Sword>().ID);
 
         //Death
 
@@ -285,11 +288,12 @@ public class JoueursControl1 : MonoBehaviour
         // Modification des parametres de l'animator
 
         animator.SetFloat("vitesse", cc.velocity.magnitude);
-        if (state == HachimanState.Guarding){
+        if (state == HachimanState.Guarding)
+        {
             animator.SetFloat("sideMouvement", Mathf.Clamp(inputMouvement.ReadValue<Vector2>().x, -1f, 1f));
             animator.SetFloat("fowardMouvement", Mathf.Clamp(inputMouvement.ReadValue<Vector2>().y, -1f, 1f));
         }
-        else 
+        else
         {
             // float targetValueXsideMovement = inputMouvement.ReadValue<Vector2>().x;
             // currentSideMovement = Mathf.MoveTowards(currentSideMovement, targetValueXsideMovement, Time.deltaTime);
@@ -302,7 +306,7 @@ public class JoueursControl1 : MonoBehaviour
             animator.SetFloat("sideMouvement", inputMouvement.ReadValue<Vector2>().x * cc.velocity.magnitude);
             animator.SetFloat("fowardMouvement", inputMouvement.ReadValue<Vector2>().y * cc.velocity.magnitude);
         }
-    
+
         CanMove();
 
         CapsuleCastFromCamera();
@@ -318,8 +322,8 @@ public class JoueursControl1 : MonoBehaviour
             {
                 isLockedOn = false;
                 animator.SetBool("lockedOn", false);
-            } 
-            else 
+            }
+            else
             {
                 dotCanvas.SetActive(true);
                 Vector3 direction = lockOnTarget.position - transform.position;
@@ -328,7 +332,7 @@ public class JoueursControl1 : MonoBehaviour
                 //UI dot
                 lockOnDot.position = lockOnTarget.position + (Vector3.up * 1f);
                 lockOnDot.transform.rotation = Quaternion.LookRotation(camera.transform.forward);
-            }  
+            }
         }
         else
         {
@@ -346,7 +350,7 @@ public class JoueursControl1 : MonoBehaviour
         {
             StartCoroutine(GestionGravite());
         }
-        else if (vyJoueur < forceGravite) 
+        else if (vyJoueur < forceGravite)
         {
             vyJoueur = forceGravite;
         }
@@ -357,7 +361,7 @@ public class JoueursControl1 : MonoBehaviour
 
         // camera logic
         // virtualCamera.Follow = cameraTarget.TrackingTarget;
-        
+
         // if (cameraTarget.CustomLookAtTarget)
         // {
         //     virtualCamera.LookAt = cameraTarget.LookAtTarget; // Look at the enemy
@@ -370,7 +374,8 @@ public class JoueursControl1 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(canMove == true){
+        if (canMove == true)
+        {
             if (vJoueur.magnitude > 0)
             {
                 transform.forward = Vector3.Slerp(transform.forward, GetDirFromCam(), Time.fixedDeltaTime * 10);
@@ -401,7 +406,7 @@ public class JoueursControl1 : MonoBehaviour
     /////////////////////////////////////////////////////////////////////
     // FUNCTIONS ////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////
-    
+
     public void ResetHachiman()
     {
         //Debug.Log("<color=Green> RESET </color>");
@@ -462,7 +467,7 @@ public class JoueursControl1 : MonoBehaviour
 
     public void PauseGame()
     {
-        if(Time.timeScale == 1)
+        if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
         }
@@ -486,7 +491,8 @@ public class JoueursControl1 : MonoBehaviour
 
         // OverlapSphere to get all potential targets
         Collider[] hits = Physics.OverlapSphere(origin, radius, enemyLayer);
-        foreach(Collider col in hits){
+        foreach (Collider col in hits)
+        {
             // Debug.Log(col.gameObject);
         }
 
@@ -528,7 +534,7 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.Disable();
         DoNotListenToInputs();
     }
-    
+
     void NotHit()
     {
         isHit = false;
@@ -541,9 +547,9 @@ public class JoueursControl1 : MonoBehaviour
         isHit = false;
         ListenToInputs();
         state = HachimanState.Idle;
-        animator.SetBool("guarding", false);    
+        animator.SetBool("guarding", false);
     }
-    
+
     void DisableRootMotion()
     {
         animator.applyRootMotion = false;
@@ -594,20 +600,21 @@ public class JoueursControl1 : MonoBehaviour
     {
         switch (state)
         {
-            case HachimanState.Idle: 
-            canMove = true;
-            break;
+            case HachimanState.Idle:
+                canMove = true;
+                break;
 
-            case HachimanState.Crouching: 
-            canMove = true;
-            break;
+            case HachimanState.Crouching:
+                canMove = true;
+                break;
 
-            case HachimanState.Guarding: 
-            canMove = true;
-            break;
+            case HachimanState.Guarding:
+                canMove = true;
+                break;
 
-            default: canMove = false;
-            break;
+            default:
+                canMove = false;
+                break;
         }
     }
     private void DoNotListenToInputs()
@@ -651,7 +658,7 @@ public class JoueursControl1 : MonoBehaviour
         vHeavyAttack = (vFoward * 5f);
 
         cc.Move(Time.deltaTime * vHeavyAttack);
-        
+
         yield return new WaitForSeconds(0.20f);
 
         yield return null;
@@ -676,20 +683,21 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed){
-            if(inFrontofRing && !hasArtefact1)
+        if (ctx.performed)
+        {
+            if (inFrontofRing && !hasArtefact1)
             {
                 hasArtefact1 = true;
                 Ring.SetActive(false);
                 uiInteractionRing.SetActive(false);
             }
-            if(inFrontofDoor && !isDoorOpened)
+            if (inFrontofDoor && !isDoorOpened)
             {
                 isDoorOpened = true;
                 uiInteractionDoor.SetActive(false);
                 animatorDoor.SetTrigger("open");
             }
-            if(inFrontofRock && canHitRock && isArmed)
+            if (inFrontofRock && canHitRock && isArmed)
             {
                 for (int i = 0; i < rocks.Length - 1; i++)
                 {
@@ -700,7 +708,7 @@ public class JoueursControl1 : MonoBehaviour
                     currentRock = rocks[i];
                     nextRock = rocks[i + 1];
 
-                    if(currentRock.activeSelf)
+                    if (currentRock.activeSelf)
                     {
                         canHitRock = false;
                         animator.SetTrigger("HitRock");
@@ -713,7 +721,8 @@ public class JoueursControl1 : MonoBehaviour
     }
     private void DebugTool(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed){
+        if (ctx.performed)
+        {
             if (!debugTool.activeSelf)
             {
                 debugTool.SetActive(true);
@@ -731,12 +740,14 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Heal(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed){
-            if(numbPotion >= 1)
+        if (ctx.performed)
+        {
+            if (numbPotion >= 1)
             {
                 //state = HachimanState.Healing;
                 //Debug.Log("Heal");
-                if (isHealing == false){
+                if (isHealing == false)
+                {
                     healthPotion.SetActive(true);
                     isHealing = true;
                     animator.SetTrigger("Healing");
@@ -746,14 +757,15 @@ public class JoueursControl1 : MonoBehaviour
                     numbPotion -= 1;
                     animator.SetLayerWeight(1, 1);
                     Invoke("StoppedHealing", 1.83f);
-                } 
+                }
             }
         }
     }
 
     public void SwitchKatana(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && isArmed){
+        if (ctx.performed && isArmed)
+        {
             DoNotListenToInputs();
             if (katanaList.Count > 1)
             {
@@ -769,10 +781,21 @@ public class JoueursControl1 : MonoBehaviour
                     state = HachimanState.Equiping;
                     GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
                     animator.SetTrigger("SwitchKatana");
+                    ShowKatanaIcon();
                     break;
                 }
             }
         }
+    }
+
+    public void ShowKatanaIcon()
+    {
+        for (int i = 0; i < katanaHUDicons.Length; i++)
+        {
+            katanaHUDicons[i].SetActive(false);
+        }
+        int katanaHUDiconID = int.Parse(activeKatana.GetComponent<Sword>().ID);
+        katanaHUDicons[katanaHUDiconID-1].SetActive(true);
     }
 
     public void StoppedHealing()
@@ -785,12 +808,14 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Crouch(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed){
+        if (ctx.performed)
+        {
             if (!IsObstructedAbove())
             {
                 state = HachimanState.Crouching;
                 //Debug.Log(ctx);
-                if (isCrouched == false){
+                if (isCrouched == false)
+                {
                     //Debug.Log("crouch");
                     isCrouched = true;
                     animator.SetBool("crouch", true);
@@ -802,7 +827,9 @@ public class JoueursControl1 : MonoBehaviour
                     isLockedOn = false;
                     animator.SetBool("lockedOn", false);
                     GetComponents<AudioSource>()[6].PlayOneShot(banqueAudio.sCrouch);
-                } else {
+                }
+                else
+                {
                     ListenToInputs();
                     isCrouched = false;
                     animator.SetBool("crouch", false);
@@ -828,7 +855,8 @@ public class JoueursControl1 : MonoBehaviour
     // -----------------------------------------------------------************************************************************************ Sebastien//
     private void LightAttack(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && isArmed){
+        if (ctx.performed && isArmed)
+        {
             // ---------- State ---------
             DoNotListenToInputs();
             animator.SetTrigger("lightAttack");
@@ -839,7 +867,7 @@ public class JoueursControl1 : MonoBehaviour
             {
                 attackCombosList.Add("lightAttack");
             }
-            
+
             if (isCombo == false)
             {
                 state = HachimanState.Attacking;
@@ -853,7 +881,8 @@ public class JoueursControl1 : MonoBehaviour
     // -----------------------------------------------------------************************************************************************ Sebastien//
     private void HeavyAttack(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && isArmed){
+        if (ctx.performed && isArmed)
+        {
             DoNotListenToInputs();
             animator.SetTrigger("heavyAttack");
             inputActions.MapNormale.LightAttack.performed += LightAttack;
@@ -875,18 +904,22 @@ public class JoueursControl1 : MonoBehaviour
     // -----------------------------------------------------------************************************************************************ Sebastien//
     private void Unsheath(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && state != HachimanState.Equiping){
+        if (ctx.performed && state != HachimanState.Equiping)
+        {
             state = HachimanState.Equiping;
             DoNotListenToInputs();
             //Debug.Log(ctx);
-            if (isArmed == false){
+            if (isArmed == false)
+            {
                 //Debug.Log("armed");
                 isArmed = true;
                 animator.SetBool("armed", true);
                 GetComponents<AudioSource>()[5].PlayOneShot(banqueAudio.sUnsheath);
                 Invoke("UnsheathKatana", 0.17f);
-                
-            } else {
+
+            }
+            else
+            {
                 isArmed = false;
                 animator.SetBool("armed", false);
                 Invoke("SheathKatanaSound", 0.6f);
@@ -915,12 +948,16 @@ public class JoueursControl1 : MonoBehaviour
     private void LockOn(InputAction.CallbackContext ctx)
     {
         //Debug.Log(ctx);
-        if (ctx.performed){
-            if (isLockedOn == false){
+        if (ctx.performed)
+        {
+            if (isLockedOn == false)
+            {
                 LockOnFunc();
                 isLockedOn = true;
                 animator.SetBool("lockedOn", true);
-            } else {
+            }
+            else
+            {
                 isLockedOn = false;
                 animator.SetBool("lockedOn", false);
             }
@@ -929,8 +966,9 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Guarding(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && isArmed){
-            if(endurance > 0)
+        if (ctx.performed && isArmed)
+        {
+            if (endurance > 0)
             {
                 state = HachimanState.Guarding;
                 animator.SetBool("guarding", true);
@@ -944,7 +982,8 @@ public class JoueursControl1 : MonoBehaviour
     }
     private void StopGuarding(InputAction.CallbackContext ctx)
     {
-        if (ctx.canceled && isArmed){
+        if (ctx.canceled && isArmed)
+        {
             state = HachimanState.Idle;
             animator.SetBool("guarding", false);
             animator.SetBool("Hit", false);
@@ -954,8 +993,9 @@ public class JoueursControl1 : MonoBehaviour
 
     private void LockOnIndexR2(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && isLockedOn == true){
-            if(lockOnIndex < (lockOnTotalTargets-1))
+        if (ctx.performed && isLockedOn == true)
+        {
+            if (lockOnIndex < (lockOnTotalTargets - 1))
             {
                 lockOnIndex += 1;
                 lockOnTarget = hits[lockOnIndex].transform;
@@ -1022,7 +1062,7 @@ public class JoueursControl1 : MonoBehaviour
         {
             vyJoueur += forceGravite * Time.deltaTime * vitesseTombe;
 
-            yield return new WaitForSeconds(1/60);
+            yield return new WaitForSeconds(1 / 60);
         }
 
         vyJoueur = forceGravite;
@@ -1075,7 +1115,7 @@ public class JoueursControl1 : MonoBehaviour
 
                 if (attackCombosList.Count > 2)
                 {
-                    if(attackCombosList[2] == "lightAttack")
+                    if (attackCombosList[2] == "lightAttack")
                     {
                         comboStep += 1;
                         animator.SetTrigger("lightAttack");
@@ -1106,7 +1146,7 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("<color=yellow>Blocked</color>");
         yield return new WaitForSeconds(3f);
 
-        while(endurance <= 100)
+        while (endurance <= 100)
         {
             if (isHit)
             {
@@ -1125,12 +1165,12 @@ public class JoueursControl1 : MonoBehaviour
 
         currentRock.SetActive(false);
         nextRock.SetActive(true);
-        if(!Ring.activeSelf)
+        if (!Ring.activeSelf)
         {
             Ring.SetActive(true);
         }
-        
-        if(nextRock.name == "Roche4")
+
+        if (nextRock.name == "Roche4")
         {
             GetComponents<AudioSource>()[3].PlayOneShot(banqueAudio.sRockBreak);
             uiInteractionRock.SetActive(false);
@@ -1153,7 +1193,7 @@ public class JoueursControl1 : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         if (cc == null)
-        cc = GetComponent<CharacterController>();
+            cc = GetComponent<CharacterController>();
 
         Vector3 bottomCenter = transform.position + cc.center - new Vector3(0, cc.height / 2f, 0);
         Vector3 jumpCheckPosition = bottomCenter + Vector3.up * jumpCheckOffset;
@@ -1175,67 +1215,67 @@ public class JoueursControl1 : MonoBehaviour
             }
             else
             {
-                
-            // Vector3 direction = lockOnTarget.position - transform.position;
-            // direction.y = 0;
-            // transform.rotation = Quaternion.LookRotation(direction);
 
-            Debug.Log("Hit by an Enemy Weapon!");
-            if (state == HachimanState.Guarding)
-            {
-                endurance = (endurance < 25) ? 0 : endurance - 25;
-                isHit = true;
-                StartCoroutine(EnduranceReset());
-                DoNotListenToInputs();
-                inputActions.MapNormale.Guarding.performed += Guarding;
-                inputActions.MapNormale.Guarding.canceled += StopGuarding;
-                inputActions.MapNormale.LockOn.performed += LockOn;
-                if(endurance <= 0)
-                {
-                    Invoke("NotHitBroken", 0.33f);
-                    animator.SetTrigger("Broken");
-                    ParticleSystem sparksInt = Instantiate(sparksBlockEffect, katana.transform.position, katana.transform.rotation);
-                    Destroy(sparksInt.gameObject, 2f);
-                    activeKatana.GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sStanceBroken);
-                }
-                else
-                {
-                    Invoke("NotHit", 0.33f);
-                    animator.SetBool("Hit", true);
-                    ParticleSystem sparksInt = Instantiate(sparksBlockEffect, katana.transform.position, katana.transform.rotation);
-                    Destroy(sparksInt.gameObject, 2f);
-                    activeKatana.GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sSwordClash2);
-                }
-            }
-            else 
-            {
-                if(!isDead)
-                {
-                    animator.SetBool("Hit", true);
-                    GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sEnemyHit2);
+                // Vector3 direction = lockOnTarget.position - transform.position;
+                // direction.y = 0;
+                // transform.rotation = Quaternion.LookRotation(direction);
 
-                    //health -= 20f;
-                    if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy Weapon"))
+                Debug.Log("Hit by an Enemy Weapon!");
+                if (state == HachimanState.Guarding)
+                {
+                    endurance = (endurance < 25) ? 0 : endurance - 25;
+                    isHit = true;
+                    StartCoroutine(EnduranceReset());
+                    DoNotListenToInputs();
+                    inputActions.MapNormale.Guarding.performed += Guarding;
+                    inputActions.MapNormale.Guarding.canceled += StopGuarding;
+                    inputActions.MapNormale.LockOn.performed += LockOn;
+                    if (endurance <= 0)
                     {
-                        Debug.Log("<color=red>Was hit by the player</color>");
-                        health -= collision.GetComponent<Sword>().GetDammage();
-                    }
-
-                    if(health <= 0)
-                    {
-                        Death();
+                        Invoke("NotHitBroken", 0.33f);
+                        animator.SetTrigger("Broken");
+                        ParticleSystem sparksInt = Instantiate(sparksBlockEffect, katana.transform.position, katana.transform.rotation);
+                        Destroy(sparksInt.gameObject, 2f);
+                        activeKatana.GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sStanceBroken);
                     }
                     else
                     {
                         Invoke("NotHit", 0.33f);
-                        animator.SetFloat("HitVariants", UnityEngine.Random.Range(1, 6));
-                        DoNotListenToInputs();
-                        inputActions.MapNormale.Guarding.performed += Guarding;
-                        inputActions.MapNormale.Guarding.canceled += StopGuarding;
-                        inputActions.MapNormale.LockOn.performed += LockOn;  
+                        animator.SetBool("Hit", true);
+                        ParticleSystem sparksInt = Instantiate(sparksBlockEffect, katana.transform.position, katana.transform.rotation);
+                        Destroy(sparksInt.gameObject, 2f);
+                        activeKatana.GetComponents<AudioSource>()[2].PlayOneShot(banqueAudio.sSwordClash2);
                     }
                 }
-            }
+                else
+                {
+                    if (!isDead)
+                    {
+                        animator.SetBool("Hit", true);
+                        GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sEnemyHit2);
+
+                        //health -= 20f;
+                        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy Weapon"))
+                        {
+                            Debug.Log("<color=red>Was hit by the player</color>");
+                            health -= collision.GetComponent<Sword>().GetDammage();
+                        }
+
+                        if (health <= 0)
+                        {
+                            Death();
+                        }
+                        else
+                        {
+                            Invoke("NotHit", 0.33f);
+                            animator.SetFloat("HitVariants", UnityEngine.Random.Range(1, 6));
+                            DoNotListenToInputs();
+                            inputActions.MapNormale.Guarding.performed += Guarding;
+                            inputActions.MapNormale.Guarding.canceled += StopGuarding;
+                            inputActions.MapNormale.LockOn.performed += LockOn;
+                        }
+                    }
+                }
             }
         }
     }
@@ -1255,7 +1295,7 @@ public class JoueursControl1 : MonoBehaviour
             inFrontofDoor = true;
         }
     }
-    
+
     /* ===================== FUNCTIONS FOR SOUNDS ===================== */
 
     public void soundSwordAirSwing3()
@@ -1285,7 +1325,7 @@ public class JoueursControl1 : MonoBehaviour
         // ---------- Sound ---------
         activeKatana.GetComponents<AudioSource>()[6].PlayOneShot(banqueAudio.sSwordSwingHeavy1);
     }
-    
+
     public void soundHealing()
     {
         // ---------- Sound ---------
@@ -1297,9 +1337,26 @@ public class JoueursControl1 : MonoBehaviour
         {
             vfxArraySlash[0].Play();
         }
-        else
+    }
+    public void PlayVfx2()
+    {
+        if (vfxArraySlash.Length > 0 && vfxArraySlash[1] != null)
         {
-            Debug.Log("NULL OR NOTHING");
+            vfxArraySlash[1].Play();
+        }
+    }
+    public void PlayVfx3()
+    {
+        if (vfxArraySlash.Length > 0 && vfxArraySlash[2] != null)
+        {
+            vfxArraySlash[2].Play();
+        }
+    }
+    public void PlayVfx4()
+    {
+        if (vfxArraySlash.Length > 0 && vfxArraySlash[3] != null)
+        {
+            vfxArraySlash[3].Play();
         }
     }
 }

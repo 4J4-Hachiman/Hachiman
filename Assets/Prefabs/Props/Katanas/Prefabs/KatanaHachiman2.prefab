@@ -575,7 +575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1909722693637848069
 Transform:
   m_ObjectHideFlags: 0
@@ -630,10 +630,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4cdfc724424d994a9e4c8b3d24c2488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ID>k__BackingField: 2
   <BasicDammage>k__BackingField: 20
   <HeavyDammage>k__BackingField: 200
   <CritChance>k__BackingField: 0
   <CritDamage>k__BackingField: 1
+  <StatType>k__BackingField: 0
   layerDetection:
     serializedVersion: 2
     m_Bits: 64
