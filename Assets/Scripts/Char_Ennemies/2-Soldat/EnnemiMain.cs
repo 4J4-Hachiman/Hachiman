@@ -127,22 +127,36 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         if (other.gameObject.TryGetComponent(out Sword sword))
         {
             Sword.AttackStats stat = sword.StatType;
-
-            if (stat == Sword.AttackStats.Bleedout)
+            if (stat == Sword.AttackStats.Bleedout || stat == Sword.AttackStats.Lifesteal)
             {
-                StartCoroutine(Bleedout());
+                StartCoroutine(Bleedout(stat));
             }
         }
     }
 
-    private IEnumerator Bleedout()
+    private IEnumerator Bleedout(Sword.AttackStats stat)
     {
+        int steal = stat == Sword.AttackStats.Lifesteal ? 5 : 0;
+        JoueursControl1 playerScript = Player.GetComponent<JoueursControl1>();
+
         int iterations = 3;
         yield return new WaitForSeconds(1);
-        while (HpCurrent > 0 && iterations > 0)
+        while (/* HpCurrent > 0 && */ iterations > 0)
         {
-            Dommage(2, true);
+            if (HpCurrent > 0 )
+            {
+                Dommage(2, true);
+            }
+
+            playerScript.health += 5;
+
+            if (playerScript.health > playerScript.maxHealth)
+            {
+                playerScript.health = playerScript.maxHealth;
+            }
+            
             iterations --;
+
             yield return new WaitForSeconds(1);
         }
         yield break;
@@ -198,11 +212,6 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         {
             transform.position += Animator.deltaPosition;
         }
-
-        // if ((Player.transform.position - transform.position).sqrMagnitude > 1)
-        // {
-        //     transform.position += Animator.deltaPosition;
-        // }
     }
     
     public void ManageSwordCollider(int state)
