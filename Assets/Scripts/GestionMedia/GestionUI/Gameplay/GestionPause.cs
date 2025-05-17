@@ -20,6 +20,7 @@ public class GestionPause : MonoBehaviour
     public GameObject menuOptions;
     public GameObject menuCommandes;
     public Scene scenePartie;
+    public ChangerInputMapUI changerInputMapUI;
 
     void Start()
     {
@@ -47,6 +48,7 @@ public class GestionPause : MonoBehaviour
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.Confined;
             videoCinematiques.Pause();
+            changerInputMapUI.changerInputUI = true;
         }
         else
         {
