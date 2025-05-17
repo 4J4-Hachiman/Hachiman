@@ -65,7 +65,7 @@ public class Chest : MonoBehaviour, IDataSaveable
     {
         if (collision.gameObject.name == "Hachiman")
         {
-            Debug.Log("isPlayerInside");
+            //Debug.Log("isPlayerInside");
             isPlayerInside = true; // Player has entered the chest's trigger area
         }
     }
@@ -82,7 +82,7 @@ public class Chest : MonoBehaviour, IDataSaveable
     {
         if (isPlayerInside)
         {
-            Debug.Log("Interact action");
+            //Debug.Log("Interact action");
             InteractChest();
         }
     }
@@ -91,7 +91,7 @@ public class Chest : MonoBehaviour, IDataSaveable
     {
         if (!isOpen)
         {
-            Debug.Log("open");
+            //Debug.Log("open");
             isOpen = true;
             animator.SetTrigger("Open");
             uiInteraction.SetActive(false);
@@ -99,11 +99,11 @@ public class Chest : MonoBehaviour, IDataSaveable
         }
         else if (!isTaken)
         {
-            Debug.Log("take");
+            //Debug.Log("take");
             if (itemInChest.tag == "Potion")
             {
                 isTaken = true;
-                Debug.Log("potion");
+                //Debug.Log("potion");
                 hachiman.numbPotion += numbPotionInChest;
                 affichageRecolteItems.AfficherItemsRecolte(spriteItem, stringItemName);
             }
@@ -119,6 +119,7 @@ public class Chest : MonoBehaviour, IDataSaveable
                     hachiman.activeKatana = instNewKatana;
                     hachiman.katanaList.Add(instNewKatana);
                     affichageRecolteItems.AfficherItemsRecolte(spriteItem, stringItemName);
+                    hachiman.ShowKatanaIcon();
                 }
             }
             if (isTaken)

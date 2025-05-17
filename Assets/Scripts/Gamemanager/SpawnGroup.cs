@@ -19,7 +19,7 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
     [field: SerializeField] private LayerMask mask = 8;
     [field: SerializeField] private bool showGizmos = true;
     [field: SerializeField, Range(0f, 1f)] private float groupTriggerGizmosOpacity = 1;
-    [field: SerializeField, Range(0f, 50f)] private float triggerRadius = 10f;
+    // [field: SerializeField, Range(0f, 50f)] private float triggerRadius = 10f;
     [field: SerializeField] public PatrolRoute[] patrolRoutes { get; private set; } = new PatrolRoute[0];
 
     public event Action<SpawnGroup> OnGroupTriggered;
@@ -27,11 +27,10 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
     private void Awake()
     {
         groupeID = $"SPWNGRP_{SceneManager.GetActiveScene().name}_{gameObject.name.ToLower()}";
-        SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
-        sphereCollider.isTrigger = true;
-        sphereCollider.radius = triggerRadius;
-        sphereCollider.includeLayers = mask;
-        sphereCollider.excludeLayers = ~mask;
+        Collider collider = gameObject.AddComponent<Collider>();
+        collider.isTrigger = true;
+        collider.includeLayers = mask;
+        collider.excludeLayers = ~mask;
     }
 
     void OnTriggerEnter(Collider other)
@@ -39,28 +38,28 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
         if (other.gameObject.CompareTag("Player"))
         {
             OnGroupTriggered?.Invoke(this);
-            GetComponent<SphereCollider>().enabled = false;
+            GetComponent<Collider>().enabled = false;
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (!showGizmos) return;
-        Gizmos.color = new Color(1, 0, 0, 1);
+    // private void OnDrawGizmosSelected()
+    // {
+    //     if (!showGizmos) return;
+    //     Gizmos.color = new Color(1, 0, 0, 1);
 
-        for (int i = 0; i < patrolRoutes.Length; i++)
-        {
-            if (!patrolRoutes[i].displayRoute) continue;
-            Vector3[] pts = patrolRoutes[i].GetPatrolPoints();
-            for (int j = 0; j < pts.Length; j++)
-            {
-                Gizmos.DrawLine(pts[j], pts[j == pts.Length - 1 ? 0 : j + 1]);
-                Gizmos.DrawSphere(pts[j], 0.1f);
-            }
-        }
-        Gizmos.color = new Color(0, 1, 0, groupTriggerGizmosOpacity);
-        Gizmos.DrawSphere(transform.position, triggerRadius);
-    }
+    //     for (int i = 0; i < patrolRoutes.Length; i++)
+    //     {
+    //         if (!patrolRoutes[i].displayRoute) continue;
+    //         Vector3[] pts = patrolRoutes[i].GetPatrolPoints();
+    //         for (int j = 0; j < pts.Length; j++)
+    //         {
+    //             Gizmos.DrawLine(pts[j], pts[j == pts.Length - 1 ? 0 : j + 1]);
+    //             Gizmos.DrawSphere(pts[j], 0.1f);
+    //         }
+    //     }
+    //     Gizmos.color = new Color(0, 1, 0, groupTriggerGizmosOpacity);
+    //     Gizmos.DrawSphere(transform.position, triggerRadius);
+    // }
 
     public void AddRoute(Vector3[] newPoints)
     {
@@ -75,11 +74,11 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
 
     public void LoadData(GameData data)
     {
-        SphereCollider sphereCollider = gameObject.GetComponent<SphereCollider>();
+        Collider collider = gameObject.GetComponent<Collider>();
 
-        sphereCollider.enabled = data.spawnGroupsStates.GetKey(groupeID, sphereCollider.enabled);
+        collider.enabled = data.spawnGroupsStates.GetKey(groupeID, collider.enabled);
 
-        if (!data.spawnGroupsStates.GetKey(groupeID, sphereCollider.enabled))
+        if (!data.spawnGroupsStates.GetKey(groupeID, collider.enabled))
         {
             gameObject.SetActive(false);
         }
@@ -87,7 +86,7 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
 
     public void SaveData(ref GameData data)
     {
-        data.spawnGroupsStates.SetPair(groupeID, gameObject.GetComponent<SphereCollider>().enabled);
+        data.spawnGroupsStates.SetPair(groupeID, gameObject.GetComponent<Collider>().enabled);
     }
 }
 

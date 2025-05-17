@@ -32,6 +32,7 @@ public class Sword : MonoBehaviour
     [field: SerializeField] public float CritChance { get; private set; } = 0;
     [field: SerializeField] public float CritDamage { get; private set; } = 1;
     [field: SerializeField] public AttackStats StatType { get; private set; }
+    
 
     [Header("Layer detection")]
     [field: SerializeField] private LayerMask layerDetection;
