@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0c0942017d8feb41a3642fd1637854f, type: 3}
-  m_Name: chap1_quest1
+  m_Name: quest_s1_001
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: chap1_quest1
-  <DisplayName>k__BackingField: chap1_quest1
+  <ID>k__BackingField: quest_s1_001
+  <DisplayName>k__BackingField: Tutoriel
   <NextQuest>k__BackingField: {fileID: 11400000, guid: 51980338ff2df894b8a8dca216063e82, type: 2}
   <QuestStepGO>k__BackingField:
-  - {fileID: 3794564762299752676, guid: f655289c6be2fd9458b12eb375140aa5, type: 3}
-  - {fileID: 3794564762299752676, guid: ad6dcc278d0d5ad459449aac02f784e2, type: 3}
   - {fileID: 3794564762299752676, guid: cea1ff0a681676749b3857443411b0fd, type: 3}
   <QuestStepInfo>k__BackingField:
-  - Vaincre tout les ennemis du temple
-  - Prendre le cube
-  - Sortir du temple
-  state: 0
+  - Completer le tutoriel
+  state: 2
+  <Inst>k__BackingField: {fileID: 0}
+  <InstPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <InstRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 1}
+  <CutsceneToPlay>k__BackingField: {fileID: 0}

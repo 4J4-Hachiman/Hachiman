@@ -10,12 +10,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
-using Unity.Cinemachine;
 using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour, IDataSaveable
 {
     public static Gamemanager gamemanagerInstance;
+    public static bool newGame;
     private Transform player;
     public Transform cam;
 
@@ -170,7 +170,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
         
         for (int i = 0; i < swordData.KatanaList.Count; i++)
         {
-            if (data.swordState.GetKey(swordData.KatanaList[i].ID, true))
+            if (data.swordState.GetKey(swordData.KatanaList[i].ID, false))
             {
                 player.GetComponent<JoueursControl1>().katanaList.Add(swordData.KatanaList[i].gameObject);
             }

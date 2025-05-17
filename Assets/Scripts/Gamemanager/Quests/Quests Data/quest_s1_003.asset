@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0c0942017d8feb41a3642fd1637854f, type: 3}
-  m_Name: chap1_quest2
+  m_Name: quest_s1_003
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: chap1_quest2
-  <DisplayName>k__BackingField: chap1_quest2
+  <ID>k__BackingField: quest_s1_003
+  <DisplayName>k__BackingField: Chapitre 1
   <NextQuest>k__BackingField: {fileID: 0}
   <QuestStepGO>k__BackingField:
   - {fileID: 3794564762299752676, guid: cea1ff0a681676749b3857443411b0fd, type: 3}
-  - {fileID: 3794564762299752676, guid: f655289c6be2fd9458b12eb375140aa5, type: 3}
   <QuestStepInfo>k__BackingField:
-  - Atteindre le camp des ennemis
-  - Tuer les ennemis du camp
-  state: 0
+  - Aller vers la foret
+  state: 1
+  <Inst>k__BackingField: {fileID: 0}
+  <InstPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <InstRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+  <CutsceneToPlay>k__BackingField: {fileID: 0}
