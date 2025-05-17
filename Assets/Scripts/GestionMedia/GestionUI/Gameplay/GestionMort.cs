@@ -3,18 +3,17 @@
     
     Gestion de la mort du joueur au niveau du UI
         Par : Malaïka Abevi
-        Dernière modification : 01/04/2025
+        Dernière modification : 17/05/2025
 */
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GestionMort : MonoBehaviour
 {
-
     public static bool estMort;
 
-    void Start(){
+    void Start()
+    {
         estMort = false;
     }
     public void ArreterJeu()
@@ -44,8 +43,15 @@ public class GestionMort : MonoBehaviour
         }
     }
 
-    void AffichageMort(){
+    void AffichageMort()
+    {
         gameObject.GetComponent<Animator>().SetTrigger("mort");
         Cursor.lockState = CursorLockMode.Confined;
     }
+
+    // void ReinitialiserPartie()
+    // {
+    //     estMort = false;
+
+    // }
 }
