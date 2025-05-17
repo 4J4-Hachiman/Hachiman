@@ -22,7 +22,6 @@ public class QuestStepPickupItem : QuestStep
 
     private void OnQuestItemPickedUp()
     {
-        Debug.Log("Item has been picked up");
         FinishQuestStep();
     }
 }

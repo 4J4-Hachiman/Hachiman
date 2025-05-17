@@ -58,7 +58,7 @@ public class ChangementCinematiques : MonoBehaviour
     tempsVideo = Mathf.Floor((float)videoPlayer.clip.length);
     videoPlayer.Play();
     // print(cinematiqueEnCours);
-    // videoPlayer.playbackSpeed = 1;;
+    videoPlayer.playbackSpeed = 1;
 
     Time.timeScale = 0;
 

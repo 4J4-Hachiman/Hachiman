@@ -7,6 +7,7 @@
 */
 
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using System.Linq;
@@ -25,6 +26,8 @@ public class QuestManager : MonoBehaviour, IDataSaveable
     public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex(); } }
     private int _currentQuestStepIndex;
     private GameObject instatiatedGo;
+
+    [field: SerializeField] ChangementCinematiques cutscenePlayer;
 
     private void Awake()
     {
@@ -50,16 +53,26 @@ public class QuestManager : MonoBehaviour, IDataSaveable
             instatiatedGo = Instantiate(currentQuest.Data.Inst);
             instatiatedGo.transform.SetPositionAndRotation(currentQuest.Data.InstPosition, currentQuest.Data.InstRotation);
         }
-        if (currentQuest.Data.CutsceneToPlay)
-        {
-            Debug.Log($"The current quest has a CUTSCENE to play and its {currentQuest.Data.CutsceneToPlay.length}");
-        }
         currentQuest.OnQuestOver += QuestEnd;
     }
 
     private void QuestEnd()
     {
         currentQuest.OnQuestOver -= QuestEnd;
+        if (currentQuest.Data.CutsceneToPlay)
+        {
+            cutscenePlayer.DemarrerCinematique(currentQuest.Data.CutsceneToPlay);
+            StartCoroutine(WaitForCutsceneEnd());
+            return;
+        }
+        Destroy(instatiatedGo);
+        instatiatedGo = null;
+        LoadNextQuest();
+    }
+
+    private IEnumerator WaitForCutsceneEnd()
+    {
+        yield return new WaitForSecondsRealtime((float)currentQuest.Data.CutsceneToPlay.length);
         Destroy(instatiatedGo);
         instatiatedGo = null;
         LoadNextQuest();

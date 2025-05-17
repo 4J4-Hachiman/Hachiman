@@ -42,20 +42,11 @@ public class QItemPickUpObject : MonoBehaviour
         playerInputs.MapNormale.Interact.performed -= Interact;
         GameEvents.TrigOnQuestItemPickedUp();
         gameObject.SetActive(false);
-
-        // if (QuestManager.CurrentQuestID == assignedQuest.ID && QuestManager.CurrentQuestStepIndex == assignedQuestStepIndex)
-        // {
-        // }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         playerInputs.MapNormale.Interact.performed += Interact;
-        // if (QuestManager.CurrentQuestID == assignedQuest.ID && QuestManager.CurrentQuestStepIndex == assignedQuestStepIndex)
-        // {
-        //     interactionIcon.position = gameObject.transform.position + Vector3.up;
-        //     interactionIcon.gameObject.SetActive(true);
-        // }
     }
 
     private void OnTriggerStay(Collider other)
