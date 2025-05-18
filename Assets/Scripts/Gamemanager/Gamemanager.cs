@@ -10,12 +10,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
-using Unity.Cinemachine;
 using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour, IDataSaveable
 {
     public static Gamemanager gamemanagerInstance;
+    public static bool newGame;
     private Transform player;
     public Transform cam;
 
@@ -27,6 +27,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
 
     [Header("Fonctionality Classes")]
     public CombatManager Combat { get; private set; }
+    [field: SerializeField] public RectTransform InteractionIcon { get; private set; }
 
     [Header("Enemy Health Bars")]
     [field: SerializeField] GameObject hpBarParent;
@@ -47,6 +48,9 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
     private SpawnGroup[] spawnGroups;
     private List<GameObject> activeEnemies;
     private Queue<GameObject> deadEnemies;
+
+    [field: SerializeField, Header("Other stuff")] public NavigationBoussole NavigationBoussole { get; private set; }
+    [field: SerializeField] public GameObject Indicateur { get; private set; }
 
     void Awake()
     {
@@ -170,7 +174,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
         
         for (int i = 0; i < swordData.KatanaList.Count; i++)
         {
-            if (data.swordState.GetKey(swordData.KatanaList[i].ID, true))
+            if (data.swordState.GetKey(swordData.KatanaList[i].ID, false))
             {
                 player.GetComponent<JoueursControl1>().katanaList.Add(swordData.KatanaList[i].gameObject);
             }
