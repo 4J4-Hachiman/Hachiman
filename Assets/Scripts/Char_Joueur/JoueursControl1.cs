@@ -42,6 +42,7 @@ public class JoueursControl1 : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     public BanqueAudio banqueAudio;
     public GestionMort gestionMort;
+    public GestionPause gestionPause;
     public ControlesVieMana uiVieMana;
     public ParticleSystem sparksBlockEffect;
 
@@ -113,6 +114,7 @@ public class JoueursControl1 : MonoBehaviour
     private List<string> attackCombosList = new List<string>();
     private int lockOnIndex = 0;
     private int lockOnTotalTargets = 0;
+    public int katanaID; 
 
     // Rock Quest
     private int rockIndex = 0;
@@ -183,7 +185,6 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Awake()
     {
-        // Hachiman mouvableStates initialization
 
         // GameObject initialization
         activeKatana = katana;
@@ -218,6 +219,7 @@ public class JoueursControl1 : MonoBehaviour
     private void OnEnable()
     {
         inputActions.Enable();
+        EnableGameplay();
         inputMouvement = inputActions.MapNormale.Mouvement;
         inputActions.MapNormale.Crouch.performed += Crouch;
         inputActions.MapNormale.Roll.performed += Roll;
@@ -232,6 +234,8 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.DebugTool.performed += DebugTool;
         inputActions.MapNormale.Interact.performed += Interact;
         inputActions.MapNormale.SwitchKatana.performed += SwitchKatana;
+        inputActions.MapNormale.Options.performed += Options;
+        inputActions.UImap.Pause.performed += Pause;
     }
 
     private void OnDisable()
@@ -251,6 +255,8 @@ public class JoueursControl1 : MonoBehaviour
         inputActions.MapNormale.DebugTool.performed -= DebugTool;
         inputActions.MapNormale.Interact.performed -= Interact;
         inputActions.MapNormale.SwitchKatana.performed -= SwitchKatana;
+        inputActions.MapNormale.Options.performed -= Options;
+        inputActions.UImap.Pause.performed -= Pause;
     }
 
 
@@ -273,9 +279,18 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("<color=Blue>Active Katana: </color>" + activeKatana.name);
         //Debug.Log("<color=Red>Active Katana: </color>" + activeKatana.GetComponent<Sword>().ID);
 
-        //Death
+        katanaID = int.Parse(activeKatana.GetComponent<Sword>().ID);
 
-        //Debug.Log("<color=Blue>State: </color>" + state);
+        //Debug.Log("<color=Green>Active Katana ID: </color>" + katanaID);
+
+        if (gestionPause.enPause)
+        {
+            EnableUI();
+        }
+        else
+        {
+            EnableGameplay();
+        }
 
         if (health <= 0)
         {
@@ -383,6 +398,31 @@ public class JoueursControl1 : MonoBehaviour
             cc.Move(Time.deltaTime * vJoueur);
         }
         vyJoueur += forceGravite * Time.fixedDeltaTime;
+    }
+
+    public void EnableGameplay() {
+        inputActions.UImap.Disable();
+        inputActions.MapNormale.Enable();
+    }
+    public void EnableUI() {
+        inputActions.MapNormale.Disable();
+        inputActions.UImap.Enable();
+    }
+
+    void DebugCurrentActionMap()
+    {
+        if (inputActions.MapNormale.enabled)
+        {
+            Debug.Log("Current Action Map: Mapnormale (Gameplay)");
+        }
+        else if (inputActions.UImap.enabled)
+        {
+            Debug.Log("Current Action Map: UImap (UI)");
+        }
+        else
+        {
+            Debug.Log("No Action Map is currently enabled.");
+        }
     }
 
     void LockOnFunc()
@@ -735,6 +775,23 @@ public class JoueursControl1 : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+        }
+    }
+    private void Options(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
+        {
+            gestionPause.MettreEnPause();
+            DebugCurrentActionMap();
+        }
+    }
+
+    private void Pause(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
+        {
+            gestionPause.MettreEnPause();
+            DebugCurrentActionMap();
         }
     }
 
@@ -1333,30 +1390,58 @@ public class JoueursControl1 : MonoBehaviour
     }
     public void PlayVfx1()
     {
-        if (vfxArraySlash.Length > 0 && vfxArraySlash[0] != null)
+        if (vfxArraySlash.Length > 0)
         {
-            vfxArraySlash[0].Play();
+            if (katanaID == 1)
+            {
+                vfxArraySlash[0].Play();
+            }
+            else if (katanaID == 4)
+            {
+                vfxArraySlash[4].Play();
+            }
         }
     }
     public void PlayVfx2()
     {
-        if (vfxArraySlash.Length > 0 && vfxArraySlash[1] != null)
+        if (vfxArraySlash.Length > 0)
         {
-            vfxArraySlash[1].Play();
+            if (katanaID == 1)
+            {
+                vfxArraySlash[1].Play();
+            }
+            else if (katanaID == 4)
+            {
+                vfxArraySlash[5].Play();
+            }
         }
     }
     public void PlayVfx3()
     {
-        if (vfxArraySlash.Length > 0 && vfxArraySlash[2] != null)
+        if (vfxArraySlash.Length > 0)
         {
-            vfxArraySlash[2].Play();
+            if (katanaID == 1)
+            {
+                vfxArraySlash[2].Play();
+            }
+            else if (katanaID == 4)
+            {
+                vfxArraySlash[6].Play();
+            }
         }
     }
     public void PlayVfx4()
     {
-        if (vfxArraySlash.Length > 0 && vfxArraySlash[3] != null)
+        if (vfxArraySlash.Length > 0)
         {
-            vfxArraySlash[3].Play();
+            if (katanaID == 1)
+            {
+                vfxArraySlash[3].Play();
+            }
+            else if (katanaID == 4)
+            {
+                vfxArraySlash[7].Play();
+            }
         }
     }
 }
