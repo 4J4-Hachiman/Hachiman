@@ -5,6 +5,7 @@
         Par : Malaïka Abevi
         Dernière modification : 14/05/2025
 */
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -18,17 +19,6 @@ public class ChangementCinematiques : MonoBehaviour
   public static bool cinematiqueTermine;
   public float tempsVideo;
   public float tempsJoue;
-
-  //Videoclips des cinématiques
-  public VideoClip cinematiqueIntroduction;
-  public VideoClip cinematiqueIndiceBague;
-  public VideoClip cinematiqueDecouvertBague;
-  public VideoClip cinematiqueIndiceAmulette;
-  public VideoClip cinematiqueDecouvertAmulette;
-  public VideoClip cinematiquePortail;
-  public VideoClip cinematiqueConfrontation;
-  public VideoClip cinematiqueFin;
-
 
   void Start()
   {
@@ -58,9 +48,9 @@ public class ChangementCinematiques : MonoBehaviour
     tempsVideo = Mathf.Floor((float)videoPlayer.clip.length);
     videoPlayer.Play();
     // print(cinematiqueEnCours);
-    // videoPlayer.playbackSpeed = 1;;
+    videoPlayer.playbackSpeed = 1;
 
-    Time.timeScale = 0;
+    // Time.timeScale = 0;
 
     cinematiqueTermine = false;
     cinematiqueEnCours = true;
@@ -69,6 +59,7 @@ public class ChangementCinematiques : MonoBehaviour
     animCinematique.SetTrigger("demarrerCine");
     animHUD.SetTrigger("disparaitre");
     print("La cinematique est partie!");
+    StartCoroutine("RalentirJeu");
   }
 
   //Fonction pour arreter une cinématiques et en faire la gestion
@@ -76,7 +67,7 @@ public class ChangementCinematiques : MonoBehaviour
   {
     videoPlayer.Stop();
 
-    Time.timeScale = 1;
+    // Time.timeScale = 1;
 
     cinematiqueEnCours = false;
     cinematiqueTermine = true;
@@ -86,6 +77,47 @@ public class ChangementCinematiques : MonoBehaviour
     Invoke("ReafficherHUD", 5f);
 
     print("La cinématique est arreter");
+    StartCoroutine("AccelererJeu");
+  }
+
+  IEnumerator RalentirJeu()
+  {
+    float scale = 1;
+    while (scale > 0f)
+    {
+      scale -= 1 / 4f * Time.unscaledDeltaTime;
+      if (scale < 0)
+      {
+        scale = 0;
+        Time.timeScale = scale;
+        break;
+      }
+
+      Time.timeScale = scale;
+
+      print(Time.timeScale);
+      yield return null;
+    }
+  }
+
+  IEnumerator AccelererJeu()
+  {
+    float scale = 0;
+    while (scale < 1f)
+    {
+      scale += 1 / 4f * Time.unscaledDeltaTime;
+      if (scale > 1)
+      {
+        scale = 1;
+        Time.timeScale = scale;
+        break;
+      }
+
+      Time.timeScale = scale;
+
+      print(Time.timeScale);
+      yield return null;
+    }
   }
 
   void ReafficherHUD()
