@@ -630,13 +630,14 @@ GameObject:
   - component: {fileID: 6537375059324663308}
   - component: {fileID: 5616970214584366914}
   - component: {fileID: 7149293208479552823}
+  - component: {fileID: 5521563031843076029}
   m_Layer: 5
   m_Name: Canvas - PartieTerminee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8364653690361439772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -733,7 +734,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5487547924754840688}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 0.21
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -759,6 +760,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5521563031843076029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487547924754840688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a745cdd33676dc479d72bf0da779159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5755830354568961837
 GameObject:
   m_ObjectHideFlags: 0
