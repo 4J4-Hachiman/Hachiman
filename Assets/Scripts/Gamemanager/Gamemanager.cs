@@ -27,6 +27,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
 
     [Header("Fonctionality Classes")]
     public CombatManager Combat { get; private set; }
+    [field: SerializeField] public RectTransform InteractionIcon { get; private set; }
 
     [Header("Enemy Health Bars")]
     [field: SerializeField] GameObject hpBarParent;
@@ -47,6 +48,9 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
     private SpawnGroup[] spawnGroups;
     private List<GameObject> activeEnemies;
     private Queue<GameObject> deadEnemies;
+
+    [field: SerializeField, Header("Other stuff")] public NavigationBoussole NavigationBoussole { get; private set; }
+    [field: SerializeField] public GameObject Indicateur { get; private set; }
 
     void Awake()
     {

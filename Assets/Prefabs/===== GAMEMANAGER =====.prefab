@@ -1128,6 +1128,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   swordData: {fileID: 11400000, guid: 639573f976ef7824a875807962b1bf2d, type: 2}
   manageSettings: {fileID: 11400000, guid: fe2f15591d4ab1f42a6d35293e2953fd, type: 2}
+  <InteractionIcon>k__BackingField: {fileID: 0}
   hpBarParent: {fileID: 0}
   hpBarInstance: {fileID: 7675432946149956339, guid: 24b84aaa33bb0d047aa603cd5f0fd407, type: 3}
   surroundDistance: 3
@@ -1135,6 +1136,8 @@ MonoBehaviour:
   enemyInstance: {fileID: 7979333368400802138, guid: d9b5cb56222916046af81ce87a6ece86, type: 3}
   poolAmount: 20
   enemyPoolParent: {fileID: 0}
+  <NavigationBoussole>k__BackingField: {fileID: 0}
+  <Indicateur>k__BackingField: {fileID: 0}
 --- !u!114 &5173693038078731242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,6 +1157,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51980338ff2df894b8a8dca216063e82, type: 2}
   - {fileID: 11400000, guid: 9527dcf75ea921d468862704c352a43c, type: 2}
   - {fileID: 11400000, guid: 4e53c1a4e8d33a2408f51a59c676e0b3, type: 2}
+  - {fileID: 11400000, guid: 97c834064bf4bd143a1f001b53af90e5, type: 2}
+  - {fileID: 11400000, guid: a44631e1dd4cfa64aa6361411150cb83, type: 2}
   uiQuestNameDisplay: {fileID: 5709641257778522511}
   uiQuestStepDisplay: {fileID: 6336812564471867866}
   cutscenePlayer: {fileID: 0}

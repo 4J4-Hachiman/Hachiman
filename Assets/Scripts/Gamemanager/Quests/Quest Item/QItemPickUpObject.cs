@@ -6,15 +6,18 @@
     Dernière modification: 19/04/2025
 */
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(SphereCollider), typeof(PlayerInput))]
 public class QItemPickUpObject : MonoBehaviour
 {
-    // [field: SerializeField] private QuestData assignedQuest;
-    // [field: SerializeField] private int assignedQuestStepIndex;
-    // [field: SerializeField] private RectTransform interactionIcon;
+    [field: SerializeField] private List<QuestData> assignedQuests;
+    private List<string> assignedQuestID;
+    public RectTransform interactionIcon;
+    [field: SerializeField] private float heightDiff;
+
     private PlayerControls playerInputs;
     private Transform cam;
 
@@ -22,12 +25,21 @@ public class QItemPickUpObject : MonoBehaviour
     {
         playerInputs = new PlayerControls();
         cam = Camera.main.transform;
-        // interactionIcon.gameObject.SetActive(false);
+        assignedQuestID = new();
+
+        for (int i = 0; i < assignedQuests.Count; i++)
+        {
+            assignedQuestID.Add(assignedQuests[i].ID);
+        }
+
+        enabled = true;
     }
 
     private void OnEnable()
     {
         playerInputs.Enable();
+        interactionIcon = GameObject.FindGameObjectWithTag("GameController").GetComponent<Gamemanager>().InteractionIcon;
+        interactionIcon.gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -41,22 +53,28 @@ public class QItemPickUpObject : MonoBehaviour
         playerInputs.Disable();
         playerInputs.MapNormale.Interact.performed -= Interact;
         GameEvents.TrigOnQuestItemPickedUp();
+        interactionIcon.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
-        playerInputs.MapNormale.Interact.performed += Interact;
+        if (assignedQuestID.Contains(QuestManager.CurrentQuestID))
+        {
+            interactionIcon.gameObject.SetActive(true);
+            interactionIcon.position = transform.position + (Vector3.up * heightDiff);
+            playerInputs.MapNormale.Interact.performed += Interact;
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        // interactionIcon.rotation = Quaternion.LookRotation(cam.transform.forward);
+        interactionIcon.rotation = Quaternion.LookRotation(cam.transform.forward);
     }
 
     private void OnTriggerExit(Collider other)
     {
         playerInputs.MapNormale.Interact.performed -= Interact;
-        // interactionIcon.gameObject.SetActive(false);
+        interactionIcon.gameObject.SetActive(false);
     }
 }

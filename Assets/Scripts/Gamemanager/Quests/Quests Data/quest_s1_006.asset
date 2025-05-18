@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0c0942017d8feb41a3642fd1637854f, type: 3}
-  m_Name: quest_s1_004
+  m_Name: quest_s1_006
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: quest_s1_004
+  <ID>k__BackingField: quest_s1_006
   <DisplayName>k__BackingField: Chapitre 1
-  <NextQuest>k__BackingField: {fileID: 11400000, guid: 97c834064bf4bd143a1f001b53af90e5, type: 2}
+  <NextQuest>k__BackingField: {fileID: 0}
   <QuestStepGO>k__BackingField:
   - {fileID: 3794564762299752676, guid: ad6dcc278d0d5ad459449aac02f784e2, type: 3}
   <QuestStepInfo>k__BackingField:
-  - Prendre la bague
-  state: 2
-  <Inst>k__BackingField: {fileID: 0}
-  <InstPosition>k__BackingField: {x: 0, y: 0, z: 0}
-  <InstRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
-  <CutsceneToPlay>k__BackingField: {fileID: 0}
+  - Parler a Ughomi au portail
+  state: 0
+  <Inst>k__BackingField: {fileID: 257520296090796475, guid: 11b36bf15a6ea9e48bab174a9903193c, type: 3}
+  <InstPosition>k__BackingField: {x: 9.23, y: 36.82776, z: 232.34}
+  <InstRotation>k__BackingField: {x: 0, y: -0.9838757, z: 0, w: -0.17885375}
+  <CutsceneToPlay>k__BackingField: {fileID: 32900000, guid: c013128c4059d694a843897f3584ce18, type: 3}
