@@ -34,13 +34,13 @@ public class ChangerCibleDirection : MonoBehaviour
 
     void SwitchOnSelectUp()
     {
-        if (prochainElementDefaut.interactable)
+        if (prochainElementDefaut.interactable && prochainElementDefaut.gameObject.activeInHierarchy)
         {
             navigation.selectOnUp = prochainElementDefaut;
         }
         else
         {
-            if (prochainElmNew.interactable)
+            if (prochainElmNew.interactable && prochainElmNew.gameObject.activeInHierarchy)
             {
                 navigation.selectOnUp = prochainElmNew;
             }
@@ -54,13 +54,13 @@ public class ChangerCibleDirection : MonoBehaviour
 
     void SwitchOnSelectDown()
     {
-        if (prochainElementDefaut.interactable)
+        if (prochainElementDefaut.interactable && prochainElementDefaut.gameObject.activeInHierarchy)
         {
             navigation.selectOnDown = prochainElementDefaut;
         }
         else
         {
-            if (prochainElmNew.interactable)
+            if (prochainElmNew.interactable && prochainElmNew.gameObject.activeInHierarchy)
             {
                 navigation.selectOnDown = prochainElmNew;
             }
@@ -74,13 +74,13 @@ public class ChangerCibleDirection : MonoBehaviour
 
     void SwitchOnSelectLeft()
     {
-        if (prochainElementDefaut.interactable)
+        if (prochainElementDefaut.interactable && prochainElementDefaut.gameObject.activeInHierarchy)
         {
             navigation.selectOnLeft = prochainElementDefaut;
         }
         else
         {
-            if (prochainElmNew.interactable)
+            if (prochainElmNew.interactable && prochainElmNew.gameObject.activeInHierarchy)
             {
                 navigation.selectOnLeft = prochainElmNew;
             }
@@ -94,13 +94,13 @@ public class ChangerCibleDirection : MonoBehaviour
 
     void SwitchOnSelectRight()
     {
-        if (prochainElementDefaut.interactable)
+        if (prochainElementDefaut.interactable && prochainElementDefaut.gameObject.activeInHierarchy)
         {
             navigation.selectOnRight = prochainElementDefaut;
         }
         else
         {
-            if (prochainElmNew.interactable)
+            if (prochainElmNew.interactable && prochainElmNew.gameObject.activeInHierarchy)
             {
                 navigation.selectOnRight = prochainElmNew;
             }

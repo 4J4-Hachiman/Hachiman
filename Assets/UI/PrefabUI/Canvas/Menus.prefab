@@ -145,17 +145,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuPause - Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 733421367793984794, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 897460262704927386, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 897460262704927386, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 897460262704927386, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1632596095122946627, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: eventSystem
@@ -173,6 +177,10 @@ PrefabInstance:
       propertyPath: prochainElementDefaut
       value: 
       objectReference: {fileID: 232772401546992061}
+    - target: {fileID: 1828734988100875833, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2621033748809699008, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: eventSystem
       value: 
@@ -302,6 +310,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 232772401546992061}
     - target: {fileID: 4698738512772094641, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
+      propertyPath: direction
+      value: Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698738512772094641, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 5429504380624479871}
@@ -323,36 +335,40 @@ PrefabInstance:
       objectReference: {fileID: 232772401546992061}
     - target: {fileID: 6014289836678954671, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6014289836678954671, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7486703737456434355, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7486703737456434355, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7486703737456434355, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7915113079034210519, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7915113079034210519, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8129262619048317862, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 5429504380624479871}
+    - target: {fileID: 8952138759346350228, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9057494807096736201, guid: 9ba00deebf6cc164f92ebe3784abacbb, type: 3}
       propertyPath: eventSystem
       value: 
