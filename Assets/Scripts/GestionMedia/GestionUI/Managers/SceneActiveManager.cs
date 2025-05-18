@@ -8,6 +8,7 @@
         Dernière modification : 06/05/2025
 */
 using System.Collections;
+using UnityEditor.SearchService;
 using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -21,10 +22,12 @@ public class SceneActiveManager : MonoBehaviour
     public Animator animChargement;
     public PlayableDirector timeline;
 
+    UnityEngine.SceneManagement.Scene sceneActuelle;
     public static bool changementSceneEnCours;
 
     void Start()
     {
+        sceneActuelle = SceneManager.GetActiveScene();
         changementSceneEnCours = false;
         if (instance == null)
         {
@@ -41,10 +44,15 @@ public class SceneActiveManager : MonoBehaviour
     public void ChargerScene(string nomScene)
     {
         StartCoroutine(ChargementAsyncScene(nomScene));
+
     }
 
     IEnumerator ChargementAsyncScene(string nomScene)
     {
+        if (sceneActuelle.name == "_MenuIntro")
+        {
+            // Gamemanager.newgame
+        }
         changementSceneEnCours = true;
         Time.timeScale = 1;
         timeline.gameObject.SetActive(true);
