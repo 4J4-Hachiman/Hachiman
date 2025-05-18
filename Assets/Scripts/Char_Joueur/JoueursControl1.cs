@@ -403,10 +403,13 @@ public class JoueursControl1 : MonoBehaviour
     public void EnableGameplay() {
         inputActions.UImap.Disable();
         inputActions.MapNormale.Enable();
+        DebugCurrentActionMap();
     }
-    public void EnableUI() {
+    public void EnableUI()
+    {
         inputActions.MapNormale.Disable();
         inputActions.UImap.Enable();
+        DebugCurrentActionMap();
     }
 
     void DebugCurrentActionMap()
@@ -782,7 +785,6 @@ public class JoueursControl1 : MonoBehaviour
         if (ctx.performed && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
         {
             gestionPause.MettreEnPause();
-            DebugCurrentActionMap();
         }
     }
 
@@ -791,7 +793,6 @@ public class JoueursControl1 : MonoBehaviour
         if (ctx.performed && !SceneActiveManager.changementSceneEnCours && !GestionMort.estMort)
         {
             gestionPause.MettreEnPause();
-            DebugCurrentActionMap();
         }
     }
 
