@@ -15,21 +15,14 @@ public class GestionPause : MonoBehaviour
     public GameObject menuPause;
 
     public CanvasGroup HUD;
-    // public GameObject HUD;
     public VideoPlayer videoCinematiques;
     public GameObject menuOptions;
     public GameObject menuCommandes;
     public Scene scenePartie;
-    public ChangerInputMapUI changerInputMapUI;
 
     void Start()
     {
         enPause = false;
-    }
-
-   
-    void Update()
-    {
     }
 
     //Fonction pour mettre en pause le jeu 
@@ -44,7 +37,6 @@ public class GestionPause : MonoBehaviour
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.Confined;
             videoCinematiques.Pause();
-            //changerInputMapUI.changerInputUI = true;
         }
         else
         {
@@ -55,7 +47,6 @@ public class GestionPause : MonoBehaviour
             menuOptions.SetActive(false);
             HUD.alpha = 1;
 
-// print("Cinematique en cours" + ChangementCinematiques.cinematiqueEnCours);
             if (!ChangementCinematiques.cinematiqueEnCours)
             {
                 
