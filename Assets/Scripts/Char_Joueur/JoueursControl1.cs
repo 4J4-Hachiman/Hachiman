@@ -1396,11 +1396,19 @@ public class JoueursControl1 : MonoBehaviour
         {
             if (katanaID == 1)
             {
+                vfxArraySlash[12].Play();
+            }
+            else if (katanaID == 2)
+            {
                 vfxArraySlash[0].Play();
+            }
+            else if (katanaID == 3)
+            {
+                vfxArraySlash[4].Play();
             }
             else if (katanaID == 4)
             {
-                vfxArraySlash[4].Play();
+                vfxArraySlash[8].Play();
             }
         }
     }
@@ -1410,11 +1418,19 @@ public class JoueursControl1 : MonoBehaviour
         {
             if (katanaID == 1)
             {
+                vfxArraySlash[13].Play();
+            }
+            else if (katanaID == 2)
+            {
                 vfxArraySlash[1].Play();
+            }
+            else if (katanaID == 3)
+            {
+                vfxArraySlash[5].Play();
             }
             else if (katanaID == 4)
             {
-                vfxArraySlash[5].Play();
+                vfxArraySlash[9].Play();
             }
         }
     }
@@ -1424,11 +1440,19 @@ public class JoueursControl1 : MonoBehaviour
         {
             if (katanaID == 1)
             {
+                vfxArraySlash[14].Play();
+            }
+            else if (katanaID == 2)
+            {
                 vfxArraySlash[2].Play();
+            }
+            else if (katanaID == 3)
+            {
+                vfxArraySlash[6].Play();
             }
             else if (katanaID == 4)
             {
-                vfxArraySlash[6].Play();
+                vfxArraySlash[10].Play();
             }
         }
     }
@@ -1438,11 +1462,19 @@ public class JoueursControl1 : MonoBehaviour
         {
             if (katanaID == 1)
             {
+                vfxArraySlash[15].Play();
+            }
+            else if (katanaID == 2)
+            {
                 vfxArraySlash[3].Play();
+            }
+            else if (katanaID == 3)
+            {
+                vfxArraySlash[7].Play();
             }
             else if (katanaID == 4)
             {
-                vfxArraySlash[7].Play();
+                vfxArraySlash[11].Play();
             }
         }
     }
