@@ -3319,7 +3319,7 @@ PrefabInstance:
     - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
       propertyPath: spriteItem
       value: 
-      objectReference: {fileID: 21300000, guid: 5851717b0471e1747b5ce10c33e97e82, type: 3}
+      objectReference: {fileID: 21300000, guid: 850fddcfdbb182b42a9304e42671b84c, type: 3}
     - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
       propertyPath: itemInChest
       value: 
@@ -3334,7 +3334,7 @@ PrefabInstance:
       objectReference: {fileID: 427005326}
     - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
       propertyPath: stringItemName
-      value: Katana
+      value: 'Katana: Crocs du Tengu'
       objectReference: {fileID: 0}
     - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
       propertyPath: affichageRecolteItems
@@ -24404,6 +24404,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas - HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4017535286749636683, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_fontSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017535286749636683, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4234744577051583136, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 41.40039
@@ -24424,6 +24432,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 30fc4bd310da9cd44b326394084869e7, type: 3}
+    - target: {fileID: 4875228661083789242, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -28.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6396726554894298502, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
       propertyPath: cam
       value: 
@@ -24444,6 +24456,14 @@ PrefabInstance:
       propertyPath: refOrientation
       value: 
       objectReference: {fileID: 118280264}
+    - target: {fileID: 6697147312954382478, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6697147312954382478, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6817824789200895984, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -24453,13 +24473,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 203a46ca7efd2a04e8f2042eb50fafc0, type: 3}
     - target: {fileID: 7679727944620257831, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679727944620257831, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679727944620257831, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679727944620257831, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 167.04297
+      value: 362
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679727944620257831, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -186
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679727944620257831, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8181026863447200819, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 5851717b0471e1747b5ce10c33e97e82, type: 3}
+    - target: {fileID: 8385590272585206596, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 79.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385590272585206596, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.9
+      objectReference: {fileID: 0}
     - target: {fileID: 9108128364933969002, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
       propertyPath: canvasMort
       value: 
@@ -45980,7 +46028,7 @@ Transform:
   m_GameObject: {fileID: 1511964001}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11105372, y: -0.00000003052951, z: 0.000000003411518, w: 0.9938144}
-  m_LocalPosition: {x: -25.556, y: 50.02, z: 261.101}
+  m_LocalPosition: {x: 55.614, y: 35.539917, z: 124.260994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47046,9 +47094,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5985801723389469860}
     - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
+      propertyPath: spriteItem
+      value: 
+      objectReference: {fileID: 21300000, guid: 203a46ca7efd2a04e8f2042eb50fafc0, type: 3}
+    - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
       propertyPath: uiInteraction
       value: 
       objectReference: {fileID: 637677898}
+    - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
+      propertyPath: stringItemName
+      value: 'Katana: Esprit pur'
+      objectReference: {fileID: 0}
     - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
       propertyPath: affichageRecolteItems
       value: 
@@ -49847,6 +49903,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4833061739264299434, guid: c7cc842dc66b7b047a64015336f43626, type: 3}
     - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
+      propertyPath: spriteItem
+      value: 
+      objectReference: {fileID: 21300000, guid: 30fc4bd310da9cd44b326394084869e7, type: 3}
+    - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
       propertyPath: itemInChest
       value: 
       objectReference: {fileID: 1803467658}
@@ -49858,6 +49918,10 @@ PrefabInstance:
       propertyPath: uiInteraction
       value: 
       objectReference: {fileID: 1773232284}
+    - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
+      propertyPath: stringItemName
+      value: 'Katana: Nuit Sanglante'
+      objectReference: {fileID: 0}
     - target: {fileID: 4860577718617490017, guid: 17dbd19c988d0ef45af86acd325e10ea, type: 3}
       propertyPath: affichageRecolteItems
       value: 
@@ -58491,7 +58555,7 @@ Transform:
   m_GameObject: {fileID: 2022166239}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11105373, y: -0.000000030529513, z: 0.0000000034115182, w: 0.9938144}
-  m_LocalPosition: {x: -25.556, y: 50.02, z: 261.101}
+  m_LocalPosition: {x: 55.614, y: 35.539917, z: 124.260994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61247,15 +61311,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.57
+      value: 78.6
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 50.65
+      value: 36.169918
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 260.91
+      value: 124.07
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalRotation.w
