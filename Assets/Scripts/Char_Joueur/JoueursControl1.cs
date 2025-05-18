@@ -114,6 +114,7 @@ public class JoueursControl1 : MonoBehaviour
     private List<string> attackCombosList = new List<string>();
     private int lockOnIndex = 0;
     private int lockOnTotalTargets = 0;
+    public int katanaID; 
 
     // Rock Quest
     private int rockIndex = 0;
@@ -278,9 +279,9 @@ public class JoueursControl1 : MonoBehaviour
         //Debug.Log("<color=Blue>Active Katana: </color>" + activeKatana.name);
         //Debug.Log("<color=Red>Active Katana: </color>" + activeKatana.GetComponent<Sword>().ID);
 
-        //Death
+        katanaID = int.Parse(activeKatana.GetComponent<Sword>().ID);
 
-        //Debug.Log("En Pause: " + gestionPause.enPause);
+        //Debug.Log("<color=Green>Active Katana ID: </color>" + katanaID);
 
         if (gestionPause.enPause)
         {
@@ -1389,30 +1390,58 @@ public class JoueursControl1 : MonoBehaviour
     }
     public void PlayVfx1()
     {
-        if (vfxArraySlash.Length > 0 && vfxArraySlash[0] != null)
+        if (vfxArraySlash.Length > 0)
         {
-            vfxArraySlash[0].Play();
+            if (katanaID == 1)
+            {
+                vfxArraySlash[0].Play();
+            }
+            else if (katanaID == 4)
+            {
+                vfxArraySlash[4].Play();
+            }
         }
     }
     public void PlayVfx2()
     {
-        if (vfxArraySlash.Length > 0 && vfxArraySlash[1] != null)
+        if (vfxArraySlash.Length > 0)
         {
-            vfxArraySlash[1].Play();
+            if (katanaID == 1)
+            {
+                vfxArraySlash[1].Play();
+            }
+            else if (katanaID == 4)
+            {
+                vfxArraySlash[5].Play();
+            }
         }
     }
     public void PlayVfx3()
     {
-        if (vfxArraySlash.Length > 0 && vfxArraySlash[2] != null)
+        if (vfxArraySlash.Length > 0)
         {
-            vfxArraySlash[2].Play();
+            if (katanaID == 1)
+            {
+                vfxArraySlash[2].Play();
+            }
+            else if (katanaID == 4)
+            {
+                vfxArraySlash[6].Play();
+            }
         }
     }
     public void PlayVfx4()
     {
-        if (vfxArraySlash.Length > 0 && vfxArraySlash[3] != null)
+        if (vfxArraySlash.Length > 0)
         {
-            vfxArraySlash[3].Play();
+            if (katanaID == 1)
+            {
+                vfxArraySlash[3].Play();
+            }
+            else if (katanaID == 4)
+            {
+                vfxArraySlash[7].Play();
+            }
         }
     }
 }
