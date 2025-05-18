@@ -7,6 +7,7 @@
 */
 
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using System.Linq;
@@ -22,8 +23,11 @@ public class QuestManager : MonoBehaviour, IDataSaveable
     private Dictionary<string, Quest> gameQuests;
     private static Quest currentQuest;
     public static string CurrentQuestID { get { return currentQuest.Data.ID; } }
-    public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex();} }
+    public static int CurrentQuestStepIndex { get { return currentQuest.GetStepIndex(); } }
     private int _currentQuestStepIndex;
+    private GameObject instatiatedGo;
+
+    [field: SerializeField] ChangementCinematiques cutscenePlayer;
 
     private void Awake()
     {
@@ -43,12 +47,34 @@ public class QuestManager : MonoBehaviour, IDataSaveable
     private void QuestStart()
     {
         currentQuest.QuestStart(_currentQuestStepIndex);
+        if (currentQuest.Data.Inst)
+        {
+            Debug.Log("The current quest has a GAMEOBJECT to instantiate");
+            instatiatedGo = Instantiate(currentQuest.Data.Inst);
+            instatiatedGo.transform.SetPositionAndRotation(currentQuest.Data.InstPosition, currentQuest.Data.InstRotation);
+        }
         currentQuest.OnQuestOver += QuestEnd;
     }
 
     private void QuestEnd()
     {
         currentQuest.OnQuestOver -= QuestEnd;
+        if (currentQuest.Data.CutsceneToPlay)
+        {
+            cutscenePlayer.DemarrerCinematique(currentQuest.Data.CutsceneToPlay);
+            StartCoroutine(WaitForCutsceneEnd());
+            return;
+        }
+        Destroy(instatiatedGo);
+        instatiatedGo = null;
+        LoadNextQuest();
+    }
+
+    private IEnumerator WaitForCutsceneEnd()
+    {
+        yield return new WaitForSecondsRealtime((float)currentQuest.Data.CutsceneToPlay.length);
+        Destroy(instatiatedGo);
+        instatiatedGo = null;
         LoadNextQuest();
     }
 
@@ -72,7 +98,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
 
     public void UpdateQuestUI()
     {
-        uiQuestNameDisplay.text = currentQuest.Data.ID;
+        uiQuestNameDisplay.text = currentQuest.Data.DisplayName;
         uiQuestStepDisplay.text = currentQuest.Data.QuestStepInfo[CurrentQuestStepIndex];
     }
 

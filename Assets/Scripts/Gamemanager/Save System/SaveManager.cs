@@ -49,6 +49,8 @@ public class SaveManager : MonoBehaviour
         {
             point.OnSavePoint += OnSavePoint;
         }
+
+        // Gamemanager.newGame = true;
     }
 
     private void Start()
@@ -67,6 +69,13 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
         gameData = fileHandler.LoadGameData();
+
+        if (Gamemanager.newGame)
+        {
+            gameData = null;
+            Gamemanager.newGame = false;
+            Debug.Log("Making a new game");
+        }
         
         if (gameData == null)
         {

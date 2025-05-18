@@ -149,12 +149,12 @@ public class Chest : MonoBehaviour, IDataSaveable
         }
         if (isTaken && itemInChest.CompareTag("Katana"))
         {
-            GameObject katana = Instantiate(newKatana);
-            if (!hachiman.katanaList.Contains(katana))
-            {
-                hachiman.katanaList.Add(katana);
-                katana.transform.parent = hand.transform;
-            }
+            // GameObject katana = Instantiate(newKatana);
+            // if (!hachiman.katanaList.Contains(katana))
+            // {
+            //     hachiman.katanaList.Add(katana);
+            //     katana.transform.parent = hand.transform;
+            // }
             pointLightInChest.SetActive(false);
             itemInChest.SetActive(false);
         }

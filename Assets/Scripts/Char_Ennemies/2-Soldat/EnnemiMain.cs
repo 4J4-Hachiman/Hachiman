@@ -85,6 +85,8 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
         Animator = GetComponent<Animator>();
         Agent.speed = vitesseDeplacement;
         Gamemanager = GameObject.FindWithTag("GameController").GetComponent<Gamemanager>();
+        GetComponent<DetectionEnnemiUI>().navigationBoussole = Gamemanager.NavigationBoussole;
+        GetComponent<DetectionEnnemiUI>().indicateur = Gamemanager.Indicateur;
     }
 
     public void Initialize(Vector3[] patrol)
