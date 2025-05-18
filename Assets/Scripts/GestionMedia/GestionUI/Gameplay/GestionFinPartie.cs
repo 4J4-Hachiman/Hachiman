@@ -13,7 +13,7 @@ public class GestionFinPartie : MonoBehaviour
 {
     public static bool partieFini;
     public EventSystem eventSystem;
-    public GameObject bntFirst;
+    public GameObject bntSelected;
 
     void Start()
     {
@@ -50,5 +50,6 @@ public class GestionFinPartie : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetTrigger("finPartie");
         Cursor.lockState = CursorLockMode.Confined;
+        eventSystem.SetSelectedGameObject(bntSelected);
     }
 }

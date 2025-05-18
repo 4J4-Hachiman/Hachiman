@@ -13,7 +13,7 @@ public class GestionMort : MonoBehaviour
 {
     public static bool estMort;
     public EventSystem eventSystem;
-    public GameObject bntFirst;
+    public GameObject bntSelected;
 
     void Start()
     {
@@ -50,6 +50,6 @@ public class GestionMort : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetTrigger("mort");
         Cursor.lockState = CursorLockMode.Confined;
-        eventSystem.firstSelectedGameObject = bntFirst;
+        eventSystem.SetSelectedGameObject(bntSelected);
     }
 }
