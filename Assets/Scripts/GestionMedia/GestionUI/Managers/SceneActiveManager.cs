@@ -51,8 +51,9 @@ public class SceneActiveManager : MonoBehaviour
     {
         if (sceneActuelle.name == "_MenuIntro")
         {
-            // Gamemanager.newgame
+            Gamemanager.newGame = true;
         }
+        
         changementSceneEnCours = true;
         Time.timeScale = 1;
         timeline.gameObject.SetActive(true);
