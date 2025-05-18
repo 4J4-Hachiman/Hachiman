@@ -666,15 +666,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""TrackedDevicePosition"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""6b109291-6f5c-414f-8ea5-40ea0331ef54"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""84b06858-5ab4-45c6-8add-bc52e4d8c876"",
@@ -691,7 +682,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""*/{Submit}"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR;Keyboard;Controller;Mouse"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -702,7 +693,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR;Keyboard;Controller;Mouse"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -911,7 +902,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad;Keyboard"",
+                    ""groups"": "";Gamepad;Controller"",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1094,17 +1085,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8d85cf50-20e9-44dc-83bc-a872edd0ff01"",
-                    ""path"": ""<XRController>/devicePosition"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""TrackedDevicePosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""61c62834-cca1-4d07-8d6a-72fc87c82b7c"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -1194,7 +1174,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_UImap_RightClick = m_UImap.FindAction("RightClick", throwIfNotFound: true);
         m_UImap_MiddleClick = m_UImap.FindAction("MiddleClick", throwIfNotFound: true);
         m_UImap_ScrollWheel = m_UImap.FindAction("ScrollWheel", throwIfNotFound: true);
-        m_UImap_TrackedDevicePosition = m_UImap.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UImap_Pause = m_UImap.FindAction("Pause", throwIfNotFound: true);
     }
 
@@ -1446,7 +1425,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UImap_RightClick;
     private readonly InputAction m_UImap_MiddleClick;
     private readonly InputAction m_UImap_ScrollWheel;
-    private readonly InputAction m_UImap_TrackedDevicePosition;
     private readonly InputAction m_UImap_Pause;
     public struct UImapActions
     {
@@ -1461,7 +1439,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UImap_RightClick;
         public InputAction @MiddleClick => m_Wrapper.m_UImap_MiddleClick;
         public InputAction @ScrollWheel => m_Wrapper.m_UImap_ScrollWheel;
-        public InputAction @TrackedDevicePosition => m_Wrapper.m_UImap_TrackedDevicePosition;
         public InputAction @Pause => m_Wrapper.m_UImap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_UImap; }
         public void Enable() { Get().Enable(); }
@@ -1499,9 +1476,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ScrollWheel.started += instance.OnScrollWheel;
             @ScrollWheel.performed += instance.OnScrollWheel;
             @ScrollWheel.canceled += instance.OnScrollWheel;
-            @TrackedDevicePosition.started += instance.OnTrackedDevicePosition;
-            @TrackedDevicePosition.performed += instance.OnTrackedDevicePosition;
-            @TrackedDevicePosition.canceled += instance.OnTrackedDevicePosition;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -1536,9 +1510,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ScrollWheel.started -= instance.OnScrollWheel;
             @ScrollWheel.performed -= instance.OnScrollWheel;
             @ScrollWheel.canceled -= instance.OnScrollWheel;
-            @TrackedDevicePosition.started -= instance.OnTrackedDevicePosition;
-            @TrackedDevicePosition.performed -= instance.OnTrackedDevicePosition;
-            @TrackedDevicePosition.canceled -= instance.OnTrackedDevicePosition;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -1617,7 +1588,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
-        void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
 }
