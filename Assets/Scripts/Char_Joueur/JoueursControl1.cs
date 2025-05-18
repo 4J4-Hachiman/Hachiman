@@ -731,7 +731,7 @@ public class JoueursControl1 : MonoBehaviour
             if (inFrontofRing && !hasArtefact1)
             {
                 hasArtefact1 = true;
-                Ring.SetActive(false);
+                //Ring.SetActive(false);
                 uiInteractionRing.SetActive(false);
             }
             if (inFrontofDoor && !isDoorOpened)
@@ -1234,6 +1234,7 @@ public class JoueursControl1 : MonoBehaviour
             uiInteractionRock.SetActive(false);
             animatorRing.SetTrigger("drop");
             yield return new WaitForSeconds(1.16f);
+            Ring.GetComponent<SphereCollider>().enabled = true;
             RingCollider.SetActive(true);
         }
         else

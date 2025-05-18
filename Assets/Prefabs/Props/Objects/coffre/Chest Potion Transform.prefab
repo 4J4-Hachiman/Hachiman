@@ -2196,6 +2196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3061ccacca04a264095f52522dcb68a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   itemInChest: {fileID: 6576164690956598290}
   newKatana: {fileID: 0}
   katana: {fileID: 0}
@@ -2208,6 +2209,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   banqueAudio: {fileID: 11400000, guid: da2df200bc633ce41a625e505ea9f2e3, type: 2}
   audioSource: {fileID: 0}
+  affichageRecolteItems: {fileID: 0}
+  spriteItem: {fileID: 21300000, guid: fce67a3e400310143a7067784c9abd4e, type: 3}
+  stringItemName: Potions x2
   numbPotionInChest: 2
 --- !u!82 &5645561291858232926
 AudioSource:
