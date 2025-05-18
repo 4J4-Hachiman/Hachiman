@@ -7,10 +7,13 @@
 */
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GestionMort : MonoBehaviour
 {
     public static bool estMort;
+    public EventSystem eventSystem;
+    public GameObject bntFirst;
 
     void Start()
     {
@@ -47,11 +50,6 @@ public class GestionMort : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetTrigger("mort");
         Cursor.lockState = CursorLockMode.Confined;
+        eventSystem.firstSelectedGameObject = bntFirst;
     }
-
-    // void ReinitialiserPartie()
-    // {
-    //     estMort = false;
-
-    // }
 }
