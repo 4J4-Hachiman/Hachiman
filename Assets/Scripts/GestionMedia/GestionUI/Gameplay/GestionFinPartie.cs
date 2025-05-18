@@ -7,10 +7,13 @@
 */
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GestionFinPartie : MonoBehaviour
 {
     public static bool partieFini;
+    public EventSystem eventSystem;
+    public GameObject bntFirst;
 
     void Start()
     {
