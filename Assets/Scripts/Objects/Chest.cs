@@ -95,7 +95,7 @@ public class Chest : MonoBehaviour, IDataSaveable
             isOpen = true;
             animator.SetTrigger("Open");
             uiInteraction.SetActive(false);
-            audioSource.PlayOneShot(banqueAudio.sOuvertureCoffre);
+            GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sOuvertureCoffre);
         }
         else if (!isTaken)
         {
@@ -126,6 +126,7 @@ public class Chest : MonoBehaviour, IDataSaveable
             {
                 pointLightInChest.gameObject.SetActive(false);
                 itemInChest.SetActive(false);
+                GetComponents<AudioSource>()[1].PlayOneShot(banqueAudio.sObtainItem);
             }
         }
     }

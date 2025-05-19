@@ -138,29 +138,32 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
     private IEnumerator Bleedout(Sword.AttackStats stat)
     {
-        int steal = stat == Sword.AttackStats.Lifesteal ? 5 : 0;
         JoueursControl1 playerScript = Player.GetComponent<JoueursControl1>();
 
         int iterations = 3;
         yield return new WaitForSeconds(1);
-        while (/* HpCurrent > 0 && */ iterations > 0)
+        while (iterations > 0)
         {
-            if (HpCurrent > 0 )
+            if (HpCurrent > 0)
             {
                 Dommage(2, true);
             }
 
-            playerScript.health += 5;
-
-            if (playerScript.health > playerScript.maxHealth)
+            // Only heal if the stat is Lifesteal
+            if (stat == Sword.AttackStats.Lifesteal)
             {
-                playerScript.health = playerScript.maxHealth;
-            }
-            
-            iterations --;
+                playerScript.health += 5;
 
+                if (playerScript.health > playerScript.maxHealth)
+                {
+                    playerScript.health = playerScript.maxHealth;
+                }
+            }
+
+            iterations--;
             yield return new WaitForSeconds(1);
         }
+
         yield break;
     }
 
