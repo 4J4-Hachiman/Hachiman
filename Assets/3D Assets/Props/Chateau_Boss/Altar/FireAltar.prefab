@@ -182,8 +182,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.79122674, g: 0.0039215684, b: 1, a: 1}
-  m_Intensity: 73.367645
-  m_Range: 26.52
+  m_Intensity: 94.05261
+  m_Range: 98.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -388,6 +388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8105541425572361038}
   - component: {fileID: 4719349502211877133}
+  - component: {fileID: 4370824804562108822}
   m_Layer: 7
   m_Name: FireAltar
   m_TagString: Untagged
@@ -433,6 +434,29 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!136 &4370824804562108822
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141910536989474935}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 5111
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.1
+  m_Height: 2.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.73, z: 0}
 --- !u!1001 &5555572313069175161
 PrefabInstance:
   m_ObjectHideFlags: 0
