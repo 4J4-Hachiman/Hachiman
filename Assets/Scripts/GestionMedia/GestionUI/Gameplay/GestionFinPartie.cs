@@ -14,6 +14,8 @@ public class GestionFinPartie : MonoBehaviour
     public static bool partieFini;
     public EventSystem eventSystem;
     public GameObject bntSelected;
+    public MusiqueTransition musiqueTransition;
+    public BanqueAudio banqueAudio;
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class GestionFinPartie : MonoBehaviour
     {
         Invoke("AffichageFinPartie", 1f);
         StartCoroutine(RalentirJeu());
+        musiqueTransition.ChangerMusique(banqueAudio.mscFinJeu);
         partieFini = true;
     }
 
