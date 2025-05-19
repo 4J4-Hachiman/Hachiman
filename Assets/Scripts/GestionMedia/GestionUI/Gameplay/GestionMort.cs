@@ -14,6 +14,8 @@ public class GestionMort : MonoBehaviour
     public static bool estMort;
     public EventSystem eventSystem;
     public GameObject bntSelected;
+    public MusiqueTransition musiqueTransition;
+    public BanqueAudio banqueAudio;
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class GestionMort : MonoBehaviour
     {
         Invoke("AffichageMort", 1f);
         StartCoroutine(RalentirJeu());
+        musiqueTransition.ChangerMusique(banqueAudio.mscMort);
         estMort = true;
     }
 
