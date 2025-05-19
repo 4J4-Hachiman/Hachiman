@@ -837,7 +837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.046906, y: -89.73575}
+  m_AnchoredPosition: {x: 96.046906, y: -72.36665}
   m_SizeDelta: {x: 1160, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7537318023783660315
@@ -1178,8 +1178,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288267748
+  m_fontColor: {r: 0.89411765, g: 0.77254903, b: 0.6, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1538,10 +1538,10 @@ MonoBehaviour:
   textBntReinit: {fileID: 8878072375027346436}
   couleurIndisponible:
     serializedVersion: 2
-    rgba: 687865855
+    rgba: 1016710628
   couleurBase:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4288267748
   resolution:
   - largeur: 2560
     hauteur: 1440
@@ -2694,9 +2694,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.93333334, g: 0.80784315, b: 0.6313726, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.93333334, g: 0.80784315, b: 0.6313726, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2738,7 +2738,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3683878039857315774}
         m_TargetAssemblyTypeName: ControlesMenuOptions, Assembly-CSharp
         m_MethodName: AjusterResolution
-        m_Mode: 3
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2960,7 +2960,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6411119277657248999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.293534}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.52291673, y: 0.52291673, z: 0.52291673}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2968,7 +2968,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 92.386475, y: -205.03578}
+  m_AnchoredPosition: {x: 95.64501, y: -194.18231}
   m_SizeDelta: {x: 1375, y: 921.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3624424768640187927
@@ -3020,6 +3020,7 @@ GameObject:
   - component: {fileID: 1517626520976695417}
   - component: {fileID: 3950226356695566716}
   - component: {fileID: 8058707088226294414}
+  - component: {fileID: 415195336446459747}
   m_Layer: 5
   m_Name: Slider - VolumeSFX
   m_TagString: Untagged
@@ -3072,9 +3073,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.89411765, g: 0.77254903, b: 0.6, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.89411765, g: 0.77254903, b: 0.6, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3104,7 +3105,19 @@ MonoBehaviour:
       - m_Target: {fileID: 3683878039857315774}
         m_TargetAssemblyTypeName: ControlesMenuOptions, Assembly-CSharp
         m_MethodName: AjusterVolumeSFX
-        m_Mode: 4
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 415195336446459747}
+        m_TargetAssemblyTypeName: RetourAudioUI, Assembly-CSharp
+        m_MethodName: ChangementVolumeManette
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3138,6 +3151,19 @@ MonoBehaviour:
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   direction: 
+--- !u!114 &415195336446459747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448993720728987171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc62ea2c0bec9c45ba3864e7a0dae1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  banqueAudio: {fileID: 11400000, guid: da2df200bc633ce41a625e505ea9f2e3, type: 2}
 --- !u!1 &7423829631329024782
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,9 +3388,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.89411765, g: 0.77254903, b: 0.6, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.89411765, g: 0.77254903, b: 0.6, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3394,7 +3420,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3683878039857315774}
         m_TargetAssemblyTypeName: ControlesMenuOptions, Assembly-CSharp
         m_MethodName: AjusterVolumeMusique
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3824,8 +3850,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288267748
+  m_fontColor: {r: 0.89411765, g: 0.77254903, b: 0.6, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
