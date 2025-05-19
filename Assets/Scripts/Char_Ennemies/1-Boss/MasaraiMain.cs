@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 12/05/2025; 
+    Dernière modification: 19/05/2025; 
 */
 
 using System;
@@ -28,7 +28,6 @@ public class MasaraiMain : MonoBehaviour
     [Header("Data")]
     [field: SerializeField] private float maxHp;
     private float currentHp;
-    // [field: SerializeField] public float WalkSpeed { get; private set; }
     [field: SerializeField] public float AtkTrigDistance { get; private set; }
     [field: SerializeField] public float SpecialAtkTrigDistance { get; private set; }
 
@@ -41,12 +40,7 @@ public class MasaraiMain : MonoBehaviour
     [Header("Healthbar")]
     [field: SerializeField] private GameObject healthbar;
     [field: SerializeField] private Image healthbarFill;
-
-    // [Header("Animations")]
-    // [field: SerializeField] private int simpleAttackCount;
-    // [field: SerializeField] private int specialAttackCount;
     public int AttackIndex { get; private set; }
-
     [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
 
     /* ================== State Machine ================== */
@@ -120,11 +114,6 @@ public class MasaraiMain : MonoBehaviour
         stateMachine.Current.StateFixedUpdate();
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log("<color=orange>Tapped Hachiman</orange>");
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
@@ -133,6 +122,10 @@ public class MasaraiMain : MonoBehaviour
             {
                 currentHp -= sword.GetDammage();
                 healthbarFill.fillAmount = currentHp / maxHp;
+                if (currentHp < 0)
+                {
+                    GameEvents.TrigAllEnemiesKilled();
+                }
             }
         }
     }
@@ -193,10 +186,7 @@ public class MasaraiMain : MonoBehaviour
         stateWalk.OnTriggerAttack += OnTriggerAttack;
     }
 
-    private void OnSpecialAttackCharge()
-    {
-        // Debug.Log("Attack charged");
-    }
+    private void OnSpecialAttackCharge() { }
 
     private void OnAttackHitStart(int limbIndex)
     {
