@@ -824,9 +824,9 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && isArmed)
         {
-            DoNotListenToInputs();
             if (katanaList.Count > 1)
             {
+                DoNotListenToInputs();
                 for (int i = 0; i < katanaList.Count; i++)
                 {
                     currentKatana = activeKatana;
