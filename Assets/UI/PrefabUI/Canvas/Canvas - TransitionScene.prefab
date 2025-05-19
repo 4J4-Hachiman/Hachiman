@@ -400,6 +400,65 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6893649625811697412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7407394733220787392}
+  - component: {fileID: 1034369176362624281}
+  m_Layer: 0
+  m_Name: Timeline-ingame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7407394733220787392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6893649625811697412}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 280.691, y: -18.897736, z: -2310.8958}
+  m_LocalScale: {x: 1.8750039, y: 1.8750039, z: 1.8750039}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6953722434778581274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1034369176362624281
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6893649625811697412}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 5478c8f93b5cfdf4ba0ae4eb24e79bf6, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 0
+  m_DirectorUpdateMode: 2
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 1984065856285245525, guid: 5478c8f93b5cfdf4ba0ae4eb24e79bf6, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2973722778485760628, guid: 5478c8f93b5cfdf4ba0ae4eb24e79bf6, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8345373725684050070, guid: 5478c8f93b5cfdf4ba0ae4eb24e79bf6, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2547950231849892420, guid: 5478c8f93b5cfdf4ba0ae4eb24e79bf6, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &7334203062481836921
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +651,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7407394733220787392}
   - {fileID: 763459778195814183}
   - {fileID: 4008683269413765424}
   - {fileID: 5673035426692189569}

@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 5421218759814240181}
   - component: {fileID: 6630919501055985768}
   - component: {fileID: 6448475583476114949}
+  - component: {fileID: 6405589472822502081}
   m_Layer: 5
   m_Name: MenuPause - Canvas
   m_TagString: Untagged
@@ -423,6 +424,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &6405589472822502081
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733421367793984794}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1843610152455939969
 GameObject:
   m_ObjectHideFlags: 0

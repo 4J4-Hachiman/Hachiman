@@ -21,6 +21,7 @@ public class SceneActiveManager : MonoBehaviour
     public Image fillChargement;
     public Animator animChargement;
     public PlayableDirector timeline;
+    public float tempsDelay;
 
     UnityEngine.SceneManagement.Scene sceneActuelle;
     public static bool changementSceneEnCours;
@@ -29,15 +30,15 @@ public class SceneActiveManager : MonoBehaviour
     {
         sceneActuelle = SceneManager.GetActiveScene();
         changementSceneEnCours = false;
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        // if (instance == null)
+        // {
+        //     instance = this;
+        //     DontDestroyOnLoad(gameObject);
+        // }
+        // else
+        // {
+        //     Destroy(gameObject);
+        // }
     }
 
     //Fonction pour démarrer la coroutine du chargement de scène
@@ -53,11 +54,11 @@ public class SceneActiveManager : MonoBehaviour
         {
             Gamemanager.newGame = true;
         }
-        
+
         changementSceneEnCours = true;
         Time.timeScale = 1;
         timeline.gameObject.SetActive(true);
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(tempsDelay);
 
         AsyncOperation scene = SceneManager.LoadSceneAsync(nomScene);
 
