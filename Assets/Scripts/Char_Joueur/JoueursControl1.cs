@@ -143,6 +143,7 @@ public class JoueursControl1 : MonoBehaviour
     private GameObject nextKatana;
     [SerializeField] private GameObject Door;
     [SerializeField] private GameObject Ring;
+    [SerializeField] private GameObject dommageHUD;
     [SerializeField] private GameObject RingCollider;
     [SerializeField] private GameObject uiInteractionRock;
     [SerializeField] private GameObject uiInteractionRing;
@@ -901,8 +902,10 @@ public class JoueursControl1 : MonoBehaviour
 
     private void Roll(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && !isRolling)
+        if (ctx.performed && !isRolling && (endurance > 40))
         {
+            endurance = (endurance < 40) ? 0 : endurance - 40;
+            StartCoroutine(EnduranceReset());
             isRolling = true;
             animator.SetTrigger("roll");
             state = HachimanState.Rolling;
@@ -1313,11 +1316,11 @@ public class JoueursControl1 : MonoBehaviour
                         animator.SetBool("Hit", true);
                         GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sEnemyHit2);
 
-                        //health -= 20f;
                         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy Weapon"))
                         {
                             Debug.Log("<color=red>Was hit by the player</color>");
                             health -= collision.GetComponent<Sword>().GetDammage();
+                            dommageHUD.GetComponent<Animator>().SetTrigger("dommage");
                         }
 
                         if (health <= 0)

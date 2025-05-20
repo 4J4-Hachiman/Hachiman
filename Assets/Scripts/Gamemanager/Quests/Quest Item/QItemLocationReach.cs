@@ -22,7 +22,6 @@ public class QItemLocationReach : MonoBehaviour
         capsuleCollider.isTrigger = true;
         GetComponent<CapsuleCollider>().includeLayers = detectionLayer;
         GetComponent<CapsuleCollider>().excludeLayers = ~detectionLayer;
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +29,8 @@ public class QItemLocationReach : MonoBehaviour
         if (QuestManager.CurrentQuestID == assignedQuest.ID)
         {
             GameEvents.TrigOnLocationReached();
+            capsuleCollider.enabled = false;
+            gameObject.SetActive(false);
         }
     }
 }

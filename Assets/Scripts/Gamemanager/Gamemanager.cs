@@ -3,7 +3,7 @@
     
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 19/04/2025;
+    Dernière modification: 20/05/2025;
 */
 
 using UnityEngine;
@@ -11,9 +11,11 @@ using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Gamemanager : MonoBehaviour, IDataSaveable
 {
+    [field: SerializeField] public GestionFinPartie GestionFin { get; private set; }
     public static Gamemanager gamemanagerInstance;
     public static bool newGame;
     private Transform player;
@@ -51,6 +53,8 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
 
     [field: SerializeField, Header("Other stuff")] public NavigationBoussole NavigationBoussole { get; private set; }
     [field: SerializeField] public GameObject Indicateur { get; private set; }
+    [field: SerializeField] public GameObject BossHealthBar { get; private set; }
+    [field: SerializeField] public Image BossHealthBarFill { get; private set; }
 
     void Awake()
     {
@@ -64,7 +68,7 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
         }
 
         Cursor.lockState = CursorLockMode.Locked;
-        Application.targetFrameRate = -1;
+        Application.targetFrameRate = 60;
 
         enemyPool = new Pooling(enemyInstance, poolAmount, enemyPoolParent);
         hpBarPool = new Pooling(hpBarInstance, poolAmount, hpBarParent);
@@ -74,7 +78,6 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
         activeEnemies = new List<GameObject>();
         deadEnemies = new Queue<GameObject>();
         hpBarActiveList = new List<GameObject>();
-
         InitLevel();
     }
 
@@ -162,7 +165,6 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
         }
     }
 
-    /* IDataSaveable Interface */
     public void LoadData(GameData data)
     {
         if (data.lScene == SceneManager.GetActiveScene().name)

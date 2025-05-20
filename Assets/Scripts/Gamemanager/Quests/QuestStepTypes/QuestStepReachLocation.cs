@@ -17,7 +17,7 @@ public class QuestStepReachLocation : QuestStep
     {
         GameEvents.OnLocationReached -= OnLocationReached;
     }
-    
+
     private void OnLocationReached()
     {
         FinishQuestStep();

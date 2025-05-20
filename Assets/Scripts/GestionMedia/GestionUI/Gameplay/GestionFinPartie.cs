@@ -21,6 +21,7 @@ public class GestionFinPartie : MonoBehaviour
     {
         partieFini = false;
     }
+    
     public void ArreterJeu()
     {
         if (!partieFini)

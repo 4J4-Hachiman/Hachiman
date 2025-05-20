@@ -5,9 +5,8 @@
 
     ************************************************************
     Par: Yanis Oulmane;
-    Dernière modification: 11/05/2025
-*/  
-
+    Dernière modification: 20/05/2025;
+*/
 
 using UnityEngine;
 using System.Linq;
@@ -34,29 +33,36 @@ public class SaveManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("A SaveManager instance already exists");
+            Debug.Log("A SaveManager instance already exists");
         }
         Instance = this;
-
-        savePoints = new SavePoint[savePointsParent.childCount];
-
-        for (int i = 0; i < savePoints.Length; i++)
+        if (savePointsParent.childCount > 0)
         {
-            savePoints[i] = savePointsParent.GetChild(i).GetComponent<SavePoint>();
-        }
+            savePoints = new SavePoint[savePointsParent.childCount];
 
-        foreach (SavePoint point in savePoints)
-        {
-            point.OnSavePoint += OnSavePoint;
-        }
+            for (int i = 0; i < savePoints.Length; i++)
+            {
+                savePoints[i] = savePointsParent.GetChild(i).GetComponent<SavePoint>();
+            }
 
-        // Gamemanager.newGame = true;
+            foreach (SavePoint point in savePoints)
+            {
+                point.OnSavePoint += OnSavePoint;
+            }
+        }
+        GameEvents.Reset();
+        GameEvents.OnQuestStepFinished += OnSetpFinished;
+    }
+
+    private void OnSetpFinished()
+    {
+        SaveGame();
     }
 
     private void Start()
     {
         string fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), pathFromDir);
-        fileHandler = new (fullPath, fileName);
+        fileHandler = new(fullPath, fileName);
         saveDatas = new List<IDataSaveable>(FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataSaveable>());
         LoadGame();
     }
@@ -74,12 +80,10 @@ public class SaveManager : MonoBehaviour
         {
             gameData = null;
             Gamemanager.newGame = false;
-            Debug.Log("Making a new game");
         }
-        
+
         if (gameData == null)
         {
-            Debug.Log("Couldnt find data making new Data");
             NewGame();
             SaveGame();
             LoadGame();
@@ -91,18 +95,15 @@ public class SaveManager : MonoBehaviour
             dataSaveable.LoadData(gameData);
         }
     }
-    
+
     public void SaveGame()
     {
         gameData.lScene = SceneManager.GetActiveScene().name;
-        Debug.Log("Saving Game");
         foreach (IDataSaveable dataSaveable in saveDatas)
         {
             dataSaveable.SaveData(ref gameData);
         }
-
         fileHandler.SaveGameData(gameData);
-        Debug.Log("Game has been saved !");
     }
 
     private void OnSavePoint(SavePoint pt)
@@ -111,7 +112,7 @@ public class SaveManager : MonoBehaviour
         {
             point.gameObject.SetActive(true);
         }
-        
+
         pt.gameObject.SetActive(false);
         SaveGame();
     }

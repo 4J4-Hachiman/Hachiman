@@ -38,8 +38,8 @@ public class MasaraiMain : MonoBehaviour
     public int ParamAttackSpecialPlay { get; private set; }
 
     [Header("Healthbar")]
-    [field: SerializeField] private GameObject healthbar;
-    [field: SerializeField] private Image healthbarFill;
+    private GameObject healthbar;
+    private Image healthbarFill;
     public int AttackIndex { get; private set; }
     [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
 
@@ -76,31 +76,25 @@ public class MasaraiMain : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
-
         currentHp = maxHp;
-
         capsuleCollider = GetComponent<CapsuleCollider>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-
         ParamVtotal = Animator.StringToHash("Vtotal");
         ParamAttackIndex = Animator.StringToHash("AttackIndex");
         ParamAttckSpecialStart = Animator.StringToHash("AttackSpecialStart");
         ParamAttackSpecialPlay = Animator.StringToHash("AttackSpecialPlay");
-
         AtkTrigDistance *= AtkTrigDistance;
         SpecialAtkTrigDistance *= SpecialAtkTrigDistance;
-
         hitboxCollider = hitbox.GetComponent<SphereCollider>();
         hitboxCollider.enabled = false;
-
         stateMachine = new MasaraiStateMachine();
         stateWalk = new MasaraiStateWalk(stateMachine, this, animator, agent);
         stateAttack = new MasaraiStateAttack(stateMachine, this, animator, agent, hitboxCollider);
-
         stateMachine.Initalize(stateWalk);
         stateWalk.OnTriggerAttack += OnTriggerAttack;
-
+        healthbar = GameObject.FindGameObjectWithTag("GameController").GetComponent<Gamemanager>().BossHealthBar;
+        healthbarFill = GameObject.FindGameObjectWithTag("GameController").GetComponent<Gamemanager>().BossHealthBarFill;
         healthbar.SetActive(true);
     }
     
@@ -125,6 +119,8 @@ public class MasaraiMain : MonoBehaviour
                 if (currentHp < 0)
                 {
                     GameEvents.TrigAllEnemiesKilled();
+                    healthbar.SetActive(false);
+                    gameObject.SetActive(false);
                 }
             }
         }
@@ -153,7 +149,6 @@ public class MasaraiMain : MonoBehaviour
             stateMachine.SwitchState(stateAttack);
             return;
         }
-
         if (CurrentAttackType == AttackType.Simple)
         {
             AttackIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackSimple)).Length);
@@ -162,7 +157,6 @@ public class MasaraiMain : MonoBehaviour
         {
             AttackIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(AttackSpecial)).Length);
         }
-
         stateMachine.SwitchState(stateAttack);
     }
 
