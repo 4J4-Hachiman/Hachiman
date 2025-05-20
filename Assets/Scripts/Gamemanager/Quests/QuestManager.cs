@@ -29,7 +29,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
 
     [field: SerializeField] ChangementCinematiques cutscenePlayer;
 
-    private void Awake()
+    private void OnEnable()
     {
         gameQuests = new();
         LoadQuests();
@@ -49,10 +49,11 @@ public class QuestManager : MonoBehaviour, IDataSaveable
         currentQuest.QuestStart(_currentQuestStepIndex);
         if (currentQuest.Data.Inst)
         {
-            Debug.Log("The current quest has a GAMEOBJECT to instantiate");
             instatiatedGo = Instantiate(currentQuest.Data.Inst);
             instatiatedGo.transform.SetPositionAndRotation(currentQuest.Data.InstPosition, currentQuest.Data.InstRotation);
+            instatiatedGo.SetActive(true);
         }
+        Debug.Log($"Starting quest {currentQuest.Data.QuestStepInfo[0]}");
         currentQuest.OnQuestOver += QuestEnd;
     }
 
@@ -65,7 +66,6 @@ public class QuestManager : MonoBehaviour, IDataSaveable
             StartCoroutine(WaitForCutsceneEnd());
             return;
         }
-        Destroy(instatiatedGo);
         instatiatedGo = null;
         LoadNextQuest();
     }
@@ -86,7 +86,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
             uiQuestStepDisplay.text = "NO_MORE_QUESTS";
             return;
         }
-
+        Debug.Log("<color=green>Loading next quest</color>");
         currentQuest = GetQuestByID(currentQuest.Data.NextQuest.ID);
         QuestStart();
     }
@@ -110,6 +110,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
             gameQuests.ElementAt(i).Value.Data.state = (QuestStates)data.questStates.GetKey(gameQuests.ElementAt(i).Key, (int)gameQuests.ElementAt(i).Value.Data.state);
         }
         currentQuest = GetQuestByID(data.activeQuest);
+        currentQuest.OnQuestOver -= QuestEnd;
         QuestStart();
     }
 
