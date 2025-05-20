@@ -54,7 +54,7 @@ public class QItemPickUpObject : MonoBehaviour
         playerInputs.MapNormale.Interact.performed -= Interact;
         GameEvents.TrigOnQuestItemPickedUp();
         interactionIcon.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

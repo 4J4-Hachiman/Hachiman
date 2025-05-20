@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Custom.CSO;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Gamemanager : MonoBehaviour, IDataSaveable
 {
@@ -51,6 +52,8 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
 
     [field: SerializeField, Header("Other stuff")] public NavigationBoussole NavigationBoussole { get; private set; }
     [field: SerializeField] public GameObject Indicateur { get; private set; }
+    [field: SerializeField] public GameObject BossHealthBar { get; private set; }
+    [field: SerializeField] public Image BossHealthBarFill { get; private set; }
 
     void Awake()
     {
