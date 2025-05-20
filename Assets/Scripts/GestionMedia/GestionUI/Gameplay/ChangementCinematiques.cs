@@ -5,6 +5,7 @@
         Par : Malaïka Abevi
         Dernière modification : 14/05/2025
 */
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
@@ -27,19 +28,19 @@ public class ChangementCinematiques : MonoBehaviour
     cinematiqueTermine = false;
   }
 
-  void Update()
-  {
-    tempsJoue = (float)videoPlayer.time;
+  // void Update()
+  // {
+  //   tempsJoue = (float)videoPlayer.time;
 
-    if (cinematiqueEnCours)
-    {
-      if (tempsJoue >= tempsVideo)
-      {
-        Debug.Log("//do Stuff");
-        ArreterCinematique();
-      }
-    }
-  }
+  //   if (cinematiqueEnCours)
+  //   {
+  //     if (tempsJoue >= tempsVideo)
+  //     {
+  //       Debug.Log("//do Stuff");
+  //       ArreterCinematique();
+  //     }
+  //   }
+  // }
 
   //Fonction pour démarrer une cinématiques et en faire la gestion
   public void DemarrerCinematique(VideoClip cinematique)
@@ -58,13 +59,16 @@ public class ChangementCinematiques : MonoBehaviour
 
     animCinematique.SetTrigger("demarrerCine");
     animHUD.SetTrigger("disparaitre");
-    print("La cinematique est partie!");
-    StartCoroutine("RalentirJeu");
+    // print("La cinematique est partie!");
+    // StartCoroutine("RalentirJeu");
+    StartCoroutine(RalentirJeu());
+    StartCoroutine(ArreterCinematique(tempsVideo));
   }
 
   //Fonction pour arreter une cinématiques et en faire la gestion
-  public void ArreterCinematique()
+  public IEnumerator ArreterCinematique(float time)
   {
+    yield return new WaitForSecondsRealtime(time);
     videoPlayer.Stop();
 
     // Time.timeScale = 1;
@@ -77,47 +81,53 @@ public class ChangementCinematiques : MonoBehaviour
     Invoke("ReafficherHUD", 5f);
 
     print("La cinématique est arreter");
-    StartCoroutine("AccelererJeu");
+    // StartCoroutine("AccelererJeu");
+    StartCoroutine(AccelererJeu());
   }
 
   IEnumerator RalentirJeu()
   {
-    float scale = 1;
-    while (scale > 0f)
-    {
-      scale -= 1 / 4f * Time.unscaledDeltaTime;
-      if (scale < 0)
-      {
-        scale = 0;
-        Time.timeScale = scale;
-        break;
-      }
+    Time.timeScale = 0;
+    yield break;
 
-      Time.timeScale = scale;
+    // float scale = 1;
+    // while (scale > 0f)
+    // {
+    //   scale -= 1 / 4f * Time.unscaledDeltaTime;
+    //   if (scale < 0)
+    //   {
+    //     scale = 0;
+    //     Time.timeScale = scale;
+    //     break;
+    //   }
 
-      print(Time.timeScale);
-      yield return null;
-    }
+    //   Time.timeScale = scale;
+
+    //   // print(Time.timeScale);
+    //   yield return null;
+    // }
   }
 
   IEnumerator AccelererJeu()
   {
-    float scale = 0;
-    while (scale < 1f)
-    {
-      scale += 1 / 4f * Time.unscaledDeltaTime;
-      if (scale > 1)
-      {
-        scale = 1;
-        Time.timeScale = scale;
-        break;
-      }
+    Time.timeScale = 1;
+    yield break;
 
-      Time.timeScale = scale;
+    // float scale = 0;
+    // while (scale < 1f)
+    // {
+    //   scale += 1 / 4f * Time.unscaledDeltaTime;
+    //   if (scale > 1)
+    //   {
+    //     scale = 1;
+    //     Time.timeScale = scale;
+    //     break;
+    //   }
 
-      print(Time.timeScale);
-      yield return null;
-    }
+    //   Time.timeScale = scale;
+    //   // print(Time.timeScale);
+    //   yield return null;
+    // }
   }
 
   void ReafficherHUD()

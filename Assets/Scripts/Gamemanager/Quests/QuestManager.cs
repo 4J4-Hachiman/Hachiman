@@ -11,11 +11,11 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class QuestManager : MonoBehaviour, IDataSaveable
 {
     [field: SerializeField] private Transform questGameObjectParent;
-
     [Header("Quests Data")]
     [field: SerializeField] private QuestData[] questDataList;
     [field: SerializeField] private TextMeshProUGUI uiQuestNameDisplay;
@@ -29,7 +29,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
 
     [field: SerializeField] ChangementCinematiques cutscenePlayer;
 
-    private void OnEnable()
+    private void Awake()
     {
         gameQuests = new();
         LoadQuests();
@@ -41,19 +41,19 @@ public class QuestManager : MonoBehaviour, IDataSaveable
         for (int i = 0; i < questDataList.Length; i++)
         {
             gameQuests.Add(questDataList[i].ID, new Quest(this, questDataList[i], questGameObjectParent));
+            gameQuests[questDataList[i].ID].OnQuestOver -= QuestEnd;
         }
     }
 
     private void QuestStart()
     {
-        currentQuest.QuestStart(_currentQuestStepIndex);
+        currentQuest.QuestStart(0);
         if (currentQuest.Data.Inst)
         {
             instatiatedGo = Instantiate(currentQuest.Data.Inst);
             instatiatedGo.transform.SetPositionAndRotation(currentQuest.Data.InstPosition, currentQuest.Data.InstRotation);
             instatiatedGo.SetActive(true);
         }
-        Debug.Log($"Starting quest {currentQuest.Data.QuestStepInfo[0]}");
         currentQuest.OnQuestOver += QuestEnd;
     }
 
@@ -84,9 +84,9 @@ public class QuestManager : MonoBehaviour, IDataSaveable
         {
             uiQuestNameDisplay.text = "ALL_QUESTS_ARE_ACCOMPLISHED";
             uiQuestStepDisplay.text = "NO_MORE_QUESTS";
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<Gamemanager>().GestionFin.ArreterJeu();
             return;
         }
-        Debug.Log("<color=green>Loading next quest</color>");
         currentQuest = GetQuestByID(currentQuest.Data.NextQuest.ID);
         QuestStart();
     }
@@ -110,7 +110,6 @@ public class QuestManager : MonoBehaviour, IDataSaveable
             gameQuests.ElementAt(i).Value.Data.state = (QuestStates)data.questStates.GetKey(gameQuests.ElementAt(i).Key, (int)gameQuests.ElementAt(i).Value.Data.state);
         }
         currentQuest = GetQuestByID(data.activeQuest);
-        currentQuest.OnQuestOver -= QuestEnd;
         QuestStart();
     }
 

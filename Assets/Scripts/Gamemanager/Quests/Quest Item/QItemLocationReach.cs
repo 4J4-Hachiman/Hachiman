@@ -28,9 +28,9 @@ public class QItemLocationReach : MonoBehaviour
     {
         if (QuestManager.CurrentQuestID == assignedQuest.ID)
         {
-            Debug.Log("Location listener triggered");
-            gameObject.SetActive(false);
             GameEvents.TrigOnLocationReached();
+            capsuleCollider.enabled = false;
+            gameObject.SetActive(false);
         }
     }
 }

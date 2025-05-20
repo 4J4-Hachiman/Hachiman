@@ -17,7 +17,7 @@ public class Quest
     private GameObject[] questStepGO;
     public event Action OnQuestOver;
     private readonly Transform parentGO;
-    
+
     public Quest(QuestManager questManager, QuestData data, Transform parentGO)
     {
         this.questManager = questManager;
@@ -25,11 +25,13 @@ public class Quest
         this.parentGO = parentGO;
         questStepGO = new GameObject[Data.QuestStepGO.Length];
         Data.state = QuestStates.Inactive;
-        
+
         for (int i = 0; i < Data.QuestStepGO.Length; i++)
         {
             questStepGO[i] = Data.QuestStepGO[i];
         }
+
+        GameEvents.OnQuestStepFinished -= GetNextStep;
     }
 
     public void QuestStart(int stepIndex)
@@ -47,14 +49,12 @@ public class Quest
             QuestOver();
             return;
         }
-        
         currentStepIndex++;
         StepStart(parentGO);
     }
 
     private void StepStart(Transform parent)
     {
-        Debug.Log("Making an event listener");
         GameObject questGO = GetStepGO();
         UnityEngine.Object.Instantiate(questGO, parent);
         questManager.UpdateQuestUI();
@@ -67,8 +67,9 @@ public class Quest
 
     private void QuestOver()
     {
-        GameEvents.OnQuestStepFinished -= GetNextStep;
         Data.state = QuestStates.Completed;
+        GameEvents.OnQuestStepFinished -= GetNextStep;
+        
         OnQuestOver?.Invoke();
     }
 

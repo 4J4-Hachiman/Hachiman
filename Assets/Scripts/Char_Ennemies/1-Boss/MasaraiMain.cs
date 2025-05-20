@@ -119,7 +119,8 @@ public class MasaraiMain : MonoBehaviour
                 if (currentHp < 0)
                 {
                     GameEvents.TrigAllEnemiesKilled();
-                    Debug.Log("Masarai is dead");
+                    healthbar.SetActive(false);
+                    gameObject.SetActive(false);
                 }
             }
         }
