@@ -22,13 +22,13 @@ public class QItemLocationReach : MonoBehaviour
         capsuleCollider.isTrigger = true;
         GetComponent<CapsuleCollider>().includeLayers = detectionLayer;
         GetComponent<CapsuleCollider>().excludeLayers = ~detectionLayer;
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (QuestManager.CurrentQuestID == assignedQuest.ID)
         {
+            gameObject.SetActive(false);
             GameEvents.TrigOnLocationReached();
         }
     }

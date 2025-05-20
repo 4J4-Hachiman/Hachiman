@@ -54,6 +54,7 @@ public class Quest
 
     private void StepStart(Transform parent)
     {
+        Debug.Log("Making an event listener");
         GameObject questGO = GetStepGO();
         UnityEngine.Object.Instantiate(questGO, parent);
         questManager.UpdateQuestUI();
