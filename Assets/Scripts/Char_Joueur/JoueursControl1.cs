@@ -903,6 +903,8 @@ public class JoueursControl1 : MonoBehaviour
     {
         if (ctx.performed && !isRolling)
         {
+            endurance = (endurance < 40) ? 0 : endurance - 40;
+            StartCoroutine(EnduranceReset());
             isRolling = true;
             animator.SetTrigger("roll");
             state = HachimanState.Rolling;
