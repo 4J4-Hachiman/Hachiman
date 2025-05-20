@@ -31,6 +31,7 @@ public class Chest : MonoBehaviour, IDataSaveable
     private bool isOpen = false;
     private bool isTaken = false;
     private bool isIdle = false;
+    private bool canTake = false;
     private bool isPlayerInside = false;
 
     /* ------------------ REFERENCES INPUT SYSTEM ------------------ */
@@ -95,8 +96,9 @@ public class Chest : MonoBehaviour, IDataSaveable
             isOpen = true;
             animator.SetTrigger("Open");
             GetComponents<AudioSource>()[0].PlayOneShot(banqueAudio.sOuvertureCoffre);
+            Invoke("CanTake", 2.1f);
         }
-        else if (!isTaken)
+        else if (!isTaken && canTake)
         {
             //Debug.Log("take");
             if (itemInChest.tag == "Potion")
@@ -165,5 +167,10 @@ public class Chest : MonoBehaviour, IDataSaveable
     {
         data.chestsStatesOpen.SetPair(id, isOpen);
         data.chestsStatesItemPicked.SetPair(id, isTaken);
+    }
+
+    void CanTake()
+    {
+        canTake = true;
     }
 }
