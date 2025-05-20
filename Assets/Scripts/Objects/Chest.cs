@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Chest : MonoBehaviour, IDataSaveable
 {
@@ -17,6 +18,7 @@ public class Chest : MonoBehaviour, IDataSaveable
     public GameObject hand;
     public GameObject chestParent;
     public GameObject uiInteraction;
+    [SerializeField] private GameObject katanaCard;
 
     /* -------------------- REFERENCES COMPONENTS -------------------- */
     public JoueursControl1 hachiman;
@@ -32,6 +34,7 @@ public class Chest : MonoBehaviour, IDataSaveable
     private bool isTaken = false;
     private bool isIdle = false;
     private bool canTake = false;
+    private bool canContinue = false;
     private bool isPlayerInside = false;
 
     /* ------------------ REFERENCES INPUT SYSTEM ------------------ */
@@ -86,6 +89,11 @@ public class Chest : MonoBehaviour, IDataSaveable
             //Debug.Log("Interact action");
             InteractChest();
         }
+        if (canContinue == true)
+        {
+            katanaCard.SetActive(false);
+            canContinue = false;
+        }
     }
 
     void InteractChest()
@@ -121,6 +129,7 @@ public class Chest : MonoBehaviour, IDataSaveable
                     hachiman.katanaList.Add(instNewKatana);
                     affichageRecolteItems.AfficherItemsRecolte(spriteItem, stringItemName);
                     hachiman.ShowKatanaIcon();
+                    StartCoroutine(ShowKatanaCard());
                 }
             }
             if (isTaken)
@@ -172,5 +181,17 @@ public class Chest : MonoBehaviour, IDataSaveable
     void CanTake()
     {
         canTake = true;
+    }
+
+    IEnumerator ShowKatanaCard()
+    {
+        katanaCard.SetActive(true);
+        katanaCard.GetComponent<Animator>().SetTrigger("activate");
+        
+        yield return new WaitForSeconds(2f);
+
+        canContinue = true;
+
+        yield return null;
     }
 }
