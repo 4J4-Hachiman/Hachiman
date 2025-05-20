@@ -23,10 +23,14 @@ public class GestionFinPartie : MonoBehaviour
     }
     public void ArreterJeu()
     {
-        Invoke("AffichageFinPartie", 1f);
-        StartCoroutine(RalentirJeu());
-        musiqueTransition.ChangerMusique(banqueAudio.mscFinJeu);
-        partieFini = true;
+        if (!partieFini)
+        {
+            print("appel de fin de jeu");
+            Invoke("AffichageFinPartie", 1f);
+            StartCoroutine(RalentirJeu());
+            musiqueTransition.ChangerMusique(banqueAudio.mscFinJeu);
+            partieFini = true;
+        }
     }
 
     IEnumerator RalentirJeu()

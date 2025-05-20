@@ -8,11 +8,10 @@
         Dernière modification : 06/05/2025
 */
 using System.Collections;
-using UnityEditor.SearchService;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 public class SceneActiveManager : MonoBehaviour
@@ -30,22 +29,29 @@ public class SceneActiveManager : MonoBehaviour
     {
         sceneActuelle = SceneManager.GetActiveScene();
         changementSceneEnCours = false;
-        // if (instance == null)
-        // {
-        //     instance = this;
-        //     DontDestroyOnLoad(gameObject);
-        // }
-        // else
-        // {
-        //     Destroy(gameObject);
-        // }
+        // timeline.playableAsset = timelineAsset;
+        // timeline.Play();
     }
 
     //Fonction pour démarrer la coroutine du chargement de scène
     public void ChargerScene(string nomScene)
     {
         StartCoroutine(ChargementAsyncScene(nomScene));
+    }
 
+    public void ChangerBinding(GameObject interfaceFadeOut)
+    {
+        // Obtenir les assets du timeline et changer le binding du fadeOut
+        TimelineAsset tlAssets = (TimelineAsset)timeline.playableAsset;
+        foreach (TrackAsset trackAsset in tlAssets.GetOutputTracks())
+        {
+            if (trackAsset.name == "FadeOut - Interface")
+            {
+                // Set le binding du fadeOut
+                timeline.SetGenericBinding(trackAsset, interfaceFadeOut);
+                break;
+            }
+        }
     }
 
     IEnumerator ChargementAsyncScene(string nomScene)
@@ -54,7 +60,6 @@ public class SceneActiveManager : MonoBehaviour
         {
             Gamemanager.newGame = true;
         }
-
         changementSceneEnCours = true;
         Time.timeScale = 1;
         timeline.gameObject.SetActive(true);
