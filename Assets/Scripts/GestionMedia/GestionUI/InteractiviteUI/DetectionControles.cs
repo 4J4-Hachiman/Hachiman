@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 public class DetectionControles : MonoBehaviour
 {
-    Vector2 dernierPositionSouris;
-    Vector2 positionSouris;
-    float changementPositionSouris;
+    // Vector2 dernierPositionSouris;
+    // Vector2 positionSouris;
+    // float changementPositionSouris;
     static bool sourisClavierUtilise;
     public PlayerInput playerInput;
 
@@ -27,6 +27,6 @@ public class DetectionControles : MonoBehaviour
         
         sourisClavierUtilise = playerInput.currentControlScheme == "Keyboard" || playerInput.currentControlScheme == "Mouse";
 
-        print(sourisClavierUtilise + "le currentScheme: " + playerInput.currentControlScheme);
+        // print(sourisClavierUtilise + "le currentScheme: " + playerInput.currentControlScheme);
     }
 }
