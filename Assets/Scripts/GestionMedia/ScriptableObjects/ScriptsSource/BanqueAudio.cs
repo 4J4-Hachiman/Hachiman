@@ -37,6 +37,7 @@ public class BanqueAudio : ScriptableObject
     public AudioClip sRockHit;
     public AudioClip sRockBreak;
     public AudioClip sObtainItem;
+    public AudioClip sDoor;
 
 
     [Header("Effets sonores Hachiman")]
