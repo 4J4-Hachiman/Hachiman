@@ -23,16 +23,20 @@ public class GestionMort : MonoBehaviour
     }
     public void ArreterJeu()
     {
-        Invoke("AffichageMort", 1f);
-        StartCoroutine(RalentirJeu());
-        musiqueTransition.ChangerMusique(banqueAudio.mscMort);
-        estMort = true;
+        if (!estMort)
+        {
+            print("appel de fin de jeu");
+            Invoke("AffichageMort", 1f);
+            StartCoroutine(RalentirJeu());
+            musiqueTransition.ChangerMusique(banqueAudio.mscMort);
+            estMort = true;
+        }
     }
 
     IEnumerator RalentirJeu()
     {
         float scale = 1;
-        while (scale > 0f)
+        while (/*scale > 0f*/ !Mathf.Approximately(scale, 1f))
         {
             scale -= 1 / 4f * Time.unscaledDeltaTime;
             if (scale < 0)

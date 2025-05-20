@@ -54,17 +54,18 @@ public class AudioManager : MonoBehaviour
     {
         pisteChoisie.Play();
 
-        if(pisteEnCours.isPlaying){
-        while (pisteEnCours.volume > 0)
-        {
-            pisteEnCours.volume -= vitesseTransition;
-            pisteChoisie.volume += vitesseTransition;
-            // print("Le volume de la piste actuelle est à  :" + pisteEnCours.volume + ". La nouvelle piste s'embarque avec un volume de :" + pisteChoisie.volume);
-            yield return null;
-        }
+        // if (pisteEnCours.isPlaying)
+        // {
+            while (pisteEnCours.volume > 0)
+            {
+                pisteEnCours.volume -= vitesseTransition;
+                pisteChoisie.volume += vitesseTransition;
 
-        pisteEnCours.Pause();
-        }
+                // print("Le volume de la piste actuelle est à  :" + pisteEnCours.volume + ". La nouvelle piste s'embarque avec un volume de :" + pisteChoisie.volume);
+                yield return null;
+            }
+            pisteEnCours.Pause();
+        // }
 
         yield return null;
     }
@@ -73,7 +74,8 @@ public class AudioManager : MonoBehaviour
         vfxPisteUI.GetComponent<AudioSource>().PlayOneShot(sonUI);
     }
 
-    public void JouerRetourSonSFX(AudioClip sonSlider){
+    public void JouerRetourSonSFX(AudioClip sonSlider)
+    {
         vfxPisteUI.GetComponent<AudioSource>().PlayOneShot(sonSlider);
     }
 }
