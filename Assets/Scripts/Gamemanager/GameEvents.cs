@@ -18,11 +18,15 @@ public class GameEvents
     public static void TrigOnQuestStepFinished() => OnQuestStepFinished?.Invoke();
     public static event Action OnQuestItemPickedUp;
     public static void TrigOnQuestItemPickedUp() => OnQuestItemPickedUp?.Invoke();
+    public static event Action OnQuestFinished;
+    public static void TrigQuestFinished() => OnQuestFinished?.Invoke();
+
     public static void Reset()
     {
         OnAllEnemiesKilled = null;
         OnLocationReached = null;
         OnQuestStepFinished = null;
         OnQuestItemPickedUp = null;
+        OnQuestFinished = null;
     }
 }

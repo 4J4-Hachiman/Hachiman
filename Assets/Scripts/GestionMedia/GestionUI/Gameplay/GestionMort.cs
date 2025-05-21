@@ -56,6 +56,8 @@ public class GestionMort : MonoBehaviour
     void AffichageMort()
     {
         gameObject.GetComponent<Animator>().SetTrigger("mort");
+        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        gameObject.GetComponent<CanvasGroup>().interactable = true;
         Cursor.lockState = CursorLockMode.Confined;
         eventSystem.SetSelectedGameObject(bntSelected);
     }

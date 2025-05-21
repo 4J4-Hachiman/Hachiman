@@ -172,13 +172,23 @@ public class Gamemanager : MonoBehaviour, IDataSaveable
             player.SetPositionAndRotation(data.playerPosition, data.playerRotation);
         }
 
-        player.GetComponent<JoueursControl1>().numbPotion = data.playerPotionCount;
+
+        JoueursControl1 playerScript = player.GetComponent<JoueursControl1>();
+        playerScript.numbPotion = data.playerPotionCount;
         
         for (int i = 0; i < swordData.KatanaList.Count; i++)
         {
             if (data.swordState.GetKey(swordData.KatanaList[i].ID, false))
             {
-                player.GetComponent<JoueursControl1>().katanaList.Add(swordData.KatanaList[i].gameObject);
+                GameObject k = Instantiate(swordData.KatanaList[i].gameObject, playerScript.katana.transform.position, playerScript.katana.transform.rotation);
+                k.transform.parent = playerScript.katana.transform.parent;
+                playerScript.activeKatana.SetActive(false);
+                playerScript.activeKatana = k;
+                playerScript.katanaList.Add(k);
+                if (!playerScript.isArmed)
+                {
+                    k.SetActive(false);
+                }
             }
         }
     }

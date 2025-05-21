@@ -21,7 +21,7 @@ public class GestionFinPartie : MonoBehaviour
     {
         partieFini = false;
     }
-    
+
     public void ArreterJeu()
     {
         if (!partieFini)
@@ -57,6 +57,8 @@ public class GestionFinPartie : MonoBehaviour
     void AffichageFinPartie()
     {
         gameObject.GetComponent<Animator>().SetTrigger("finPartie");
+        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        gameObject.GetComponent<CanvasGroup>().interactable = true;
         Cursor.lockState = CursorLockMode.Confined;
         eventSystem.SetSelectedGameObject(bntSelected);
     }

@@ -7,6 +7,8 @@
 */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -20,54 +22,44 @@ public class MasaraiMain : MonoBehaviour
     private CapsuleCollider capsuleCollider;
     private NavMeshAgent agent;
     private Animator animator;
-
     [field: SerializeField] private Transform[] limbs;
     [field: SerializeField] private Transform hitbox;
     private SphereCollider hitboxCollider;
-
     [Header("Data")]
     [field: SerializeField] private float maxHp;
     private float currentHp;
     [field: SerializeField] public float AtkTrigDistance { get; private set; }
     [field: SerializeField] public float SpecialAtkTrigDistance { get; private set; }
-
-    /* =================== Anim params =================== */
     public int ParamVtotal { get; private set; }
     public int ParamAttckSpecialStart { get; private set; }
     public int ParamAttackIndex { get; private set; }
     public int ParamAttackSpecialPlay { get; private set; }
-
     [Header("Healthbar")]
     private GameObject healthbar;
     private Image healthbarFill;
     public int AttackIndex { get; private set; }
     [field: SerializeField] public int AttackSpecialTriggerChance { get; private set; }
-
-    /* ================== State Machine ================== */
     private MasaraiStateMachine stateMachine;
     private MasaraiStateWalk stateWalk;
     private MasaraiStateAttack stateAttack;
-
-    /* ====================== Events ====================== */
-
     public enum AttackType
     {
         Simple,
         Special
     }
-
     public enum AttackSimple
     {
         Uppercut,
         Kick,
         Stomp
     }
-
     public enum AttackSpecial
     {
         Smash,
         Tatsumaki
     }
+
+    private bool statusEffect;
 
     public AttackType CurrentAttackType { get; private set; }
     public AttackSimple CurrentSimpleAttack { get; private set; }
@@ -95,9 +87,10 @@ public class MasaraiMain : MonoBehaviour
         stateWalk.OnTriggerAttack += OnTriggerAttack;
         healthbar = GameObject.FindGameObjectWithTag("GameController").GetComponent<Gamemanager>().BossHealthBar;
         healthbarFill = GameObject.FindGameObjectWithTag("GameController").GetComponent<Gamemanager>().BossHealthBarFill;
+        statusEffect = false;
         healthbar.SetActive(true);
     }
-    
+
     private void Update()
     {
         stateMachine.Current.StateUpdate();
@@ -114,25 +107,63 @@ public class MasaraiMain : MonoBehaviour
         {
             if (other.TryGetComponent(out Sword sword))
             {
-                currentHp -= sword.GetDammage();
-                healthbarFill.fillAmount = currentHp / maxHp;
-                if (currentHp < 0)
+                Dammage(sword.GetDammage());
+                if (currentHp > 0)
                 {
-                    GameEvents.TrigAllEnemiesKilled();
-                    healthbar.SetActive(false);
-                    gameObject.SetActive(false);
+                    StartCoroutine(SwordStatManager(sword.StatType));
                 }
             }
         }
     }
 
+    private IEnumerator SwordStatManager(Sword.AttackStats stat)
+    {
+        if (stat == Sword.AttackStats.None || statusEffect)
+        {
+            yield break;
+        }
+
+        JoueursControl1 p = Player.GetComponent<JoueursControl1>();
+        int iter = 4;
+        float h = stat == Sword.AttackStats.Lifesteal ? 3 : 0;
+        float d = stat == Sword.AttackStats.Bleedout ? 3 : 0;
+        yield return new WaitForSeconds(0.5f);
+
+        statusEffect = true;
+        while (iter > 0)
+        {
+            Dammage(d);
+            p.health += h;
+            if (p.health > p.maxHealth)
+            {
+                p.health = p.maxHealth;
+            }
+            iter -= 1;
+            yield return new WaitForSeconds(0.5f);
+        }
+        statusEffect = false;
+        yield break;
+    }
+
+    private void Dammage(float dmg)
+    {
+        currentHp -= dmg;
+        healthbarFill.fillAmount = currentHp / maxHp;
+        if (currentHp <= 0)
+        {
+            GameEvents.TrigAllEnemiesKilled();
+            healthbar.SetActive(false);
+            gameObject.SetActive(false);
+        }
+    }
+    
     private void OnAnimatorMove()
     {
         if (!animator.applyRootMotion)
         {
             return;
         }
-
+        
         transform.position += animator.deltaPosition;
         agent.nextPosition = transform.position;
     }

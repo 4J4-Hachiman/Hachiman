@@ -37,7 +37,7 @@ public class NavigationBoussole : MonoBehaviour
 
     public void IndiquerPosition(Transform gameObjectSuivi, GameObject indicateur)
     {
-        if (gameObjectSuivi.gameObject.activeSelf)
+        if (gameObjectSuivi.gameObject.activeSelf && gameObjectSuivi.gameObject != null)
         {
             AffichageIndicateur affichageIndicateur = indicateur.GetComponent<AffichageIndicateur>();
             affichageIndicateur.ObjetSuivi = gameObjectSuivi.gameObject;

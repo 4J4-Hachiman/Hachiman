@@ -115,9 +115,9 @@ MonoBehaviour:
       maxLocalVolumetricFogSize: 32
       maxLocalVolumetricFogOnScreen: 152
     hdShadowInitParams:
-      maxShadowRequests: 128
+      maxShadowRequests: 1024
       directionalShadowsDepthBits: 16
-      punctualShadowFilteringQuality: 1
+      punctualShadowFilteringQuality: 0
       directionalShadowFilteringQuality: 1
       areaShadowFilteringQuality: 0
       punctualLightShadowAtlas:
@@ -226,7 +226,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000101
+        m_Values: 010000
         m_SchemaId:
           m_Id: 
     maximumLODLevel:
