@@ -20,8 +20,8 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
     [field: SerializeField] private bool showGizmos = true;
     [field: SerializeField, Range(0f, 1f)] private float groupTriggerGizmosOpacity = 1;
     [field: SerializeField] public PatrolRoute[] patrolRoutes { get; private set; } = new PatrolRoute[0];
-
     public event Action<SpawnGroup> OnGroupTriggered;
+    [field: SerializeField] private QuestData assignedQuest;
 
     private void Awake()
     {
@@ -55,12 +55,10 @@ public class SpawnGroup : MonoBehaviour, IDataSaveable
     public void LoadData(GameData data)
     {
         Collider collider = gameObject.GetComponent<Collider>();
-
         collider.enabled = data.spawnGroupsStates.GetKey(groupeID, collider.enabled);
-
-        if (!data.spawnGroupsStates.GetKey(groupeID, collider.enabled))
+        if (data.activeQuest == assignedQuest.ID)
         {
-            gameObject.SetActive(false);
+            collider.enabled = true;
         }
     }
 

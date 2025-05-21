@@ -117,6 +117,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
 
         StatePatrol.OnPlayerSpotted += HandlePlayerSpotted;
         StateMachine.Initalize(StatePatrol, true);
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -181,6 +182,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
             OnEnemyDeath?.Invoke(this);
             Animator.SetBool("Dead", true);
             StateMachine.SwitchState(StateDead);
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
         else
         {
@@ -191,7 +193,7 @@ public class EnnemiMain : MonoBehaviour, IDamageable, IMoveable
                 StateHit.OnHitAnimationEnd += HandleStateAnimationEnd;
                 swordCollider.enabled = false;
             }
-            
+
             OnDammageTaken?.Invoke(HpCurrent, HpMax);
         }
 

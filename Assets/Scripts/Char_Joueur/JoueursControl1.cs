@@ -114,7 +114,7 @@ public class JoueursControl1 : MonoBehaviour
     private List<string> attackCombosList = new List<string>();
     private int lockOnIndex = 0;
     private int lockOnTotalTargets = 0;
-    public int katanaID; 
+    public int katanaID;
 
     // Rock Quest
     private int rockIndex = 0;
@@ -341,6 +341,22 @@ public class JoueursControl1 : MonoBehaviour
             }
             else
             {
+                if (hits.Length == 0)
+                {
+                    isLockedOn = false;
+                    animator.SetBool("lockedOn", false);
+                }
+
+                // Debug.Log(lockOnTarget.gameObject.layer == LayerMask.NameToLayer("Enemy"));
+                if (lockOnTarget.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+                {
+                    hits = CapsuleCastFromCamera();
+                    if (hits.Length > 0)
+                    {
+                        lockOnTarget = hits[0].transform;
+                    }
+                }
+
                 dotCanvas.SetActive(true);
                 Vector3 direction = lockOnTarget.position - transform.position;
                 direction.y = 0;
@@ -401,33 +417,34 @@ public class JoueursControl1 : MonoBehaviour
         vyJoueur += forceGravite * Time.fixedDeltaTime;
     }
 
-    public void EnableGameplay() {
+    public void EnableGameplay()
+    {
         inputActions.UImap.Disable();
         inputActions.MapNormale.Enable();
-        DebugCurrentActionMap();
+        // DebugCurrentActionMap();
     }
     public void EnableUI()
     {
         inputActions.MapNormale.Disable();
         inputActions.UImap.Enable();
-        DebugCurrentActionMap();
+        // DebugCurrentActionMap();
     }
 
-    void DebugCurrentActionMap()
-    {
-        if (inputActions.MapNormale.enabled)
-        {
-            Debug.Log("Current Action Map: Mapnormale (Gameplay)");
-        }
-        else if (inputActions.UImap.enabled)
-        {
-            Debug.Log("Current Action Map: UImap (UI)");
-        }
-        else
-        {
-            Debug.Log("No Action Map is currently enabled.");
-        }
-    }
+    // void DebugCurrentActionMap()
+    // {
+    //     if (inputActions.MapNormale.enabled)
+    //     {
+    //         Debug.Log("Current Action Map: Mapnormale (Gameplay)");
+    //     }
+    //     else if (inputActions.UImap.enabled)
+    //     {
+    //         Debug.Log("Current Action Map: UImap (UI)");
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("No Action Map is currently enabled.");
+    //     }
+    // }
 
     void LockOnFunc()
     {
@@ -535,10 +552,10 @@ public class JoueursControl1 : MonoBehaviour
 
         // OverlapSphere to get all potential targets
         Collider[] hits = Physics.OverlapSphere(origin, radius, enemyLayer);
-        foreach (Collider col in hits)
-        {
-            // Debug.Log(col.gameObject);
-        }
+        // foreach (Collider col in hits)
+        // {
+        //     Debug.Log(col.gameObject.layer);
+        // }
 
         foreach (Collider col in hits)
         {
@@ -854,7 +871,7 @@ public class JoueursControl1 : MonoBehaviour
             katanaHUDicons[i].SetActive(false);
         }
         int katanaHUDiconID = int.Parse(activeKatana.GetComponent<Sword>().ID);
-        katanaHUDicons[katanaHUDiconID-1].SetActive(true);
+        katanaHUDicons[katanaHUDiconID - 1].SetActive(true);
     }
 
     public void StoppedHealing()
@@ -1282,7 +1299,7 @@ public class JoueursControl1 : MonoBehaviour
                 // direction.y = 0;
                 // transform.rotation = Quaternion.LookRotation(direction);
 
-                Debug.Log("Hit by an Enemy Weapon!");
+                // Debug.Log("Hit by an Enemy Weapon!");
                 if (state == HachimanState.Guarding)
                 {
                     endurance = (endurance < 25) ? 0 : endurance - 25;
@@ -1318,7 +1335,7 @@ public class JoueursControl1 : MonoBehaviour
 
                         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy Weapon"))
                         {
-                            Debug.Log("<color=red>Was hit by the player</color>");
+                            // Debug.Log("<color=red>Was hit by the player</color>");
                             health -= collision.GetComponent<Sword>().GetDammage();
                             dommageHUD.GetComponent<Animator>().SetTrigger("dommage");
                         }
