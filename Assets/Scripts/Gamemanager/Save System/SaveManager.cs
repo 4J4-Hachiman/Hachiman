@@ -51,10 +51,10 @@ public class SaveManager : MonoBehaviour
             }
         }
         GameEvents.Reset();
-        GameEvents.OnQuestStepFinished += OnSetpFinished;
+        GameEvents.OnQuestFinished += OnQuestFinished;
     }
 
-    private void OnSetpFinished()
+    private void OnQuestFinished()
     {
         SaveGame();
     }
@@ -99,6 +99,8 @@ public class SaveManager : MonoBehaviour
     public void SaveGame()
     {
         gameData.lScene = SceneManager.GetActiveScene().name;
+        gameData.spawnGroupsStates = new();
+
         foreach (IDataSaveable dataSaveable in saveDatas)
         {
             dataSaveable.SaveData(ref gameData);

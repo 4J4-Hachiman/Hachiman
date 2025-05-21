@@ -2586,7 +2586,7 @@ MonoBehaviour:
   groupeID: 
   mask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   showGizmos: 1
   groupTriggerGizmosOpacity: 1
   <patrolRoutes>k__BackingField:
@@ -2597,6 +2597,7 @@ MonoBehaviour:
     - {x: 129.29585, y: 0, z: 90.34745}
     - {x: 119.56183, y: 0.0000019073486, z: 89.35695}
     - {x: 119.97003, y: 0, z: 95.486336}
+  assignedQuest: {fileID: 11400000, guid: 01697ad646f089f4594a81697e8faf0f, type: 2}
 --- !u!65 &290297130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7815,6 +7816,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 162999956187594785, guid: 266e836507b3e7a448ff95c6e2f84e2d, type: 3}
   m_PrefabInstance: {fileID: 2129223603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &821067325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6817824789200895984, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
+  m_PrefabInstance: {fileID: 1410563188}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &833001491 stripped
 Transform:
@@ -14685,7 +14691,7 @@ PrefabInstance:
       objectReference: {fileID: 1857444100}
     - target: {fileID: 6817824789200895984, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7334616881571785994, guid: b7b438a72a5e10e40abb3d665e059159, type: 3}
       propertyPath: m_Sprite
@@ -15707,7 +15713,7 @@ Transform:
   m_GameObject: {fileID: 1511964001}
   serializedVersion: 2
   m_LocalRotation: {x: 9.972545e-19, y: 0.99543315, z: -0.09546134, w: 1.0398977e-17}
-  m_LocalPosition: {x: 97.616, y: -0.35258198, z: 229.51839}
+  m_LocalPosition: {x: 97.568, y: -0.35258198, z: 230.32639}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21156,7 +21162,7 @@ Transform:
   m_GameObject: {fileID: 2022166239}
   serializedVersion: 2
   m_LocalRotation: {x: -1.1102177e-16, y: 0.9954332, z: -0.09546135, w: -3.4356784e-19}
-  m_LocalPosition: {x: 97.616, y: -0.35258198, z: 229.51839}
+  m_LocalPosition: {x: 97.568, y: -0.35258198, z: 230.32639}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23845,7 +23851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4764400625375955502, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: <BasicDammage>k__BackingField
-      value: 250
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4913424012837790110, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_Layer
@@ -23989,7 +23995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 120.63
+      value: 120.582
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23997,7 +24003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 228.47
+      value: 229.278
       objectReference: {fileID: 0}
     - target: {fileID: 5894832761041720910, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -24275,6 +24281,10 @@ PrefabInstance:
       propertyPath: uiVieMana
       value: 
       objectReference: {fileID: 1618471201}
+    - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
+      propertyPath: dommageHUD
+      value: 
+      objectReference: {fileID: 821067325}
     - target: {fileID: 7035474973202302337, guid: 7a9b153b992289245afc0daf486d74d8, type: 3}
       propertyPath: banqueAudio
       value: 
