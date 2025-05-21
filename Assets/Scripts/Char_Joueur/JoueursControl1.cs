@@ -757,6 +757,7 @@ public class JoueursControl1 : MonoBehaviour
                 isDoorOpened = true;
                 uiInteractionDoor.SetActive(false);
                 animatorDoor.SetTrigger("open");
+                Door.GetComponent<AudioSource>().PlayOneShot(banqueAudio.sDoor);
             }
             if (inFrontofRock && canHitRock && isArmed)
             {
