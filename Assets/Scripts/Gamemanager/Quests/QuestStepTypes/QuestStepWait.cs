@@ -10,7 +10,7 @@ public class QuestStepWait : QuestStep
 {
     private void OnEnable()
     {
-        Invoke(nameof(OnWaitTimeOver), 5);
+        Invoke(nameof(OnWaitTimeOver), 70);
     }
 
     private void OnWaitTimeOver()
