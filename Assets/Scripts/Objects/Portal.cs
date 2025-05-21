@@ -4,9 +4,11 @@ using UnityEngine.InputSystem;
 
 public class Portal : MonoBehaviour
 {
+    /* ------------------ VARIABLES ------------------ */
     public SceneActiveManager sceneActiveManager;
     public JoueursControl1 joueursControl1;
     private bool inFrontOfPortal;
+    public GameObject uiInteraction;
 
     /* ------------------ REFERENCES INPUT SYSTEM ------------------ */
     private PlayerControls inputActions;
@@ -49,6 +51,7 @@ public class Portal : MonoBehaviour
         if (inFrontOfPortal)
         {
             Teleport();
+            uiInteraction.SetActive(false);
         }
     }
 }
