@@ -88,6 +88,7 @@ public class QuestManager : MonoBehaviour, IDataSaveable
             return;
         }
         currentQuest = GetQuestByID(currentQuest.Data.NextQuest.ID);
+        GameEvents.TrigQuestFinished();
         QuestStart();
     }
 
